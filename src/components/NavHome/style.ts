@@ -63,8 +63,25 @@ export const DivLinksNav = styled.div`
     gap: 25px;
     font-size: 16px;
   }
+  & > a {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+      to right,
+      var(--color-primary),
+      var(--color-primary) 50%,
+      var(--color-opposite-1) 50%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 275ms ease;
+  }
   & > a:hover {
     color: var(--color-primary);
+    background-position: 0 100%;
   }
 `;
 
@@ -79,7 +96,7 @@ export const BtnMenuNav = styled.button`
   color: var(--color-primary);
 
   &:hover {
-    color: var(--color-secondary);
+    color: var(--color-opposite-1);
   }
 
   @media (min-width: 900px) {
@@ -96,7 +113,7 @@ export const DivSideMenu = styled.div<iDiv>`
   left: 0px;
   top: 0px;
   padding: 30px 15px;
-  color: var(--color-primary);
+  color: pink;
   font-weight: 600;
   gap: 25px;
   font-size: 16px;
@@ -106,10 +123,28 @@ export const DivSideMenu = styled.div<iDiv>`
   display: ${({ display }) => (display === true ? "flex" : " none")};
   flex-direction: column;
   position: absolute;
+
   @media (min-width: 900px) {
     display: none;
   }
+  & > a {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+      to right,
+      var(--color-primary),
+      var(--color-primary) 50%,
+      var(--color-secondary) 50%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 275ms ease;
+  }
   & > a:hover {
-    color: var(--color-secondary);
+    color: var(--color-primary);
+    background-position: 0 100%;
   }
 `;
