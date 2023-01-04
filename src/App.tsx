@@ -6,7 +6,7 @@ export function App() {
   return (
     <div className="App">
       <GlobalStyle />
-      <HomePage />
+
     </div>
   );
 }

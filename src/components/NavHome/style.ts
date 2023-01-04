@@ -48,7 +48,7 @@ export const DivLogo = styled.div`
 
 export const DivLinksNav = styled.div`
   display: none;
-  color: var(--color-opposite-1);
+  color: var(--color-grey100);
   font-weight: 600;
 
   @media (min-width: 900px) {
@@ -70,7 +70,7 @@ export const DivLinksNav = styled.div`
       to right,
       var(--color-primary),
       var(--color-primary) 50%,
-      var(--color-opposite-1) 50%
+      var(--color-grey100) 50%
     );
     background-clip: text;
     -webkit-background-clip: text;
@@ -81,6 +81,7 @@ export const DivLinksNav = styled.div`
   }
   & > a:hover {
     color: var(--color-primary);
+    text-decoration: underline;
     background-position: 0 100%;
   }
 `;
@@ -107,12 +108,12 @@ export const BtnMenuNav = styled.button`
 export const DivSideMenu = styled.div<iDiv>`
   animation-name: ${menuAnimation};
   animation-iteration-count: 1;
-  animation-duration: 1s;
-  background-color: var(--color-opposite-1);
+  animation-duration: 0.5s;
+  background-color: var(--color-grey100);
   display: flex;
   left: 0px;
   top: 0px;
-  padding: 30px 15px;
+  padding: 30px 20px;
   color: pink;
   font-weight: 600;
   gap: 25px;
@@ -134,7 +135,7 @@ export const DivSideMenu = styled.div<iDiv>`
       to right,
       var(--color-primary),
       var(--color-primary) 50%,
-      var(--color-secondary) 50%
+      var(--color-grey0) 50%
     );
     background-clip: text;
     -webkit-background-clip: text;
