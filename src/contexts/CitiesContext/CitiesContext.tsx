@@ -11,8 +11,6 @@ interface iCitiesContext {
   city: string;
   selectCity: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   disable: boolean;
-  setCitiesList: React.Dispatch<React.SetStateAction<[] | iCitiesList[]>>;
-  stateId: number;
 }
 
 interface iStatesList {
@@ -119,8 +117,6 @@ export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
         city,
         selectCity,
         disable,
-        setCitiesList,
-        stateId,
       }}
     >
       {children}
