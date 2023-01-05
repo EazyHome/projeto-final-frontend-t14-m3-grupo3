@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { api } from "../../service/api";
-import { iDefaultPropsProvider } from "./types";
+import { iDefaultPropsProvider } from "../types";
 import { useNavigate } from "react-router-dom";
 
 interface iUserClientRegister {
@@ -17,7 +17,7 @@ interface iUserClientRegister {
 interface iUserServiceRegister extends iUserClientRegister {
   workOnCities: [];
   workOnCategories: [];
-  avaiable: boolean;
+  available: boolean;
 }
 
 interface iUserLogin {
@@ -25,7 +25,7 @@ interface iUserLogin {
   password: string;
 }
 
-interface iUserClient {
+export interface iUserClient {
   email: string;
   name: string;
   age: number;
@@ -36,15 +36,16 @@ interface iUserClient {
   avatar_URL: string;
 }
 
-interface iUserService extends iUserClient {
+export interface iUserService extends iUserClient {
   workOnCities: [];
   workOnCategories: [];
   ratings: [];
-  avaiable: boolean;
+  available: boolean;
 }
 
 interface iUserContext {
-  user: iUserClient | iUserService | null;
+  userClient: iUserClient | null;
+  userService: iUserService | null;
   userClientRegister: (data: iUserClientRegister) => void;
   userServiceRegister: (data: iUserServiceRegister) => void;
   userLogin: (data: iUserLogin) => void;
@@ -54,14 +55,17 @@ interface iUserContext {
 export const UserContext = createContext({} as iUserContext);
 
 export const UserProvider = ({ children }: iDefaultPropsProvider) => {
-  const [user, setUser] = useState<iUserClient | iUserService | null>(null);
+  const [userClient, setUserClient] = useState<iUserClient | null>(null);
+  const [userService, setUserService] = useState<iUserService | null>(null);
   const navigate = useNavigate();
 
   const userClientRegister = async (data: iUserClientRegister) => {
     try {
       const response = await api.post("/register", data);
-      setUser(response.data.user);
+      setUserClient(response.data.user);
+      localStorage.setItem("@Id:EazyHome", response.data.user.id);
       localStorage.setItem("@Token:EazyHome", response.data.acessToken);
+      localStorage.setItem("@UserType:EazyHome", response.data.user.type);
       navigate("/dashboardclient");
     } catch (error) {
       console.log(error);
@@ -71,8 +75,10 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
   const userServiceRegister = async (data: iUserServiceRegister) => {
     try {
       const response = await api.post("/register", data);
-      setUser(response.data.user);
+      setUserService(response.data.user);
+      localStorage.setItem("@Id:EazyHome", response.data.user.id);
       localStorage.setItem("@Token:EazyHome", response.data.acessToken);
+      localStorage.setItem("@UserType:EazyHome", response.data.user.type);
       navigate("/dashboardservice");
     } catch (error) {
       console.log(error);
@@ -83,11 +89,14 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
     try {
       const response = await api.post("/login", data);
       const userService = response.data.user.type;
-      setUser(response.data.user);
+      localStorage.setItem("@Id:EazyHome", response.data.user.id);
       localStorage.setItem("@Token:EazyHome", response.data.acessToken);
+      localStorage.setItem("@UserType:EazyHome", response.data.user.type);
       if (userService === "prestador") {
+        setUserService(response.data.user);
         navigate("/dashboardservice");
       } else {
+        setUserClient(response.data.user);
         navigate("/dashboardclient");
       }
     } catch (error) {
@@ -97,13 +106,17 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
 
   const userLogout = () => {
     localStorage.removeItem("@Token:EazyHome");
-    setUser(null);
+    localStorage.removeItem("@Id:EazyHome");
+    localStorage.removeItem("@UserType:EazyHome");
+    setUserClient(null);
+    setUserService(null);
   };
 
   return (
     <UserContext.Provider
       value={{
-        user,
+        userClient,
+        userService,
         userClientRegister,
         userServiceRegister,
         userLogin,
