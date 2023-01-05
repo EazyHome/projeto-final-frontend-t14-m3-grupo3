@@ -15,9 +15,9 @@ interface iProfileContext {
   getAvailability: () => void;
   availability: boolean;
   getDoneServices: () => void;
-  doneServices: [] | iServices;
+  doneServices: [] | iServices[];
   getActiveServices: () => void;
-  activeServices: [] | iServices;
+  activeServices: [] | iServices[];
 }
 
 interface iServices {
@@ -34,8 +34,8 @@ interface iServices {
 export const ProfileContext = createContext({} as iProfileContext);
 
 export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
-  const [doneServices, setDoneServices] = useState<[] | iServices>([]);
-  const [activeServices, setActiveServices] = useState<[] | iServices>([]);
+  const [doneServices, setDoneServices] = useState<[] | iServices[]>([]);
+  const [activeServices, setActiveServices] = useState<[] | iServices[]>([]);
   const [availability, setAvailability] = useState<boolean>(true);
   const navigate = useNavigate();
   const { userService } = useContext(UserContext);
