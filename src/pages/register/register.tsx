@@ -4,7 +4,7 @@ import imgClientRegister from "./../../assets/img/clientRegisterButtonImg.png";
 import imgProviderRegister from "./../../assets/img/providerRegisterButtonImg.png";
 import { useState } from "react";
 
-export function RegisterPage() {
+export function Register() {
   const [showClientModal, setShowClientModal] = useState(false);
 
   return (

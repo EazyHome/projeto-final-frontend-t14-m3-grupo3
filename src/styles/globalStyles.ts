@@ -55,6 +55,5 @@ export const GlobalStyle = createGlobalStyle`
         --radius-1: 0.5rem;
         --radius-2: 0.25rem;
         --radius-50:50%;
-
     }
 `;
