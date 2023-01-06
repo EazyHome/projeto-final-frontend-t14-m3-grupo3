@@ -15,6 +15,8 @@ import markgreen from "../../assets/img/markgreen.png";
 import markorange from "../../assets/img/markorange.png";
 import inversemarkorange from "../../assets/img/inversemarkorange.png";
 import inversemarkgreen from "../../assets/img/inversemarkgreen.png";
+import { BodyHome, Coments, DivAboutUs, Services } from "./style";
+import { Footer } from "../../components/Footer/footer";
 import {
   BlueItem,
   BodyHome,
@@ -30,7 +32,6 @@ import {
   Services,
   ServicesList,
 } from "./style";
-import { Footer } from "../../components/Footer/footer";
 
 export function HomePage() {
   return (
