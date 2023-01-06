@@ -1,10 +1,10 @@
 import { Footer } from "../../components/Footer/Footer";
 import { NavRegister } from "../../components/NavRegister/NavRegister";
-import { LoginBackGround, LoginConteiner } from "./loginStyle";
+import { LoginBackGround, LoginConteiner } from "./style";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { Form } from "../../components/Form/FormStyle";
+import { Form } from "../../components/Form/style";
 
 export const Login = () => {
   const formSchema = yup.object().shape({
