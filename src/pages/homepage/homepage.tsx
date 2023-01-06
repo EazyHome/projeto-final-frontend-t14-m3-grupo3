@@ -16,6 +16,7 @@ import { OrangeCard } from "../../components/CardOrange/card";
 import { BlueCard } from "../../components/CardBlue/card";
 import { GreenComment } from "../../components/GreenComment/greenComment";
 import { OrangeComment } from "../../components/OrangeComment/orangeComment";
+
 import { Footer } from "../../components/Footer/footer";
 import { Link } from "react-router-dom";
 import {
@@ -62,6 +63,7 @@ export function HomePage() {
             <DivContentAboutUs>
               <div>
                 <img src={worker} alt="Worker"></img>
+
                 <h3>Sobre nós...</h3>
               </div>
 
