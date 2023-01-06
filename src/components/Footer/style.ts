@@ -1,33 +1,55 @@
 import styled from "styled-components";
 
 export const DivFooter = styled.div`
-  height: 50px;
-  padding: 0 16px 0 16px;
+  padding: 20px;
   background-color: var(--color-primary);
 
-  .wrapper {
+  & > div {
     display: flex;
+    align-items: flex-start;
     justify-content: space-between;
-    align-items: center;
-    height: 100%;
+    color: var(--color-white);
   }
 
-  .contactIcons {
-    display: flex;
-    gap: 8px;
-    font-size: 22px;
-  }
-  & a {
+  & > div > a {
     font-weight: 400;
     text-decoration: underline;
     color: white;
   }
 
+  & > div > a:hover {
+    color: var(--color-grey100);
+  }
+
   @media (min-width: 800px) {
-    .container {
+    & > div {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
     }
   }
+`;
+
+export const DivContacts = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 60%;
+`;
+
+export const DivContactsIcons = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  & > a:hover {
+    color: var(--color-grey100);
+  }
+`;
+
+export const DivContactsInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 150%;
 `;
