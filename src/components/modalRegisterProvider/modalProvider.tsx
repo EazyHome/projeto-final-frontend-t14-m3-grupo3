@@ -1,5 +1,5 @@
-import { BackGroudForm } from "../backgroundmodal/modalStyle";
-import { Form, FormConteiner } from "../Form/FormStyle";
+import { BackGroudForm } from "../BackgroundModal/style";
+import { Form, FormConteiner } from "../Form/style";
 import { SelectConteiner } from "./style";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
