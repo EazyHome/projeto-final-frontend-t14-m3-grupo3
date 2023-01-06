@@ -59,7 +59,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         }
       );
     } catch (error) {
-      navigate("/home");
+      navigate("/");
     }
   };
 
