@@ -34,13 +34,16 @@ export const GlobalStyle = createGlobalStyle`
         --color-grey100: #333333;
         --color-grey50: #828282;
         --color-grey20: #E0E0E0;
-        --color-grey0: #F5F5F5;
+        --color-grey0: #F5F5F5; 
         --color-white: #FFFFFF;
+        --colo-white-opacity50: rgba(255, 255, 255, 0.8);
+        --color-black: #000000;
         --color-negative: #E60000;
         --color-warning: #FFCD07;
         --color-success: #27AE60;
         --color-information: #155BCB;
         --color-overlay-black: rgba(0,0,0,.5);
+        
 
         --font-size-32: 2rem;
         --font-size-30: 1.875rem;
