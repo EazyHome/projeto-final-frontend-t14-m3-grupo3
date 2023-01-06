@@ -56,7 +56,7 @@ export function HomePage() {
           <DivAboutUs>
             <DivContentAboutUs>
               <div>
-                <img src={encanador}></img>
+                <img src={encanador} alt=""></img>
                 <h3>Sobre nós...</h3>
               </div>
 
