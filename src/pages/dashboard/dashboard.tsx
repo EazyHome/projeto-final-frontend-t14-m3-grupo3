@@ -1,4 +1,5 @@
 import React from "react";
+import { StarRating } from "../../components/StarRating/StarRating";
 import { useContext, useEffect } from "react";
 import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
 
@@ -9,5 +10,9 @@ export const Dashboard = () => {
     isLogged();
   });
 
-  return <div>dashboard</div>;
+  return (
+    <div>
+      <StarRating />
+    </div>
+  );
 };
