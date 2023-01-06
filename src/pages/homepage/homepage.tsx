@@ -30,7 +30,7 @@ import {
   Services,
   ServicesList,
 } from "./style";
-import { Footer } from "../../components/Footer/Footer";
+import { Footer } from "../../components/Footer/footer";
 
 export function HomePage() {
   return (

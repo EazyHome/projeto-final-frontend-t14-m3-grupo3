@@ -1,14 +1,14 @@
-import { Footer } from "../../components/Footer/Footer";
-import { NavRegister } from "../../components/NavRegister/NavRegister";
-import { LoginBackGround, LoginConteiner } from "./loginStyle";
+import { Footer } from "../../components/Footer/footer";
+import { NavRegister } from "../../components/NavRegister/navRegister";
+import { LoginBackGround, LoginConteiner } from "./style";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Form } from "../../components/Form/FormStyle";
+import { Form } from "../../components/Form/style";
 import {
   UserContext,
   iUserLogin,
-} from "../../contexts/UserContext/UserContext";
+} from "../../contexts/UserContext/userContext";
 import { useContext } from "react";
 
 export const Login = () => {
