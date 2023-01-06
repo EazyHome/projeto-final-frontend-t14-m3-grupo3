@@ -1,11 +1,12 @@
-import { NavRegister } from "../../components/NavRegister/NavRegister";
-import { RegisterButtonsCoteiner, RegisterConteiner } from "./style";
+import { NavRegister } from "../../components/NavRegister/navRegister";
+
 import imgClientRegister from "./../../assets/img/clientRegisterButtonImg.png";
 import imgProviderRegister from "./../../assets/img/providerRegisterButtonImg.png";
 import { useState } from "react";
-import { Footer } from "../../components/Footer/Footer";
+import { Footer } from "../../components/Footer/footer";
 import { ModalClientRegister } from "../../components/ModalRegisterClient/modalClient";
 import { ModalProvidertRegister } from "../../components/ModalRegisterProvider/modalProvider";
+import { RegisterButtonsCoteiner, RegisterConteiner } from "./style";
 
 export function Register() {
   const [showClientModal, setShowClientModal] = useState(false);

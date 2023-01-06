@@ -16,7 +16,7 @@ import markorange from "../../assets/img/markorange.png";
 import inversemarkorange from "../../assets/img/inversemarkorange.png";
 import inversemarkgreen from "../../assets/img/inversemarkgreen.png";
 import { BodyHome, Coments, DivAboutUs, Services } from "./style";
-import { Footer } from "../../components/Footer/Footer";
+import { Footer } from "../../components/Footer/footer";
 
 export function HomePage() {
   return (

@@ -1,5 +1,5 @@
-import { Footer } from "../../components/Footer/Footer";
-import { NavRegister } from "../../components/NavRegister/NavRegister";
+import { Footer } from "../../components/Footer/footer";
+import { NavRegister } from "../../components/NavRegister/navRegister";
 import { LoginBackGround, LoginConteiner } from "./style";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
