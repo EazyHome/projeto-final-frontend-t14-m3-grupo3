@@ -8,6 +8,7 @@ interface iUserClientRegister {
   email: string;
   password: string;
   name: string;
+  state: string;
   city: string;
   age: number;
   phone: string;
@@ -30,6 +31,7 @@ export interface iUserClient {
   email: string;
   name: string;
   age: number;
+  state: string;
   city: string;
   phone: string;
   type: string;
