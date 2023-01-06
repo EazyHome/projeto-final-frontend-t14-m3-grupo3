@@ -1,13 +1,13 @@
 import React from "react";
 import { createContext, useContext, useState } from "react";
-import { api } from "../../service/api";
+import api from "../../service/api";
 import { useNavigate } from "react-router-dom";
 import { iDefaultPropsProvider } from "../types";
 import {
   iUserClient,
   iUserService,
   UserContext,
-} from "../UserContext/userContext";
+} from "../UserContext/UserContext";
 
 interface iProfileContext {
   isLogged: () => void;
@@ -50,7 +50,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
   const isLogged = async () => {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const response = await api.get(
+      const response = await api.api.get(
         `/users/${localStorage.getItem("@Id:EazyHome")}`,
         {
           headers: {
@@ -66,7 +66,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
   const editProfile = async (data: iUserClient | iUserService) => {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const response = await api.patch(
+      const response = await api.api.patch(
         `/users/${localStorage.getItem("@Id:EazyHome")}`,
         data
       );
@@ -77,7 +77,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
 
   const getAvailability = async () => {
     try {
-      const response = await api.get(
+      const response = await api.api.get(
         `/users/${localStorage.getItem("@Id:EazyHome")}`,
         {
           headers: {
@@ -94,7 +94,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
   const changeAvailability = async () => {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const response = await api.patch(
+      const response = await api.api.patch(
         `/users/${localStorage.getItem("@Id:EazyHome")}`,
         !userService?.available
       );
@@ -106,12 +106,12 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
   const getDoneServices = async () => {
     try {
       if (localStorage.getItem("@UserType:EazyHome") === "cliente") {
-        const response = await api.get(
+        const response = await api.api.get(
           `/doneServices?userId=${localStorage.getItem("@Id:EazyHome")}`
         );
         setDoneServices(response.data);
       } else {
-        const response = await api.get(
+        const response = await api.api.get(
           `/doneServices?providerId=${localStorage.getItem("@Id:EazyHome")}`
         );
         setDoneServices(response.data);
@@ -124,12 +124,12 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
   const getActiveServices = async () => {
     try {
       if (localStorage.getItem("@UserType:EazyHome") === "cliente") {
-        const response = await api.get(
+        const response = await api.api.get(
           `/activeServices?userId=${localStorage.getItem("@Id:EazyHome")}`
         );
         setActiveServices(response.data);
       } else {
-        const response = await api.get(
+        const response = await api.api.get(
           `/activeServices?providerId=${localStorage.getItem("@Id:EazyHome")}`
         );
         setActiveServices(response.data);
@@ -142,12 +142,12 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
   const getCanceledServices = async () => {
     try {
       if (localStorage.getItem("@UserType:EazyHome") === "cliente") {
-        const response = await api.get(
+        const response = await api.api.get(
           `/canceledServices?userId=${localStorage.getItem("@Id:EazyHome")}`
         );
         setCanceledServices(response.data);
       } else {
-        const response = await api.get(
+        const response = await api.api.get(
           `/canceledServices?providerId=${localStorage.getItem("@Id:EazyHome")}`
         );
         setCanceledServices(response.data);
