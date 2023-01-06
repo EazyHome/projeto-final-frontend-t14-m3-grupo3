@@ -1,6 +1,6 @@
-import { Footer } from "../../components/Footer/footer";
+import { Footer } from "../../components/Footer/Footer";
 import { NavLogin } from "../../components/NavLogin/navLogin";
-import { LoginBackGround, LoginConteiner } from "../Login/style";
+import { LoginBackGround, LoginConteiner } from "./style";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, SubmitHandler } from "react-hook-form";

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import imagemHome from "../../assets/img/imagemhome.jpg";
+import { Link } from "react-router-dom";
 
 export const BodyHome = styled.div`
   margin-top: 85px;
@@ -81,21 +82,6 @@ export const HeaderBtns = styled.div`
   color: var(--color-white);
   font-size: var(--font-size-20);
 
-  & > Link {
-    width: 100px;
-    padding: 0 6px 0 6px;
-    height: 35px;
-    background-color: var(--color-primary);
-    border: 2px transparent;
-    color: var(--color-white);
-    font-size: 14px;
-  }
-
-  & > Link:hover {
-    background-color: transparent;
-    border: 2px solid var(--color-white);
-  }
-
   @media (min-width: 700px) {
     & {
       display: flex;
@@ -103,8 +89,28 @@ export const HeaderBtns = styled.div`
       max-width: 55%;
       margin-top: 10px;
     }
+  }
+`;
 
-    & > Link {
+export const LinksHeader = styled(Link)`
+  width: 100px;
+  padding: 0 6px 0 6px;
+  height: 35px;
+  background-color: var(--color-primary);
+  border: 2px transparent;
+  color: var(--color-white);
+  font-size: 14px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: transparent;
+    border: 2px solid var(--color-white);
+  }
+  @media (min-width: 700px) {
+    & {
       min-height: 40px;
       min-width: 110px;
     }
@@ -150,12 +156,10 @@ export const DivContentAboutUs = styled.div`
 
   @media (min-width: 990px) {
     & > div > img {
-      /* height: 60%;
-      width: 60%; */
       display: flex;
-      width: 500px;
+      width: 550px;
       border: 2px solid var(--color-primary);
-      height: 450px;
+      height: 480px;
     }
     & {
       flex-direction: row;
@@ -258,19 +262,19 @@ export const Comments = styled.div`
     width: 100%;
     height: 70px;
     position: absolute;
-    background-color: rgba(0, 102, 99, 0.2);
+    background-color: rgba(255, 102, 0, 0.3);
   }
   & > h3 {
-    color: var(--color-secondary);
+    color: var(--color-white);
     font-size: 20px;
     margin-bottom: 10px;
     margin-top: 10px;
     padding: 15px 15px;
     position: relative;
-    text-align: left;
+    text-align: center;
     z-index: 10;
     height: 50px;
-    background-color: rgba(0, 179, 173, 0.4);
+    background-color: rgba(255, 102, 0, 1);
   }
 `;
 
