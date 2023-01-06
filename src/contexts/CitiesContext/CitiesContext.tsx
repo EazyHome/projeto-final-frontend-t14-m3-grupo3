@@ -11,6 +11,7 @@ interface iCitiesContext {
   city: string;
   selectCity: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   disable: boolean;
+  servicesCategories: string[];
 }
 
 interface iStatesList {
@@ -78,6 +79,21 @@ export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
   const [city, setCity] = useState("");
   const [disable, setDisable] = useState<boolean>(true);
 
+  const servicesCategories = [
+    "Eletricista",
+    "Encanador",
+    "Gás",
+    "Janelas",
+    "Jardim",
+    "Marceneiro",
+    "Pedreiro",
+    "Piso",
+    "Piscina",
+    "Pintor",
+    "Serralheiro",
+    "Telhado",
+  ];
+
   const CitiesAPI = axios.create({
     baseURL: `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${stateId}/distritos?orderBy=nome`,
     timeout: 5000,
@@ -117,6 +133,7 @@ export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
         city,
         selectCity,
         disable,
+        servicesCategories,
       }}
     >
       {children}
