@@ -1,6 +1,6 @@
 import React from "react";
 import { createContext, useState } from "react";
-import { api } from "../../service/api";
+import api from "../../service/api";
 import { iDefaultPropsProvider } from "../types";
 import { useNavigate } from "react-router-dom";
 
