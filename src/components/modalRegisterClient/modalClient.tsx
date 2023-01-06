@@ -1,16 +1,15 @@
-import { BackGroudForm } from "../../../components/backgroundmodal/modalStyle";
-import { Form, FormConteiner } from "../../../components/Form/FormStyle";
-import { SelectConteiner } from "./modalProviderStyle";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
+import { Form, FormConteiner } from "../Form/FormStyle";
+import { BackGroudForm } from "../backgroundmodal/modalStyle";
+import { SelectConteiner } from "./style";
 interface iModalClientRegisterProps {
-  setShowProviderModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowClientModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export function ModalProvidertRegister({
-  setShowProviderModal,
+export function ModalClientRegister({
+  setShowClientModal,
 }: iModalClientRegisterProps) {
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigatorio").email("Email inválido"),
@@ -23,8 +22,7 @@ export function ModalProvidertRegister({
       ),
     name: yup.string().required("Nome obrigatorio"),
     state: yup.string().required("Estado obrigatorio"),
-    workOnCities: yup.string().required("Cidade obrigatoria"),
-    workOnCategories: yup.string().required("Categoria obrigatoria"),
+    city: yup.string().required("Cidade obrigatoria"),
     age: yup.number().required("Idade obrigatoria"),
     phone: yup.string().required("Contato obrigatorio"),
   });
@@ -37,13 +35,12 @@ export function ModalProvidertRegister({
   function onSubmitFuntion() {
     //Função de submit
   }
-
   return (
     <BackGroudForm>
       <FormConteiner>
         <div>
-          <p>Cadastro provedor</p>
-          <button onClick={() => setShowProviderModal(false)}>X</button>
+          <p>Cadastro cliente</p>
+          <button onClick={() => setShowClientModal(false)}>X</button>
         </div>
         <Form onSubmit={handleSubmit(onSubmitFuntion)}>
           <input
@@ -62,34 +59,29 @@ export function ModalProvidertRegister({
             {...register("name")}
           />
           <input
-            type="text"
+            type="number"
             placeholder="Digite sua idade"
             {...register("age")}
           />
           <input
-            type="text"
+            type="number"
             placeholder="Digite seu numero"
             {...register("phone")}
           />
+
           <SelectConteiner>
             <div>
-              <div>
-                <span>Estado</span>
-                <select id="" {...register("state")}>
-                  <option value="CE">CE</option>
-                </select>
-              </div>
-              <div>
-                <span>Serviço</span>
-                <select id="" {...register("workOnCategories")}>
-                  <option value="Pintor">Pintor(a)</option>
-                </select>
-              </div>
+              <span>Estado</span>
+              <select className="stateSelect" id="" {...register("state")}>
+                {/* <option value="CE">CE</option> */}
+              </select>
             </div>
-            <span>Cidade</span>
-            <select id="" {...register("workOnCities")}>
-              <option value="Fortaleza">Fortaleza</option>
-            </select>
+            <div>
+              <span>Cidade</span>
+              <select className="citySelect" id="" {...register("city")}>
+                {/* <option value="Fortaleza">Fortaleza</option> */}
+              </select>
+            </div>
           </SelectConteiner>
           <button>Cadastrar</button>
         </Form>

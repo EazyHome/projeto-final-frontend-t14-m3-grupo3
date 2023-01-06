@@ -1,9 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Footer } from "../../components/Footer/Footer";
 import { NavRegister } from "../../components/NavRegister/NavRegister";
-
-import { NotFoundMain } from "./notFoundStyle";
-
+import { NotFoundMain } from "./style";
 export function NotFound() {
   const navigate = useNavigate();
 
