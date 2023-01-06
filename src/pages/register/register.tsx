@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Footer } from "../../components/Footer/footer";
 import { ModalClientRegister } from "../../components/ModalRegisterClient/modalClient";
 import { ModalProvidertRegister } from "../../components/ModalRegisterProvider/modalProvider";
-import { RegisterButtonsCoteiner, RegisterConteiner } from "./style";
+import { RegisterButtonsCoteiner, RegisterConteiner } from "../register/style";
 
 export function Register() {
   const [showClientModal, setShowClientModal] = useState(false);
@@ -24,7 +24,7 @@ export function Register() {
           <p>Cadastro de fornecedor</p>
         </div>
       </RegisterButtonsCoteiner>
-      <Footer />
+      <Footer id="footer" />
 
       {showClientModal ? (
         <ModalClientRegister setShowClientModal={setShowClientModal} />

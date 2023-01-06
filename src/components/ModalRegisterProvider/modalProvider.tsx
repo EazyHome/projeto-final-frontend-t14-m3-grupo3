@@ -1,4 +1,4 @@
-import { BackGroudForm } from "../BackgroundModal/style";
+// import { BackGroudForm } from "../../components/Backgroundmodal/style";
 import { Form, FormConteiner } from "../Form/style";
 import { SelectConteiner } from "./style";
 import * as yup from "yup";
@@ -60,40 +60,42 @@ export function ModalProvidertRegister({
   };
 
   return (
-    <BackGroudForm>
-      <FormConteiner>
-        <div>
-          <p>Cadastro provedor</p>
-          <button onClick={() => setShowProviderModal(false)}>X</button>
-        </div>
-        <Form onSubmit={handleSubmit(onSubmitFuntion)}>
-          <input
-            type="text"
-            placeholder="Digite seu email"
-            {...register("email")}
-          />
-          <input
-            type="text"
-            placeholder="Digite sua senha"
-            {...register("password")}
-          />
-          <input
-            type="text"
-            placeholder="Digite seu nome"
-            {...register("name")}
-          />
-          <input
-            type="text"
-            placeholder="Digite sua idade"
-            {...register("age")}
-          />
-          <input
-            type="text"
-            placeholder="Digite seu numero"
-            {...register("phone")}
-          />
-          <SelectConteiner>
+    // <BackGroudForm>
+    <FormConteiner>
+      <div>
+        <p>Cadastro provedor</p>
+        <button onClick={() => setShowProviderModal(false)}>X</button>
+      </div>
+      <Form onSubmit={handleSubmit(onSubmitFuntion)}>
+        <input
+          type="text"
+          placeholder="Digite seu email"
+          {...register("email")}
+        />
+        <input
+          type="text"
+          placeholder="Digite sua senha"
+          {...register("password")}
+        />
+        <input
+          type="text"
+          placeholder="Digite seu nome"
+          {...register("name")}
+        />
+        <input
+          type="text"
+          placeholder="Digite sua idade"
+          {...register("age")}
+        />
+        <input
+          type="text"
+          placeholder="Digite seu numero"
+          {...register("phone")}
+        />
+        <SelectConteiner>
+          <div>
             <div>
+
               <div>
                 <span>Estado</span>
                 <select {...register("state")} onChange={selectState}>

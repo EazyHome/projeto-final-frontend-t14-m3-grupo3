@@ -1,10 +1,10 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Dashboard } from "../pages/Dashboard/dashboard";
-import { HomePage } from "../pages/Homepage/homepage";
-import { Login } from "../pages/Login/login";
-import { NotFound } from "../pages/NotFound/notFound";
-import { Register } from "../pages/Register/register";
+import { Dashboard } from "../pages/dashboard/dashboard";
+import { HomePage } from "../pages/homepage/homepage";
+import { Login } from "../pages/login/login";
+import { NotFound } from "../pages/notFound/notFound";
+import { Register } from "../pages/register/register";
 
 export const RoutesMain = () => {
   return (
@@ -15,7 +15,6 @@ export const RoutesMain = () => {
       <Route path="/dashboardclient" element={<Dashboard />} />
       <Route path="/dashboardservice" element={<Dashboard />} />
       <Route path="*" element={<NotFound />} />
-      {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
     </Routes>
   );
 };

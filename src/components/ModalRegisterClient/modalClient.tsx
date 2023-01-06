@@ -2,7 +2,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form, FormConteiner } from "../Form/style";
-import { BackGroudForm } from "../BackgroundModal/style";
+// import { BackGroudForm } from "../../components/Backgroundmodal/style";
 import { SelectConteiner } from "./style";
 
 interface iModalClientRegisterProps {
@@ -37,56 +37,56 @@ export function ModalClientRegister({
     //Função de submit
   }
   return (
-    <BackGroudForm>
-      <FormConteiner>
-        <div>
-          <p>Cadastro cliente</p>
-          <button onClick={() => setShowClientModal(false)}>X</button>
-        </div>
-        <Form onSubmit={handleSubmit(onSubmitFuntion)}>
-          <input
-            type="text"
-            placeholder="Digite seu email"
-            {...register("email")}
-          />
-          <input
-            type="text"
-            placeholder="Digite sua senha"
-            {...register("password")}
-          />
-          <input
-            type="text"
-            placeholder="Digite seu nome"
-            {...register("name")}
-          />
-          <input
-            type="number"
-            placeholder="Digite sua idade"
-            {...register("age")}
-          />
-          <input
-            type="number"
-            placeholder="Digite seu numero"
-            {...register("phone")}
-          />
+    // <BackGroudForm>
+    <FormConteiner>
+      <div>
+        <p>Cadastro cliente</p>
+        <button onClick={() => setShowClientModal(false)}>X</button>
+      </div>
+      <Form onSubmit={handleSubmit(onSubmitFuntion)}>
+        <input
+          type="text"
+          placeholder="Digite seu email"
+          {...register("email")}
+        />
+        <input
+          type="text"
+          placeholder="Digite sua senha"
+          {...register("password")}
+        />
+        <input
+          type="text"
+          placeholder="Digite seu nome"
+          {...register("name")}
+        />
+        <input
+          type="number"
+          placeholder="Digite sua idade"
+          {...register("age")}
+        />
+        <input
+          type="number"
+          placeholder="Digite seu numero"
+          {...register("phone")}
+        />
 
-          <SelectConteiner>
-            <div>
-              <span>Estado</span>
-              <select className="stateSelect" id="" {...register("state")}>
-                {/* <option value="CE">CE</option> */}
-              </select>
-            </div>
-            <div>
-              <span>Cidade</span>
-              <select className="citySelect" id="" {...register("city")}>
-                {/* <option value="Fortaleza">Fortaleza</option> */}
-              </select>
-            </div>
-          </SelectConteiner>
-          <button>Cadastrar</button>
-        </Form>
-      </FormConteiner>
-    </BackGroudForm>
+        <SelectConteiner>
+          <div>
+            <span>Estado</span>
+            <select className="stateSelect" id="" {...register("state")}>
+              {/* <option value="CE">CE</option> */}
+            </select>
+          </div>
+          <div>
+            <span>Cidade</span>
+            <select className="citySelect" id="" {...register("city")}>
+              {/* <option value="Fortaleza">Fortaleza</option> */}
+            </select>
+          </div>
+        </SelectConteiner>
+        <button>Cadastrar</button>
+      </Form>
+    </FormConteiner>
+    // </BackGroudForm>
   );
 }

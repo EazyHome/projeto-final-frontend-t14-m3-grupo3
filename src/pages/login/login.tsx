@@ -1,6 +1,6 @@
 import { Footer } from "../../components/Footer/footer";
 import { NavRegister } from "../../components/NavRegister/navRegister";
-import { LoginBackGround, LoginConteiner } from "./style";
+import { LoginBackGround, LoginConteiner } from "../login/style";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -51,7 +51,7 @@ export const Login = () => {
           <button>Cadastrar</button>
         </Form>
       </LoginConteiner>
-      <Footer />
+      <Footer id="footer" />
     </LoginBackGround>
   );
 };
