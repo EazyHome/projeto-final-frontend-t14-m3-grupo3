@@ -2,149 +2,254 @@ import styled from "styled-components";
 import imagemHome from "../../assets/img/imagemhome.jpg";
 
 export const BodyHome = styled.div`
-  margin: auto;
-  margin-bottom: 50px;
+  margin-top: 85px;
+`;
 
-  .divImg {
-    height: 200px;
-    background-image: url(${imagemHome});
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+export const HeaderHome = styled.div`
+  height: 300px;
+  background-image: url(${imagemHome});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: flex-end;
 
-    .intro {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      justify-content: flex-end;
-    }
-
-    .introButtons {
-      display: flex;
-      gap: 16px;
-      width: 200px;
-    }
-
-    .introButtons button {
-      margin-top: 16px;
-      width: max-content;
-      padding: 0 6px 0 6px;
-      height: 24px;
-      background-color: var(--color-primary);
-      border: 1px solid var(--color-primary);
-      border-radius: 4px;
-      color: var(--color-white);
-    }
-
-    h1 {
-      font-size: var(--font-size-16);
-      width: 200px;
-      line-height: 150%;
-      color: var(--color-white);
+  @media (min-width: 700px) {
+    & {
+      height: 540px;
     }
   }
+`;
 
-  @media (min-width: 550px) {
-    .intro h1 {
-      font-size: 24px;
-      width: 300px;
-      line-height: 150%;
-    }
-
-    .introButtons {
-      min-width: 300px;
-    }
+export const ContentHeader = styled.div`
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & > div > h1 {
+    font-size: var(--font-size-20);
+    text-align: center;
+    line-height: 150%;
+    color: var(--color-white);
   }
 
-  @media (min-width: 900px) {
-    .introButtons {
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+    width: 90%;
+  }
+
+  @media (min-width: 700px) {
+    & {
+      min-width: 50%;
+      max-width: 50%;
+    }
+    & > div > h1 {
+      font-size: 38px;
+      text-align: left;
+    }
+  }
+`;
+
+export const HeaderBtns = styled.div`
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-white);
+  font-size: var(--font-size-20);
+
+  & > button {
+    width: 120px;
+    padding: 0 6px 0 6px;
+    height: 35px;
+    background-color: var(--color-primary);
+    border: 2px transparent;
+    color: var(--color-white);
+    font-size: var(--font-size-16);
+  }
+
+  & > button:hover {
+    background-color: transparent;
+    border: 2px solid var(--color-white);
+  }
+
+  @media (min-width: 700px) {
+    & {
       display: flex;
-      gap: 128px;
-      min-width: 600px;
+      min-width: 55%;
+      max-width: 55%;
+      margin-top: 10px;
     }
 
-    .introButtons button {
-      min-width: 150px;
-      min-height: 38px;
-      background-color: var(--color-primary);
-      border: 1px solid var(--color-primary);
-      border-radius: 4px;
-    }
-
-    .divImg {
-      height: 600px;
-    }
-
-    .intro h1 {
-      font-size: 48px;
-      width: 600px;
-      line-height: 150%;
+    & > button {
+      min-height: 40px;
+      min-width: 110px;
     }
   }
 `;
 
 export const DivAboutUs = styled.div`
-  margin: 25px 25px 0 0;
-  width: 100%;
-  padding: 0 16px 0 16px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  max-width: 1400px;
+  justify-content: center;
 
-  h3 {
-    margin-bottom: 15px;
+  @media (min-width: 700px) {
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
-  p {
-    line-height: 125%;
-    text-align: justify;
+`;
+
+export const DivContentAboutUs = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: -25px;
+
+  & > div {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
   }
 
-  @media (min-width: 800px) {
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
+  & > div > h3 {
+    margin-top: 40px;
+    color: var(--color-primary);
+    font-size: var(--font-size-28);
+  }
+  & > div > img {
+    display: none;
+  }
+
+  @media (min-width: 990px) {
+    & > div > img {
+      height: 60%;
+      width: 60%;
+      display: flex;
+      background-color: blue;
+      max-width: 600px;
+      max-height: 600px;
+    }
+    & {
+      flex-direction: row;
+      margin-left: -15%;
+      margin-top: 0px;
+    }
+  }
+`;
+
+export const DivTextAboutUs = styled.div`
+  width: 90%;
+  max-width: 650px;
+  padding: 20px;
+  position: relative;
+  background-color: var(--color-white);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  z-index: 20;
+
+  & > div {
+    border: 1px solid var(--color-primary);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color: var(--color-grey100);
+    font-size: var(--font-size-16);
+  }
+
+  @media (min-width: 990px) {
+    & {
+      position: absolute;
+      left: 400px;
+      width: 70%;
+      max-width: 700px;
+      top: 25%;
     }
   }
 `;
 
 export const Services = styled.div`
-  margin: 25px 25px 0 0;
   background-color: var(--color-grey0);
   padding: 12px;
+  margin-top: 30px;
+`;
+
+export const ContentServices = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  & > h3 {
+    color: var(--color-primary);
+    font-size: var(--font-size-28);
+  }
+`;
+
+export const ServicesList = styled.div`
+  display: grid;
+  grid-template-columns: 100px 100px;
+  grid-row-gap: 24px;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+
+  @media (min-width: 400px) {
+    & {
+      grid-template-columns: 100px 100px 100px;
+    }
+  }
+  @media (min-width: 500px) {
+    & {
+      grid-template-columns: 100px 100px 100px 100px;
+    }
+  }
+
+  @media (min-width: 630px) {
+    & {
+      grid-template-columns: 100px 100px 100px 100px 100px;
+    }
+  }
+  @media (min-width: 900px) {
+    & {
+      grid-template-columns: 100px 100px 100px 100px 100px 100px;
+    }
+  }
+`;
+
+export const BlueItem = styled.li`
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  background-color: var(--color-opposite-2);
   width: 100%;
+  max-width: 80px;
+  height: 135px;
+  border-radius: 40px;
+  margin-top: 16px;
+  transition: transform 0.2s;
 
-  .servicesCards {
-    display: grid;
-    grid-template-columns: 100px 100px 100px;
-    grid-row-gap: 32px;
-    gap: 32px;
-    flex-wrap: wrap;
+  &:hover {
+    cursor: pointer;
+    transition: 0.3s ease;
   }
 
-  .orangeCard {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: var(--color-primary);
-    min-width: 80px;
-    max-width: 80px;
-    height: 135px;
-    border-radius: 40px;
-    margin-top: 16px;
-    margin-bottom: 15px;
+  &:hover > div {
+    transform: scale(1.2);
+    transition: 0.3s ease;
   }
 
-  .greenCard {
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: space-between;
-    background-color: var(--color-opposite-2);
-    min-width: 80px;
-    max-width: 80px;
-    height: 135px;
-    border-radius: 40px;
-    margin-top: 16px;
-  }
-
-  .orangeCircle {
+  & > div {
     width: 100%;
     height: 60%;
     background-color: var(--color-grey20);
@@ -154,106 +259,98 @@ export const Services = styled.div`
     justify-content: center;
     align-items: center;
   }
-
-  .orangeCircle img {
-    width: 75%;
-    height: 75%;
-    border-radius: 50%;
+  & > p {
+    margin-top: 25px;
+    font-size: 12px;
+    text-align: center;
+    color: var(--color-white);
   }
 
-  .greenCircle {
-    width: 100%;
-    height: 60%;
-    background-color: var(--color-grey20);
-    border-radius: 50%;
-    border: 3px solid var(--color-grey20);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .greenCircle img {
+  & > div > img {
     width: 75%;
     height: 75%;
     object-fit: cover;
     border-radius: 50%;
   }
 
-  .orangeCard p {
-    margin-bottom: 22px;
-    font-size: 12px;
-    text-align: center;
-    color: var(--color-white);
-  }
-
-  .greenCard p {
-    margin-top: 18px;
-    margin-bottom: 22px;
-    font-size: 12px;
-    text-align: center;
-    color: var(--color-white);
-  }
-
-  @media (min-width: 500px) {
-    .servicesCards {
-      grid-template-columns: 100px 100px 100px 100px;
-    }
-  }
-
-  @media (min-width: 630px) {
-    .servicesCards {
-      grid-template-columns: 100px 100px 100px 100px 100px;
-    }
-  }
   @media (min-width: 760px) {
-    .servicesCards {
-      grid-template-columns: 100px 100px 100px 100px 100px 100px;
-      justify-content: space-between;
-    }
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .orangeCard {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background-color: var(--color-primary);
+    & {
       min-width: 100px;
       max-width: 100px;
       height: 160px;
       border-radius: 55px;
-      margin-top: 16px;
-      margin-bottom: 15px;
     }
 
-    .greenCard {
-      display: flex;
-      flex-direction: column-reverse;
-      justify-content: space-between;
-      background-color: var(--color-opposite-2);
+    & > p {
+      font-size: 14px;
+    }
+  }
+`;
+
+export const OrangeItem = styled.li`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--color-primary);
+  width: 100%;
+  max-width: 80px;
+  height: 135px;
+  border-radius: 40px;
+  margin-top: 16px;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  transition: transform 0.2s;
+
+  &:hover {
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+
+  &:hover > div {
+    transform: scale(1.2);
+    transition: 0.3s ease;
+  }
+
+  @media (min-width: 400px) {
+    & {
+      margin-left: 0px;
+    }
+  }
+
+  & > div {
+    width: 100%;
+    height: 60%;
+    background-color: var(--color-grey20);
+    border-radius: 50%;
+    border: 3px solid var(--color-grey20);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & > div > img {
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+  }
+
+  & > p {
+    margin-bottom: 25px;
+    font-size: 12px;
+    text-align: center;
+    color: var(--color-white);
+  }
+
+  @media (min-width: 760px) {
+    & {
       min-width: 100px;
       max-width: 100px;
       height: 160px;
-      border-radius: 50px;
-      margin-top: 16px;
+      border-radius: 55px;
     }
 
-    .orangeCard p {
-      margin-bottom: 22px;
+    & > p {
       font-size: 14px;
-      text-align: center;
-      color: var(--color-white);
-    }
-
-    .greenCard p {
-      margin-top: 18px;
-      margin-bottom: 22px;
-      font-size: 14px;
-      text-align: center;
-      color: var(--color-white);
     }
   }
 `;

@@ -19,6 +19,8 @@ interface iProfileContext {
   doneServices: [] | iServices[];
   getActiveServices: () => void;
   activeServices: [] | iServices[];
+  getCanceledServices: () => void;
+  canceledServices: [] | iServices[];
 }
 
 interface iServices {
@@ -27,9 +29,10 @@ interface iServices {
   type: string;
   description: string;
   serviceCity: string;
+  serviceState: string;
   userId: number;
   providerId: number;
-  avatar_URL: string;
+  createdAt: string;
 }
 
 export const ProfileContext = createContext({} as iProfileContext);
@@ -37,6 +40,9 @@ export const ProfileContext = createContext({} as iProfileContext);
 export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
   const [doneServices, setDoneServices] = useState<[] | iServices[]>([]);
   const [activeServices, setActiveServices] = useState<[] | iServices[]>([]);
+  const [canceledServices, setCanceledServices] = useState<[] | iServices[]>(
+    []
+  );
   const [availability, setAvailability] = useState<boolean>(true);
   const navigate = useNavigate();
   const { userService } = useContext(UserContext);
@@ -53,7 +59,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         }
       );
     } catch (error) {
-      navigate("/home");
+      navigate("/");
     }
   };
 
@@ -133,6 +139,24 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
     }
   };
 
+  const getCanceledServices = async () => {
+    try {
+      if (localStorage.getItem("@UserType:EazyHome") === "cliente") {
+        const response = await api.get(
+          `/canceledServices?userId=${localStorage.getItem("@Id:EazyHome")}`
+        );
+        setCanceledServices(response.data);
+      } else {
+        const response = await api.get(
+          `/canceledServices?providerId=${localStorage.getItem("@Id:EazyHome")}`
+        );
+        setCanceledServices(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <ProfileContext.Provider
       value={{
@@ -145,6 +169,8 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         doneServices,
         getActiveServices,
         activeServices,
+        getCanceledServices,
+        canceledServices,
       }}
     >
       {children}

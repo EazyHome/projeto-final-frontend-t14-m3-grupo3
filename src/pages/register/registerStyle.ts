@@ -12,10 +12,10 @@ export const RegisterConteiner = styled.main`
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const RegisterButtonsCoteiner = styled.div`
-  margin-top: 62px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,7 +31,7 @@ export const RegisterButtonsCoteiner = styled.div`
     justify-content: center;
     width: 60%;
     height: 400px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: var(--colo-white-opacity50);
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.5s;
