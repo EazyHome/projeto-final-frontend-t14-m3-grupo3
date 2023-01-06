@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Footer } from "../../components/Footer/footer";
 import { ModalClientRegister } from "../../components/ModalRegisterClient/modalClient";
 import { ModalProvidertRegister } from "../../components/ModalRegisterProvider/modalProvider";
-import { RegisterButtonsCoteiner, RegisterConteiner } from "../register/style";
+import { RegisterButtonsCoteiner, RegisterConteiner } from "../Register/style";
 
 export function Register() {
   const [showClientModal, setShowClientModal] = useState(false);
