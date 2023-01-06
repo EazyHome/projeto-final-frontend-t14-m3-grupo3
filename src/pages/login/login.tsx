@@ -8,7 +8,7 @@ import { Form } from "../../components/Form/style";
 import {
   UserContext,
   iUserLogin,
-} from "../../contexts/UserContext/userContext";
+} from "../../contexts/UserContext/UserContext";
 import { useContext } from "react";
 
 export const Login = () => {

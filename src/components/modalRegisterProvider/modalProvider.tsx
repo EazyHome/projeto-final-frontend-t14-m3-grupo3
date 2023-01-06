@@ -8,8 +8,8 @@ import { useContext, useEffect } from "react";
 import {
   iUserServiceRegister,
   UserContext,
-} from "../../contexts/UserContext/userContext";
-import { CitiesContext } from "../../contexts/CitiesContext/citiesContext";
+} from "../../contexts/UserContext/UserContext";
+import { CitiesContext } from "../../contexts/CitiesContext/CitiesContext";
 
 interface iModalClientRegisterProps {
   setShowProviderModal: React.Dispatch<React.SetStateAction<boolean>>;
