@@ -26,7 +26,13 @@ export const NavBar = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 100;
+
+  background-color: var(--color-white);
 
   @media (min-width: 700px) {
     height: 100px;
@@ -97,7 +103,7 @@ export const BtnMenuNav = styled.button`
   color: var(--color-primary);
 
   &:hover {
-    color: var(--color-opposite-1);
+    color: var(--color-grey100);
   }
 
   @media (min-width: 900px) {
