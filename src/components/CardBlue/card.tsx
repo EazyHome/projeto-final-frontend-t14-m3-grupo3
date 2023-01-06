@@ -16,3 +16,4 @@ export function BlueCard({ img, type }: iProp) {
     </BlueItem>
   );
 }
+

@@ -12,7 +12,12 @@ import piscina from "../../assets/img/piscina.png";
 import piso from "../../assets/img/piso.png";
 import serralheiro from "../../assets/img/serralheiro.png";
 import worker from "../../assets/img/woman.jpg";
-
+import { OrangeCard } from "../../components/CardOrange/card";
+import { BlueCard } from "../../components/CardBlue/card";
+import { GreenComment } from "../../components/GreenComment/greenComment";
+import { OrangeComment } from "../../components/OrangeComment/orangeComment";
+import { Footer } from "../../components/Footer/footer";
+import { Link } from "react-router-dom";
 import {
   BodyHome,
   Comments,
@@ -27,11 +32,6 @@ import {
   Services,
   ServicesList,
 } from "./style";
-import { Footer } from "../../components/Footer/footer";
-import { BlueCard } from "../../components/CardBlue/card";
-import { OrangeCard } from "../../components/CardOrange/card";
-import { GreenComment } from "../../components/GreenComment/greenComment";
-import { OrangeComment } from "../../components/OrangeComment/orangeComment";
 
 export function HomePage() {
   return (
@@ -50,9 +50,9 @@ export function HomePage() {
                 serviços do Brasil!
               </p>
               <HeaderBtns>
-                <button>Login</button>
+                <Link to="/login">Login</Link>
                 <p>ou</p>
-                <button>Cadastre-se</button>
+                <Link to="/register">Cadastre-se</Link>
               </HeaderBtns>
             </div>
           </ContentHeader>
@@ -61,7 +61,7 @@ export function HomePage() {
           <DivAboutUs id="about_us">
             <DivContentAboutUs>
               <div>
-                <img src={worker}></img>
+                <img src={worker} alt="Worker"></img>
                 <h3>Sobre nós...</h3>
               </div>
 

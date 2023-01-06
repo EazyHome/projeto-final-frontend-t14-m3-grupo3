@@ -81,7 +81,7 @@ export const HeaderBtns = styled.div`
   color: var(--color-white);
   font-size: var(--font-size-20);
 
-  & > button {
+  & > Link {
     width: 100px;
     padding: 0 6px 0 6px;
     height: 35px;
@@ -91,7 +91,7 @@ export const HeaderBtns = styled.div`
     font-size: 14px;
   }
 
-  & > button:hover {
+  & > Link:hover {
     background-color: transparent;
     border: 2px solid var(--color-white);
   }
@@ -104,7 +104,7 @@ export const HeaderBtns = styled.div`
       margin-top: 10px;
     }
 
-    & > button {
+    & > Link {
       min-height: 40px;
       min-width: 110px;
     }

@@ -15,7 +15,6 @@ export const RoutesMain = () => {
       <Route path="/dashboardclient" element={<Dashboard />} />
       <Route path="/dashboardservice" element={<Dashboard />} />
       <Route path="*" element={<NotFound />} />
-      {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
     </Routes>
   );
 };

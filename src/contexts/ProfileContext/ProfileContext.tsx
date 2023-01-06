@@ -7,7 +7,7 @@ import {
   iUserClient,
   iUserService,
   UserContext,
-} from "../UserContext/UserContext";
+} from "../UserContext/userContext";
 
 interface iProfileContext {
   isLogged: () => void;

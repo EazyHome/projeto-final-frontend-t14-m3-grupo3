@@ -3,10 +3,9 @@ import markorange from "../../assets/img/markorange.png";
 import inversemarkgreen from "../../assets/img/inversemarkgreen.png";
 
 interface iProp {
-    text: string;
-    user: string;
-  }
-
+  text: string;
+  user: string;
+}
 
 export function GreenComment({ text, user }: iProp) {
   return (
