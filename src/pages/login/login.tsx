@@ -1,6 +1,6 @@
 import { Footer } from "../../components/Footer/Footer";
-import { NavRegister } from "../../components/NavRegister/NavRegister";
-import { LoginBackGround, LoginConteiner } from "../login/style";
+import { NavLogin } from "../../components/NavLogin/navLogin";
+import { LoginBackGround, LoginConteiner } from "./style";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -32,7 +32,7 @@ export const Login = () => {
 
   return (
     <LoginBackGround>
-      <NavRegister />
+      <NavLogin />
       <LoginConteiner>
         <div>
           <p>Login</p>

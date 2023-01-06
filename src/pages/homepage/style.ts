@@ -157,9 +157,9 @@ export const DivContentAboutUs = styled.div`
   @media (min-width: 990px) {
     & > div > img {
       display: flex;
-      width: 500px;
+      width: 550px;
       border: 2px solid var(--color-primary);
-      height: 450px;
+      height: 480px;
     }
     & {
       flex-direction: row;
@@ -262,19 +262,19 @@ export const Comments = styled.div`
     width: 100%;
     height: 70px;
     position: absolute;
-    background-color: rgba(0, 102, 99, 0.2);
+    background-color: rgba(255, 102, 0, 0.3);
   }
   & > h3 {
-    color: var(--color-secondary);
+    color: var(--color-white);
     font-size: 20px;
     margin-bottom: 10px;
     margin-top: 10px;
     padding: 15px 15px;
     position: relative;
-    text-align: left;
+    text-align: center;
     z-index: 10;
     height: 50px;
-    background-color: rgba(0, 179, 173, 0.4);
+    background-color: rgba(255, 102, 0, 1);
   }
 `;
 
