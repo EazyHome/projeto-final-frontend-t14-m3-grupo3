@@ -1,5 +1,5 @@
 import React, { useState, createContext } from "react";
-import { StatesAPI } from "../../service/CitiesApi";
+import { StatesAPI } from "../../service/citiesApi";
 import { iDefaultPropsProvider } from "../types";
 import axios from "axios";
 
