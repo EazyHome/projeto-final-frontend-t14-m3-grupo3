@@ -1,9 +1,9 @@
-import { NavRegister } from "../../components/NavRegister/NavRegister";
+import { NavRegister } from "../../components/NavRegister/navRegister";
 import { RegisterButtonsCoteiner, RegisterConteiner } from "./registerStyle";
 import imgClientRegister from "./../../assets/img/clientRegisterButtonImg.png";
 import imgProviderRegister from "./../../assets/img/providerRegisterButtonImg.png";
 import { useState } from "react";
-import { Footer } from "../../components/Footer/Footer";
+import { Footer } from "../../components/Footer/footer";
 import { ModalClientRegister } from "./modalRegisterClient/modalClient";
 import { ModalProvidertRegister } from "./modalRegisterProvider/modalProvider";
 
@@ -24,7 +24,7 @@ export function Register() {
           <p>Cadastro de fornecedor</p>
         </div>
       </RegisterButtonsCoteiner>
-      <Footer />
+      <Footer id="footer" />
 
       {showClientModal ? (
         <ModalClientRegister setShowClientModal={setShowClientModal} />

@@ -12,26 +12,34 @@ export function NavHome() {
   return (
     <NavBar>
       <DivLogo>
-        <img src={logo} />
+        <img src={logo} alt="Logo" />
       </DivLogo>
       <BtnMenuNav onClick={() => setMenu(!menu)}>
         {menu ? <AiOutlineClose size={30} /> : <AiOutlineMenu size={30} />}
       </BtnMenuNav>
       <DivSideMenu display={menu}>
-        <a>SOBRE NÓS</a>
-        <a>AVALIAÇÕES</a>
-        <a>SERVIÇOS</a>
-        <a>CONTATOS</a>
-        <a>CADASTRE-SE</a>
-        <a>LOGIN</a>
+        <a href="#about_us" onClick={() => setMenu(false)}>
+          SOBRE NÓS
+        </a>
+        <a href="#services" onClick={() => setMenu(false)}>
+          SERVIÇOS
+        </a>
+        <a href="#comments" onClick={() => setMenu(false)}>
+          AVALIAÇÕES
+        </a>
+        <a href="#footer" onClick={() => setMenu(false)}>
+          CONTATOS
+        </a>
+        <Link to="/register">CADASTRE-SE</Link>
+        <Link to="/login">LOGIN</Link>
       </DivSideMenu>
       <DivLinksNav>
-        <a>SOBRE NÓS</a>
-        <a>AVALIAÇÕES</a>
-        <a>SERVIÇOS</a>
-        <a>CONTATOS</a>
-        <a>CADASTRE-SE</a>
-        <a>LOGIN</a>
+        <a href="#about_us">SOBRE NÓS</a>
+        <a href="#services">SERVIÇOS</a>
+        <a href="#comments">AVALIAÇÕES</a>
+        <a href="#footer">CONTATOS</a>
+        <Link to="/register">CADASTRE-SE</Link>
+        <Link to="/login">LOGIN</Link>
       </DivLinksNav>
     </NavBar>
   );

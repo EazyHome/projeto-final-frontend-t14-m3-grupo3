@@ -69,6 +69,27 @@ export const DivLinksNav = styled.div`
     gap: 25px;
     font-size: 16px;
   }
+  & > Link {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+      to right,
+      var(--color-primary),
+      var(--color-primary) 50%,
+      var(--color-grey100) 50%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 275ms ease;
+  }
+  & > Link:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+    background-position: 0 100%;
+  }
   & > a {
     position: relative;
     overflow: hidden;
@@ -133,6 +154,27 @@ export const DivSideMenu = styled.div<iDiv>`
 
   @media (min-width: 900px) {
     display: none;
+  }
+  & > Link {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+      to right,
+      var(--color-primary),
+      var(--color-primary) 50%,
+      var(--color-grey100) 50%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 275ms ease;
+  }
+  & > Link:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+    background-position: 0 100%;
   }
   & > a {
     position: relative;

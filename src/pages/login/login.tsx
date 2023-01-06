@@ -1,10 +1,10 @@
-import { Footer } from "../../components/Footer/Footer";
-import { NavRegister } from "../../components/NavRegister/NavRegister";
+import { Footer } from "../../components/Footer/footer";
+import { NavRegister } from "../../components/NavRegister/navRegister";
 import { LoginBackGround, LoginConteiner } from "./loginStyle";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { Form } from "../../components/Form/FormStyle";
+import { Form } from "../../components/Form/style";
 
 export const Login = () => {
   const formSchema = yup.object().shape({
@@ -43,7 +43,7 @@ export const Login = () => {
           <button>Cadastrar</button>
         </Form>
       </LoginConteiner>
-      <Footer />
+      <Footer id="footer" />
     </LoginBackGround>
   );
 };

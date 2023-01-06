@@ -1,8 +1,8 @@
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Form, FormConteiner } from "../../../components/Form/FormStyle";
-import { BackGroudForm } from "../../../components/backgroundmodal/modalStyle";
+import { Form, FormConteiner } from "../../../components/Form/style";
+import { BackGroudForm } from "../../../components/Backgroundmodal/style";
 import { SelectConteiner } from "./modalClientStyle";
 interface iModalClientRegisterProps {
   setShowClientModal: React.Dispatch<React.SetStateAction<boolean>>;
