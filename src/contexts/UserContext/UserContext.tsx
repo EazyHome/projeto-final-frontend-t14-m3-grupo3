@@ -4,7 +4,7 @@ import { api } from "../../service/Api";
 import { iDefaultPropsProvider } from "../types";
 import { useNavigate } from "react-router-dom";
 
-interface iUserClientRegister {
+export interface iUserClientRegister {
   email: string;
   password: string;
   name: string;
@@ -16,7 +16,7 @@ interface iUserClientRegister {
   avatar_URL: string;
 }
 
-interface iUserServiceRegister extends iUserClientRegister {
+export interface iUserServiceRegister extends iUserClientRegister {
   workOnCities: [];
   workOnCategories: [];
   available: boolean;

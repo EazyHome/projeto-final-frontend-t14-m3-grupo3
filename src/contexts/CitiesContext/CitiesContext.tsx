@@ -1,10 +1,10 @@
 import React, { useState, createContext } from "react";
-import { StatesAPI } from "../../service/CitiesApi";
+import { StatesAPI } from "../../service/StatesApi";
 import { iDefaultPropsProvider } from "../types";
 import axios from "axios";
 
 interface iCitiesContext {
-  getCities: () => void;
+  getStates: () => void;
   statesList: [] | iStatesList[];
   citiesList: [] | iCitiesList[];
   selectState: (e: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -99,7 +99,7 @@ export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
     timeout: 5000,
   });
 
-  const getCities = async () => {
+  const getStates = async () => {
     try {
       const states = await StatesAPI.get("");
       setStatesList(states.data);
@@ -126,7 +126,7 @@ export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
   return (
     <CitiesContext.Provider
       value={{
-        getCities,
+        getStates,
         statesList,
         citiesList,
         selectState,

@@ -2,8 +2,14 @@ import { BackGroudForm } from "../BackgroundModal/style";
 import { Form, FormConteiner } from "../Form/style";
 import { SelectConteiner } from "./style";
 import * as yup from "yup";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext, useEffect } from "react";
+import {
+  iUserServiceRegister,
+  UserContext,
+} from "../../contexts/UserContext/userContext";
+import { CitiesContext } from "../../contexts/CitiesContext/citiesContext";
 
 interface iModalClientRegisterProps {
   setShowProviderModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -12,6 +18,21 @@ interface iModalClientRegisterProps {
 export function ModalProvidertRegister({
   setShowProviderModal,
 }: iModalClientRegisterProps) {
+  const { userServiceRegister } = useContext(UserContext);
+  const {
+    disable,
+    statesList,
+    citiesList,
+    selectCity,
+    selectState,
+    servicesCategories,
+    getStates,
+  } = useContext(CitiesContext);
+
+  useEffect(() => {
+    getStates();
+  });
+
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigatorio").email("Email inválido"),
     password: yup
@@ -32,11 +53,11 @@ export function ModalProvidertRegister({
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(formSchema) });
+  } = useForm<iUserServiceRegister>({ resolver: yupResolver(formSchema) });
 
-  function onSubmitFuntion() {
-    //Função de submit
-  }
+  const onSubmitFuntion: SubmitHandler<iUserServiceRegister> = (data) => {
+    userServiceRegister(data);
+  };
 
   return (
     <BackGroudForm>
@@ -75,20 +96,48 @@ export function ModalProvidertRegister({
             <div>
               <div>
                 <span>Estado</span>
-                <select id="" {...register("state")}>
-                  {/* <option value="CE">CE</option> */}
+                <select {...register("state")} onChange={selectState}>
+                  <option value={0}>Selecione seu Estado</option>
+                  {statesList.map((e) => {
+                    return (
+                      <option key={e.id} value={e.id}>
+                        {e.nome}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
               <div>
                 <span>Serviço</span>
-                <select id="" {...register("workOnCategories")}>
-                  {/* <option value="Pintor">Pintor(a)</option> */}
+                <select {...register("workOnCategories")}>
+                  <option key={""} value="">
+                    Selecione sua Categoria
+                  </option>
+                  {servicesCategories.map((e) => {
+                    return (
+                      <option key={e} value={e}>
+                        {e}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
             </div>
             <span>Cidade</span>
-            <select id="" {...register("workOnCities")}>
-              {/* <option value="Fortaleza">Fortaleza</option> */}
+            <select
+              id=""
+              disabled={disable}
+              {...register("workOnCities")}
+              onChange={selectCity}
+            >
+              <option value="">Selecione seu Estado</option>
+              {citiesList.map((e) => {
+                return (
+                  <option key={e.id} value={e.nome}>
+                    {e.nome}
+                  </option>
+                );
+              })}
             </select>
           </SelectConteiner>
           <button>Cadastrar</button>
