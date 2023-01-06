@@ -3,10 +3,17 @@ import { NavRegister } from "../../components/NavRegister/navRegister";
 import { LoginBackGround, LoginConteiner } from "./style";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { Form } from "../../components/Form/style";
+import {
+  UserContext,
+  iUserLogin,
+} from "../../contexts/UserContext/userContext";
+import { useContext } from "react";
 
 export const Login = () => {
+  const { userLogin } = useContext(UserContext);
+
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigatorio").email("Email inválido"),
     password: yup.string().required("Senha obrigatoria"),
@@ -15,12 +22,13 @@ export const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<iUserLogin>({
     resolver: yupResolver(formSchema),
   });
-  function onSubmitFunction() {
-    //Função de submit
-  }
+
+  const onSubmitFunction: SubmitHandler<iUserLogin> = (data) => {
+    userLogin(data);
+  };
 
   return (
     <LoginBackGround>

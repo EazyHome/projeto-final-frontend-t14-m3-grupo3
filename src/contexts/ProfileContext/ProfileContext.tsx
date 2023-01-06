@@ -1,13 +1,13 @@
 import React from "react";
 import { createContext, useContext, useState } from "react";
-import { api } from "../../service/api";
+import { api } from "../../service/Api";
 import { useNavigate } from "react-router-dom";
 import { iDefaultPropsProvider } from "../types";
 import {
   iUserClient,
   iUserService,
   UserContext,
-} from "../UserContext/UserContext";
+} from "../UserContext/userContext";
 
 interface iProfileContext {
   isLogged: () => void;

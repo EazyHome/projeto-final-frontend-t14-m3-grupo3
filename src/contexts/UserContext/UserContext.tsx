@@ -1,6 +1,6 @@
 import React from "react";
 import { createContext, useState } from "react";
-import { api } from "../../service/api";
+import { api } from "../../service/Api";
 import { iDefaultPropsProvider } from "../types";
 import { useNavigate } from "react-router-dom";
 
@@ -22,7 +22,7 @@ interface iUserServiceRegister extends iUserClientRegister {
   available: boolean;
 }
 
-interface iUserLogin {
+export interface iUserLogin {
   email: string;
   password: string;
 }
@@ -67,7 +67,7 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
       const response = await api.post("/register", data);
       setUserClient(response.data.user);
       localStorage.setItem("@Id:EazyHome", response.data.user.id);
-      localStorage.setItem("@Token:EazyHome", response.data.acessToken);
+      localStorage.setItem("@Token:EazyHome", response.data.accessToken);
       localStorage.setItem("@UserType:EazyHome", response.data.user.type);
       navigate("/dashboardclient");
     } catch (error) {
@@ -80,7 +80,7 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
       const response = await api.post("/register", data);
       setUserService(response.data.user);
       localStorage.setItem("@Id:EazyHome", response.data.user.id);
-      localStorage.setItem("@Token:EazyHome", response.data.acessToken);
+      localStorage.setItem("@Token:EazyHome", response.data.accessToken);
       localStorage.setItem("@UserType:EazyHome", response.data.user.type);
       navigate("/dashboardservice");
     } catch (error) {
@@ -93,7 +93,7 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
       const response = await api.post("/login", data);
       const userService = response.data.user.type;
       localStorage.setItem("@Id:EazyHome", response.data.user.id);
-      localStorage.setItem("@Token:EazyHome", response.data.acessToken);
+      localStorage.setItem("@Token:EazyHome", response.data.accessToken);
       localStorage.setItem("@UserType:EazyHome", response.data.user.type);
       if (userService === "prestador") {
         setUserService(response.data.user);

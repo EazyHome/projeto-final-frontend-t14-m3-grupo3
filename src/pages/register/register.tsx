@@ -1,5 +1,4 @@
 import { NavRegister } from "../../components/NavRegister/navRegister";
-
 import imgClientRegister from "./../../assets/img/clientRegisterButtonImg.png";
 import imgProviderRegister from "./../../assets/img/providerRegisterButtonImg.png";
 import { useState } from "react";

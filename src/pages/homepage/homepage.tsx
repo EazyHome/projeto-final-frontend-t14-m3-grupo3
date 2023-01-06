@@ -33,7 +33,6 @@ import {
   ServicesList,
 } from "./style";
 
-
 export function HomePage() {
   return (
     <>
