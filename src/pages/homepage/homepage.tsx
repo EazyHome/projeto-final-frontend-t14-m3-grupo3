@@ -16,7 +16,7 @@ import { OrangeCard } from "../../components/CardOrange/card";
 import { BlueCard } from "../../components/CardBlue/card";
 import { GreenComment } from "../../components/GreenComment/greenComment";
 import { OrangeComment } from "../../components/OrangeComment/orangeComment";
-import { Footer } from "../../components/Footer/footer";
+import { Footer } from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
 import {
   BodyHome,
@@ -28,10 +28,11 @@ import {
   DivTextAboutUs,
   HeaderBtns,
   HeaderHome,
+  LinksHeader,
   ListComments,
   Services,
   ServicesList,
-} from "../Homepage/style";
+} from "../homepage/style";
 
 export function HomePage() {
   return (
@@ -50,9 +51,9 @@ export function HomePage() {
                 serviços do Brasil!
               </p>
               <HeaderBtns>
-                <Link to="/login">Login</Link>
+                <LinksHeader to="/login">Login</LinksHeader>
                 <p>ou</p>
-                <Link to="/register">Cadastre-se</Link>
+                <LinksHeader to="/register">Cadastre-se</LinksHeader>
               </HeaderBtns>
             </div>
           </ContentHeader>

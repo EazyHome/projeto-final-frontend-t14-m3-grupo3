@@ -2,7 +2,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form, FormConteiner } from "../Form/style";
-// import { BackGroudForm } from "../../components/Backgroundmodal/style";
+import { BackGroudForm } from "../../components/BackgroundModal/style";
 import { SelectConteiner } from "./style";
 
 interface iModalClientRegisterProps {
@@ -37,7 +37,7 @@ export function ModalClientRegister({
     //Função de submit
   }
   return (
-    // <BackGroudForm>
+    <BackGroudForm>
     <FormConteiner>
       <div>
         <p>Cadastro cliente</p>
@@ -87,6 +87,6 @@ export function ModalClientRegister({
         <button>Cadastrar</button>
       </Form>
     </FormConteiner>
-    // </BackGroudForm>
+    </BackGroudForm>
   );
 }
