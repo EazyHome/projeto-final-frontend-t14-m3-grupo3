@@ -1,15 +1,18 @@
 import React, { useState, createContext } from "react";
-import { StatesAPI } from "../../service/statesApi";
+import { StatesAPI } from "../../service/StatesApi";
 import { iDefaultPropsProvider } from "../types";
 import axios from "axios";
+import { SelectChangeEvent } from "@mui/material";
 
 interface iCitiesContext {
   getStates: () => void;
   statesList: [] | iStatesList[];
   citiesList: [] | iCitiesList[];
-  selectState: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  selectState: (e: SelectChangeEvent<HTMLSelectElement>) => void;
+  // selectState: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   city: string;
-  selectCity: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  // selectCity: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  selectCity: (e: SelectChangeEvent<HTMLSelectElement>) => void;
   disable: boolean;
   servicesCategories: string[];
 }
@@ -76,7 +79,7 @@ export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
   const [statesList, setStatesList] = useState<[] | iStatesList[]>([]);
   const [stateId, setStateId] = useState<number>(0);
   const [citiesList, setCitiesList] = useState<[] | iCitiesList[]>([]);
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState("" as string);
   const [disable, setDisable] = useState<boolean>(true);
 
   const servicesCategories = [
@@ -108,19 +111,24 @@ export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
     }
   };
 
-  const selectState = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+  // const selectState = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const selectState = async (e: SelectChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value);
     setStateId(+e.target.value);
     if (e.target.value !== "0") {
       setDisable(false);
       const response = await CitiesAPI.get("");
+      console.log(response.data);
       setCitiesList(response.data);
     } else {
       setDisable(true);
     }
   };
 
-  const selectCity = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCity(e.target.value);
+  // const selectCity = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const selectCity = (e: SelectChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value);
+    setCity(e.target.value as string);
   };
 
   return (
