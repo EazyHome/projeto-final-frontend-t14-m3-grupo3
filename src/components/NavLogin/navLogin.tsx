@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import { useState } from "react";
 
-export function NavRegister() {
+export function NavLogin() {
   const [menu, setMenu] = useState(false);
 
   return (
@@ -19,11 +19,11 @@ export function NavRegister() {
       </BtnMenuNav>
       <DivSideMenu display={menu}>
         <Link to="/">HOME</Link>
-        <Link to="/login">LOGIN</Link>
+        <Link to="/register">CADASTRE-SE</Link>
       </DivSideMenu>
       <DivLinksNav>
         <Link to="/">HOME</Link>
-        <Link to="/login">LOGIN</Link>
+        <Link to="/register">CADASTRE-SE</Link>
       </DivLinksNav>
     </NavBar>
   );

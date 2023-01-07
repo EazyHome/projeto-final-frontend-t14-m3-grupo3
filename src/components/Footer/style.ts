@@ -35,6 +35,13 @@ export const DivContacts = styled.div`
   flex-direction: column;
   gap: 15px;
   width: 60%;
+
+  @media (min-width: 650px) {
+    & {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
 `;
 
 export const DivContactsIcons = styled.div`
@@ -45,6 +52,12 @@ export const DivContactsIcons = styled.div`
   & > a:hover {
     color: var(--color-grey100);
   }
+
+  @media (min-width: 650px) {
+    & {
+      align-items: flex-start;
+    }
+  }
 `;
 
 export const DivContactsInfo = styled.div`
@@ -52,4 +65,11 @@ export const DivContactsInfo = styled.div`
   flex-direction: column;
   gap: 15px;
   width: 150%;
+
+  @media (min-width: 650px) {
+    & {
+      width: 60%;
+      align-items: flex-end;
+    }
+  }
 `;

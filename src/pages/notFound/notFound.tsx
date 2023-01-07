@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Footer } from "../../components/Footer/Footer";
 import { NavRegister } from "../../components/NavRegister/NavRegister";
-
-import { NotFoundMain } from "./notFoundStyle";
+import { NotFoundMain } from "../notFound/style";
 
 export function NotFound() {
   const navigate = useNavigate();
@@ -15,7 +14,7 @@ export function NotFound() {
     <NotFoundMain>
       <NavRegister />
       <h1>PAGINA NÃO ENCONTRADA</h1>
-      <Footer />
+      <Footer id="footer" />
     </NotFoundMain>
   );
 }

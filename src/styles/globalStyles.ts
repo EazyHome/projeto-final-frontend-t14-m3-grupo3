@@ -24,7 +24,9 @@ export const GlobalStyle = createGlobalStyle`
     ul, ol, li{
         list-style: none;
     }
-
+    html {
+  scroll-behavior: smooth;
+}
     :root {
         --color-primary: #FF6600;
         --color-secondary: #B33F00;

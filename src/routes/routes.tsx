@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Dashboard } from "../pages/dashboard/dashboard";
 import { HomePage } from "../pages/homepage/homepage";
 import { Login } from "../pages/login/login";
@@ -15,7 +15,6 @@ export const RoutesMain = () => {
       <Route path="/dashboardclient" element={<Dashboard />} />
       <Route path="/dashboardservice" element={<Dashboard />} />
       <Route path="*" element={<NotFound />} />
-      {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
     </Routes>
   );
 };

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { keyframes } from "styled-components";
 
 interface iDiv {
@@ -31,7 +30,6 @@ export const NavBar = styled.nav`
   left: 0px;
   right: 0px;
   z-index: 100;
-
   background-color: var(--color-white);
 
   @media (min-width: 700px) {
@@ -57,7 +55,7 @@ export const DivLinksNav = styled.div`
   color: var(--color-grey100);
   font-weight: 600;
 
-  @media (min-width: 900px) {
+  @media (min-width: 800px) {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -65,30 +63,9 @@ export const DivLinksNav = styled.div`
     font-size: 14px;
   }
 
-  @media (min-width: 1030px) {
+  @media (min-width: 800px) {
     gap: 25px;
     font-size: 16px;
-  }
-  & > Link {
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(
-      to right,
-      var(--color-primary),
-      var(--color-primary) 50%,
-      var(--color-grey100) 50%
-    );
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% 100%;
-    background-position: 100%;
-    transition: background-position 275ms ease;
-  }
-  & > Link:hover {
-    color: var(--color-primary);
-    text-decoration: underline;
-    background-position: 0 100%;
   }
   & > a {
     position: relative;
@@ -127,7 +104,7 @@ export const BtnMenuNav = styled.button`
     color: var(--color-grey100);
   }
 
-  @media (min-width: 900px) {
+  @media (min-width: 800px) {
     display: none;
   }
 `;
@@ -152,29 +129,8 @@ export const DivSideMenu = styled.div<iDiv>`
   flex-direction: column;
   position: absolute;
 
-  @media (min-width: 900px) {
+  @media (min-width: 800px) {
     display: none;
-  }
-  & > Link {
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(
-      to right,
-      var(--color-primary),
-      var(--color-primary) 50%,
-      var(--color-grey100) 50%
-    );
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% 100%;
-    background-position: 100%;
-    transition: background-position 275ms ease;
-  }
-  & > Link:hover {
-    color: var(--color-primary);
-    text-decoration: underline;
-    background-position: 0 100%;
   }
   & > a {
     position: relative;

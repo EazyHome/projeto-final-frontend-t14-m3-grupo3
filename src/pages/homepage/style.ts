@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import imagemHome from "../../assets/img/imagemhome.jpg";
+import { Link } from "react-router-dom";
 
 export const BodyHome = styled.div`
   margin-top: 85px;
 `;
 
 export const HeaderHome = styled.div`
-  height: 300px;
+  height: 350px;
   background-image: url(${imagemHome});
   background-repeat: no-repeat;
   background-size: cover;
@@ -41,7 +42,16 @@ export const ContentHeader = styled.div`
     align-items: center;
     justify-content: flex-end;
     gap: 15px;
-    width: 90%;
+    min-width: 85%;
+    max-width: 85%;
+    border: 2px solid var(--color-primary);
+    padding: 25px 20px;
+  }
+  & > div > p {
+    font-size: 14px;
+    text-align: center;
+    line-height: 150%;
+    color: var(--color-white);
   }
 
   @media (min-width: 700px) {
@@ -49,9 +59,17 @@ export const ContentHeader = styled.div`
       min-width: 50%;
       max-width: 50%;
     }
+    & > div {
+      border: none;
+      align-items: flex-start;
+    }
     & > div > h1 {
       font-size: 38px;
       text-align: left;
+    }
+    & > div > p {
+      text-align: left;
+      font-size: 16px;
     }
   }
 `;
@@ -64,21 +82,6 @@ export const HeaderBtns = styled.div`
   color: var(--color-white);
   font-size: var(--font-size-20);
 
-  & > button {
-    width: 120px;
-    padding: 0 6px 0 6px;
-    height: 35px;
-    background-color: var(--color-primary);
-    border: 2px transparent;
-    color: var(--color-white);
-    font-size: var(--font-size-16);
-  }
-
-  & > button:hover {
-    background-color: transparent;
-    border: 2px solid var(--color-white);
-  }
-
   @media (min-width: 700px) {
     & {
       display: flex;
@@ -86,8 +89,28 @@ export const HeaderBtns = styled.div`
       max-width: 55%;
       margin-top: 10px;
     }
+  }
+`;
 
-    & > button {
+export const LinksHeader = styled(Link)`
+  width: 100px;
+  padding: 0 6px 0 6px;
+  height: 35px;
+  background-color: var(--color-primary);
+  border: 2px transparent;
+  color: var(--color-white);
+  font-size: 14px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: transparent;
+    border: 2px solid var(--color-white);
+  }
+  @media (min-width: 700px) {
+    & {
       min-height: 40px;
       min-width: 110px;
     }
@@ -133,12 +156,10 @@ export const DivContentAboutUs = styled.div`
 
   @media (min-width: 990px) {
     & > div > img {
-      height: 60%;
-      width: 60%;
       display: flex;
-      background-color: blue;
-      max-width: 600px;
-      max-height: 600px;
+      width: 550px;
+      border: 2px solid var(--color-primary);
+      height: 480px;
     }
     & {
       flex-direction: row;
@@ -158,7 +179,7 @@ export const DivTextAboutUs = styled.div`
   z-index: 20;
 
   & > div {
-    border: 1px solid var(--color-primary);
+    border: 2px solid var(--color-primary);
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -196,7 +217,7 @@ export const ContentServices = styled.div`
   }
 `;
 
-export const ServicesList = styled.div`
+export const ServicesList = styled.ul`
   display: grid;
   grid-template-columns: 100px 100px;
   grid-row-gap: 24px;
@@ -207,6 +228,8 @@ export const ServicesList = styled.div`
   @media (min-width: 400px) {
     & {
       grid-template-columns: 100px 100px 100px;
+      grid-row-gap: 12px;
+      gap: 12px;
     }
   }
   @media (min-width: 500px) {
@@ -214,214 +237,63 @@ export const ServicesList = styled.div`
       grid-template-columns: 100px 100px 100px 100px;
     }
   }
-
-  @media (min-width: 630px) {
+  @media (min-width: 760px) {
     & {
-      grid-template-columns: 100px 100px 100px 100px 100px;
+      grid-row-gap: 24px;
+      gap: 24px;
     }
   }
+
   @media (min-width: 900px) {
     & {
       grid-template-columns: 100px 100px 100px 100px 100px 100px;
+      gap: 28px;
+      grid-row-gap: 28px;
     }
   }
 `;
 
-export const BlueItem = styled.li`
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: space-between;
-  background-color: var(--color-opposite-2);
-  width: 100%;
-  max-width: 80px;
-  height: 135px;
-  border-radius: 40px;
-  margin-top: 16px;
-  transition: transform 0.2s;
-
-  &:hover {
-    cursor: pointer;
-    transition: 0.3s ease;
-  }
-
-  &:hover > div {
-    transform: scale(1.2);
-    transition: 0.3s ease;
-  }
-
-  & > div {
-    width: 100%;
-    height: 60%;
-    background-color: var(--color-grey20);
-    border-radius: 50%;
-    border: 3px solid var(--color-grey20);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  & > p {
-    margin-top: 25px;
-    font-size: 12px;
-    text-align: center;
-    color: var(--color-white);
-  }
-
-  & > div > img {
-    width: 75%;
-    height: 75%;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-
-  @media (min-width: 760px) {
-    & {
-      min-width: 100px;
-      max-width: 100px;
-      height: 160px;
-      border-radius: 55px;
-    }
-
-    & > p {
-      font-size: 14px;
-    }
-  }
-`;
-
-export const OrangeItem = styled.li`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: var(--color-primary);
-  width: 100%;
-  max-width: 80px;
-  height: 135px;
-  border-radius: 40px;
-  margin-top: 16px;
-  margin-bottom: 15px;
-  margin-left: 15px;
-  transition: transform 0.2s;
-
-  &:hover {
-    cursor: pointer;
-    transition: 0.3s ease;
-  }
-
-  &:hover > div {
-    transform: scale(1.2);
-    transition: 0.3s ease;
-  }
-
-  @media (min-width: 400px) {
-    & {
-      margin-left: 0px;
-    }
-  }
-
-  & > div {
-    width: 100%;
-    height: 60%;
-    background-color: var(--color-grey20);
-    border-radius: 50%;
-    border: 3px solid var(--color-grey20);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  & > div > img {
-    width: 75%;
-    height: 75%;
-    border-radius: 50%;
-  }
-
-  & > p {
-    margin-bottom: 25px;
-    font-size: 12px;
-    text-align: center;
-    color: var(--color-white);
-  }
-
-  @media (min-width: 760px) {
-    & {
-      min-width: 100px;
-      max-width: 100px;
-      height: 160px;
-      border-radius: 55px;
-    }
-
-    & > p {
-      font-size: 14px;
-    }
-  }
-`;
-
-export const Coments = styled.div`
+export const Comments = styled.div`
   margin-top: 32px;
   display: flex;
   flex-direction: column;
 
-  .comments {
-    position: relative;
-    height: 100%;
+  & > div {
     width: 100%;
-    max-width: 350px;
-    margin: 16px 0 16px 0;
+    height: 70px;
+    position: absolute;
+    background-color: rgba(255, 102, 0, 0.3);
   }
-
-  .commentsgreen {
+  & > h3 {
+    color: var(--color-white);
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 15px 15px;
     position: relative;
-    height: 100%;
-    width: 100%;
-    max-width: 350px;
-    margin: 16px 0 16px 0;
-    align-self: flex-end;
-  }
-
-  .comments img,
-  .commentsgreen img {
-    width: 50px;
-  }
-
-  .comments .topLeft,
-  .commentsgreen .topLeft {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-  .comments .downRight,
-  .commentsgreen .downRight {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-  }
-
-  .description {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .description p {
-    width: 70%;
     text-align: center;
+    z-index: 10;
+    height: 50px;
+    background-color: rgba(255, 102, 0, 1);
   }
+`;
 
-  @media (min-width: 930px) {
-    & {
-      width: 100%;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
+export const ListComments = styled.ul`
+  height: 300px;
+  min-width: 100%;
+  max-width: 100%;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  padding-left: 16px;
+  display: flex;
+  overflow: scroll;
+  padding-left: 15px;
+  gap: 20px;
 
-    .comments {
-      max-width: 450px;
-    }
-
-    .commentsgreen {
-      max-width: 450px;
-      transform: translateY(-70px);
-    }
+  @media (min-width: 900px) {
+    flex-direction: column;
+    overflow: hidden;
+    align-items: center;
+    height: 540px;
   }
 `;
