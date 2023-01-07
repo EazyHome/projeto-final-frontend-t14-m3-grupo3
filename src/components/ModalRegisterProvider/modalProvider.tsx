@@ -35,7 +35,7 @@ export function ModalProvidertRegister({
 
   useEffect(() => {
     getStates();
-  });
+  }, []);
 
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigatorio").email("Email inválido"),
