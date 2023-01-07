@@ -36,7 +36,7 @@ export const Footer = () => {
           </DivContactsInfo>
         </DivContacts>
 
-        <a href="top">Ir para o topo</a>
+        <a href="#top">Ir para o topo</a>
       </div>
     </DivFooter>
   );
