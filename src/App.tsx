@@ -1,12 +1,14 @@
 import React from "react";
 import { GlobalStyle } from "./styles/globalStyles";
 import { RoutesMain as Routes } from "./routes/routes";
+import { ThemeProvider } from "@mui/material";
+import { theme } from "./theme";
 
 export function App() {
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Routes />
-    </div>
+    </ThemeProvider>
   );
 }

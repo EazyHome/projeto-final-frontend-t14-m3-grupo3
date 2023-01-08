@@ -15,6 +15,7 @@ import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { FormHelperText } from "@mui/material";
+import { width } from "@mui/system";
 interface iModalClientRegisterProps {
   setShowProviderModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -144,7 +145,7 @@ export function ModalProvidertRegister({
           /> */}
           <SelectConteiner>
             <div>
-              <div>
+              <div className="selectWidth50">
                 <span>Estado</span>
                 <Select
                   label="Estado"
@@ -163,7 +164,7 @@ export function ModalProvidertRegister({
                   {(errors.state as any)?.message}
                 </FormHelperText>
               </div>
-              <div>
+              <div className="selectWidth50">
                 <span>Serviço</span>
                 <Select label="Categoria" {...register("workOnCategories")}>
                   {servicesCategories.map((e) => {
@@ -180,23 +181,26 @@ export function ModalProvidertRegister({
               </div>
             </div>
             <span>Cidade</span>
-            <Select
-              label="Cidade"
-              disabled={disable}
-              {...register("workOnCities")}
-              onChange={selectCity}
-            >
-              {citiesList.map((e) => {
-                return (
-                  <MenuItem key={e.id} value={e.nome}>
-                    {e.nome}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-            <FormHelperText>
-              {(errors.workOnCities as any)?.message}
-            </FormHelperText>
+            <div className="selectWidth100">
+              <Select
+                sx={{ width: "100%" }}
+                label="Cidade"
+                disabled={disable}
+                {...register("workOnCities")}
+                onChange={selectCity}
+              >
+                {citiesList.map((e) => {
+                  return (
+                    <MenuItem key={e.id} value={e.nome}>
+                      {e.nome}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+              <FormHelperText>
+                {(errors.workOnCities as any)?.message}
+              </FormHelperText>
+            </div>
           </SelectConteiner>
 
           {/* <SelectConteiner>

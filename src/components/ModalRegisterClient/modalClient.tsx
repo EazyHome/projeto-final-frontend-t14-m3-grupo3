@@ -141,6 +141,7 @@ export function ModalClientRegister({
             <div>
               <span>Estado</span>
               <Select
+                className="stateSelect"
                 label="Estado"
                 {...register("state")}
                 onChange={selectState}
@@ -158,6 +159,7 @@ export function ModalClientRegister({
             <div>
               <span>Cidade</span>
               <Select
+                className="citySelect"
                 label="Cidade"
                 disabled={disable}
                 {...register("city")}
