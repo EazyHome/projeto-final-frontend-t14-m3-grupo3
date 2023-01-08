@@ -5,12 +5,12 @@ export const FormConteiner = styled.div`
   max-width: 400px;
   background-color: var(--color-white);
   border-radius: 10px;
-  height: 640px;
+  height: 680px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 30px;
+  gap: 10px;
 
   & > div {
     width: 80%;
@@ -55,6 +55,7 @@ export const Form = styled.form`
     }
   }
   & > button {
+    margin-top: 20px;
     width: 90%;
     height: 50px;
     border-radius: 4px;
