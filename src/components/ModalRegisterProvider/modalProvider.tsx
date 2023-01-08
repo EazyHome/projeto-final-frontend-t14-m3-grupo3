@@ -10,6 +10,7 @@ import {
   UserContext,
 } from "../../contexts/UserContext/UserContext";
 import { CitiesContext } from "../../contexts/CitiesContext/CitiesContext";
+import { Button } from "../Button/Button";
 
 interface iModalClientRegisterProps {
   setShowProviderModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -140,7 +141,7 @@ export function ModalProvidertRegister({
               })}
             </select>
           </SelectConteiner>
-          <button>Cadastrar</button>
+          <Button text="Cadastrar" />
         </Form>
       </FormConteiner>
     </BackGroudForm>

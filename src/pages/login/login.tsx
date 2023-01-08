@@ -10,6 +10,7 @@ import {
   iUserLogin,
 } from "../../contexts/UserContext/UserContext";
 import { useContext } from "react";
+import { Button } from "../../components/Button/Button";
 
 export const Login = () => {
   const { userLogin } = useContext(UserContext);
@@ -48,7 +49,7 @@ export const Login = () => {
             placeholder="Digite sua senha"
             {...register("password")}
           />
-          <button>Cadastrar</button>
+          <Button text="Cadastrar" />
         </Form>
       </LoginConteiner>
       <Footer id="footer" />

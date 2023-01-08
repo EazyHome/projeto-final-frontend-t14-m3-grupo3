@@ -111,21 +111,21 @@ export function HomePage() {
 
             <ListComments>
               <GreenComment
-                text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, eius
-          eveniet enim tempora consectetur hic. Eos, corporis aliquam rem
-          dolores."
+                text="Lorem ipsum dolor"
                 user="Lorem Ipsun,São Paulo"
               />
               <OrangeComment
                 text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, eius
           eveniet enim tempora consectetur hic. Eos, corporis aliquam rem
-          dolores."
+          dolores. ipsum dolor sit amet consectetur adipisicing elit. Magni, eius
+          eveniet enim tempora consectetur hic. Eos, corporis aliquam rem
+          dolores. "
                 user="Lorem Ipsun,São Paulo"
               />
               <GreenComment
                 text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, eius
           eveniet enim tempora consectetur hic. Eos, corporis aliquam rem
-          dolores."
+          dolores. "
                 user="Lorem Ipsun,São Paulo"
               />
             </ListComments>
