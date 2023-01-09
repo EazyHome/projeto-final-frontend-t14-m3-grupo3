@@ -69,16 +69,18 @@ export function HomePage() {
               <DivTextAboutUs>
                 <div>
                   <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Repellat temporibus asperiores sequi deleniti excepturi
-                    harum incidunt quidem cupiditate eveniet adipisci, explicabo
-                    at tenetur! Ipsum aspernatur, deserunt natus porro rerum a?
+                    O EazyHome é um nasceu com o propósito de conectar quem
+                    precisa com quem sabe fazer. Somos um aplicativo que conecta
+                    clientes e profissionais, com mais de 10 tipos de serviços
+                    disponíveis no momento. Desejamos ajudar quem precisa com
+                    muito empenho e prestatividade.
                   </p>
                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
-                    ab nostrum, sequi rem, natus cupiditate ipsum facere impedit
-                    veritatis dolore, eligendi tenetur unde? Aspernatur nobis
-                    maxime temporibus. Illum, ad temporibus!
+                    Presente em todas as cidades do Brasil, você pode se
+                    cadastrar seja <strong>cliente</strong> ou{" "}
+                    <strong>prestador de serviços</strong> e começar a buscar o
+                    que você precisa no nosso aplicativo. Temos certeza que será
+                    uma experiência incrível.
                   </p>
                 </div>
               </DivTextAboutUs>
@@ -111,21 +113,21 @@ export function HomePage() {
 
             <ListComments>
               <GreenComment
-                text="Lorem ipsum dolor"
+                text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, eius
+          eveniet enim tempora consectetur hic. Eos, corporis aliquam rem
+          dolores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, eius
+          eveniet enim tempora consectetur hic. Eos, corporis aliquam rem
+          dolores"
                 user="Lorem Ipsun,São Paulo"
               />
               <OrangeComment
-                text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, eius
-          eveniet enim tempora consectetur hic. Eos, corporis aliquam rem
-          dolores. ipsum dolor sit amet consectetur adipisicing elit. Magni, eius
-          eveniet enim tempora consectetur hic. Eos, corporis aliquam rem
-          dolores. "
+                text="Lorem ipsum dolor sit amet consectetur"
                 user="Lorem Ipsun,São Paulo"
               />
               <GreenComment
                 text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, eius
           eveniet enim tempora consectetur hic. Eos, corporis aliquam rem
-          dolores. "
+          dolores."
                 user="Lorem Ipsun,São Paulo"
               />
             </ListComments>

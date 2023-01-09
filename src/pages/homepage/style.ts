@@ -127,6 +127,10 @@ export const DivAboutUs = styled.div`
   @media (min-width: 700px) {
     padding-top: 40px;
     padding-bottom: 40px;
+
+    & strong {
+      color: var(--color-primary);
+    }
   }
 `;
 
@@ -257,7 +261,7 @@ export const Comments = styled.div`
   margin-top: 32px;
   display: flex;
   flex-direction: column;
-  background-color: rgba(150, 150, 180, 0.3);
+  background-color: rgba(150, 150, 180, 0.1);
 
   & > div {
     width: 100%;

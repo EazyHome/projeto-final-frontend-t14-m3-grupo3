@@ -63,16 +63,7 @@ export const Login = () => {
             {...register("password")}
             helperText={(errors.password as any)?.message}
           />
-          <input
-            type="text"
-            placeholder="Digite seu email"
-            {...register("email")}
-          />
-          <input
-            type="password"
-            placeholder="Digite sua senha"
-            {...register("password")}
-          />
+
           <Button text="Cadastrar" />
         </Form>
       </LoginConteiner>
