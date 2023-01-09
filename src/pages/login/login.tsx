@@ -1,6 +1,6 @@
 import { Footer } from "../../components/FooterRegisterAndLogin/footer";
 import { NavLogin } from "../../components/NavLogin/navLogin";
-import { LoginBackGround, LoginConteiner } from "./style";
+
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -11,7 +11,7 @@ import {
 } from "../../contexts/UserContext/UserContext";
 import { useContext } from "react";
 import { Button } from "../../components/Button/Button";
-
+import { LoginBackGround, LoginConteiner } from "../../pages/Login/style";
 import TextField from "@mui/material/TextField";
 import { FormHelperText } from "@mui/material";
 
@@ -64,6 +64,16 @@ export const Login = () => {
             {...register("password")}
             helperText={(errors.password as any)?.message}
           />
+
+          <TextField
+            label="Senha"
+            variant="outlined"
+            type="password"
+            placeholder="Digite sua senha"
+            {...register("password")}
+            helperText={(errors.password as any)?.message}
+          />
+
           <Button text="Cadastrar" />
         </Form>
       </LoginConteiner>
