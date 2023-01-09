@@ -16,7 +16,7 @@ import { OrangeCard } from "../../components/CardOrange/card";
 import { BlueCard } from "../../components/CardBlue/card";
 import { GreenComment } from "../../components/GreenComment/greenComment";
 import { OrangeComment } from "../../components/OrangeComment/orangeComment";
-import { Footer } from "../../components/Footer/Footer";
+import { Footer } from "../../components/Footer/footer";
 import {
   BodyHome,
   Comments,
@@ -31,7 +31,12 @@ import {
   ListComments,
   Services,
   ServicesList,
-} from "../homepage/style";
+} from "../Homepage/style";
+import { ServiceFeedCard } from "../../components/ServiceFeedCard/serviceFeedCard";
+import { StarRating } from "../../components/StarRating/StarRating";
+import { ProfileProvider } from "../../contexts/ProfileContext/ProfileContext";
+import defaultClient from "../../assets/img/cliente.png";
+import defaultProvider from "../../assets/img/fornecedor.png";
 
 export function HomePage() {
   return (

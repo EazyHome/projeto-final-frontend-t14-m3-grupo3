@@ -1,4 +1,4 @@
-import { Footer } from "../../components/Footer/Footer";
+import { Footer } from "../../components/Footer/footer";
 import { NavLogin } from "../../components/NavLogin/navLogin";
 import { LoginBackGround, LoginConteiner } from "./style";
 import * as yup from "yup";
