@@ -33,7 +33,6 @@ import {
   ServicesList,
 } from "../Homepage/style";
 
-import { ClientProvidersFeedList } from "../../components/ClientProvidersFeedList/clientProvidersFeedList";
 
 export function HomePage() {
   return (

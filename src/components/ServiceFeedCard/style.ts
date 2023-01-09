@@ -66,6 +66,7 @@ export const FeedItemImage = styled.div`
   & > img {
     width: 100%;
     height: 100%;
+    border-radius: var(--radius-1);
   }
 
   @media (min-width: 700px) {
@@ -90,7 +91,7 @@ export const FeedItemBody = styled.div`
 export const FeedItemHeader = styled.div<iStyledFeedProps>`
   min-width: 12rem;
   max-width: 80%;
-
+  font-weight: 500;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -99,16 +100,6 @@ export const FeedItemHeader = styled.div<iStyledFeedProps>`
 
   padding: 0.5rem 0 0.5rem 0;
   position: relative;
-
-  /* & > div {
-    position: absolute;
-    top: 2.6rem;
-
-    @media (min-width: 700) {
-      position: relative;
-      top: 0;
-    }
-  } */
 
   & span {
     ${({ colorOfCardFeed }) => {
@@ -132,7 +123,7 @@ export const FeedItemHeader = styled.div<iStyledFeedProps>`
     }};
   }
 
-  @media (min-width: 700) {
+  @media (min-width: 700px) {
     max-width: 100%;
   }
 `;
@@ -148,10 +139,17 @@ export const FeedRating = styled.div`
 `;
 
 export const FeedItemTitle = styled.div`
+  font-weight: 700;
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   align-items: flex-start;
   padding: 0.5rem 0;
   margin-top: 1.5rem;
+  gap: 0.5rem;
 
+  @media (min-width: 700px) {
+    flex-direction: row;
+    margin-top: 0;
+  }
 `;
