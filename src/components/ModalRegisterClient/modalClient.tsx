@@ -16,6 +16,7 @@ import {
 import { useContext, useEffect } from "react";
 import { CitiesContext } from "../../contexts/CitiesContext/CitiesContext";
 import { Button } from "../Button/Button";
+
 interface iModalClientRegisterProps {
   setShowClientModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
