@@ -29,9 +29,12 @@ export const GlobalStyle = createGlobalStyle`
 }
     :root {
         --color-primary: #FF6600;
+        --color-primary-20: #FF660020;
         --color-secondary: #B33F00;
         --color-tertiary: #662400;
+        --color-tertiary-20: #66240020;
         --color-opposite-1:#006663;
+        --color-opposite-1-20:#00666320;
         --color-opposite-2:#00B3AD;
         --color-grey100: #333333;
         --color-grey50: #828282;
@@ -41,6 +44,7 @@ export const GlobalStyle = createGlobalStyle`
         --colo-white-opacity50: rgba(255, 255, 255, 0.8);
         --color-black: #000000;
         --color-negative: #E60000;
+        --color-negative-20: #E6000020;
         --color-warning: #FFCD07;
         --color-success: #27AE60;
         --color-information: #155BCB;

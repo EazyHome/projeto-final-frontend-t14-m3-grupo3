@@ -11,7 +11,7 @@ import pintor from "../../assets/img/pintor.png";
 import piscina from "../../assets/img/piscina.png";
 import piso from "../../assets/img/piso.png";
 import serralheiro from "../../assets/img/serralheiro.png";
-import worker from "../../assets/img/worker.webp";
+import workers from "../../assets/img/workers.jpeg";
 import { OrangeCard } from "../../components/CardOrange/card";
 import { BlueCard } from "../../components/CardBlue/card";
 import { GreenComment } from "../../components/GreenComment/greenComment";
@@ -32,11 +32,8 @@ import {
   Services,
   ServicesList,
 } from "../Homepage/style";
-import { ServiceFeedCard } from "../../components/ServiceFeedCard/serviceFeedCard";
-import { StarRating } from "../../components/StarRating/StarRating";
-import { ProfileProvider } from "../../contexts/ProfileContext/ProfileContext";
-import defaultClient from "../../assets/img/cliente.png";
-import defaultProvider from "../../assets/img/fornecedor.png";
+
+import { ClientProvidersFeedList } from "../../components/ClientProvidersFeedList/clientProvidersFeedList";
 
 export function HomePage() {
   return (
@@ -47,7 +44,7 @@ export function HomePage() {
           <ContentHeader>
             <div>
               <h1>
-                Facilidade e proatividade na hora de atender às suas
+                Facilidade e proatividade na hora de atender as suas
                 necessidades!
               </h1>
               <p>
@@ -66,7 +63,7 @@ export function HomePage() {
           <DivAboutUs id="about_us">
             <DivContentAboutUs>
               <div>
-                <img src={worker} alt="Worker"></img>
+                <img src={workers} alt="Workers"></img>
 
                 <h3>Sobre nós...</h3>
               </div>

@@ -1,4 +1,4 @@
-import { Footer } from "../../components/Footer/footer";
+import { Footer } from "../../components/FooterRegisterAndLogin/footer";
 import { NavLogin } from "../../components/NavLogin/navLogin";
 import { LoginBackGround, LoginConteiner } from "./style";
 import * as yup from "yup";
@@ -10,18 +10,26 @@ import {
   iUserLogin,
 } from "../../contexts/UserContext/UserContext";
 import { useContext } from "react";
+import TextField from "@mui/material/TextField";
+import { FormHelperText } from "@mui/material";
 
 export const Login = () => {
   const { userLogin } = useContext(UserContext);
 
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigatorio").email("Email inválido"),
-    password: yup.string().required("Senha obrigatoria"),
+    password: yup
+      .string()
+      .required("Senha obrigatoria")
+      .matches(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        "Mínimo de oito caracteres, pelo menos uma letra, um número e um símbolo"
+      ),
   });
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
   } = useForm<iUserLogin>({
     resolver: yupResolver(formSchema),
   });
@@ -38,7 +46,23 @@ export const Login = () => {
           <p>Login</p>
         </div>
         <Form onSubmit={handleSubmit(onSubmitFunction)}>
-          <input
+          <TextField
+            label="E-mail"
+            variant="outlined"
+            type="email"
+            placeholder="Digite seu email"
+            {...register("email")}
+            helperText={(errors.email as any)?.message}
+          />
+          <TextField
+            label="Senha"
+            variant="outlined"
+            type="password"
+            placeholder="Digite sua senha"
+            {...register("password")}
+            helperText={(errors.password as any)?.message}
+          />
+          {/* <input
             type="text"
             placeholder="Digite seu email"
             {...register("email")}
@@ -47,8 +71,8 @@ export const Login = () => {
             type="password"
             placeholder="Digite sua senha"
             {...register("password")}
-          />
-          <button>Cadastrar</button>
+          /> */}
+          <button type="submit">Entrar</button>
         </Form>
       </LoginConteiner>
       <Footer id="footer" />

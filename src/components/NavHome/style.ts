@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { keyframes } from "styled-components";
 
 interface iDiv {
@@ -92,7 +91,6 @@ export const DivLinksNav = styled.div`
   }
   & > a {
     position: relative;
-    overflow: hidden;
     background: linear-gradient(
       to right,
       var(--color-primary),

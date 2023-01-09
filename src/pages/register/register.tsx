@@ -2,7 +2,7 @@ import { NavRegister } from "../../components/NavRegister/NavRegister";
 import imgClientRegister from "./../../assets/img/clientRegisterButtonImg.png";
 import imgProviderRegister from "./../../assets/img/providerRegisterButtonImg.png";
 import { useState } from "react";
-import { Footer } from "../../components/Footer/footer";
+import { Footer } from "../../components/FooterRegisterAndLogin/footer";
 import { ModalClientRegister } from "../../components/ModalRegisterClient/modalClient";
 import { ModalProvidertRegister } from "../../components/ModalRegisterProvider/modalProvider";
 import { RegisterButtonsCoteiner, RegisterConteiner } from "../Register/style";

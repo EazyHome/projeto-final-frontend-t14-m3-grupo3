@@ -2,11 +2,12 @@ import styled from "styled-components";
 import imagemHome from "../../assets/img/imagemhome.jpg";
 import { Link } from "react-router-dom";
 
-export const BodyHome = styled.div`
+export const BodyHome = styled.body`
   margin-top: 85px;
 `;
 
 export const HeaderHome = styled.div`
+  scroll-margin-top: 90px;
   height: 350px;
   background-image: url(${imagemHome});
   background-repeat: no-repeat;
@@ -118,6 +119,7 @@ export const LinksHeader = styled(Link)`
 `;
 
 export const DivAboutUs = styled.div`
+  scroll-margin-top: 90px;
   margin: auto;
   display: flex;
   align-items: center;
@@ -160,6 +162,7 @@ export const DivContentAboutUs = styled.div`
       width: 550px;
       border: 2px solid var(--color-primary);
       height: 480px;
+      object-fit: cover;
     }
     & {
       flex-direction: row;
@@ -200,6 +203,7 @@ export const DivTextAboutUs = styled.div`
 `;
 
 export const Services = styled.div`
+  scroll-margin-top: 90px;
   background-color: var(--color-grey0);
   padding: 12px;
   margin-top: 30px;
@@ -254,6 +258,7 @@ export const ServicesList = styled.ul`
 `;
 
 export const Comments = styled.div`
+  scroll-margin-top: 85px;
   margin-top: 32px;
   display: flex;
   flex-direction: column;

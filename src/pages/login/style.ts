@@ -34,7 +34,7 @@ export const LoginConteiner = styled.div`
   gap: 30px;
   z-index: 0;
 
-  div {
+  & > div {
     width: 80%;
     display: flex;
     align-items: center;

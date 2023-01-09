@@ -28,7 +28,7 @@ export const SelectConteiner = styled.div`
       width: 90px;
     }
     .citySelect {
-      width: 168px;
+      width: 230px;
     }
   }
 `;
