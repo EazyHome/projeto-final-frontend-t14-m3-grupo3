@@ -7,13 +7,14 @@ import { ModalChangePassword } from "../../components/ModalChangePassword/ModalC
 export const Dashboard = () => {
   const { isLogged } = useContext(ProfileContext);
 
-  // useEffect(() => {
-  //   isLogged();
-  // });
+  useEffect(() => {
+    isLogged();
+  });
 
   return (
     <div>
       <ModalChangePassword />
+    <>
       <StarRating />
     </div>
   );

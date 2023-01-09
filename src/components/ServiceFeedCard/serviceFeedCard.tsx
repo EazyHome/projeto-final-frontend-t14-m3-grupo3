@@ -1,4 +1,11 @@
-import { FeedItem, FeedItemBody, FeedItemHeader, FeedItemTitle } from "./style";
+import {
+  FeedItem,
+  FeedItemBody,
+  FeedItemHeader,
+  FeedItemImage,
+  FeedItemTitle,
+  FeedRating,
+} from "./style";
 
 interface iServiceFeed {
   typeOfCard: string;
@@ -34,26 +41,32 @@ export const ServiceFeedCard = ({
   description,
 }: iServiceFeed) => {
   let colorOfCard = "negative";
-  if (rating === 0) {
+  if (rating === 99) {
     colorOfCard = "tertiary";
-  } else if (rating >= 2.5) {
+  } else if (rating >= 2.5 && rating <= 5) {
     colorOfCard = "opposite";
   } else if (rating >= 0 && rating < 2.5) {
     colorOfCard = "primary";
   }
   console.log(colorOfCard);
+
   return (
     <>
       <FeedItem colorOfCardFeed={colorOfCard}>
-        <img src={image} alt="foto" />
+        <FeedItemImage>
+          <img src={image} alt="foto" />
+        </FeedItemImage>
         <FeedItemBody>
           <FeedItemHeader colorOfCardFeed={colorOfCard}>
             <span>{typeOfCard !== "serviceProvided" ? category : name}</span>
-            <span>
-              {status === "EM ANDAMENTO" && status}
-              {status === "CONCLUÍDO" && `AVALIAÇÃO: ${rating}/5`}
-              {status === "CANCELADO" && rating === -1 && "CANCELADO"}
-            </span>
+            <FeedRating>
+              <span>
+                {status === "EM ANDAMENTO" && status}
+                {status === "CONCLUÍDO" && `AVALIAÇÃO: ${rating}/5`}
+                {status === "CANCELADO" && rating === -1 && "CANCELADO"}
+                {!status && `AVALIAÇÃO: ${rating}/5`}
+              </span>
+            </FeedRating>
           </FeedItemHeader>
           <FeedItemTitle>
             <div>
@@ -68,7 +81,7 @@ export const ServiceFeedCard = ({
           <div>
             {typeOfCard === "providersList"
               ? `Idade: ${age}`
-              : `Descrição: ${description}`}
+              : status !== "CANCELADO" && `Descrição: ${description}`}
           </div>
         </FeedItemBody>
       </FeedItem>
