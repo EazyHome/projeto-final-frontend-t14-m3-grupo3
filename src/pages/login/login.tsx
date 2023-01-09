@@ -62,16 +62,6 @@ export const Login = () => {
             {...register("password")}
             helperText={(errors.password as any)?.message}
           />
-          {/* <input
-            type="text"
-            placeholder="Digite seu email"
-            {...register("email")}
-          />
-          <input
-            type="password"
-            placeholder="Digite sua senha"
-            {...register("password")}
-          /> */}
           <button type="submit">Entrar</button>
         </Form>
       </LoginConteiner>

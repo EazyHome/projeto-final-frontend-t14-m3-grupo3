@@ -6,8 +6,6 @@ export const StarRating = () => {
   const [rating, setRating] = useState(null || Number);
   const [hover, setHover] = useState(null || Number);
 
-  console.log(rating);
-
   return (
     <DivRating ratingColor={rating}>
       {[...Array(5)].map((star, i) => {
