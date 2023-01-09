@@ -253,7 +253,7 @@ export function ModalProvidertRegister({
               })}
             </select>
           </SelectConteiner> */}
-          {/* <button type="submit">Cadastrar</button> */}
+          <button type="submit">Cadastrar</button>
         </Form>
       </FormConteiner>
     </BackGroudForm>
