@@ -11,6 +11,7 @@ export const DashboardClientConteiner = styled.main`
 `;
 
 export const SectionDashboardClientTop = styled.div`
+  margin-top: 88px;
   width: 100%;
   height: 225px;
   background: url(${imgDashClient});
@@ -34,7 +35,7 @@ export const TextSectionTop = styled.h3`
 
   text-align: right;
   font-weight: 700;
-  color: var(--color-grey0);
+  color: var(--color-grey100);
   @media (min-width: 630px) {
     width: 40%;
     margin-right: 3rem;

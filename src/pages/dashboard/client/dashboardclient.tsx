@@ -31,14 +31,16 @@ import { OrangeCard } from "../../../components/CardOrange/card";
 import { BlueCard } from "../../../components/CardBlue/card";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
 import { Footer } from "../../../components/FooterRegisterAndLogin/footer";
+import { ClientProvidersFeedList } from "../../../components/ClientProvidersFeedList/clientProvidersFeedList";
 
 export const DashboardClient = () => {
   const [open, setOpen] = React.useState(true);
-
+  const [selectedOption, setSelectedOption] = React.useState("service");
   const stylesItems = { textAlign: "right", fontSize: 10 };
 
-  const handleClick = () => {
+  const handleClickService = () => {
     setOpen(!open);
+    setSelectedOption("service");
   };
 
   return (
@@ -54,7 +56,7 @@ export const DashboardClient = () => {
       <DashContent>
         <DashNav>
           <List component="ul" disablePadding sx={stylesItems}>
-            <ListItemButton onClick={handleClick}>
+            <ListItemButton onClick={handleClickService}>
               <ListItemText primary="SERVICES" />
               {open ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
@@ -95,34 +97,40 @@ export const DashboardClient = () => {
                 </ListItemButton>
               </List>
             </Collapse>
-            <ListItemButton onClick={handleClick}>
+            <ListItemButton onClick={() => setSelectedOption("perfil")}>
               <ListItemText primary="EDITAR PERFIL" />
             </ListItemButton>
-            <ListItemButton onClick={handleClick}>
+            <ListItemButton onClick={() => setSelectedOption("contratacao")}>
               <ListItemText primary="CONTRATAÇÕES" />
             </ListItemButton>
           </List>
         </DashNav>
-        <Services id="services">
-          <ContentServices>
-            <h3>- Serviços -</h3>
-            <ServicesList>
-              <OrangeCard img={pintor} type="Pintor" />
-              <BlueCard img={pedreiro} type="Pedreiro" />
-              <OrangeCard img={marceneiro} type="Marceneiro" />
-              <BlueCard img={telhado} type="Telhados" />
-              <OrangeCard img={jardim} type="Jardins" />
-              <BlueCard img={janelas} type="Janelas" />
-              <OrangeCard img={gas} type="Gás" />
-              <BlueCard img={encanador} type="Encanador" />
-              <OrangeCard img={eletricista} type="Eletricista" />
-              <BlueCard img={piso} type="Pisos" />
-              <OrangeCard img={piscina} type="Piscinas" />
-              <BlueCard img={serralheiro} type="Serralheiro" />
-            </ServicesList>
-            <div></div>
-          </ContentServices>
-        </Services>
+        {selectedOption === "service" ? (
+          <Services id="services">
+            <ContentServices>
+              <h3>- Serviços -</h3>
+              <ServicesList>
+                <OrangeCard img={pintor} type="Pintor" />
+                <BlueCard img={pedreiro} type="Pedreiro" />
+                <OrangeCard img={marceneiro} type="Marceneiro" />
+                <BlueCard img={telhado} type="Telhados" />
+                <OrangeCard img={jardim} type="Jardins" />
+                <BlueCard img={janelas} type="Janelas" />
+                <OrangeCard img={gas} type="Gás" />
+                <BlueCard img={encanador} type="Encanador" />
+                <OrangeCard img={eletricista} type="Eletricista" />
+                <BlueCard img={piso} type="Pisos" />
+                <OrangeCard img={piscina} type="Piscinas" />
+                <BlueCard img={serralheiro} type="Serralheiro" />
+              </ServicesList>
+              <div></div>
+            </ContentServices>
+          </Services>
+        ) : selectedOption === "perfil" ? (
+          <>Em desenvolvimento</>
+        ) : (
+          <ClientProvidersFeedList />
+        )}
       </DashContent>
       <Footer id="footer" />
     </DashboardClientConteiner>
