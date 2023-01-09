@@ -149,7 +149,7 @@ export function ModalClientRegister({
                 {statesList.map((e) => {
                   return (
                     <MenuItem key={e.id} value={e.id}>
-                      {e.nome}
+                      {e.sigla}
                     </MenuItem>
                   );
                 })}
