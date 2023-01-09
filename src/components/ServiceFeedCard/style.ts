@@ -90,11 +90,13 @@ export const FeedItemBody = styled.div`
 export const FeedItemHeader = styled.div<iStyledFeedProps>`
   min-width: 12rem;
   max-width: 80%;
+
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   border-bottom: 1px solid var(--color-grey20);
   background-color: transparent;
+
   padding: 0.5rem 0 0.5rem 0;
   position: relative;
 
@@ -151,4 +153,5 @@ export const FeedItemTitle = styled.div`
   align-items: flex-start;
   padding: 0.5rem 0;
   margin-top: 1.5rem;
+
 `;

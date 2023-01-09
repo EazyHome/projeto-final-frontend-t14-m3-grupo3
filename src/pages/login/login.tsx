@@ -10,6 +10,8 @@ import {
   iUserLogin,
 } from "../../contexts/UserContext/UserContext";
 import { useContext } from "react";
+import { Button } from "../../components/Button/Button";
+
 import TextField from "@mui/material/TextField";
 import { FormHelperText } from "@mui/material";
 
@@ -66,13 +68,17 @@ export const Login = () => {
             type="text"
             placeholder="Digite seu email"
             {...register("email")}
+            helperText={(errors.email as any)?.message}
           />
-          <input
+          <TextField
+            label="Senha"
+            variant="outlined"
             type="password"
             placeholder="Digite sua senha"
             {...register("password")}
-          /> */}
-          <button type="submit">Entrar</button>
+            helperText={(errors.password as any)?.message}
+          />
+          <Button text="Cadastrar" />
         </Form>
       </LoginConteiner>
       <Footer id="footer" />

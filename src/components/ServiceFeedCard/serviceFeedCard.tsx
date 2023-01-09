@@ -55,7 +55,6 @@ export const ServiceFeedCard = ({
         <FeedItemImage>
           <img src={image} alt="foto" />
         </FeedItemImage>
-
         <FeedItemBody>
           <FeedItemHeader colorOfCardFeed={colorOfCard}>
             <span>{typeOfCard !== "serviceProvided" ? category : name}</span>
