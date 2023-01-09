@@ -14,7 +14,6 @@ export const Dashboard = () => {
   return (
     <div>
       <ModalChangePassword />
-    <>
       <StarRating />
     </div>
   );
