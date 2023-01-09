@@ -53,12 +53,18 @@ export const DivLogo = styled.div`
 
 export const DivAvatar = styled.div`
   margin-left: 10px;
-  width: 80px;
-  height: 80px;
   border: 2px solid var(--color-primary);
   border-radius: var(--radius-50);
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   & > img {
     color: black;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
   }
 `;
 

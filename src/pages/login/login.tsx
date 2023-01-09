@@ -73,6 +73,7 @@ export const Login = () => {
             {...register("password")}
             helperText={(errors.password as any)?.message}
           />
+
           <Button text="Cadastrar" />
         </Form>
       </LoginConteiner>
