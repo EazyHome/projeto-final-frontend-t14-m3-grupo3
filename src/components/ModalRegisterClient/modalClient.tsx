@@ -15,6 +15,7 @@ import {
 } from "../../contexts/UserContext/UserContext";
 import { useContext, useEffect } from "react";
 import { CitiesContext } from "../../contexts/CitiesContext/CitiesContext";
+import { Button } from "../Button/Button";
 interface iModalClientRegisterProps {
   setShowClientModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -191,7 +192,7 @@ export function ModalClientRegister({
           </SelectConteiner> */}
           {/* <option value="CE">CE</option> */}
           {/* <option value="Fortaleza">Fortaleza</option> */}
-          <button type="submit">Cadastrar</button>
+          <Button type="submit" text="Cadastrar" />
         </Form>
       </FormConteiner>
     </BackGroudForm>
