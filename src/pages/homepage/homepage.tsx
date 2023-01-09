@@ -31,9 +31,9 @@ import {
   Services,
   ServicesList,
 } from "../homepage/style";
-
 import { ClientProvidersFeedList } from "../../components/ClientProvidersFeedList/clientProvidersFeedList";
 import { Footer } from "../../components/Footer/Footer";
+
 
 export function HomePage() {
   return (

@@ -41,14 +41,15 @@ export const ServiceFeedCard = ({
   description,
 }: iServiceFeed) => {
   let colorOfCard = "negative";
-  if (rating === 0) {
+  if (rating === 99) {
     colorOfCard = "tertiary";
-  } else if (rating >= 2.5) {
+  } else if (rating >= 2.5 && rating <= 5) {
     colorOfCard = "opposite";
   } else if (rating >= 0 && rating < 2.5) {
     colorOfCard = "primary";
   }
   console.log(colorOfCard);
+
   return (
     <>
       <FeedItem colorOfCardFeed={colorOfCard}>
@@ -80,7 +81,7 @@ export const ServiceFeedCard = ({
           <div>
             {typeOfCard === "providersList"
               ? `Idade: ${age}`
-              : `Descrição: ${description}`}
+              : status !== "CANCELADO" && `Descrição: ${description}`}
           </div>
         </FeedItemBody>
       </FeedItem>
