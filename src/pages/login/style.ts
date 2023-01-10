@@ -3,37 +3,37 @@ import imgBackgroud from "./../../assets/img/backGroudRegisterPage.jpeg";
 
 export const LoginBackGround = styled.main`
   max-width: 100vw;
-  margin-top: 85px;
   max-height: 100vh;
-  min-height: 75vh;
+  min-height: 100vh;
   background: url(${imgBackgroud});
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 `;
 
 export const LoginConteiner = styled.div`
   width: 90%;
   max-width: 400px;
-  background-color: rgba(256, 256, 256, 0.8);
+  background-color: var(--color-white);
   border-radius: 5px;
-  margin: auto;
+  /* margin: auto; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 30px;
-  padding: 25px 15px;
+  padding: 30px 15px;
 
   & > div {
     width: 80%;
     text-align: center;
     color: var(--color-primary);
     p {
-      font-size: var(--font-size-20);
+      font-size: var(--font-size-28);
       font-weight: 700;
       line-height: 24px;
     }

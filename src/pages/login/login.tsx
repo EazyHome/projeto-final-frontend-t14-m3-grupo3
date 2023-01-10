@@ -1,6 +1,5 @@
 import { Footer } from "../../components/FooterRegisterAndLogin/footer";
 import { NavLogin } from "../../components/NavLogin/navLogin";
-import { ErrorMsg, LoginBackGround, LoginConteiner } from "./style";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -9,12 +8,12 @@ import {
   UserContext,
   iUserLogin,
 } from "../../contexts/UserContext/UserContext";
-import { useContext } from "react";
-import { Button } from "../../components/Button/Button";
-import { LoginBackGround, LoginConteiner } from "../../pages/login/style";
+import { useContext, useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import { SyncLoader } from "react-spinners";
+// import { ErrorMsg, LoginBackGround, LoginConteiner } from "./style";
+import { ErrorMsg, LoginBackGround, LoginConteiner } from "./style";
 
 export const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -110,9 +109,8 @@ export const Login = () => {
             </button>
           </Form>
         </LoginConteiner>
+        <Footer id="footer" />
       </LoginBackGround>
-
-      <Footer id="footer" />
     </>
   );
 };

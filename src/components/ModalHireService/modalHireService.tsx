@@ -2,7 +2,6 @@ import * as yup from "yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form, FormConteiner } from "../Form/style";
-import { BackGroudForm } from "../BackgroundModal/style";
 import {
   CloseModalDiv,
   HireButton,
@@ -13,6 +12,7 @@ import {
 } from "./style";
 import TextField from "@mui/material/TextField";
 import { Button } from "../Button/Button";
+import { BackGroundForm } from "../BackgroundModal/style";
 
 interface iModalHireServiceProps {
   setShowHireServiceModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -66,7 +66,7 @@ export const ModalHireService = ({
     setShowHireServiceModal(false);
   };
   return (
-    <BackGroudForm>
+    <BackGroundForm>
       <ModalContainer>
         <CloseModalDiv>
           <button onClick={() => setShowHireServiceModal(false)}>X</button>
@@ -96,6 +96,6 @@ export const ModalHireService = ({
           </HireButton>
         </Form>
       </ModalContainer>
-    </BackGroudForm>
+    </BackGroundForm>
   );
 };

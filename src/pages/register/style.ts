@@ -2,22 +2,17 @@ import styled from "styled-components";
 import imgBackgroud from "./../../assets/img/backGroudRegisterPage.jpeg";
 
 export const RegisterConteiner = styled.main`
-  max-width: 100vw;
-  margin-top: 100px;
-  /* max-height: 100vh; */
-  min-height: 84vh;
+  max-width: 100%;
+  min-height: 100vh;
   background: url(${imgBackgroud});
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  @media (min-width: 800px) {
-    margin-top: 100px;
-    min-height: 80vh;
-  }
+  gap: 40px;
 `;
 
 export const RegisterButtonsCoteiner = styled.div`
