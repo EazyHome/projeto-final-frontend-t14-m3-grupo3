@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 export interface iUserClientRegister {
   email: string;
   password: string;
+  confirmPassword?: string;
   name: string;
   state: string;
   city: string;

@@ -8,6 +8,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { FormHelperText, styled } from "@mui/material";
 import img from "./../../assets/img/btvVoltarRegister.png";
+
 import {
   iUserClientRegister,
   UserContext,
@@ -60,6 +61,10 @@ export function ModalClientRegister({
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
         "Mínimo de oito caracteres, pelo menos uma letra, um número e um símbolo"
       ),
+    confirmPassword: yup
+      .string()
+      .required("Campo Obrigatório")
+      .oneOf([yup.ref("password")], "Senha não confere"),
     name: yup.string().required("Nome obrigatorio"),
     state: yup.string().required("Estado obrigatorio"),
     city: yup.string().required("Cidade obrigatoria"),
@@ -76,6 +81,7 @@ export function ModalClientRegister({
   });
 
   const onSubmitFuntion: SubmitHandler<iUserClientRegister> = (data) => {
+    delete data.confirmPassword;
     data = {
       ...data,
       type: "cliente",
@@ -96,135 +102,100 @@ export function ModalClientRegister({
         >
           <img src={img} alt="" />
         </div>
-
-        <Form onSubmit={handleSubmit(onSubmitFuntion)}>
-          <TextField
-            label="E-mail"
-            variant="outlined"
-            type="email"
-            placeholder="Digite seu email"
-            {...register("email")}
-            helperText={(errors.email as any)?.message}
-          />
-          <TextField
-            label="Senha"
-            variant="outlined"
-            type="password"
-            placeholder="Digite sua senha"
-            {...register("password")}
-            helperText={(errors.password as any)?.message}
-          />
-          <TextField
-            label="Nome"
-            variant="outlined"
-            type="text"
-            placeholder="Digite seu nome"
-            {...register("name")}
-            helperText={(errors.name as any)?.message}
-          />
-          <TextField
-            label="Idade"
-            variant="outlined"
-            type="number"
-            placeholder="Digite sua idade"
-            {...register("age")}
-            helperText={(errors.age as any)?.message}
-          />
-          <TextField
-            label="Telefone"
-            variant="outlined"
-            type="text"
-            placeholder="Digite seu número"
-            {...register("phone")}
-            helperText={(errors.phone as any)?.message}
-          />
-          {/* <input
-            type="text"
-            placeholder="Digite seu email"
-            {...register("email")}
-          />
-          <input
-            type="text"
-            placeholder="Digite sua senha"
-            {...register("password")}
-          />
-          <input
-            type="text"
-            placeholder="Digite seu nome"
-            {...register("name")}
-          />
-          <input
-            type="number"
-            placeholder="Digite sua idade"
-            {...register("age")}
-          />
-          <input
-            type="number"
-            placeholder="Digite seu numero"
-            {...register("phone")}
-          /> */}
-
-          <SelectConteiner>
-            <div>
-              <span>Estado</span>
-              <Select
-                className="stateSelect"
-                label="Estado"
-                {...register("state")}
-                onChange={selectState}
-              >
-                <MenuItem key="0" value="0">
-                  Selecione o Estado
-                </MenuItem>
-                {statesList.map((e) => {
-                  return (
-                    <MenuItem key={e.id} value={e.sigla}>
-                      {e.sigla}
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-              <FormHelperText>{(errors.state as any)?.message}</FormHelperText>
-            </div>
-            <div>
-              <span>Cidade</span>
-              <Select
-                className="citySelect"
-                label="Cidade"
-                disabled={disable}
-                {...register("city")}
-              >
-                <MenuItem key="0" value="0"></MenuItem>
-                {citiesList.map((e) => {
-                  return (
-                    <MenuItem key={e.id} value={e.nome}>
-                      {e.nome}
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-              <FormHelperText>{(errors.city as any)?.message}</FormHelperText>
-            </div>
-          </SelectConteiner>
-
-          {/* <SelectConteiner>
-            <div>
-              <span>Estado</span>
-              <select className="stateSelect" id="" {...register("state")}>
-              </select>
-            </div>
-            <div>
-              <span>Cidade</span>
-              <select className="citySelect" id="" {...register("city")}>
-              </select>
-            </div>
-          </SelectConteiner> */}
-          {/* <option value="CE">CE</option> */}
-          {/* <option value="Fortaleza">Fortaleza</option> */}
-          <Button type="submit" text="Cadastrar" />
-        </Form>
-      </FormConteiner>
-    </BackGroundForm>
-
+      </div>
+      <Form onSubmit={handleSubmit(onSubmitFuntion)}>
+        <TextField
+          label="E-mail"
+          variant="outlined"
+          type="email"
+          placeholder="Digite seu email"
+          {...register("email")}
+          helperText={(errors.email as any)?.message}
+        />
+        <TextField
+          label="Senha"
+          variant="outlined"
+          type="password"
+          placeholder="Digite sua senha"
+          {...register("password")}
+          helperText={(errors.password as any)?.message}
+        />
+        <TextField
+          label="Confirmar Senha"
+          variant="outlined"
+          type="password"
+          placeholder="Digite sua senha"
+          {...register("confirmPassword")}
+          helperText={(errors.confirmPassword as any)?.message}
+        />
+        <TextField
+          label="Nome"
+          variant="outlined"
+          type="text"
+          placeholder="Digite seu nome"
+          {...register("name")}
+          helperText={(errors.name as any)?.message}
+        />
+        <TextField
+          label="Idade"
+          variant="outlined"
+          type="number"
+          placeholder="Digite sua idade"
+          {...register("age")}
+          helperText={(errors.age as any)?.message}
+        />
+        <TextField
+          label="Telefone"
+          variant="outlined"
+          type="text"
+          placeholder="Digite seu número"
+          {...register("phone")}
+          helperText={(errors.phone as any)?.message}
+        />
+        <SelectConteiner>
+          <div>
+            <span>Estado</span>
+            <Select
+              className="stateSelect"
+              label="Estado"
+              {...register("state")}
+              onChange={selectState}
+            >
+              <MenuItem key="0" value="0">
+                Selecione o Estado
+              </MenuItem>
+              {statesList.map((e) => {
+                return (
+                  <MenuItem key={e.id} value={e.sigla}>
+                    {e.sigla}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+            <FormHelperText>{(errors.state as any)?.message}</FormHelperText>
+          </div>
+          <div>
+            <span>Cidade</span>
+            <Select
+              className="citySelect"
+              label="Cidade"
+              disabled={disable}
+              {...register("city")}
+            >
+              <MenuItem key="0" value="0"></MenuItem>
+              {citiesList.map((e) => {
+                return (
+                  <MenuItem key={e.id} value={e.nome}>
+                    {e.nome}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+            <FormHelperText>{(errors.city as any)?.message}</FormHelperText>
+          </div>
+        </SelectConteiner>
+        <Button type="submit" text="Cadastrar" />
+      </Form>
+    </FormConteiner>
   );
 }
