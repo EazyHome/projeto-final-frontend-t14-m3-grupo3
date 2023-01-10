@@ -5,7 +5,7 @@ import { Form } from "../Form/style";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { BackGroudForm } from "../BackgroundModal/style";
-import { LoginConteiner } from "../../pages/login/style";
+import { LoginConteiner } from "../../pages/Login/style";
 import { ModalPassword } from "./style";
 
 interface IChangePasswordForm {
