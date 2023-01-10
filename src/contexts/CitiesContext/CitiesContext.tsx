@@ -1,7 +1,7 @@
 import React, { useState, createContext } from "react";
 import { StatesAPI } from "../../service/statesApi";
 import { iDefaultPropsProvider } from "../types";
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 import { SelectChangeEvent } from "@mui/material";
 
 interface iCitiesContext {
@@ -113,21 +113,22 @@ export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
 
   // const selectState = async (e: React.ChangeEvent<HTMLSelectElement>) => {
   const selectState = async (e: SelectChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value);
     setStateId(+e.target.value);
-    if (e.target.value !== "0") {
-      setDisable(false);
-      const response = await CitiesAPI.get("");
-      console.log(response.data);
-      setCitiesList(response.data);
-    } else {
-      setDisable(true);
+    try {
+      if (e.target.value !== "0") {
+        setDisable(false);
+        const response = await CitiesAPI.get("");
+        setCitiesList(response.data);
+      } else {
+        setDisable(true);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
   // const selectCity = (e: React.ChangeEvent<HTMLSelectElement>) => {
   const selectCity = (e: SelectChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value);
     setCity(e.target.value as string);
   };
 

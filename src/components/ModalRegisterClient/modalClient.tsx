@@ -36,6 +36,7 @@ export function ModalClientRegister({
 
   useEffect(() => {
     getStates();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const formSchema = yup.object().shape({
@@ -56,13 +57,19 @@ export function ModalClientRegister({
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty, isValid },
+    formState: { errors },
   } = useForm<iUserClientRegister>({
     mode: "onChange",
     resolver: yupResolver(formSchema),
   });
 
   const onSubmitFuntion: SubmitHandler<iUserClientRegister> = (data) => {
+    data = {
+      ...data,
+      type: "cliente",
+      avatar_URL:
+        "https://i.pinimg.com/originals/4b/3e/02/4b3e0279e016cc145240de10c8a06fb6.png",
+    };
     userClientRegister(data);
   };
   return (
@@ -148,6 +155,7 @@ export function ModalClientRegister({
                 {...register("state")}
                 onChange={selectState}
               >
+                <MenuItem key="0" value="0"></MenuItem>
                 {statesList.map((e) => {
                   return (
                     <MenuItem key={e.id} value={e.id}>
@@ -167,6 +175,7 @@ export function ModalClientRegister({
                 {...register("city")}
                 onChange={selectCity}
               >
+                <MenuItem key="0" value="0"></MenuItem>
                 {citiesList.map((e) => {
                   return (
                     <MenuItem key={e.id} value={e.nome}>

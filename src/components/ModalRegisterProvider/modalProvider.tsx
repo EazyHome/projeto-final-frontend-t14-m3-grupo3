@@ -7,6 +7,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useContext, useEffect, useState } from "react";
 import {
+  iUserService,
   iUserServiceRegister,
   UserContext,
 } from "../../contexts/UserContext/UserContext";
@@ -16,7 +17,7 @@ import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { FormHelperText } from "@mui/material";
-import { width } from "@mui/system";
+// import { width } from "@mui/system";
 interface iModalClientRegisterProps {
   setShowProviderModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -58,7 +59,7 @@ export function ModalProvidertRegister({
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty, isValid },
+    formState: { errors },
     reset,
     watch,
   } = useForm<iUserServiceRegister>({
@@ -67,7 +68,14 @@ export function ModalProvidertRegister({
   });
 
   const onSubmitFuntion: SubmitHandler<iUserServiceRegister> = (data) => {
-    console.log(data);
+    data = {
+      ...data,
+      ratings: [],
+      type: "prestador",
+      available: true,
+      avatar_URL:
+        "https://i.pinimg.com/originals/4b/3e/02/4b3e0279e016cc145240de10c8a06fb6.png",
+    };
     userServiceRegister(data);
   };
 

@@ -1,6 +1,5 @@
 import { Footer } from "../../components/FooterRegisterAndLogin/footer";
 import { NavLogin } from "../../components/NavLogin/navLogin";
-
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -11,27 +10,20 @@ import {
 } from "../../contexts/UserContext/UserContext";
 import { useContext } from "react";
 import { Button } from "../../components/Button/Button";
-import { LoginBackGround, LoginConteiner } from "../../pages/login/style";
+import { LoginConteiner, LoginBackGround } from "../Login/style";
 import TextField from "@mui/material/TextField";
-import { FormHelperText } from "@mui/material";
 
 export const Login = () => {
   const { userLogin } = useContext(UserContext);
 
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigatorio").email("Email inválido"),
-    password: yup
-      .string()
-      .required("Senha obrigatoria")
-      .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-        "Mínimo de oito caracteres, pelo menos uma letra, um número e um símbolo"
-      ),
+    password: yup.string().required("Senha obrigatoria"),
   });
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty, isValid },
+    formState: { errors },
   } = useForm<iUserLogin>({
     resolver: yupResolver(formSchema),
   });
@@ -65,7 +57,7 @@ export const Login = () => {
             helperText={(errors.password as any)?.message}
           />
 
-          <Button text="Cadastrar" />
+          <Button text="Login" />
         </Form>
       </LoginConteiner>
       <Footer id="footer" />

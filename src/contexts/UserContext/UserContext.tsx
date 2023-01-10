@@ -17,8 +17,9 @@ export interface iUserClientRegister {
 }
 
 export interface iUserServiceRegister extends iUserClientRegister {
-  workOnCities: [];
-  workOnCategories: [];
+  workOnCities: string[];
+  workOnCategories: string[];
+  ratings: number[];
   available: boolean;
 }
 
@@ -40,9 +41,9 @@ export interface iUserClient {
 }
 
 export interface iUserService extends iUserClient {
-  workOnCities: [];
-  workOnCategories: [];
-  ratings: [];
+  workOnCities: string[];
+  workOnCategories: string[];
+  ratings: number[];
   available: boolean;
 }
 
@@ -113,6 +114,7 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
     localStorage.removeItem("@UserType:EazyHome");
     setUserClient(null);
     setUserService(null);
+    navigate("/login");
   };
 
   return (

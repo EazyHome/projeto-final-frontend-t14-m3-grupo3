@@ -30,12 +30,17 @@ import {
   ListComments,
   Services,
   ServicesList,
-} from "../homepage/style";
+} from "../Homepage/style";
 import { ClientProvidersFeedList } from "../../components/ClientProvidersFeedList/clientProvidersFeedList";
-import { Footer } from "../../components/Footer/Footer";
-
+import { Footer } from "../../components/Footer/footer";
+import moment from "moment";
 
 export function HomePage() {
+  const getDate = () => {
+    return moment().format("DD/MM/YYYY");
+  };
+
+  console.log(getDate());
   return (
     <>
       <NavHome />
