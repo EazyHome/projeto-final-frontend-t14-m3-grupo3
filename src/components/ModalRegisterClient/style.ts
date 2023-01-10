@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SelectConteiner = styled.div`
-  width: 90%;
+  max-width: 90%;
   display: flex;
   align-items: center;
   gap: 20px;

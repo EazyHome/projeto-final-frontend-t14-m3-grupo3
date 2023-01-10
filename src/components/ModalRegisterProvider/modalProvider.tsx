@@ -1,18 +1,16 @@
 /* eslint-disable react/jsx-no-duplicate-props */
-import { BackGroudForm } from "../BackgroundModal/style";
+import { BackGroundForm } from "../BackgroundModal/style";
 import { Form, FormConteiner } from "../Form/style";
 import { SelectConteiner } from "./style";
 import * as yup from "yup";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import {
-  iUserService,
   iUserServiceRegister,
   UserContext,
 } from "../../contexts/UserContext/UserContext";
 import { CitiesContext } from "../../contexts/CitiesContext/CitiesContext";
-import { Button } from "../Button/Button";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
@@ -30,7 +28,6 @@ export function ModalProvidertRegister({
     disable,
     statesList,
     citiesList,
-    selectCity,
     selectState,
     servicesCategories,
     getStates,
@@ -38,6 +35,7 @@ export function ModalProvidertRegister({
 
   useEffect(() => {
     getStates();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const formSchema = yup.object().shape({
@@ -60,8 +58,6 @@ export function ModalProvidertRegister({
     register,
     handleSubmit,
     formState: { errors },
-    reset,
-    watch,
   } = useForm<iUserServiceRegister>({
     mode: "onChange",
     resolver: yupResolver(formSchema),
@@ -80,7 +76,7 @@ export function ModalProvidertRegister({
   };
 
   return (
-    <BackGroudForm>
+    <BackGroundForm>
       <FormConteiner>
         <div>
           <p>Cadastro provedor</p>
@@ -127,31 +123,6 @@ export function ModalProvidertRegister({
             {...register("phone")}
             helperText={(errors.phone as any)?.message}
           />
-          {/* <input
-            type="text"
-            placeholder="Digite seu email"
-            {...register("email")}
-          /> */}
-          {/* <input
-            type="text"
-            placeholder="Digite sua senha"
-            {...register("password")}
-          /> */}
-          {/* <input
-            type="text"
-            placeholder="Digite seu nome"
-            {...register("name")}
-          /> */}
-          {/* <input
-            type="text"
-            placeholder="Digite sua idade"
-            {...register("age")}
-          />
-          <input
-            type="text"
-            placeholder="Digite seu numero"
-            {...register("phone")}
-          /> */}
           <SelectConteiner>
             <div>
               <div className="selectWidth50">
@@ -196,7 +167,6 @@ export function ModalProvidertRegister({
                 label="Cidade"
                 disabled={disable}
                 {...register("workOnCities")}
-                onChange={selectCity}
               >
                 {citiesList.map((e) => {
                   return (
@@ -211,58 +181,9 @@ export function ModalProvidertRegister({
               </FormHelperText>
             </div>
           </SelectConteiner>
-
-          {/* <SelectConteiner>
-            <div>
-              <div>
-                <span>Estado</span>
-                <select {...register("state")} onChange={selectState}>
-                  <option value={0}>Selecione seu Estado</option>
-                  {statesList.map((e) => {
-                    return (
-                      <option key={e.id} value={e.id}>
-                        {e.nome}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-              <div>
-                <span>Serviço</span>
-                <select {...register("workOnCategories")}>
-                  <option key={""} value="">
-                    Selecione sua Categoria
-                  </option>
-                  {servicesCategories.map((e) => {
-                    return (
-                      <option key={e} value={e}>
-                        {e}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-            </div> */}
-          {/* <span>Cidade</span>
-            <select
-              id=""
-              disabled={disable}
-              {...register("workOnCities")}
-              onChange={selectCity}
-            >
-              <option value="">Selecione seu Estado</option>
-              {citiesList.map((e) => {
-                return (
-                  <option key={e.id} value={e.nome}>
-                    {e.nome}
-                  </option>
-                );
-              })}
-            </select>
-          </SelectConteiner> */}
           <button type="submit">Cadastrar</button>
         </Form>
       </FormConteiner>
-    </BackGroudForm>
+    </BackGroundForm>
   );
 }

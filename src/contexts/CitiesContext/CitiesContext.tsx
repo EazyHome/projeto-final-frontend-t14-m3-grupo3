@@ -1,18 +1,13 @@
 import React, { useState, createContext } from "react";
 import { StatesAPI } from "../../service/statesApi";
 import { iDefaultPropsProvider } from "../types";
-import axios, { AxiosInstance } from "axios";
 import { SelectChangeEvent } from "@mui/material";
 
 interface iCitiesContext {
   getStates: () => void;
   statesList: [] | iStatesList[];
   citiesList: [] | iCitiesList[];
-  selectState: (e: SelectChangeEvent<HTMLSelectElement>) => void;
-  // selectState: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  city: string;
-  // selectCity: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  selectCity: (e: SelectChangeEvent<HTMLSelectElement>) => void;
+  selectState: (e: SelectChangeEvent<string>) => void;
   disable: boolean;
   servicesCategories: string[];
 }
@@ -77,9 +72,7 @@ export const CitiesContext = createContext({} as iCitiesContext);
 
 export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
   const [statesList, setStatesList] = useState<[] | iStatesList[]>([]);
-  const [stateId, setStateId] = useState<number>(0);
   const [citiesList, setCitiesList] = useState<[] | iCitiesList[]>([]);
-  const [city, setCity] = useState("" as string);
   const [disable, setDisable] = useState<boolean>(true);
 
   const servicesCategories = [
@@ -97,11 +90,6 @@ export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
     "Telhado",
   ];
 
-  const CitiesAPI = axios.create({
-    baseURL: `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${stateId}/distritos?orderBy=nome`,
-    timeout: 5000,
-  });
-
   const getStates = async () => {
     try {
       const states = await StatesAPI.get("");
@@ -111,25 +99,20 @@ export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
     }
   };
 
-  // const selectState = async (e: React.ChangeEvent<HTMLSelectElement>) => {
-  const selectState = async (e: SelectChangeEvent<HTMLSelectElement>) => {
-    setStateId(+e.target.value);
+  const selectState = async (e: SelectChangeEvent<string>) => {
     try {
       if (e.target.value !== "0") {
         setDisable(false);
-        const response = await CitiesAPI.get("");
-        setCitiesList(response.data);
+        const response = await fetch(
+          `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${e.target.value}/distritos?orderBy=nome`
+        );
+        setCitiesList(await response.json());
       } else {
         setDisable(true);
       }
     } catch (error) {
       console.log(error);
     }
-  };
-
-  // const selectCity = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  const selectCity = (e: SelectChangeEvent<HTMLSelectElement>) => {
-    setCity(e.target.value as string);
   };
 
   return (
@@ -139,8 +122,6 @@ export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
         statesList,
         citiesList,
         selectState,
-        city,
-        selectCity,
         disable,
         servicesCategories,
       }}

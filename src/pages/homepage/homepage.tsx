@@ -31,16 +31,10 @@ import {
   Services,
   ServicesList,
 } from "../Homepage/style";
-import { ClientProvidersFeedList } from "../../components/ClientProvidersFeedList/clientProvidersFeedList";
 import { Footer } from "../../components/Footer/footer";
-import moment from "moment";
+import { ClientHiredProvidersFeedList } from "../../components/ClientHiredProviders/clientHiredProviders";
 
 export function HomePage() {
-  const getDate = () => {
-    return moment().format("DD/MM/YYYY");
-  };
-
-  console.log(getDate());
   return (
     <>
       <NavHome />
@@ -137,6 +131,7 @@ export function HomePage() {
       </BodyHome>
 
       <Footer id="footer" />
+      <ClientHiredProvidersFeedList />
     </>
   );
 }

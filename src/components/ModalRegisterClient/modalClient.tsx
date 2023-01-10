@@ -2,7 +2,7 @@ import * as yup from "yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form, FormConteiner } from "../Form/style";
-import { BackGroudForm } from "../../components/BackgroundModal/style";
+import { BackGroundForm } from "../../components/BackgroundModal/style";
 import { SelectConteiner } from "./style";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
@@ -25,14 +25,8 @@ export function ModalClientRegister({
   setShowClientModal,
 }: iModalClientRegisterProps) {
   const { userClientRegister } = useContext(UserContext);
-  const {
-    disable,
-    statesList,
-    citiesList,
-    selectCity,
-    selectState,
-    getStates,
-  } = useContext(CitiesContext);
+  const { disable, statesList, citiesList, selectState, getStates } =
+    useContext(CitiesContext);
 
   useEffect(() => {
     getStates();
@@ -73,7 +67,7 @@ export function ModalClientRegister({
     userClientRegister(data);
   };
   return (
-    <BackGroudForm>
+    <BackGroundForm>
       <FormConteiner>
         <div>
           <p>Cadastro cliente</p>
@@ -155,10 +149,12 @@ export function ModalClientRegister({
                 {...register("state")}
                 onChange={selectState}
               >
-                <MenuItem key="0" value="0"></MenuItem>
+                <MenuItem key="0" value="0">
+                  Selecione o Estado
+                </MenuItem>
                 {statesList.map((e) => {
                   return (
-                    <MenuItem key={e.id} value={e.id}>
+                    <MenuItem key={e.id} value={e.sigla}>
                       {e.sigla}
                     </MenuItem>
                   );
@@ -173,7 +169,6 @@ export function ModalClientRegister({
                 label="Cidade"
                 disabled={disable}
                 {...register("city")}
-                onChange={selectCity}
               >
                 <MenuItem key="0" value="0"></MenuItem>
                 {citiesList.map((e) => {
@@ -205,6 +200,6 @@ export function ModalClientRegister({
           <Button type="submit" text="Cadastrar" />
         </Form>
       </FormConteiner>
-    </BackGroudForm>
+    </BackGroundForm>
   );
 }
