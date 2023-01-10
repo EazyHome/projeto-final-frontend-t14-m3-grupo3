@@ -1,4 +1,5 @@
 import {
+  FeedCardButton,
   FeedItem,
   FeedItemBody,
   FeedItemHeader,
@@ -6,18 +7,21 @@ import {
   FeedItemTitle,
   FeedRating,
 } from "./style";
+import { Button } from "../Button/Button";
+import { useState } from "react";
+import { ModalHireService } from "../ModalHireService/modalHireService";
 
 interface iServiceFeed {
   typeOfCard: string;
-  id?: number;
-  image?: string;
-  name?: string;
+  id: number;
+  image: string;
+  name: string;
   date?: string;
   city?: string;
   state?: string;
   category?: string;
-  phone?: string;
-  email?: string;
+  phone: string;
+  email: string;
   age?: number;
   status?: string;
   rating: number;
@@ -40,6 +44,8 @@ export const ServiceFeedCard = ({
   rating,
   description,
 }: iServiceFeed) => {
+  const [showHireServiceModal, setShowHireServiceModal] = useState(false);
+
   let colorOfCard = "negative";
   if (rating === 99) {
     colorOfCard = "tertiary";
@@ -48,7 +54,11 @@ export const ServiceFeedCard = ({
   } else if (rating >= 0 && rating < 2.5) {
     colorOfCard = "primary";
   }
-  console.log(colorOfCard);
+
+  let serviceCategory = "";
+  if (category) {
+    serviceCategory = category;
+  }
 
   return (
     <>
@@ -78,96 +88,32 @@ export const ServiceFeedCard = ({
           </FeedItemTitle>
           <div>{`Telefone: ${phone}`}</div>
           <div>{`E-mail: ${email}`}</div>
-          <div>
+          <span>
             {typeOfCard === "providersList"
               ? `Idade: ${age}`
               : status !== "CANCELADO" && `Descrição: ${description}`}
-          </div>
+          </span>
+          <FeedCardButton>
+            {typeOfCard === "providersList" && (
+              <Button
+                text="Contratar"
+                callback={() => setShowHireServiceModal(true)}
+              />
+            )}
+          </FeedCardButton>
         </FeedItemBody>
       </FeedItem>
-      {/* ___ CONDICOES DE TESTE DO COMPONENTE DOS CARDS ___ */}
-      {/* <ProfileProvider>
-        <ServiceFeedCard
-          typeOfCard={"serviceProvided"}
-          id={0}
-          image={defaultClient}
-          name={"FULANO"}
-          date={"07/01/2023"}
-          city={"Rio de Janeiro"}
-          state={"RJ"}
-          category={"MARCENEIRO"}
-          phone={"(21) 99999.9990"}
-          email={"fulano@mail.com"}
-          age={30}
-          status={"EM ANDAMENTO"}
-          rating={0}
-          description={"Armário da cozinha"}
+      {showHireServiceModal && (
+        <ModalHireService
+          setShowHireServiceModal={setShowHireServiceModal}
+          id={id}
+          image={image}
+          name={name}
+          category={serviceCategory}
+          phone={phone}
+          email={email}
         />
-        <ServiceFeedCard
-          typeOfCard={"serviceProvided"}
-          id={0}
-          image={defaultClient}
-          name={"FULANO"}
-          date={"07/01/2023"}
-          city={"Rio de Janeiro"}
-          state={"RJ"}
-          category={"MARCENEIRO"}
-          phone={"(21) 99999.9990"}
-          email={"fulano@mail.com"}
-          age={30}
-          status={"CANCELADO"}
-          rating={-1}
-          description={"Armário da cozinha"}
-        />
-        <ServiceFeedCard
-          typeOfCard={"hiredByClient"}
-          id={0}
-          image={defaultProvider}
-          name={"Prestador Fulano1"}
-          date={"07/01/2023"}
-          city={"Rio de Janeiro"}
-          state={"RJ"}
-          category={"MARCENEIRO"}
-          phone={"(21) 99999.9995"}
-          email={"fulano1@mail.com"}
-          age={30}
-          status={"CONCLUÍDO"}
-          rating={5}
-          description={"Armário da cozinha"}
-        />
-        <ServiceFeedCard
-          typeOfCard={"providersList"}
-          id={0}
-          image={defaultProvider}
-          name={"Prestador Fulano2"}
-          date={"07/01/2023"}
-          city={"Rio de Janeiro"}
-          state={"RJ"}
-          category={"MARCENEIRO"}
-          phone={"(21) 99999.9910"}
-          email={"fulano2@mail.com"}
-          age={30}
-          status={"CONCLUÍDO"}
-          rating={2.3}
-          description={"Armário da cozinha"}
-        />
-        <ServiceFeedCard
-          typeOfCard={"providersList"}
-          id={0}
-          image={defaultProvider}
-          name={"Prestador Fulano2"}
-          date={"07/01/2023"}
-          city={"Rio de Janeiro"}
-          state={"RJ"}
-          category={"MARCENEIRO"}
-          phone={"(21) 99999.9910"}
-          email={"fulano2@mail.com"}
-          age={30}
-          status={"AVALIAÇÃO"}
-          rating={-1}
-          description={"Armário da cozinha"}
-        />
-      </ProfileProvider> */}
+      )}
     </>
   );
 };
