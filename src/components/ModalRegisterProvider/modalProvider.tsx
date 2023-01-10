@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-duplicate-props */
-import { BackGroudForm } from "../BackgroundModal/style";
+import { BackGroundForm } from "../BackgroundModal/style";
 import { Form, FormConteiner } from "../Form/style";
 import { SelectConteiner } from "./style";
 import * as yup from "yup";
@@ -71,7 +71,7 @@ export function ModalProvidertRegister({
   };
 
   return (
-    <BackGroudForm>
+    <BackGroundForm>
       <FormConteiner>
         <div>
           <p>Cadastro provedor</p>
@@ -254,6 +254,6 @@ export function ModalProvidertRegister({
           <button type="submit">Cadastrar</button>
         </Form>
       </FormConteiner>
-    </BackGroudForm>
+    </BackGroundForm>
   );
 }

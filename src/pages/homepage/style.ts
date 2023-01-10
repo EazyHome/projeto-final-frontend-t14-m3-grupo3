@@ -86,8 +86,8 @@ export const HeaderBtns = styled.div`
   @media (min-width: 700px) {
     & {
       display: flex;
-      min-width: 55%;
-      max-width: 55%;
+      min-width: 180px;
+      max-width: 180px;
       margin-top: 10px;
     }
   }
