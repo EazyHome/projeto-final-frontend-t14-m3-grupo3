@@ -14,23 +14,55 @@ import { CitiesContext } from "../../contexts/CitiesContext/CitiesContext";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+
 import { FormHelperText } from "@mui/material";
+
 interface iModalClientRegisterProps {
   setShowProviderModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowButtonContainer: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+// export const CssTextField = styled(TextField)({
+//   "& label.Mui-focused": {
+//     color: "var(--color-primary)",
+//   },
+//   "& .MuiFormLabel-root": {
+//     color: "var(--color-opposite-1)",
+//   },
+//   "& .MuiOutlinedInput-root": {
+//     "& fieldset": {
+//       border: "2px solid var(--color-opposite-1)",
+//     },
+//     "&:hover fieldset": {
+//       border: "2px solid var(--color-primary)",
+//     },
+//   },
+// });
+
+// export const CssSelect = styled(Select)({
+//   "& label.Mui-focused": {
+//     color: "var(--color-primary)",
+//   },
+//   "& .MuiFormLabel-root": {
+//     color: "var(--color-opposite-1)",
+//   },
+//   "& .MuiOutlinedInput-root": {
+//     "& fieldset": {
+//       border: "2px solid var(--color-opposite-1)",
+//     },
+//     "&:hover fieldset": {
+//       border: "2px solid var(--color-primary)",
+//     },
+//   },
+// });
 
 export function ModalProvidertRegister({
   setShowProviderModal,
+  setShowButtonContainer,
 }: iModalClientRegisterProps) {
   const { userServiceRegister } = useContext(UserContext);
-  const {
-    disable,
-    statesList,
-    citiesList,
-    selectState,
-    servicesCategories,
-    getStates,
-  } = useContext(CitiesContext);
+  const { disable, statesList, selectState, servicesCategories, getStates } =
+    useContext(CitiesContext);
 
   useEffect(() => {
     getStates();
@@ -75,11 +107,17 @@ export function ModalProvidertRegister({
   };
 
   return (
-    <BackGroundForm>
-      <FormConteiner>
-        <div>
-          <p>Cadastro provedor</p>
-          <button onClick={() => setShowProviderModal(false)}>X</button>
+    <FormConteiner>
+      <BackGroundForm>
+        <p>Cadastro provedor</p>
+
+        <div
+          onClick={() => {
+            setShowButtonContainer(true);
+            setShowProviderModal(false);
+          }}
+        >
+          {/* <img src={img} alt="" /> */}
         </div>
         <Form onSubmit={handleSubmit(onSubmitFuntion)}>
           <TextField
@@ -167,22 +205,35 @@ export function ModalProvidertRegister({
                 disabled={disable}
                 {...register("workOnCities")}
               >
-                {citiesList.map((e) => {
+                {statesList.map((e) => {
                   return (
-                    <MenuItem key={e.id} value={e.nome}>
-                      {e.nome}
+                    <MenuItem key={e.id} value={e.id}>
+                      {e.sigla}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+              <FormHelperText>{(errors.state as any)?.message}</FormHelperText>
+            </div>
+            <div className="selectWidth50">
+              <span>Serviço</span>
+              <Select label="Categoria" {...register("workOnCategories")}>
+                {servicesCategories.map((e) => {
+                  return (
+                    <MenuItem key={e} value={e}>
+                      {e}
                     </MenuItem>
                   );
                 })}
               </Select>
               <FormHelperText>
-                {(errors.workOnCities as any)?.message}
+                {(errors.workOnCategories as any)?.message}
               </FormHelperText>
             </div>
           </SelectConteiner>
           <button type="submit">Cadastrar</button>
         </Form>
-      </FormConteiner>
-    </BackGroundForm>
+      </BackGroundForm>
+    </FormConteiner>
   );
 }

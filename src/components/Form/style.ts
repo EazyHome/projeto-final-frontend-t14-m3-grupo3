@@ -2,12 +2,10 @@ import styled from "styled-components";
 
 export const FormConteiner = styled.div`
   width: 90%;
-  max-width: 400px;
-  /* margin-top: 8vh; */
+  max-width: 450px;
   background-color: var(--color-white);
   border-radius: 10px;
   padding: 20px 15px;
-  /* height: 680px; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -19,12 +17,12 @@ export const FormConteiner = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* margin-top: -40px; */
 
     & > p {
       font-size: 18px;
       font-weight: 700;
       line-height: 24px;
+      color: var(--color-primary);
     }
     & > button {
       background-color: transparent;
@@ -33,6 +31,15 @@ export const FormConteiner = styled.div`
       font-weight: 700;
       line-height: 24px;
     }
+    & > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      & > img {
+        width: 30px;
+      }
+    }
   }
 `;
 
@@ -40,7 +47,7 @@ export const Form = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 18px;
 
   & > button {
