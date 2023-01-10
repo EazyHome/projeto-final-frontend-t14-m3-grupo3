@@ -32,6 +32,8 @@ import {
   ServicesList,
 } from "../Homepage/style";
 import { Footer } from "../../components/Footer/footer";
+import { ClientProvidersFeedList } from "../../components/ClientProvidersFeedList/clientProvidersFeedList";
+import { ClientHiredProvidersFeedList } from "../../components/ClientHiredProviders/clientHiredProviders";
 
 export function HomePage() {
   return (
@@ -130,6 +132,7 @@ export function HomePage() {
       </BodyHome>
 
       <Footer id="footer" />
+      <ClientHiredProvidersFeedList />
     </>
   );
 }

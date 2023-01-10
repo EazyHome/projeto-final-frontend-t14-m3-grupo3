@@ -11,7 +11,7 @@ import {
 } from "../../contexts/UserContext/UserContext";
 import { useContext } from "react";
 import { Button } from "../../components/Button/Button";
-import { LoginBackGround, LoginConteiner } from "../../pages/login/style";
+import { LoginBackGround, LoginConteiner } from "../../pages/Login/style";
 import TextField from "@mui/material/TextField";
 import { FormHelperText } from "@mui/material";
 

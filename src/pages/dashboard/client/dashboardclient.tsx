@@ -26,7 +26,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
-import { ContentServices, ServicesList } from "../../homepage/style";
+import { ContentServices, ServicesList } from "../../Homepage/style";
 import { OrangeCard } from "../../../components/CardOrange/card";
 import { BlueCard } from "../../../components/CardBlue/card";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
