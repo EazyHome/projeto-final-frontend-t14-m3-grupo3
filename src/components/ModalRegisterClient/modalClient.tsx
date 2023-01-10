@@ -2,7 +2,7 @@ import * as yup from "yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form, FormConteiner } from "../Form/style";
-import { BackGroudForm } from "../../components/BackgroundModal/style";
+import { BackGroundForm } from "../../components/BackgroundModal/style";
 import { SelectConteiner } from "./style";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
@@ -66,7 +66,7 @@ export function ModalClientRegister({
     userClientRegister(data);
   };
   return (
-    <BackGroudForm>
+    <BackGroundForm>
       <FormConteiner>
         <div>
           <p>Cadastro cliente</p>
@@ -196,6 +196,6 @@ export function ModalClientRegister({
           <Button type="submit" text="Cadastrar" />
         </Form>
       </FormConteiner>
-    </BackGroudForm>
+    </BackGroundForm>
   );
 }

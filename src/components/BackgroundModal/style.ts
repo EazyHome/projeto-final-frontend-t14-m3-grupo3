@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const BackGroudForm = styled.div`
+export const BackGroundForm = styled.div`
   width: 100%;
   height: 100vh;
   position: absolute;
