@@ -11,7 +11,7 @@ import {
 } from "../../contexts/UserContext/UserContext";
 import { useContext } from "react";
 import { Button } from "../../components/Button/Button";
-import { LoginBackGround, LoginConteiner } from "../../pages/Login/style";
+import { LoginBackGround, LoginConteiner } from "../../pages/login/style";
 import TextField from "@mui/material/TextField";
 import { FormHelperText } from "@mui/material";
 
@@ -56,15 +56,6 @@ export const Login = () => {
             {...register("email")}
             helperText={(errors.email as any)?.message}
           />
-          <TextField
-            label="Senha"
-            variant="outlined"
-            type="password"
-            placeholder="Digite sua senha"
-            {...register("password")}
-            helperText={(errors.password as any)?.message}
-          />
-
           <TextField
             label="Senha"
             variant="outlined"
