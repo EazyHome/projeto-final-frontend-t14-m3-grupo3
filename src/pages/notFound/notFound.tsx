@@ -3,7 +3,6 @@ import { NavRegister } from "../../components/NavRegister/navRegister";
 import { NotFoundMain } from "../NotFound/style";
 import { Footer } from "../../components/Footer/footer";
 
-
 export function NotFound() {
   const navigate = useNavigate();
 

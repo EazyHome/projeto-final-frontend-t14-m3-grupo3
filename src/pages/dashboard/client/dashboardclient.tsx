@@ -30,7 +30,7 @@ import { BlueCard } from "../../../components/CardBlue/card";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
 import { Footer } from "../../../components/FooterRegisterAndLogin/footer";
 import { ProfileContext } from "../../../contexts/ProfileContext/ProfileContext";
-
+import { ContentServices, ServicesList } from "../../Homepage/style";
 
 export const DashboardClient = () => {
   const [open, setOpen] = React.useState(true);
