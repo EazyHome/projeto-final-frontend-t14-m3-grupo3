@@ -2,13 +2,12 @@ import * as yup from "yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form, FormConteiner } from "../Form/style";
-import { BackGroundForm } from "../../components/BackgroundModal/style";
 import { SelectConteiner } from "./style";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import { FormHelperText } from "@mui/material";
-
+import { FormHelperText, styled } from "@mui/material";
+import img from "./../../assets/img/btvVoltarRegister.png";
 import {
   iUserClientRegister,
   UserContext,
@@ -19,10 +18,29 @@ import { Button } from "../Button/Button";
 
 interface iModalClientRegisterProps {
   setShowClientModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowButtonContainer: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export const CssTextField = styled(TextField)({
+  "& label.Mui-focused": {
+    color: "var(--color-primary)",
+  },
+  "& .MuiFormLabel-root": {
+    color: "var(--color-opposite-1)",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      border: "2px solid var(--color-opposite-1)",
+    },
+    "&:hover fieldset": {
+      border: "2px solid var(--color-primary)",
+    },
+  },
+});
 
 export function ModalClientRegister({
   setShowClientModal,
+  setShowButtonContainer,
 }: iModalClientRegisterProps) {
   const { userClientRegister } = useContext(UserContext);
   const {
@@ -66,136 +84,100 @@ export function ModalClientRegister({
     userClientRegister(data);
   };
   return (
-    <BackGroundForm>
-      <FormConteiner>
-        <div>
-          <p>Cadastro cliente</p>
-          <button onClick={() => setShowClientModal(false)}>X</button>
+    <FormConteiner>
+      <div>
+        <p>Cadastro cliente</p>
+        <div
+          onClick={() => {
+            setShowButtonContainer(true);
+            setShowClientModal(false);
+          }}
+        >
+          <img src={img} alt="" />
         </div>
-        <Form onSubmit={handleSubmit(onSubmitFuntion)}>
-          <TextField
-            label="E-mail"
-            variant="outlined"
-            type="email"
-            placeholder="Digite seu email"
-            {...register("email")}
-            helperText={(errors.email as any)?.message}
-          />
-          <TextField
-            label="Senha"
-            variant="outlined"
-            type="password"
-            placeholder="Digite sua senha"
-            {...register("password")}
-            helperText={(errors.password as any)?.message}
-          />
-          <TextField
-            label="Nome"
-            variant="outlined"
-            type="text"
-            placeholder="Digite seu nome"
-            {...register("name")}
-            helperText={(errors.name as any)?.message}
-          />
-          <TextField
-            label="Idade"
-            variant="outlined"
-            type="number"
-            placeholder="Digite sua idade"
-            {...register("age")}
-            helperText={(errors.age as any)?.message}
-          />
-          <TextField
-            label="Telefone"
-            variant="outlined"
-            type="text"
-            placeholder="Digite seu número"
-            {...register("phone")}
-            helperText={(errors.phone as any)?.message}
-          />
-          {/* <input
-            type="text"
-            placeholder="Digite seu email"
-            {...register("email")}
-          />
-          <input
-            type="text"
-            placeholder="Digite sua senha"
-            {...register("password")}
-          />
-          <input
-            type="text"
-            placeholder="Digite seu nome"
-            {...register("name")}
-          />
-          <input
-            type="number"
-            placeholder="Digite sua idade"
-            {...register("age")}
-          />
-          <input
-            type="number"
-            placeholder="Digite seu numero"
-            {...register("phone")}
-          /> */}
-
-          <SelectConteiner>
-            <div>
-              <span>Estado</span>
-              <Select
-                className="stateSelect"
-                label="Estado"
-                {...register("state")}
-                onChange={selectState}
-              >
-                {statesList.map((e) => {
-                  return (
-                    <MenuItem key={e.id} value={e.id}>
-                      {e.sigla}
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-              <FormHelperText>{(errors.state as any)?.message}</FormHelperText>
-            </div>
-            <div>
-              <span>Cidade</span>
-              <Select
-                className="citySelect"
-                label="Cidade"
-                disabled={disable}
-                {...register("city")}
-                onChange={selectCity}
-              >
-                {citiesList.map((e) => {
-                  return (
-                    <MenuItem key={e.id} value={e.nome}>
-                      {e.nome}
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-              <FormHelperText>{(errors.city as any)?.message}</FormHelperText>
-            </div>
-          </SelectConteiner>
-
-          {/* <SelectConteiner>
-            <div>
-              <span>Estado</span>
-              <select className="stateSelect" id="" {...register("state")}>
-              </select>
-            </div>
-            <div>
-              <span>Cidade</span>
-              <select className="citySelect" id="" {...register("city")}>
-              </select>
-            </div>
-          </SelectConteiner> */}
-          {/* <option value="CE">CE</option> */}
-          {/* <option value="Fortaleza">Fortaleza</option> */}
-          <Button type="submit" text="Cadastrar" />
-        </Form>
-      </FormConteiner>
-    </BackGroundForm>
+      </div>
+      <Form onSubmit={handleSubmit(onSubmitFuntion)}>
+        <CssTextField
+          label="E-mail"
+          variant="outlined"
+          type="email"
+          placeholder="Digite seu email"
+          {...register("email")}
+          helperText={(errors.email as any)?.message}
+        />
+        <CssTextField
+          label="Senha"
+          variant="outlined"
+          type="password"
+          placeholder="Digite sua senha"
+          {...register("password")}
+          helperText={(errors.password as any)?.message}
+        />
+        <CssTextField
+          label="Nome"
+          variant="outlined"
+          type="text"
+          placeholder="Digite seu nome"
+          {...register("name")}
+          helperText={(errors.name as any)?.message}
+        />
+        <CssTextField
+          label="Idade"
+          variant="outlined"
+          type="number"
+          placeholder="Digite sua idade"
+          {...register("age")}
+          helperText={(errors.age as any)?.message}
+        />
+        <CssTextField
+          label="Telefone"
+          variant="outlined"
+          type="text"
+          placeholder="Digite seu número"
+          {...register("phone")}
+          helperText={(errors.phone as any)?.message}
+        />
+        <SelectConteiner>
+          <div>
+            <span>Estado</span>
+            <Select
+              className="stateSelect"
+              label="Estado"
+              {...register("state")}
+              onChange={selectState}
+            >
+              {statesList.map((e) => {
+                return (
+                  <MenuItem key={e.id} value={e.id}>
+                    {e.sigla}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+            <FormHelperText>{(errors.state as any)?.message}</FormHelperText>
+          </div>
+          <div>
+            <span>Cidade</span>
+            <Select
+              className="citySelect"
+              label="Cidade"
+              disabled={disable}
+              {...register("city")}
+              onChange={selectCity}
+            >
+              {citiesList.map((e) => {
+                return (
+                  <MenuItem key={e.id} value={e.nome}>
+                    {e.nome}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+            <FormHelperText>{(errors.city as any)?.message}</FormHelperText>
+          </div>
+        </SelectConteiner>
+        <Button type="submit" text="Cadastrar" />
+      </Form>
+    </FormConteiner>
   );
 }

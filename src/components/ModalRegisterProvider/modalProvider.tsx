@@ -11,18 +11,54 @@ import {
   UserContext,
 } from "../../contexts/UserContext/UserContext";
 import { CitiesContext } from "../../contexts/CitiesContext/CitiesContext";
-import { Button } from "../Button/Button";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import { FormHelperText } from "@mui/material";
-import { width } from "@mui/system";
+import { FormHelperText, styled } from "@mui/material";
+import img from "./../../assets/img/btvVoltarRegister.png";
+
 interface iModalClientRegisterProps {
   setShowProviderModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowButtonContainer: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export const CssTextField = styled(TextField)({
+  "& label.Mui-focused": {
+    color: "var(--color-primary)",
+  },
+  "& .MuiFormLabel-root": {
+    color: "var(--color-opposite-1)",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      border: "2px solid var(--color-opposite-1)",
+    },
+    "&:hover fieldset": {
+      border: "2px solid var(--color-primary)",
+    },
+  },
+});
+
+// export const CssSelect = styled(Select)({
+//   "& label.Mui-focused": {
+//     color: "var(--color-primary)",
+//   },
+//   "& .MuiFormLabel-root": {
+//     color: "var(--color-opposite-1)",
+//   },
+//   "& .MuiOutlinedInput-root": {
+//     "& fieldset": {
+//       border: "2px solid var(--color-opposite-1)",
+//     },
+//     "&:hover fieldset": {
+//       border: "2px solid var(--color-primary)",
+//     },
+//   },
+// });
 
 export function ModalProvidertRegister({
   setShowProviderModal,
+  setShowButtonContainer,
 }: iModalClientRegisterProps) {
   const { userServiceRegister } = useContext(UserContext);
   const {
@@ -72,189 +108,121 @@ export function ModalProvidertRegister({
   };
 
   return (
-    <BackGroundForm>
-      <FormConteiner>
-        <div>
-          <p>Cadastro provedor</p>
-          <button onClick={() => setShowProviderModal(false)}>X</button>
+    <FormConteiner>
+      <div>
+        <p>Cadastro provedor</p>
+
+        <div
+          onClick={() => {
+            setShowButtonContainer(true);
+            setShowProviderModal(false);
+          }}
+        >
+          <img src={img} alt="" />
         </div>
-        <Form onSubmit={handleSubmit(onSubmitFuntion)}>
-          <TextField
-            label="E-mail"
-            variant="outlined"
-            type="email"
-            placeholder="Digite seu email"
-            {...register("email")}
-            helperText={(errors.email as any)?.message}
-          />
-          <TextField
-            label="Senha"
-            variant="outlined"
-            type="password"
-            placeholder="Digite sua senha"
-            {...register("password")}
-            helperText={(errors.password as any)?.message}
-          />
-          <TextField
-            label="Nome"
-            variant="outlined"
-            type="text"
-            placeholder="Digite seu nome"
-            {...register("name")}
-            helperText={(errors.name as any)?.message}
-          />
-          <TextField
-            label="Idade"
-            variant="outlined"
-            type="number"
-            placeholder="Digite sua idade"
-            {...register("age")}
-            helperText={(errors.age as any)?.message}
-          />
-          <TextField
-            label="Telefone"
-            variant="outlined"
-            type="text"
-            placeholder="Digite seu número"
-            {...register("phone")}
-            helperText={(errors.phone as any)?.message}
-          />
-          {/* <input
-            type="text"
-            placeholder="Digite seu email"
-            {...register("email")}
-          /> */}
-          {/* <input
-            type="text"
-            placeholder="Digite sua senha"
-            {...register("password")}
-          /> */}
-          {/* <input
-            type="text"
-            placeholder="Digite seu nome"
-            {...register("name")}
-          /> */}
-          {/* <input
-            type="text"
-            placeholder="Digite sua idade"
-            {...register("age")}
-          />
-          <input
-            type="text"
-            placeholder="Digite seu numero"
-            {...register("phone")}
-          /> */}
-          <SelectConteiner>
-            <div>
-              <div className="selectWidth50">
-                <span>Estado</span>
-                <Select
-                  label="Estado"
-                  {...register("state")}
-                  onChange={selectState}
-                >
-                  {statesList.map((e) => {
-                    return (
-                      <MenuItem key={e.id} value={e.id}>
-                        {e.sigla}
-                      </MenuItem>
-                    );
-                  })}
-                </Select>
-                <FormHelperText>
-                  {(errors.state as any)?.message}
-                </FormHelperText>
-              </div>
-              <div className="selectWidth50">
-                <span>Serviço</span>
-                <Select label="Categoria" {...register("workOnCategories")}>
-                  {servicesCategories.map((e) => {
-                    return (
-                      <MenuItem key={e} value={e}>
-                        {e}
-                      </MenuItem>
-                    );
-                  })}
-                </Select>
-                <FormHelperText>
-                  {(errors.workOnCategories as any)?.message}
-                </FormHelperText>
-              </div>
-            </div>
-            <span>Cidade</span>
-            <div className="selectWidth100">
+      </div>
+      <Form onSubmit={handleSubmit(onSubmitFuntion)}>
+        <CssTextField
+          label="E-mail"
+          variant="outlined"
+          type="email"
+          placeholder="Digite seu email"
+          {...register("email")}
+          helperText={(errors.email as any)?.message}
+        />
+        <CssTextField
+          label="Senha"
+          variant="outlined"
+          type="password"
+          placeholder="Digite sua senha"
+          {...register("password")}
+          helperText={(errors.password as any)?.message}
+        />
+        <CssTextField
+          label="Nome"
+          variant="outlined"
+          type="text"
+          placeholder="Digite seu nome"
+          {...register("name")}
+          helperText={(errors.name as any)?.message}
+        />
+        <CssTextField
+          label="Idade"
+          variant="outlined"
+          type="number"
+          placeholder="Digite sua idade"
+          {...register("age")}
+          helperText={(errors.age as any)?.message}
+        />
+        <CssTextField
+          label="Telefone"
+          variant="outlined"
+          type="text"
+          placeholder="Digite seu número"
+          {...register("phone")}
+          helperText={(errors.phone as any)?.message}
+        />
+
+        <SelectConteiner>
+          <div>
+            <div className="selectWidth50">
+              <span>Estado</span>
               <Select
-                sx={{ width: "100%" }}
-                label="Cidade"
-                disabled={disable}
-                {...register("workOnCities")}
-                onChange={selectCity}
+                label="Estado"
+                {...register("state")}
+                onChange={selectState}
               >
-                {citiesList.map((e) => {
+                {statesList.map((e) => {
                   return (
-                    <MenuItem key={e.id} value={e.nome}>
-                      {e.nome}
+                    <MenuItem key={e.id} value={e.id}>
+                      {e.sigla}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+              <FormHelperText>{(errors.state as any)?.message}</FormHelperText>
+            </div>
+            <div className="selectWidth50">
+              <span>Serviço</span>
+              <Select label="Categoria" {...register("workOnCategories")}>
+                {servicesCategories.map((e) => {
+                  return (
+                    <MenuItem key={e} value={e}>
+                      {e}
                     </MenuItem>
                   );
                 })}
               </Select>
               <FormHelperText>
-                {(errors.workOnCities as any)?.message}
+                {(errors.workOnCategories as any)?.message}
               </FormHelperText>
             </div>
-          </SelectConteiner>
-
-          {/* <SelectConteiner>
-            <div>
-              <div>
-                <span>Estado</span>
-                <select {...register("state")} onChange={selectState}>
-                  <option value={0}>Selecione seu Estado</option>
-                  {statesList.map((e) => {
-                    return (
-                      <option key={e.id} value={e.id}>
-                        {e.nome}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-              <div>
-                <span>Serviço</span>
-                <select {...register("workOnCategories")}>
-                  <option key={""} value="">
-                    Selecione sua Categoria
-                  </option>
-                  {servicesCategories.map((e) => {
-                    return (
-                      <option key={e} value={e}>
-                        {e}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-            </div> */}
-          {/* <span>Cidade</span>
-            <select
-              id=""
+          </div>
+          <span>Cidade</span>
+          <div className="selectWidth100">
+            <Select
+              sx={{ width: "100%" }}
+              label="Cidade"
               disabled={disable}
               {...register("workOnCities")}
               onChange={selectCity}
             >
-              <option value="">Selecione seu Estado</option>
               {citiesList.map((e) => {
                 return (
-                  <option key={e.id} value={e.nome}>
+                  <MenuItem key={e.id} value={e.nome}>
                     {e.nome}
-                  </option>
+                  </MenuItem>
                 );
               })}
-            </select>
-          </SelectConteiner> */}
-          <button type="submit">Cadastrar</button>
-        </Form>
-      </FormConteiner>
-    </BackGroundForm>
+            </Select>
+            <FormHelperText>
+              {(errors.workOnCities as any)?.message}
+            </FormHelperText>
+          </div>
+        </SelectConteiner>
+
+        <button type="submit">Cadastrar</button>
+      </Form>
+    </FormConteiner>
   );
 }
