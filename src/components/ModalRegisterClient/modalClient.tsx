@@ -2,13 +2,12 @@ import * as yup from "yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form, FormConteiner } from "../Form/style";
-import { BackGroundForm } from "../../components/BackgroundModal/style";
 import { SelectConteiner } from "./style";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import { FormHelperText } from "@mui/material";
-
+import { FormHelperText, styled } from "@mui/material";
+import img from "./../../assets/img/btvVoltarRegister.png";
 import {
   iUserClientRegister,
   UserContext,
@@ -19,10 +18,29 @@ import { Button } from "../Button/Button";
 
 interface iModalClientRegisterProps {
   setShowClientModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowButtonContainer: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export const CssTextField = styled(TextField)({
+  "& label.Mui-focused": {
+    color: "var(--color-primary)",
+  },
+  "& .MuiFormLabel-root": {
+    color: "var(--color-opposite-1)",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      border: "2px solid var(--color-opposite-1)",
+    },
+    "&:hover fieldset": {
+      border: "2px solid var(--color-primary)",
+    },
+  },
+});
 
 export function ModalClientRegister({
   setShowClientModal,
+  setShowButtonContainer,
 }: iModalClientRegisterProps) {
   const { userClientRegister } = useContext(UserContext);
   const { disable, statesList, citiesList, selectState, getStates } =
@@ -67,12 +85,18 @@ export function ModalClientRegister({
     userClientRegister(data);
   };
   return (
-    <BackGroundForm>
-      <FormConteiner>
-        <div>
-          <p>Cadastro cliente</p>
-          <button onClick={() => setShowClientModal(false)}>X</button>
+    <FormConteiner>
+      <div>
+        <p>Cadastro cliente</p>
+        <div
+          onClick={() => {
+            setShowButtonContainer(true);
+            setShowClientModal(false);
+          }}
+        >
+          <img src={img} alt="" />
         </div>
+
         <Form onSubmit={handleSubmit(onSubmitFuntion)}>
           <TextField
             label="E-mail"
@@ -201,5 +225,6 @@ export function ModalClientRegister({
         </Form>
       </FormConteiner>
     </BackGroundForm>
+
   );
 }
