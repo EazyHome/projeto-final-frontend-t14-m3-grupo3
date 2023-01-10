@@ -13,7 +13,7 @@ import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import { SyncLoader } from "react-spinners";
 // import { ErrorMsg, LoginBackGround, LoginConteiner } from "./style";
-import { ErrorMsg, LoginBackGround, LoginConteiner } from "./style";
+import { ErrorMsg, LoginBackGround, LoginConteiner } from "../login/style";
 
 export const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -113,7 +113,6 @@ export const Login = () => {
         <Footer id="footer" />
       </LoginBackGround>
       <Footer id="footer" />
-
     </>
   );
 };

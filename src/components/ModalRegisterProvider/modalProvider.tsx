@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-duplicate-props */
 import { BackGroundForm } from "../BackgroundModal/style";
 import { Form, FormConteiner } from "../Form/style";
 import { SelectConteiner } from "./style";
@@ -14,47 +13,47 @@ import { CitiesContext } from "../../contexts/CitiesContext/CitiesContext";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-
-import { FormHelperText } from "@mui/material";
+import img from "./../../assets/img/btvVoltarRegister.png";
+import { FormHelperText, styled } from "@mui/material";
 
 interface iModalClientRegisterProps {
   setShowProviderModal: React.Dispatch<React.SetStateAction<boolean>>;
   setShowButtonContainer: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-// export const CssTextField = styled(TextField)({
-//   "& label.Mui-focused": {
-//     color: "var(--color-primary)",
-//   },
-//   "& .MuiFormLabel-root": {
-//     color: "var(--color-opposite-1)",
-//   },
-//   "& .MuiOutlinedInput-root": {
-//     "& fieldset": {
-//       border: "2px solid var(--color-opposite-1)",
-//     },
-//     "&:hover fieldset": {
-//       border: "2px solid var(--color-primary)",
-//     },
-//   },
-// });
+export const CssTextField = styled(TextField)({
+  "& label.Mui-focused": {
+    color: "var(--color-primary)",
+  },
+  "& .MuiFormLabel-root": {
+    color: "var(--color-opposite-1)",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      border: "2px solid var(--color-opposite-1)",
+    },
+    "&:hover fieldset": {
+      border: "2px solid var(--color-primary)",
+    },
+  },
+});
 
-// export const CssSelect = styled(Select)({
-//   "& label.Mui-focused": {
-//     color: "var(--color-primary)",
-//   },
-//   "& .MuiFormLabel-root": {
-//     color: "var(--color-opposite-1)",
-//   },
-//   "& .MuiOutlinedInput-root": {
-//     "& fieldset": {
-//       border: "2px solid var(--color-opposite-1)",
-//     },
-//     "&:hover fieldset": {
-//       border: "2px solid var(--color-primary)",
-//     },
-//   },
-// });
+export const CssSelect = styled(Select)({
+  "& label.Mui-focused": {
+    color: "var(--color-primary)",
+  },
+  "& .MuiFormLabel-root": {
+    color: "var(--color-opposite-1)",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      border: "2px solid var(--color-opposite-1)",
+    },
+    "&:hover fieldset": {
+      border: "2px solid var(--color-primary)",
+    },
+  },
+});
 
 export function ModalProvidertRegister({
   setShowProviderModal,
@@ -117,7 +116,7 @@ export function ModalProvidertRegister({
             setShowProviderModal(false);
           }}
         >
-          {/* <img src={img} alt="" /> */}
+          <img src={img} alt="" />
         </div>
         <Form onSubmit={handleSubmit(onSubmitFuntion)}>
           <TextField
