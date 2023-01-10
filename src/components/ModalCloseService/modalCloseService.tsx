@@ -3,41 +3,49 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form, FormConteiner } from "../Form/style";
 import { BackGroundForm } from "../BackgroundModal/style";
-
 import {
+  CloseButtons,
   CloseModalDiv,
-  HireButton,
   ItemBody,
   ItemImage,
   ModalContainer,
   ModalDiv,
+  StatusDiv,
 } from "./style";
 import TextField from "@mui/material/TextField";
 import { Button } from "../Button/Button";
-import { BackGroundForm } from "../BackgroundModal/style";
+import { useState } from "react";
 
 interface iModalHireServiceProps {
-  setShowHireServiceModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowCloseOrCancelServiceModal: React.Dispatch<
+    React.SetStateAction<boolean>
+  >;
   id: number;
   image: string;
   name: string;
   category: string;
   phone: string;
   email: string;
+  date: string;
+  description: string;
+  status: string;
 }
 
 export interface iUserDescription {
   description: string;
 }
 
-export const ModalHireService = ({
-  setShowHireServiceModal,
+export const ModalCloseService = ({
+  setShowCloseOrCancelServiceModal,
   id,
   image,
   name,
   category,
   phone,
   email,
+  date,
+  description,
+  status,
 }: iModalHireServiceProps) => {
   const hireFormSchema = yup.object().shape({
     description: yup
@@ -53,6 +61,8 @@ export const ModalHireService = ({
     resolver: yupResolver(hireFormSchema),
   });
 
+  const [showRatingStars, setShowRatingStars] = useState(false);
+
   const idProvider = id;
   const idClient = localStorage.getItem("@Id:EazyHome");
 
@@ -65,18 +75,18 @@ export const ModalHireService = ({
     };
     console.log(data.description);
     console.log(hireData);
-    setShowHireServiceModal(false);
+    setShowCloseOrCancelServiceModal(false);
   };
 
-  const closeHireServiceModal = () => {
-    setShowHireServiceModal(false);
+  const closeModal = () => {
+    setShowCloseOrCancelServiceModal(false);
   };
 
   return (
     <BackGroundForm>
       <ModalContainer>
         <CloseModalDiv>
-          <Button type="button" text="X" callback={closeHireServiceModal} />
+          <Button type="button" text="X" callback={closeModal} />
         </CloseModalDiv>
         <ModalDiv>
           <ItemImage>
@@ -89,19 +99,23 @@ export const ModalHireService = ({
             <span>{`E-mail: ${email}`}</span>
           </ItemBody>
         </ModalDiv>
-        <Form onSubmit={handleSubmit(onSubmitFuntion)}>
-          <TextField
-            label="Descrição do Serviço"
-            variant="outlined"
-            type="text"
-            placeholder="Digite a descrição do serviço"
-            {...register("description")}
-            helperText={(errors.description as any)?.message}
-          />
-          <HireButton>
-            <Button type="submit" text="Contratar" />
-          </HireButton>
-        </Form>
+        <StatusDiv>
+          <div>
+            <div>{status}</div>
+            <div>{`Data:${date}`}</div>
+          </div>
+          <div>
+            <span>{description}</span>
+          </div>
+        </StatusDiv>
+        {showRatingStars ? (
+          <CloseButtons>
+            <Button type="submit" text="Cancelar" />
+            <Button type="submit" text="Concluir" />
+          </CloseButtons>
+        ) : (
+          <div></div>
+        )}
       </ModalContainer>
     </BackGroundForm>
   );
