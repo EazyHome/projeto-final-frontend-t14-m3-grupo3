@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import {
   DashContent,
   DashNav,
@@ -6,7 +6,7 @@ import {
   SectionDashboardClientTop,
   Services,
   TextSectionTop,
-} from "../client/style";
+} from "../../../pages/Dashboard/client/style";
 import eletricista from "../../../assets/img/eletricista.png";
 import encanador from "../../../assets/img/encanador.png";
 import gas from "../../../assets/img/gás.png";
@@ -19,7 +19,7 @@ import pintor from "../../../assets/img/pintor.png";
 import piscina from "../../../assets/img/piscina.png";
 import piso from "../../../assets/img/piso.png";
 import serralheiro from "../../../assets/img/serralheiro.png";
-import workers from "../../../assets/img/workers.jpeg";
+// import workers from "../../../assets/img/workers.jpeg";
 import List from "@mui/material/List";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -31,12 +31,19 @@ import { BlueCard } from "../../../components/CardBlue/card";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
 import { Footer } from "../../../components/FooterRegisterAndLogin/footer";
 import { ClientProvidersFeedList } from "../../../components/ClientProvidersFeedList/clientProvidersFeedList";
-import { ContentServices, ServicesList } from "../../Homepage/style";
+import { ProfileContext } from "../../../contexts/ProfileContext/ProfileContext";
+
 
 export const DashboardClient = () => {
   const [open, setOpen] = React.useState(true);
   const [selectedOption, setSelectedOption] = React.useState("service");
   const stylesItems = { textAlign: "right", fontSize: 10 };
+  const { isLogged, getProviders } = useContext(ProfileContext);
+
+  useEffect(() => {
+    isLogged();
+    getProviders();
+  });
 
   const handleClickService = () => {
     setOpen(!open);

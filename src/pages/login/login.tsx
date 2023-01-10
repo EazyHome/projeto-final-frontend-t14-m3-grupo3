@@ -39,6 +39,7 @@ export const Login = () => {
   useEffect(() => {
     setErrorApi(false);
     setErrorLogin(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errorLogin]);
 
   const formSchema = yup.object().shape({
@@ -98,7 +99,7 @@ export const Login = () => {
               error={!!errors.password}
               helperText={(errors.password as any)?.message}
               onKeyUp={
-                errorApi == true
+                errorApi === true
                   ? () => setErrorLogin(true)
                   : () => setErrorLogin(false)
               }
@@ -111,6 +112,8 @@ export const Login = () => {
         </LoginConteiner>
         <Footer id="footer" />
       </LoginBackGround>
+      <Footer id="footer" />
+
     </>
   );
 };

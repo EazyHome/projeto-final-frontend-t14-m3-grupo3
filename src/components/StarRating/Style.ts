@@ -1,4 +1,3 @@
-import { type } from "os";
 import styled from "styled-components";
 
 type Props = {
@@ -15,7 +14,7 @@ export const DivRating = styled.div<Props>`
     color: ${(props) =>
       props.ratingColor < 3
         ? "#ff0707"
-        : props.ratingColor == 3
+        : props.ratingColor === 3
         ? "#ffc107 "
         : "#39ff07"};
   }
