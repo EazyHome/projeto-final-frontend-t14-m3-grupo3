@@ -19,7 +19,6 @@ import pintor from "../../../assets/img/pintor.png";
 import piscina from "../../../assets/img/piscina.png";
 import piso from "../../../assets/img/piso.png";
 import serralheiro from "../../../assets/img/serralheiro.png";
-// import workers from "../../../assets/img/workers.jpeg";
 import List from "@mui/material/List";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -31,7 +30,6 @@ import { OrangeCard } from "../../../components/CardOrange/card";
 import { BlueCard } from "../../../components/CardBlue/card";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
 import { Footer } from "../../../components/FooterRegisterAndLogin/footer";
-import { ClientProvidersFeedList } from "../../../components/ClientProvidersFeedList/clientProvidersFeedList";
 import { ProfileContext } from "../../../contexts/ProfileContext/ProfileContext";
 
 export const DashboardClient = () => {
@@ -133,10 +131,8 @@ export const DashboardClient = () => {
               <div></div>
             </ContentServices>
           </Services>
-        ) : selectedOption === "perfil" ? (
-          <>Em desenvolvimento</>
         ) : (
-          <ClientProvidersFeedList />
+          <>Em desenvolvimento</>
         )}
       </DashContent>
       <Footer id="footer" />

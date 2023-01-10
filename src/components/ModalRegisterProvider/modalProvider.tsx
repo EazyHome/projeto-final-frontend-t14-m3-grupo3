@@ -15,7 +15,6 @@ import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { FormHelperText } from "@mui/material";
-// import { width } from "@mui/system";
 interface iModalClientRegisterProps {
   setShowProviderModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
