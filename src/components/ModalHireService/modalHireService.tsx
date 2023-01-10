@@ -2,7 +2,7 @@ import * as yup from "yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form, FormConteiner } from "../Form/style";
-import { BackGroudForm } from "../BackgroundModal/style";
+import { BackGroundForm } from "../BackgroundModal/style";
 import {
   CloseModalDiv,
   HireButton,
@@ -71,7 +71,7 @@ export const ModalHireService = ({
   };
 
   return (
-    <BackGroudForm>
+    <BackGroundForm>
       <ModalContainer>
         <CloseModalDiv>
           <Button type="button" text="X" callback={closeHireServiceModal} />
@@ -101,6 +101,6 @@ export const ModalHireService = ({
           </HireButton>
         </Form>
       </ModalContainer>
-    </BackGroudForm>
+    </BackGroundForm>
   );
 };
