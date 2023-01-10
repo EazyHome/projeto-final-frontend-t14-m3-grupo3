@@ -16,7 +16,6 @@ import { OrangeCard } from "../../components/CardOrange/card";
 import { BlueCard } from "../../components/CardBlue/card";
 import { GreenComment } from "../../components/GreenComment/greenComment";
 import { OrangeComment } from "../../components/OrangeComment/orangeComment";
-import { Footer } from "../../components/Footer/Footer";
 import {
   BodyHome,
   Comments,
@@ -31,7 +30,8 @@ import {
   ListComments,
   Services,
   ServicesList,
-} from "../homepage/style";
+} from "./style";
+import { Footer } from "../../components/Footer/Footer";
 
 export function HomePage() {
   return (
@@ -69,16 +69,18 @@ export function HomePage() {
               <DivTextAboutUs>
                 <div>
                   <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Repellat temporibus asperiores sequi deleniti excepturi
-                    harum incidunt quidem cupiditate eveniet adipisci, explicabo
-                    at tenetur! Ipsum aspernatur, deserunt natus porro rerum a?
+                    O EazyHome nasceu com o propósito de conectar quem precisa
+                    com quem sabe fazer. Somos um aplicativo que conecta
+                    clientes e profissionais, com mais de 10 tipos de serviços
+                    disponíveis no momento. Desejamos ajudar quem precisa com
+                    muito empenho e prestatividade.
                   </p>
                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
-                    ab nostrum, sequi rem, natus cupiditate ipsum facere impedit
-                    veritatis dolore, eligendi tenetur unde? Aspernatur nobis
-                    maxime temporibus. Illum, ad temporibus!
+                    Presente em todas as cidades do Brasil, você pode se
+                    cadastrar seja <strong>cliente</strong> ou{" "}
+                    <strong>prestador de serviços</strong> e começar a buscar o
+                    que você precisa no nosso aplicativo. Temos certeza que será
+                    uma experiência incrível.
                   </p>
                 </div>
               </DivTextAboutUs>
@@ -111,22 +113,16 @@ export function HomePage() {
 
             <ListComments>
               <GreenComment
-                text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, eius
-          eveniet enim tempora consectetur hic. Eos, corporis aliquam rem
-          dolores."
-                user="Lorem Ipsun,São Paulo"
+                text="Fui muito bem atendida, o profissional foi muito educado e fez um trabalho de qualidade. Valeu a pena, orçamento grátis e não é careiro."
+                user="Ana Paula Contratou um Pedreiro em São Paulo, SP"
               />
               <OrangeComment
-                text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, eius
-          eveniet enim tempora consectetur hic. Eos, corporis aliquam rem
-          dolores."
-                user="Lorem Ipsun,São Paulo"
+                text="Os profissionais são pessoas dedicadas com seus serviços. Tudo o que é pedido é feito da maneira como foi pedido. Aprovado!"
+                user="Serviço de Pintura, Bruno Freitas Contratou um Pintor em Curitiba, PR"
               />
               <GreenComment
-                text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, eius
-          eveniet enim tempora consectetur hic. Eos, corporis aliquam rem
-          dolores."
-                user="Lorem Ipsun,São Paulo"
+                text="Uma excelente profissional, pontual e acima de tudo confiável. Foi bastante educada e atenciosa com o trabalho, recomendo."
+                user="Serviço de Diarista, Renata Figueiredo Contratou uma Diarista em Rio de Janeiro, RJ"
               />
             </ListComments>
           </Comments>
