@@ -10,6 +10,7 @@ import {
 import { Button } from "../Button/Button";
 import { useState } from "react";
 import { ModalHireService } from "../ModalHireService/modalHireService";
+import { ModalCloseService } from "../ModalCloseService/modalCloseService";
 
 interface iServiceFeed {
   typeOfCard: string;
@@ -45,6 +46,8 @@ export const ServiceFeedCard = ({
   description,
 }: iServiceFeed) => {
   const [showHireServiceModal, setShowHireServiceModal] = useState(false);
+  const [showCloseOrCancelServiceModal, setShowCloseOrCancelServiceModal] =
+    useState(false);
 
   let colorOfCard = "negative";
   if (rating === 99) {
@@ -56,9 +59,16 @@ export const ServiceFeedCard = ({
   }
 
   let serviceCategory = "";
-  if (category) {
-    serviceCategory = category;
-  }
+  category && (serviceCategory = category);
+
+  let serviceDate = "";
+  date && (serviceDate = date);
+
+  let serviceDescription = "";
+  description && (serviceDescription = description);
+
+  let serviceStatus = "";
+  status && (serviceStatus = status);
 
   return (
     <>
@@ -94,10 +104,15 @@ export const ServiceFeedCard = ({
               : status !== "CANCELADO" && `Descrição: ${description}`}
           </span>
           <FeedCardButton>
-            {typeOfCard === "providersList" && (
+            {typeOfCard === "providersList" ? (
               <Button
                 text="Contratar"
                 callback={() => setShowHireServiceModal(true)}
+              />
+            ) : (
+              <Button
+                text="Concluir"
+                callback={() => setShowCloseOrCancelServiceModal(true)}
               />
             )}
           </FeedCardButton>
@@ -112,6 +127,20 @@ export const ServiceFeedCard = ({
           category={serviceCategory}
           phone={phone}
           email={email}
+        />
+      )}
+      {showCloseOrCancelServiceModal && (
+        <ModalCloseService
+          setShowCloseOrCancelServiceModal={setShowCloseOrCancelServiceModal}
+          id={id}
+          image={image}
+          name={name}
+          category={serviceCategory}
+          phone={phone}
+          email={email}
+          date={serviceDate}
+          description={serviceDescription}
+          status={serviceStatus}
         />
       )}
     </>

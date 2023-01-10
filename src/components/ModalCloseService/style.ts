@@ -52,11 +52,13 @@ export const ItemBody = styled.div`
   scroll-padding-left: 1rem;
 `;
 
-export const HireButton = styled.div`
+export const CloseButtons = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  margin-left: 2rem;
+  gap: 2rem;
 
   & > button {
     background-color: var(--color-primary);
@@ -123,5 +125,29 @@ export const CloseModalDiv = styled.div`
       background-color: var(--color-tertiary);
       border: var(--color-tertiary);
     }
+  }
+`;
+
+export const StatusDiv = styled.div`
+  width: 80%;
+  max-width: 700px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0;
+  padding-bottom: 1rem;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  @media (min-width: 700px) {
+    min-width: 500px;
+    padding-left: 4rem;
   }
 `;

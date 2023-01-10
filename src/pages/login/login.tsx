@@ -1,6 +1,8 @@
 import { Footer } from "../../components/FooterRegisterAndLogin/footer";
 import { NavLogin } from "../../components/NavLogin/navLogin";
-import { ErrorMsg } from "./style";
+import { ErrorMsg, LoginBackGround, LoginConteiner } from "../../pages/login/style";
+
+
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -10,7 +12,6 @@ import {
   iUserLogin,
 } from "../../contexts/UserContext/UserContext";
 import { useContext, useState, useEffect } from "react";
-import { LoginBackGround, LoginConteiner } from "../../pages/login/style";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import { SyncLoader } from "react-spinners";
@@ -103,7 +104,6 @@ export const Login = () => {
                   : () => setErrorLogin(false)
               }
             />
-
             {errorApi ? <ErrorMsg>Senha ou email incorretos</ErrorMsg> : <></>}
             <button type="submit">
               {spinner ? <SyncLoader color="#FFFFFF" size={8} /> : "Entrar"}

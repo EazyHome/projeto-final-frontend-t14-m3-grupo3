@@ -23,7 +23,7 @@ export function Register() {
           </div>
           <div onClick={() => setShowProviderModal(true)}>
             <img src={imgProviderRegister} alt="Cadastro do fornecedor" />
-            <p>Cadastro de fornecedor</p>
+            <p>Cadastro de fornecedor</p>/
           </div>
         </RegisterButtonsCoteiner>
 

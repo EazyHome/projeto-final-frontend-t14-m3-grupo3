@@ -6,7 +6,8 @@ import {
   SectionDashboardClientTop,
   Services,
   TextSectionTop,
-} from "../client/style";
+} from "../../dashboard/client/style";
+
 import eletricista from "../../../assets/img/eletricista.png";
 import encanador from "../../../assets/img/encanador.png";
 import gas from "../../../assets/img/gás.png";
