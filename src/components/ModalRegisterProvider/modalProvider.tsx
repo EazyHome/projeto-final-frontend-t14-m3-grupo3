@@ -1,4 +1,3 @@
-import { BackGroundForm } from "../BackgroundModal/style";
 import { Form, FormConteiner } from "../Form/style";
 import { SelectConteiner } from "./style";
 import * as yup from "yup";
@@ -77,6 +76,10 @@ export function ModalProvidertRegister({
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
         "Mínimo de oito caracteres, pelo menos uma letra, um número e um símbolo"
       ),
+    confirmPassword: yup
+      .string()
+      .required("Campo Obrigatório")
+      .oneOf([yup.ref("password")], "Senha não confere"),
     name: yup.string().required("Nome obrigatorio"),
     state: yup.string().required("Estado obrigatorio"),
     workOnCities: yup.string().required("Cidade obrigatoria"),
@@ -94,6 +97,7 @@ export function ModalProvidertRegister({
   });
 
   const onSubmitFuntion: SubmitHandler<iUserServiceRegister> = (data) => {
+    delete data.confirmPassword;
     data = {
       ...data,
       ratings: [],
@@ -107,102 +111,73 @@ export function ModalProvidertRegister({
 
   return (
     <FormConteiner>
-      <BackGroundForm>
-        <p>Cadastro provedor</p>
+      <p>Cadastro provedor</p>
 
-        <div
-          onClick={() => {
-            setShowButtonContainer(true);
-            setShowProviderModal(false);
-          }}
-        >
-          <img src={img} alt="" />
-        </div>
-        <Form onSubmit={handleSubmit(onSubmitFuntion)}>
-          <TextField
-            label="E-mail"
-            variant="outlined"
-            type="email"
-            placeholder="Digite seu email"
-            {...register("email")}
-            helperText={(errors.email as any)?.message}
-          />
-          <TextField
-            label="Senha"
-            variant="outlined"
-            type="password"
-            placeholder="Digite sua senha"
-            {...register("password")}
-            helperText={(errors.password as any)?.message}
-          />
-          <TextField
-            label="Nome"
-            variant="outlined"
-            type="text"
-            placeholder="Digite seu nome"
-            {...register("name")}
-            helperText={(errors.name as any)?.message}
-          />
-          <TextField
-            label="Idade"
-            variant="outlined"
-            type="number"
-            placeholder="Digite sua idade"
-            {...register("age")}
-            helperText={(errors.age as any)?.message}
-          />
-          <TextField
-            label="Telefone"
-            variant="outlined"
-            type="text"
-            placeholder="Digite seu número"
-            {...register("phone")}
-            helperText={(errors.phone as any)?.message}
-          />
-          <SelectConteiner>
-            <div>
-              <div className="selectWidth50">
-                <span>Estado</span>
-                <Select
-                  label="Estado"
-                  {...register("state")}
-                  onChange={selectState}
-                >
-                  {statesList.map((e) => {
-                    return (
-                      <MenuItem key={e.id} value={e.id}>
-                        {e.sigla}
-                      </MenuItem>
-                    );
-                  })}
-                </Select>
-                <FormHelperText>
-                  {(errors.state as any)?.message}
-                </FormHelperText>
-              </div>
-              <div className="selectWidth50">
-                <span>Serviço</span>
-                <Select label="Categoria" {...register("workOnCategories")}>
-                  {servicesCategories.map((e) => {
-                    return (
-                      <MenuItem key={e} value={e}>
-                        {e}
-                      </MenuItem>
-                    );
-                  })}
-                </Select>
-                <FormHelperText>
-                  {(errors.workOnCategories as any)?.message}
-                </FormHelperText>
-              </div>
-            </div>
-            <span>Cidade</span>
-            <div className="selectWidth100">
+      <div
+        onClick={() => {
+          setShowButtonContainer(true);
+          setShowProviderModal(false);
+        }}
+      >
+        <img src={img} alt="" />
+      </div>
+      <Form onSubmit={handleSubmit(onSubmitFuntion)}>
+        <TextField
+          label="E-mail"
+          variant="outlined"
+          type="email"
+          placeholder="Digite seu email"
+          {...register("email")}
+          helperText={(errors.email as any)?.message}
+        />
+        <TextField
+          label="Senha"
+          variant="outlined"
+          type="password"
+          placeholder="Digite sua senha"
+          {...register("password")}
+          helperText={(errors.password as any)?.message}
+        />
+        <TextField
+          label="Confirmar Senha"
+          variant="outlined"
+          type="password"
+          placeholder="Digite sua senha"
+          {...register("confirmPassword")}
+          helperText={(errors.confirmPassword as any)?.message}
+        />
+        <TextField
+          label="Nome"
+          variant="outlined"
+          type="text"
+          placeholder="Digite seu nome"
+          {...register("name")}
+          helperText={(errors.name as any)?.message}
+        />
+        <TextField
+          label="Idade"
+          variant="outlined"
+          type="number"
+          placeholder="Digite sua idade"
+          {...register("age")}
+          helperText={(errors.age as any)?.message}
+        />
+        <TextField
+          label="Telefone"
+          variant="outlined"
+          type="text"
+          placeholder="Digite seu número"
+          {...register("phone")}
+          helperText={(errors.phone as any)?.message}
+        />
+        <SelectConteiner>
+          <div>
+            <div className="selectWidth50">
+              <span>Estado</span>
               <Select
-                sx={{ width: "100%" }}
-                label="Cidade"
-                disabled={disable}
-                {...register("workOnCities")}
+                label="Estado"
+                {...register("state")}
+                onChange={selectState}
               >
                 {statesList.map((e) => {
                   return (
@@ -229,10 +204,43 @@ export function ModalProvidertRegister({
                 {(errors.workOnCategories as any)?.message}
               </FormHelperText>
             </div>
-          </SelectConteiner>
-          <button type="submit">Cadastrar</button>
-        </Form>
-      </BackGroundForm>
+          </div>
+          <span>Cidade</span>
+          <div className="selectWidth100">
+            <Select
+              sx={{ width: "100%" }}
+              label="Cidade"
+              disabled={disable}
+              {...register("workOnCities")}
+            >
+              {statesList.map((e) => {
+                return (
+                  <MenuItem key={e.id} value={e.id}>
+                    {e.sigla}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+            <FormHelperText>{(errors.state as any)?.message}</FormHelperText>
+          </div>
+          <div className="selectWidth50">
+            <span>Serviço</span>
+            <Select label="Categoria" {...register("workOnCategories")}>
+              {servicesCategories.map((e) => {
+                return (
+                  <MenuItem key={e} value={e}>
+                    {e}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+            <FormHelperText>
+              {(errors.workOnCategories as any)?.message}
+            </FormHelperText>
+          </div>
+        </SelectConteiner>
+        <button type="submit">Cadastrar</button>
+      </Form>
     </FormConteiner>
   );
 }

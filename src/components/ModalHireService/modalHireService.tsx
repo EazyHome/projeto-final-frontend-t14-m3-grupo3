@@ -1,9 +1,7 @@
 import * as yup from "yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Form, FormConteiner } from "../Form/style";
-import { BackGroundForm } from "../BackgroundModal/style";
-
+import { Form } from "../Form/style";
 import {
   CloseModalDiv,
   HireButton,

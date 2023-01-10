@@ -2,8 +2,8 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Dashboard } from "../pages/Dashboard/dashboard";
 import { HomePage } from "../pages/Homepage/homepage";
-import { Login } from "../pages/Login/login";
-import { NotFound } from "../pages/NotFound/notFound";
+import { Login } from "../pages/login/login";
+import { NotFound } from "../pages/notFound/notFound";
 import { Register } from "../pages/Register/register";
 import { DashboardClient } from "../pages/Dashboard/client/dashboardclient";
 
