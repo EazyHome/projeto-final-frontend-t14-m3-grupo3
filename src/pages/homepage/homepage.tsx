@@ -30,10 +30,8 @@ import {
   ListComments,
   Services,
   ServicesList,
-} from "../homepage/style";
-import { ClientProvidersFeedList } from "../../components/ClientProvidersFeedList/clientProvidersFeedList";
-import { Footer } from "../../components/Footer/Footer";
-
+} from "../Homepage/style";
+import { Footer } from "../../components/Footer/footer";
 
 export function HomePage() {
   return (
