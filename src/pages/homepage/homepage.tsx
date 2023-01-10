@@ -31,9 +31,7 @@ import {
   Services,
   ServicesList,
 } from "../Homepage/style";
-import { ClientProvidersFeedList } from "../../components/ClientProvidersFeedList/clientProvidersFeedList";
 import { Footer } from "../../components/Footer/footer";
-import moment from "moment";
 
 export function HomePage() {
   const getDate = () => {
@@ -137,6 +135,7 @@ export function HomePage() {
       </BodyHome>
 
       <Footer id="footer" />
+      <ClientHiredProvidersFeedList />
     </>
   );
 }

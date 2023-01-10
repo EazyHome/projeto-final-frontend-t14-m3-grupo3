@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const DivFooter = styled.div`
-  padding: 20px;
+  padding: 10px;
   background-color: var(--color-primary);
   display: flex;
   align-items: flex-start;
@@ -11,6 +11,12 @@ export const DivFooter = styled.div`
   gap: 10px;
   padding-left: 8%;
   padding-right: 8%;
+  /* position: absolute;
+  bottom: -85px; */
+
+  @media (min-width: 700px) {
+    bottom: -100px;
+  }
 `;
 
 export const DivContactsIcons = styled.div`
