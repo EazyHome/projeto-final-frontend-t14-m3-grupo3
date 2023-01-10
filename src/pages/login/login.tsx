@@ -9,7 +9,9 @@ import {
   UserContext,
   iUserLogin,
 } from "../../contexts/UserContext/UserContext";
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
+import { Button } from "../../components/Button/Button";
+import { LoginBackGround, LoginConteiner } from "../../pages/login/style";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import { SyncLoader } from "react-spinners";
@@ -102,7 +104,6 @@ export const Login = () => {
                   : () => setErrorLogin(false)
               }
             />
-
             {errorApi ? <ErrorMsg>Senha ou email incorretos</ErrorMsg> : <></>}
             <button type="submit">
               {spinner ? <SyncLoader color="#FFFFFF" size={8} /> : "Entrar"}
@@ -110,6 +111,7 @@ export const Login = () => {
           </Form>
         </LoginConteiner>
       </LoginBackGround>
+
       <Footer id="footer" />
     </>
   );

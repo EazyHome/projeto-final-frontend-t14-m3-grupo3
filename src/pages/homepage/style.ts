@@ -129,6 +129,10 @@ export const DivAboutUs = styled.div`
   @media (min-width: 700px) {
     padding-top: 40px;
     padding-bottom: 40px;
+
+    & strong {
+      color: var(--color-primary);
+    }
   }
 `;
 
@@ -262,6 +266,7 @@ export const Comments = styled.div`
   margin-top: 32px;
   display: flex;
   flex-direction: column;
+  background-color: rgba(150, 150, 180, 0.1);
 
   & > div {
     width: 100%;
@@ -284,7 +289,8 @@ export const Comments = styled.div`
 `;
 
 export const ListComments = styled.ul`
-  height: 300px;
+  min-height: 300px;
+  max-height: max-content;
   min-width: 100%;
   max-width: 100%;
   margin-top: 16px;
@@ -299,6 +305,5 @@ export const ListComments = styled.ul`
     flex-direction: column;
     overflow: hidden;
     align-items: center;
-    height: 540px;
   }
 `;

@@ -6,9 +6,9 @@ export const GreenCard = styled.li`
   position: relative;
   color: var(--color-grey100);
   font-size: 18px;
+  margin-bottom: 26px;
 
   & > div {
-    height: 160px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -25,6 +25,10 @@ export const GreenCard = styled.li`
   @media (min-width: 900px) {
     margin-right: 40%;
     max-width: 500px;
+
+    & > div > p {
+      margin-top: 20px;
+    }
   }
 
   @media (min-width: 1020px) {
@@ -40,19 +44,19 @@ export const TopMark = styled.img`
     width: 37px;
     height: 37px;
     margin-left: 50px;
-    margin-bottom: -25px;
   }
 `;
+
 export const BottomMark = styled.img`
   width: 30px;
   height: 30px;
   position: absolute;
-  right: 0px;
+  right: 0;
 
   @media (min-width: 900px) {
     width: 37px;
     height: 37px;
-    right: 50px;
-    bottom: 25px;
+    right: 25px;
+    bottom: -20px;
   }
 `;

@@ -8,7 +8,6 @@ export const OrangeCard = styled.li`
   font-size: 18px;
 
   & > div {
-    height: 160px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -24,7 +23,6 @@ export const OrangeCard = styled.li`
   @media (min-width: 900px) {
     margin-left: 40%;
     max-width: 500px;
-    margin-top: -40px;
   }
 `;
 
@@ -35,18 +33,18 @@ export const TopMark = styled.img`
     width: 37px;
     height: 37px;
     margin-left: 50px;
-    margin-bottom: -25px;
   }
 `;
 export const BottomMark = styled.img`
   width: 30px;
   height: 30px;
   position: absolute;
-  right: 0px;
+  right: 0;
+
   @media (min-width: 900px) {
     width: 37px;
     height: 37px;
-    right: 50px;
-    bottom: 25px;
+    right: 25px;
+    bottom: -20px;
   }
 `;
