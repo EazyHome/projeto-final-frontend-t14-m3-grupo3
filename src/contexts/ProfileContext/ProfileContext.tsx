@@ -21,6 +21,9 @@ interface iProfileContext {
   activeServices: [] | iServices[];
   getCanceledServices: () => void;
   canceledServices: [] | iServices[];
+  providersList: [] | iUserService[];
+  getProviders: () => void;
+  hireService: (data: iServices) => void;
 }
 
 interface iServices {
@@ -33,6 +36,7 @@ interface iServices {
   userId: number;
   providerId: number;
   createdAt: string;
+  rating?: number;
 }
 
 export const ProfileContext = createContext({} as iProfileContext);
@@ -44,8 +48,9 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
     []
   );
   const [availability, setAvailability] = useState<boolean>(true);
+  const [providersList, setProvidersList] = useState<[] | iUserService[]>([]);
   const navigate = useNavigate();
-  const { userService } = useContext(UserContext);
+  const { userService, userClient } = useContext(UserContext);
 
   const isLogged = async () => {
     try {
@@ -68,7 +73,12 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const response = await api.patch(
         `/users/${localStorage.getItem("@Id:EazyHome")}`,
-        data
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
+          },
+        }
       );
     } catch (error) {
       console.log(error);
@@ -96,7 +106,12 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const response = await api.patch(
         `/users/${localStorage.getItem("@Id:EazyHome")}`,
-        !userService?.available
+        !userService?.available,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
+          },
+        }
       );
     } catch (error) {
       console.log(error);
@@ -107,12 +122,26 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
     try {
       if (localStorage.getItem("@UserType:EazyHome") === "cliente") {
         const response = await api.get(
-          `/doneServices?userId=${localStorage.getItem("@Id:EazyHome")}`
+          `/services?userId=${localStorage.getItem(
+            "@Id:EazyHome"
+          )}}&status=done`,
+          {
+            headers: {
+              Authorization: `Bearer ${"@Token:EazyHome"}`,
+            },
+          }
         );
         setDoneServices(response.data);
       } else {
         const response = await api.get(
-          `/doneServices?providerId=${localStorage.getItem("@Id:EazyHome")}`
+          `/services?userId=${localStorage.getItem(
+            "@Id:EazyHome"
+          )}}&status=done`,
+          {
+            headers: {
+              Authorization: `Bearer ${"@Token:EazyHome"}`,
+            },
+          }
         );
         setDoneServices(response.data);
       }
@@ -125,12 +154,30 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
     try {
       if (localStorage.getItem("@UserType:EazyHome") === "cliente") {
         const response = await api.get(
-          `/activeServices?userId=${localStorage.getItem("@Id:EazyHome")}`
+          `/services?userId=${localStorage.getItem(
+            "@Id:EazyHome"
+          )}&status=active`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem(
+                "@Token:EazyHome"
+              )}`,
+            },
+          }
         );
         setActiveServices(response.data);
       } else {
         const response = await api.get(
-          `/activeServices?providerId=${localStorage.getItem("@Id:EazyHome")}`
+          `/services?providerId=${localStorage.getItem(
+            "@Id:EazyHome"
+          )}&status=active`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem(
+                "@Token:EazyHome"
+              )}`,
+            },
+          }
         );
         setActiveServices(response.data);
       }
@@ -143,15 +190,65 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
     try {
       if (localStorage.getItem("@UserType:EazyHome") === "cliente") {
         const response = await api.get(
-          `/canceledServices?userId=${localStorage.getItem("@Id:EazyHome")}`
+          `/services?userId=${localStorage.getItem(
+            "@Id:EazyHome"
+          )}&status=canceled`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem(
+                "@Token:EazyHome"
+              )}`,
+            },
+          }
         );
         setCanceledServices(response.data);
       } else {
         const response = await api.get(
-          `/canceledServices?providerId=${localStorage.getItem("@Id:EazyHome")}`
+          `/canceledServices?providerId=${localStorage.getItem(
+            "@Id:EazyHome"
+          )}&status=canceled`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem(
+                "@Token:EazyHome"
+              )}`,
+            },
+          }
         );
         setCanceledServices(response.data);
       }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getProviders = async () => {
+    try {
+      const response = await api.get(`/users?type=prestador`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
+        },
+      });
+      if (userClient !== null) {
+        setProvidersList(
+          response.data.filter((e: iUserService) =>
+            e.workOnCities.includes(userClient.city)
+          )
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const hireService = async (data: iServices) => {
+    try {
+      const response = await api.post(`/services`, data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
+        },
+      });
+      setActiveServices([...activeServices, response.data]);
     } catch (error) {
       console.log(error);
     }
@@ -171,6 +268,9 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         activeServices,
         getCanceledServices,
         canceledServices,
+        providersList,
+        getProviders,
+        hireService,
       }}
     >
       {children}

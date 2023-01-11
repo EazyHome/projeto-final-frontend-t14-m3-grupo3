@@ -1,8 +1,10 @@
 import { Footer } from "../../components/FooterRegisterAndLogin/footer";
 import { NavLogin } from "../../components/NavLogin/navLogin";
-import { ErrorMsg, LoginBackGround, LoginConteiner } from "../../pages/login/style";
-
-
+import {
+  ErrorMsg,
+  LoginBackGround,
+  LoginConteiner,
+} from "../../pages/login/style";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -40,6 +42,7 @@ export const Login = () => {
   useEffect(() => {
     setErrorApi(false);
     setErrorLogin(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errorLogin]);
 
   const formSchema = yup.object().shape({
@@ -99,17 +102,18 @@ export const Login = () => {
               error={!!errors.password}
               helperText={(errors.password as any)?.message}
               onKeyUp={
-                errorApi == true
+                errorApi === true
                   ? () => setErrorLogin(true)
                   : () => setErrorLogin(false)
               }
             />
             {errorApi ? <ErrorMsg>Senha ou email incorretos</ErrorMsg> : <></>}
-            <button type="submit">
+            <button type="submit" disabled={spinner}>
               {spinner ? <SyncLoader color="#FFFFFF" size={8} /> : "Entrar"}
             </button>
           </Form>
         </LoginConteiner>
+        <Footer id="footer" />
       </LoginBackGround>
       <Footer id="footer" />
     </>

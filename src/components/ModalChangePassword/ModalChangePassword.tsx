@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import React, { useState } from "react";
 import { Form } from "../Form/style";
 import * as yup from "yup";
@@ -51,8 +51,6 @@ export const ModalChangePassword = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
-    watch,
   } = useForm<IChangePasswordForm>({
     mode: "onChange",
     resolver: yupResolver(formSchema),

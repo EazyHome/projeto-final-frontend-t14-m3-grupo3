@@ -2,13 +2,12 @@ import * as yup from "yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form, FormConteiner } from "../Form/style";
-import { BackGroundForm } from "../../components/BackgroundModal/style";
 import { SelectConteiner } from "./style";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import { FormHelperText } from "@mui/material";
-
+import { FormHelperText, styled } from "@mui/material";
+import img from "./../../assets/img/btvVoltarRegister.png";
 import {
   iUserClientRegister,
   UserContext,
@@ -19,23 +18,37 @@ import { Button } from "../Button/Button";
 
 interface iModalClientRegisterProps {
   setShowClientModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowButtonContainer: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export const CssTextField = styled(TextField)({
+  "& label.Mui-focused": {
+    color: "var(--color-primary)",
+  },
+  "& .MuiFormLabel-root": {
+    color: "var(--color-opposite-1)",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      border: "2px solid var(--color-opposite-1)",
+    },
+    "&:hover fieldset": {
+      border: "2px solid var(--color-primary)",
+    },
+  },
+});
 
 export function ModalClientRegister({
   setShowClientModal,
+  setShowButtonContainer,
 }: iModalClientRegisterProps) {
   const { userClientRegister } = useContext(UserContext);
-  const {
-    disable,
-    statesList,
-    citiesList,
-    selectCity,
-    selectState,
-    getStates,
-  } = useContext(CitiesContext);
+  const { disable, statesList, citiesList, selectState, getStates } =
+    useContext(CitiesContext);
 
   useEffect(() => {
     getStates();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const formSchema = yup.object().shape({
@@ -56,22 +69,33 @@ export function ModalClientRegister({
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty, isValid },
+    formState: { errors },
   } = useForm<iUserClientRegister>({
     mode: "onChange",
     resolver: yupResolver(formSchema),
   });
 
   const onSubmitFuntion: SubmitHandler<iUserClientRegister> = (data) => {
+    data = {
+      ...data,
+      type: "cliente",
+      avatar_URL:
+        "https://i.pinimg.com/originals/4b/3e/02/4b3e0279e016cc145240de10c8a06fb6.png",
+    };
     userClientRegister(data);
   };
   return (
-    <BackGroundForm>
-      <FormConteiner>
-        <div>
-          <p>Cadastro cliente</p>
-          <button onClick={() => setShowClientModal(false)}>X</button>
+    <FormConteiner>
+        <p>Cadastro cliente</p>
+        <div
+          onClick={() => {
+            setShowButtonContainer(true);
+            setShowClientModal(false);
+          }}
+        >
+          <img src={img} alt="" />
         </div>
+
         <Form onSubmit={handleSubmit(onSubmitFuntion)}>
           <TextField
             label="E-mail"
@@ -113,32 +137,7 @@ export function ModalClientRegister({
             {...register("phone")}
             helperText={(errors.phone as any)?.message}
           />
-          {/* <input
-            type="text"
-            placeholder="Digite seu email"
-            {...register("email")}
-          />
-          <input
-            type="text"
-            placeholder="Digite sua senha"
-            {...register("password")}
-          />
-          <input
-            type="text"
-            placeholder="Digite seu nome"
-            {...register("name")}
-          />
-          <input
-            type="number"
-            placeholder="Digite sua idade"
-            {...register("age")}
-          />
-          <input
-            type="number"
-            placeholder="Digite seu numero"
-            {...register("phone")}
-          /> */}
-
+         
           <SelectConteiner>
             <div>
               <span>Estado</span>
@@ -148,9 +147,12 @@ export function ModalClientRegister({
                 {...register("state")}
                 onChange={selectState}
               >
+                <MenuItem key="0" value="0">
+                  Selecione o Estado
+                </MenuItem>
                 {statesList.map((e) => {
                   return (
-                    <MenuItem key={e.id} value={e.id}>
+                    <MenuItem key={e.id} value={e.sigla}>
                       {e.sigla}
                     </MenuItem>
                   );
@@ -165,8 +167,8 @@ export function ModalClientRegister({
                 label="Cidade"
                 disabled={disable}
                 {...register("city")}
-                onChange={selectCity}
               >
+                <MenuItem key="0" value="0"></MenuItem>
                 {citiesList.map((e) => {
                   return (
                     <MenuItem key={e.id} value={e.nome}>
@@ -178,24 +180,9 @@ export function ModalClientRegister({
               <FormHelperText>{(errors.city as any)?.message}</FormHelperText>
             </div>
           </SelectConteiner>
-
-          {/* <SelectConteiner>
-            <div>
-              <span>Estado</span>
-              <select className="stateSelect" id="" {...register("state")}>
-              </select>
-            </div>
-            <div>
-              <span>Cidade</span>
-              <select className="citySelect" id="" {...register("city")}>
-              </select>
-            </div>
-          </SelectConteiner> */}
-          {/* <option value="CE">CE</option> */}
-          {/* <option value="Fortaleza">Fortaleza</option> */}
           <Button type="submit" text="Cadastrar" />
         </Form>
       </FormConteiner>
-    </BackGroundForm>
+
   );
 }

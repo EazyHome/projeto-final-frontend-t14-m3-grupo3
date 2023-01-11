@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import {
   DashContent,
   DashNav,
@@ -7,7 +7,7 @@ import {
   Services,
   TextSectionTop,
 } from "../../dashboard/client/style";
-
+import { ContentServices,ServicesList } from "../../homepage/style";
 import eletricista from "../../../assets/img/eletricista.png";
 import encanador from "../../../assets/img/encanador.png";
 import gas from "../../../assets/img/gás.png";
@@ -20,24 +20,30 @@ import pintor from "../../../assets/img/pintor.png";
 import piscina from "../../../assets/img/piscina.png";
 import piso from "../../../assets/img/piso.png";
 import serralheiro from "../../../assets/img/serralheiro.png";
-import workers from "../../../assets/img/workers.jpeg";
+// import workers from "../../../assets/img/workers.jpeg";
 import List from "@mui/material/List";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemButton from "@mui/material/ListItemButton";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
-import { ContentServices, ServicesList } from "../../homepage/style";
 import { OrangeCard } from "../../../components/CardOrange/card";
 import { BlueCard } from "../../../components/CardBlue/card";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
 import { Footer } from "../../../components/FooterRegisterAndLogin/footer";
 import { ClientProvidersFeedList } from "../../../components/ClientProvidersFeedList/clientProvidersFeedList";
+import { ProfileContext } from "../../../contexts/ProfileContext/ProfileContext";
 
 export const DashboardClient = () => {
   const [open, setOpen] = React.useState(true);
   const [selectedOption, setSelectedOption] = React.useState("service");
   const stylesItems = { textAlign: "right", fontSize: 10 };
+  const { isLogged, getProviders } = useContext(ProfileContext);
+
+  useEffect(() => {
+    isLogged();
+    getProviders();
+  });
 
   const handleClickService = () => {
     setOpen(!open);

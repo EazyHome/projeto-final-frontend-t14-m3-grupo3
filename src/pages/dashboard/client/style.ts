@@ -120,7 +120,7 @@ export const Services = styled.div`
   padding: 12px;
   width: 80%;
 
-  .servicesCards {
+  /* .servicesCards {
     display: grid;
     grid-template-columns: 100px 100px 100px;
     grid-row-gap: 32px;
@@ -282,5 +282,5 @@ export const Services = styled.div`
       grid-template-columns: 100px 100px 100px 100px 100px 100px;
       justify-content: space-between;
     }
-  }
+  } */
 `;
