@@ -1,15 +1,10 @@
 import { HiredProviderList, NoItemsFound } from "./style";
 import { useContext, useEffect, useState } from "react";
 import { ServiceFeedCard } from "../ServiceFeedCard/serviceFeedCard";
-import defaultProvider from "../../assets/img/fornecedor.png";
 import {
   iServices,
   ProfileContext,
 } from "../../contexts/ProfileContext/ProfileContext";
-import {
-  iUserService,
-  UserContext,
-} from "../../contexts/UserContext/UserContext";
 
 interface iClientServiceFeed {
   id: number;
@@ -41,67 +36,88 @@ export const ClientHiredProvidersFeedList = () => {
     getProviders,
   } = useContext(ProfileContext);
 
+  const clientTotalServices = [
+    ...filteredHiredServices,
+    ...activeServices,
+    ...doneServices,
+    ...canceledServices,
+  ];
+
+  useEffect(() => {
+    getProviders();
+    console.log("Providers", providersList);
+  }, []);
+
   useEffect(() => {
     getActiveServices();
     getDoneServices();
     getCanceledServices();
-    getProviders();
+    console.log(activeServices);
   }, []);
 
   const getHiredServices = () => {
-    const clientId = Number(localStorage.getItem("@Id:EazyHome"));
-    const clientActiveServices = activeServices.filter(
-      (service) => service.userId === clientId
-    );
-    const clientDoneServices = activeServices.filter(
-      (service) => service.userId === clientId
-    );
-    const clientCanceledServices = activeServices.filter(
-      (service) => service.userId === clientId
-    );
+    console.log(activeServices);
+    console.log(doneServices);
+    console.log(canceledServices);
     const clientTotalServices = [
       ...filteredHiredServices,
-      clientActiveServices,
-      clientDoneServices,
-      clientCanceledServices,
+      activeServices,
+      doneServices,
+      canceledServices,
     ];
+    console.log(clientTotalServices);
     setFilteredHiredServices(clientTotalServices as iServices[]);
-  };
 
-  const isEmpty = filteredHiredServices.length;
+
+  // getHiredServices();
+  const clientTotalServices = [
+    ...activeServices.reverse(),
+    ...doneServices,
+    ...canceledServices,
+  ];
+  console.log(clientTotalServices);
+  // setFilteredHiredServices(clientTotalServices as iServices[]);
+  // const isNotEmpty = clientTotalServices.length;
+
   const typeOfCard = "hiredProvidersList";
 
   return (
     <>
-      {isEmpty ? (
+      {clientTotalServices.length > 0 ? (
         <>
           <HiredProviderList>
-            {filteredHiredServices.map((provider, index) => {
-              const currentProvider = providersList.filter(
-                (prov) => provider.providerId === prov.id
-              );
+            {clientTotalServices.map((provider, index) => {
+              console.log(index);
+              const currentProvider = providersList.filter((prov) => {
+                console.log(prov.id);
+                console.log(provider.providerId === prov.id);
+                return provider.providerId === prov.id;
+              });
+              console.log(currentProvider.length);
               return (
-                <ServiceFeedCard
-                  key={index}
-                  typeOfCard={typeOfCard}
-                  id={provider.providerId}
-                  image={currentProvider[0].avatar_URL}
-                  name={provider.name}
-                  category={provider.type}
-                  // status={provider.status}
-                  status={""}
-                  phone={currentProvider[0].phone}
-                  email={currentProvider[0].email}
-                  age={currentProvider[0].age}
-                  rating={
-                    currentProvider[0].ratings.reduce(
-                      (accumulator, value) => accumulator + value,
-                      0
-                    ) / currentProvider[0].ratings.length
-                  }
-                  date={provider.createdAt}
-                  description={provider.description}
-                />
+                currentProvider.length > 0 && (
+                  <ServiceFeedCard
+                    key={index}
+                    typeOfCard={typeOfCard}
+                    id={provider.providerId}
+                    image={currentProvider[0].avatar_URL}
+                    name={currentProvider[0].name}
+                    category={provider.type}
+                    status={provider.status}
+                    phone={currentProvider[0].phone}
+                    email={currentProvider[0].email}
+                    age={currentProvider[0].age}
+                    rating={
+                      currentProvider[0].ratings.reduce(
+                        (accumulator, value) => accumulator + value,
+                        0
+                      ) / currentProvider[0].ratings.length
+                    }
+                    date={provider.createdAt}
+                    description={provider.description}
+                  />
+                )
+
               );
             })}
           </HiredProviderList>

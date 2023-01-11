@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const HiredProviderList = styled.ul`
   max-width: 100%;
   width: 100%;
+  max-height: 70vh;
+
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -19,4 +21,5 @@ export const NoItemsFound = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 4rem;
 `;

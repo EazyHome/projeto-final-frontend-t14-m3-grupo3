@@ -6,7 +6,6 @@ export const ModalDiv = styled.div`
   min-width: 300px;
   display: flex;
   justify-content: flex-end;
-  /* align-items: flex-start; */
   padding: 1rem 0;
   padding-bottom: 1rem;
   position: relative;
@@ -84,6 +83,7 @@ export const ModalContainer = styled.div`
   max-width: 400px;
   background-color: var(--color-white);
   border-radius: 10px;
+  padding: 1rem;
   padding-bottom: 1rem;
   display: flex;
   flex-direction: column;

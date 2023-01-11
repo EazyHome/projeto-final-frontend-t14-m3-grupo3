@@ -14,14 +14,19 @@ import TextField from "@mui/material/TextField";
 import { Button } from "../Button/Button";
 import { BackGroundForm } from "../BackgroundModal/style";
 import moment from "moment";
-import { iServices } from "../../contexts/ProfileContext/ProfileContext";
+import {
+  iServices,
+  ProfileContext,
+} from "../../contexts/ProfileContext/ProfileContext";
 import api from "../../service/api";
 import { iUserClient } from "../../contexts/UserContext/UserContext";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
+
 
 interface iModalHireServiceProps {
   setShowHireServiceModal: React.Dispatch<React.SetStateAction<boolean>>;
-  id: number | undefined;
+  id: number;
   image: string;
   name: string;
   category: string;
@@ -43,7 +48,7 @@ export const ModalHireService = ({
   email,
 }: iModalHireServiceProps) => {
   const [userInfos, setUserInfos] = useState<iUserClient | null>(null);
-
+  const { hireService } = useContext(ProfileContext);
   const getInfos = async () => {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -80,22 +85,22 @@ export const ModalHireService = ({
   });
 
   const idProvider = id;
-  const idClient = localStorage.getItem("@Id:EazyHome");
+  const idClient = Number(localStorage.getItem("@Id:EazyHome"));
 
   const onSubmitFuntion: SubmitHandler<iServices> = (data) => {
     if (userInfos !== null) {
       const hireData = {
         userId: idClient,
         providerId: idProvider,
-        data,
+        description: data.description,
         type: category,
         serviceCity: userInfos.city,
         serviceState: userInfos.state,
         status: "active",
         createdAt: moment().format("DD/MM/YYYY"),
       };
-      console.log(data.description);
-      console.log(hireData);
+
+      hireService(hireData);
       setShowHireServiceModal(false);
     }
   };

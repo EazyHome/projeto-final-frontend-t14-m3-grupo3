@@ -17,7 +17,6 @@ interface iClientServiceFeed {
 }
 
 export const ClientProvidersFeedList = () => {
-
   const { category, filterProviderByCategory, filteredProviders } =
     useContext(ProfileContext);
 
@@ -43,7 +42,7 @@ export const ClientProvidersFeedList = () => {
               <ServiceFeedCard
                 key={index}
                 typeOfCard={typeOfCard}
-                id={provider.id}
+                id={Number(provider.id)}
                 image={tempImage}
                 name={provider.name}
                 category={category}

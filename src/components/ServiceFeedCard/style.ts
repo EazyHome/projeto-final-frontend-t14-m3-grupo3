@@ -8,6 +8,7 @@ export const FeedItem = styled.li<iStyledFeedProps>`
   width: 90%;
   max-width: 700px;
   min-width: 300px;
+  min-height: 300px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -49,6 +50,7 @@ export const FeedItem = styled.li<iStyledFeedProps>`
 
   @media (min-width: 500px) {
     min-width: 400px;
+    min-height: 240px;
   }
 
   @media (min-width: 800px) {
@@ -96,7 +98,7 @@ export const FeedItemHeader = styled.div<iStyledFeedProps>`
   font-weight: 500;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  /* align-items: flex-start; */
   border-bottom: 1px solid var(--color-grey20);
   background-color: transparent;
 
@@ -143,15 +145,34 @@ export const FeedRating = styled.div`
 export const FeedItemTitle = styled.div`
   font-weight: 700;
   display: flex;
+  max-width: 60%;
   justify-content: space-between;
   flex-direction: column;
   align-items: flex-start;
   padding: 0.5rem 0;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   gap: 0.5rem;
 
   @media (min-width: 700px) {
     flex-direction: row;
+    margin-top: 0;
+  }
+`;
+
+export const FeedItemDetails = styled.div`
+  font-weight: 700;
+  display: flex;
+  max-width: 75%;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+
+  & > div {
+    max-width: 100%;
+    font-weight: 400;
+  }
+  @media (min-width: 700px) {
     margin-top: 0;
   }
 `;
