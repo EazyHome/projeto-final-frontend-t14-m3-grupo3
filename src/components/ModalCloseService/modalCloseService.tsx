@@ -15,6 +15,7 @@ import {
 import TextField from "@mui/material/TextField";
 import { Button } from "../Button/Button";
 import { useState } from "react";
+import { iServices } from "../../contexts/ProfileContext/ProfileContext";
 
 interface iModalHireServiceProps {
   setShowCloseOrCancelServiceModal: React.Dispatch<
@@ -47,16 +48,18 @@ export const ModalCloseService = ({
   description,
   status,
 }: iModalHireServiceProps) => {
+  const closeService = () => {};
+
   const hireFormSchema = yup.object().shape({
     description: yup
       .string()
-      .max(200, "A descrição ter no máximo 255 caracteres."),
+      .max(200, "A descrição deve ter no máximo 255 caracteres."),
   });
   const {
     register,
     handleSubmit,
     formState: { errors, isDirty, isValid },
-  } = useForm<iUserDescription>({
+  } = useForm<iServices>({
     mode: "onChange",
     resolver: yupResolver(hireFormSchema),
   });
@@ -66,7 +69,7 @@ export const ModalCloseService = ({
   const idProvider = id;
   const idClient = localStorage.getItem("@Id:EazyHome");
 
-  const onSubmitFuntion: SubmitHandler<iUserDescription> = (data) => {
+  const onSubmitFuntion: SubmitHandler<iServices> = (data) => {
     const { description } = data;
     const hireData = {
       idClient,

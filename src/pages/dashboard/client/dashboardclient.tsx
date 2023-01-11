@@ -47,7 +47,7 @@ import { BlueCard } from "../../../components/CardBlue/card";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
 import { Footer } from "../../../components/FooterRegisterAndLogin/footer";
 import { ProfileContext } from "../../../contexts/ProfileContext/ProfileContext";
-import { ContentServices, ServicesList } from "../../homepage/style";
+import { ContentServices, ServicesList } from "../../Homepage/style";
 import { CitiesContext } from "../../../contexts/CitiesContext/CitiesContext";
 import { ClientProvidersFeedList } from "../../../components/ClientProvidersFeedList/clientProvidersFeedList";
 import TextField from "@mui/material/TextField";
@@ -174,7 +174,7 @@ export const DashboardClient = () => {
         <DashNav>
           <List component="ul" disablePadding sx={stylesItems}>
             <ListItemButton onClick={handleClickService}>
-              <ListItemText primary="SERVICES" />
+              <ListItemText primary="SERVIÇOS" />
               {open ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>
@@ -183,9 +183,9 @@ export const DashboardClient = () => {
                   return (
                     <ListItemButton
                       key={index}
-                      defaultValue={e.value}
+                      defaultValue={e.name}
                       sx={{ pl: 4 }}
-                      onClick={() => setCategory(e.value)}
+                      onClick={() => setCategory(e.name)}
                     >
                       <ListItemText primary={e.name} className="NavSubItem" />
                     </ListItemButton>
@@ -244,14 +244,14 @@ export const DashboardClient = () => {
                   return !result ? (
                     <OrangeCard
                       img={pintor}
-                      type={service.value}
-                      onClick={() => setCategory(service.value)}
+                      type={service.name}
+                      onClick={() => setCategory(service.name)}
                     />
                   ) : (
                     <BlueCard
                       img={pedreiro}
-                      type={service.value}
-                      onClick={() => setCategory(service.value)}
+                      type={service.name}
+                      onClick={() => setCategory(service.name)}
                     />
                   );
                 })}

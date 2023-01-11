@@ -1,13 +1,9 @@
 import React from "react";
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 import api from "../../service/api";
 import { useNavigate } from "react-router-dom";
 import { iDefaultPropsProvider } from "../types";
-import {
-  iUserClient,
-  iUserService,
-  UserContext,
-} from "../UserContext/UserContext";
+import { iUserClient, iUserService } from "../UserContext/UserContext";
 
 interface iProfileContext {
   isLogged: () => void;
@@ -28,16 +24,18 @@ interface iProfileContext {
   setCategory: React.Dispatch<React.SetStateAction<string>>;
   filterProviderByCategory: () => void;
   filteredProviders: [] | iUserService[];
+  editPassword: (data: string) => void;
 }
 
 export interface iServices {
-  id: number;
+  id?: number;
   name: string;
   type: string;
   description: string;
   serviceCity: string;
   serviceState: string;
   userId: number;
+  status: string;
   providerId: number;
   createdAt: string;
   rating?: number;
@@ -58,7 +56,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
     [] | iUserService[]
   >([]);
   const navigate = useNavigate();
-  const { userService, userClient } = useContext(UserContext);
+  const userCity = localStorage.getItem("@UserCity:EazyHome");
 
   const isLogged = async () => {
     try {
@@ -93,6 +91,23 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
     }
   };
 
+  const editPassword = async (data: string) => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const response = await api.patch(
+        `/users/${localStorage.getItem("@Id:EazyHome")}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const getAvailability = async () => {
     try {
       const response = await api.get(
@@ -103,18 +118,25 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
           },
         }
       );
-      setAvailability(response.data.user.available);
+      setAvailability(response.data.available);
     } catch (error) {
       console.log(error);
     }
   };
 
   const changeAvailability = async () => {
+    const availability = await api
+      .get(`users/${localStorage.getItem("@Id:EazyHome")}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
+        },
+      })
+      .then((availability) => availability.data.available);
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const response = await api.patch(
         `/users/${localStorage.getItem("@Id:EazyHome")}`,
-        !userService?.available,
+        !availability,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
@@ -237,10 +259,10 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
           Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
         },
       });
-      if (userClient !== null) {
+      if (localStorage.getItem("@UserCity:EazyHome") !== null) {
         setProvidersList(
           response.data.filter((e: iUserService) =>
-            e.workOnCities.includes(userClient.city)
+            e.workOnCities.includes(userCity as string)
           )
         );
       }
@@ -289,6 +311,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         setCategory,
         filterProviderByCategory,
         filteredProviders,
+        editPassword,
       }}
     >
       {children}

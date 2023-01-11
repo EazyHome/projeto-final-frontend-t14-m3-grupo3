@@ -31,7 +31,7 @@ import {
   ListComments,
   Services,
   ServicesList,
-} from "../homepage/style";
+} from "../Homepage/style";
 
 export function HomePage() {
   return (
