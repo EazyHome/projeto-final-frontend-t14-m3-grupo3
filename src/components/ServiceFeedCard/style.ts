@@ -96,7 +96,7 @@ export const FeedItemHeader = styled.div<iStyledFeedProps>`
   font-weight: 500;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  /* align-items: flex-start; */
   border-bottom: 1px solid var(--color-grey20);
   background-color: transparent;
 

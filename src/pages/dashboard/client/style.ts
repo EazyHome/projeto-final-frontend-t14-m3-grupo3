@@ -19,29 +19,52 @@ export const SectionDashboardClientTop = styled.div`
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
-  align-items: end;
-  justify-content: top;
-  @media (min-width: 630px) {
-    height: 570px;
+  align-items: flex-end;
+  justify-content: center;
+
+  & > div {
+    background-color: rgba(255, 102, 0, 0.2);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (min-width: 700px) {
+    height: 450px;
+
+    & > div {
+      width: 45%;
+      min-height: 100%;
+      max-height: 100%;
+    }
   }
 `;
 
 export const TextSectionTop = styled.h3`
-  margin-right: 1rem;
-  margin-top: 1rem;
-  width: 50%;
-  font-size: 16px;
+  margin: 1.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 100%;
+  font-size: 18px;
   line-height: 25px;
-
-  text-align: right;
+  text-align: center;
   font-weight: 700;
-  color: var(--color-grey100);
-  @media (min-width: 630px) {
-    width: 40%;
-    margin-right: 3rem;
-    margin-top: 3rem;
+  border: 2px solid var(--color-primary);
+  color: var(--color-white);
+  @media (min-width: 700px) {
+    width: 100%;
     font-size: 45px;
     line-height: 55px;
+    text-align: right;
+    margin: none;
+    padding-top: none;
+    padding-bottom: none;
+    padding-left: none;
+    padding-right: none;
+    border: none;
   }
 `;
 
@@ -121,7 +144,7 @@ export const Services = styled.div`
   padding: 12px;
   width: 80%;
 
-  .servicesCards {
+  /* .servicesCards {
     display: grid;
     grid-template-columns: 100px 100px 100px;
     grid-row-gap: 32px;
@@ -283,7 +306,7 @@ export const Services = styled.div`
       grid-template-columns: 100px 100px 100px 100px 100px 100px;
       justify-content: space-between;
     }
-  }
+  } */
 `;
 
 //Editar perfil Style

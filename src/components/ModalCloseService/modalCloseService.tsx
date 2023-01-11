@@ -113,9 +113,7 @@ export const ModalCloseService = ({
           <Button type="button" text="X" callback={closeModal} />
         </CloseModalDiv>
         <ModalDiv>
-          <ItemImage>
-            <img src={image} alt="foto" />
-          </ItemImage>
+          <ItemImage>{/* <img src={image} alt="foto" /> */}</ItemImage>
           <ItemBody>
             <span>{category}</span>
             <span>{`Profissional: ${name}`}</span>
