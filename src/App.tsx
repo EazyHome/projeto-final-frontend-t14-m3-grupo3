@@ -2,7 +2,7 @@ import React from "react";
 import { GlobalStyle } from "./styles/globalStyles";
 import { RoutesMain as Routes } from "./routes/routes";
 import { ThemeProvider } from "@mui/material";
-import { theme } from "./theme";
+import { theme } from "../src/theme";
 
 export function App() {
   return (

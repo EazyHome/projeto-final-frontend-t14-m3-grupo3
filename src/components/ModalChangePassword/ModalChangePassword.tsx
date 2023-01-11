@@ -4,12 +4,9 @@ import React, { useState } from "react";
 import { Form } from "../Form/style";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import { LoginConteiner } from "../../pages/login/style";
+// import { LoginConteiner } from "../../pages/login/style";
 import { BackGroudModalPassword, ModalPassword } from "./style";
-import { BackGroundForm } from "../BackgroundModal/style";
-import { LoginConteiner } from "../../pages/login/style";
-import { ModalPassword } from "./style";
-
+// import { BackGroundForm } from "../BackgroundModal/style";
 
 interface IChangePasswordForm {
   senhaAtual: string;
