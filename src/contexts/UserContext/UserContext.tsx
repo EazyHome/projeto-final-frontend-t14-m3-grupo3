@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { createContext, useState } from "react";
 import api from "../../service/api";
 import { iDefaultPropsProvider } from "../types";
 import { useNavigate } from "react-router-dom";
+import { ProfileContext } from "../ProfileContext/ProfileContext";
 
 export interface iUserClientRegister {
   email: string;
@@ -68,6 +69,7 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
   const [spinner, setSpinner] = useState(false);
   const [errorApi, setErrorApi] = useState(false);
   const navigate = useNavigate();
+  const { setCategory } = useContext(ProfileContext);
 
   const userClientRegister = async (data: iUserClientRegister) => {
     try {
@@ -76,6 +78,7 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
       localStorage.setItem("@Id:EazyHome", response.data.user.id);
       localStorage.setItem("@Token:EazyHome", response.data.accessToken);
       localStorage.setItem("@UserType:EazyHome", response.data.user.type);
+      localStorage.setItem("@UserCity:EazyHome", response.data.user.city);
       navigate("/dashboardclient");
     } catch (error) {
       console.log(error);
@@ -89,6 +92,7 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
       localStorage.setItem("@Id:EazyHome", response.data.user.id);
       localStorage.setItem("@Token:EazyHome", response.data.accessToken);
       localStorage.setItem("@UserType:EazyHome", response.data.user.type);
+      localStorage.setItem("@UserCity:EazyHome", response.data.user.city);
       navigate("/dashboardservice");
     } catch (error) {
       console.log(error);
@@ -103,6 +107,7 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
       localStorage.setItem("@Id:EazyHome", response.data.user.id);
       localStorage.setItem("@Token:EazyHome", response.data.accessToken);
       localStorage.setItem("@UserType:EazyHome", response.data.user.type);
+      localStorage.setItem("@UserCity:EazyHome", response.data.user.city);
       setSpinner(false);
       if (userService === "prestador") {
         setUserService(response.data.user);
@@ -123,6 +128,7 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
     localStorage.removeItem("@UserType:EazyHome");
     setUserClient(null);
     setUserService(null);
+    setCategory("");
   };
 
   return (

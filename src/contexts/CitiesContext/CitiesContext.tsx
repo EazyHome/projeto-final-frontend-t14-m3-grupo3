@@ -96,7 +96,7 @@ export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
     { image: eletricista, name: "Eletricista" },
     { image: encanador, name: "Encanador" },
     { image: gas, name: "Gás" },
-    { image: janelas, name: "Eletricista" },
+    { image: janelas, name: "Janelas" },
     { image: jardim, name: "Jardim" },
     { image: marceneiro, name: "Marceneiro" },
     { image: pedreiro, name: "Pedreiro" },

@@ -46,7 +46,7 @@ export const DashboardClient = () => {
   useEffect(() => {
     isLogged();
     getProviders();
-  });
+  }, []);
 
   const handleClickService = () => {
     setOpen(!open);
@@ -68,13 +68,12 @@ export const DashboardClient = () => {
         <DashNav>
           <List component="ul" disablePadding sx={stylesItems}>
             <ListItemButton onClick={handleClickService}>
-              <ListItemText primary="SERVICES" />
+              <ListItemText primary="SERVIÇOS" />
               {open ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>
               <List component="ul" disablePadding>
                 {servicesCategories.map((e, index) => {
-                  console.log(e.name);
                   return (
                     <ListItemButton
                       key={index}
@@ -136,7 +135,6 @@ export const DashboardClient = () => {
               <ServicesList>
                 {servicesCategories.map((service, index) => {
                   const result = index % 2;
-                  console.log(result);
                   return !result ? (
                     <OrangeCard
                       img={pintor}

@@ -59,8 +59,14 @@ export function ModalProvidertRegister({
   setShowButtonContainer,
 }: iModalClientRegisterProps) {
   const { userServiceRegister } = useContext(UserContext);
-  const { disable, statesList, selectState, servicesCategories, getStates } =
-    useContext(CitiesContext);
+  const {
+    disable,
+    statesList,
+    selectState,
+    servicesCategories,
+    getStates,
+    citiesList,
+  } = useContext(CitiesContext);
 
   useEffect(() => {
     getStates();
@@ -181,7 +187,7 @@ export function ModalProvidertRegister({
               >
                 {statesList.map((e) => {
                   return (
-                    <MenuItem key={e.id} value={e.id}>
+                    <MenuItem key={e.id} value={e.sigla}>
                       {e.sigla}
                     </MenuItem>
                   );
@@ -213,10 +219,10 @@ export function ModalProvidertRegister({
               disabled={disable}
               {...register("workOnCities")}
             >
-              {statesList.map((e) => {
+              {citiesList.map((e) => {
                 return (
-                  <MenuItem key={e.id} value={e.id}>
-                    {e.sigla}
+                  <MenuItem key={e.id} value={e.nome}>
+                    {e.nome}
                   </MenuItem>
                 );
               })}

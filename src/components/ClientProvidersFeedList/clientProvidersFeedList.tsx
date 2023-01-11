@@ -21,13 +21,11 @@ export const ClientProvidersFeedList = () => {
   //   [] as iClientServiceFeed[]
   // );
 
-  const { userClient } = useContext(UserContext);
   const { category, filterProviderByCategory, filteredProviders } =
     useContext(ProfileContext);
 
   useEffect(() => {
     filterProviderByCategory();
-    console.log(category, filteredProviders);
   }, [category]);
 
   // const initialProviders = [
@@ -71,6 +69,11 @@ export const ClientProvidersFeedList = () => {
   const typeOfCard = "providersList";
   const tempImage = defaultProvider;
 
+  const roundRating = (number: number) => {
+    const pow = Math.pow(10, 1);
+    return Math.round(number * pow) / pow;
+  };
+
   return (
     <>
       {isNotEmpty ? (
@@ -83,16 +86,16 @@ export const ClientProvidersFeedList = () => {
                 id={provider.id}
                 image={tempImage}
                 name={provider.name}
-                category={provider.type}
+                category={category}
                 phone={provider.phone}
                 email={provider.email}
                 age={provider.age}
-                rating={
+                rating={roundRating(
                   provider.ratings.reduce(
                     (accumulator, value) => accumulator + value,
                     0
                   ) / provider.ratings.length
-                }
+                )}
               />
             ))}
           </ProviderList>
