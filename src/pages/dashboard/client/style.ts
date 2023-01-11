@@ -285,3 +285,226 @@ export const Services = styled.div`
     }
   }
 `;
+
+//Editar perfil Style
+export const DivEditProfile = styled.div`
+  width: 100%;
+  max-width: 420px;
+  padding: 16px;
+  margin: 0 auto 18px auto;
+
+  img {
+    border: 1px solid black;
+  }
+
+  #saveChanges {
+    width: 100%;
+    height: 48px;
+    color: var(--color-white);
+    background-color: var(--color-opposite-2);
+    margin-top: 16px;
+    border: 1px solid var(--color-opposite-2);
+    border-radius: 4px;
+    margin-right: 0;
+  }
+
+  @media (min-width: 900px) {
+    width: 90%;
+    max-width: 90%;
+    margin: 0;
+    position: relative;
+
+    #saveChanges {
+      width: 145px;
+      height: 50px;
+      margin-right: 80px;
+    }
+
+    #form {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: flex-start;
+    }
+  }
+`;
+
+export const DivEditNomeEmail = styled.div`
+  .name {
+    width: 100%;
+  }
+`;
+
+export const DivEditProfileHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto 18px auto;
+  width: 100%;
+
+  @media (min-width: 1020px) {
+    img {
+      position: absolute;
+      right: 120px;
+      top: 60px;
+      width: 110px;
+      height: 120px;
+      object-fit: cover;
+    }
+  }
+`;
+
+export const WorkCities = styled.div`
+  width: 100%;
+  max-width: 420px;
+  h4 {
+    margin-top: 16px;
+  }
+  li {
+    list-style: disc;
+    margin-left: 28px;
+    margin-top: 16px;
+    font-weight: 600;
+  }
+`;
+
+export const AddCity = styled.div`
+  width: 100%;
+  max-width: 420px;
+
+  .stateSelect {
+    width: 90px;
+  }
+
+  & button {
+    width: 180px;
+    height: 55px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: 1px solid var(--color-primary);
+    border-radius: 4px;
+    padding: 0 8px;
+    margin-top: 10px;
+  }
+
+  @media (min-width: 1000px) {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  & button {
+    margin-right: 80px;
+  }
+`;
+
+export const CoverLabelStateSpan = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const StateAndButton = styled.div`
+  justify-content: space-between;
+
+  #DivLocal {
+    margin: 16px 0;
+    width: 100%;
+    display: flex;
+    gap: 16px;
+  }
+
+  @media (min-width: 1000px) {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+
+    max-width: 100%;
+  }
+`;
+
+export const SelectCity = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .citySelect {
+    width: 100%;
+  }
+
+  @media (min-width: 1000px) {
+    max-width: 860px;
+    width: 100%;
+  }
+`;
+
+export const Categories = styled.div`
+  width: 100%;
+  max-width: 420px;
+  h4 {
+    margin-top: 16px;
+  }
+  li {
+    list-style: disc;
+    margin-left: 28px;
+    margin-top: 16px;
+    font-weight: 600;
+  }
+
+  button {
+    width: 60%;
+  }
+
+  @media (min-width: 1000px) {
+    max-width: 100%;
+  }
+`;
+
+export const SelectCategory = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 16px 0;
+`;
+
+export const Age = styled.div`
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .age {
+    width: 100px;
+  }
+`;
+
+export const DivPhone = styled.div`
+  margin-top: 16px;
+`;
+
+export const FormEdit = styled.form`
+  .name,
+  .email {
+    margin-bottom: 16px;
+    width: 70%;
+  }
+`;
+
+export const DivCoverCategory = styled.div`
+  @media (min-width: 1000px) {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    .Category {
+      width: 420px;
+    }
+    & button {
+      margin-top: 16px;
+      width: 180px;
+    }
+  }
+`;
+
+export const CoverAgePhone = styled.div`
+  @media (min-width: 1000px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+`;
