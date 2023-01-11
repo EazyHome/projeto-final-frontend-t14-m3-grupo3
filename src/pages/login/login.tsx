@@ -1,5 +1,10 @@
 import { Footer } from "../../components/FooterRegisterAndLogin/footer";
 import { NavLogin } from "../../components/NavLogin/navLogin";
+import {
+  ErrorMsg,
+  LoginBackGround,
+  LoginConteiner,
+} from "../../pages/login/style";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -8,12 +13,10 @@ import {
   UserContext,
   iUserLogin,
 } from "../../contexts/UserContext/UserContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import { SyncLoader } from "react-spinners";
-// import { ErrorMsg, LoginBackGround, LoginConteiner } from "./style";
-import { ErrorMsg, LoginBackGround, LoginConteiner } from "../login/style";
 
 export const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -92,7 +95,7 @@ export const Login = () => {
               label="Senha"
               variant="outlined"
               type="password"
-              placeholder="Digite sua senha"
+              placeholder="Digite sua senha..."
               {...register("password")}
               error={!!errors.password}
               helperText={(errors.password as any)?.message}
@@ -103,14 +106,13 @@ export const Login = () => {
               }
             />
             {errorApi ? <ErrorMsg>Senha ou email incorretos</ErrorMsg> : <></>}
-            <button type="submit">
+            <button type="submit" disabled={spinner}>
               {spinner ? <SyncLoader color="#FFFFFF" size={8} /> : "Entrar"}
             </button>
           </Form>
         </LoginConteiner>
         <Footer id="footer" />
       </LoginBackGround>
-      <Footer id="footer" />
     </>
   );
 };

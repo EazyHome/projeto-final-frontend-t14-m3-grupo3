@@ -72,20 +72,27 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
   const { setCategory } = useContext(ProfileContext);
 
   const userClientRegister = async (data: iUserClientRegister) => {
+    setSpinner(true);
     try {
       const response = await api.post("/register", data);
       setUserClient(response.data.user);
       localStorage.setItem("@Id:EazyHome", response.data.user.id);
       localStorage.setItem("@Token:EazyHome", response.data.accessToken);
       localStorage.setItem("@UserType:EazyHome", response.data.user.type);
+
+      setSpinner(false);
+
       localStorage.setItem("@UserCity:EazyHome", response.data.user.city);
+
       navigate("/dashboardclient");
     } catch (error) {
-      console.log(error);
+      setSpinner(false);
+      setErrorApi(true);
     }
   };
 
   const userServiceRegister = async (data: iUserServiceRegister) => {
+    setSpinner(true);
     try {
       const response = await api.post("/register", data);
       setUserService(response.data.user);
@@ -94,8 +101,10 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
       localStorage.setItem("@UserType:EazyHome", response.data.user.type);
       localStorage.setItem("@UserCity:EazyHome", response.data.user.city);
       navigate("/dashboardservice");
+      setSpinner(false);
     } catch (error) {
-      console.log(error);
+      setSpinner(false);
+      setErrorApi(true);
     }
   };
 
