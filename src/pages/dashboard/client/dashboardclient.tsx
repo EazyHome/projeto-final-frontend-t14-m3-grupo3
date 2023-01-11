@@ -46,7 +46,7 @@ export const DashboardClient = () => {
   useEffect(() => {
     isLogged();
     getProviders();
-  });
+  }, []);
 
   const handleClickService = () => {
     setOpen(!open);
@@ -74,7 +74,6 @@ export const DashboardClient = () => {
             <Collapse in={open} timeout="auto" unmountOnExit>
               <List component="ul" disablePadding>
                 {servicesCategories.map((e, index) => {
-                  console.log(e.value);
                   return (
                     <ListItemButton
                       key={index}

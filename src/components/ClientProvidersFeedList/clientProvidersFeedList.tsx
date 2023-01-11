@@ -17,11 +17,6 @@ interface iClientServiceFeed {
 }
 
 export const ClientProvidersFeedList = () => {
-  // const [filteredProviders, setFilteredProviders] = useState(
-  //   [] as iClientServiceFeed[]
-  // );
-
-  const { userClient } = useContext(UserContext);
   const { category, filterProviderByCategory, filteredProviders } =
     useContext(ProfileContext);
 
@@ -29,43 +24,6 @@ export const ClientProvidersFeedList = () => {
     filterProviderByCategory();
     console.log(category, filteredProviders);
   }, [category]);
-
-  // const initialProviders = [
-  //   {
-  //     id: 1,
-  //     image: defaultProvider,
-  //     name: "Fornecedor 1",
-  //     category: "MARCENEIRO",
-  //     phone: "(11) 99999.9999",
-  //     email: "fornecedor1@mail.com",
-  //     age: 30,
-  //     rating: 2,
-  //   },
-  //   {
-  //     id: 2,
-  //     image: defaultProvider,
-  //     name: "Fornecedor 2",
-  //     category: "ENCANADOR",
-  //     phone: "(11) 99999.9998",
-  //     email: "fornecedor2@mail.com",
-  //     age: 31,
-  //     rating: 5,
-  //   },
-  //   {
-  //     id: 3,
-  //     image: defaultProvider,
-  //     name: "Fornecedor 3",
-  //     category: "ENCANADOR",
-  //     phone: "(11) 99999.9997",
-  //     email: "fornecedor3@mail.com",
-  //     age: 32,
-  //     rating: 3,
-  //   },
-  // ];
-
-  // useEffect(() => {
-  //   setFilteredProviders(initialProviders);
-  // }, []);
 
   const isNotEmpty = filteredProviders.length;
   const typeOfCard = "providersList";
@@ -83,7 +41,7 @@ export const ClientProvidersFeedList = () => {
                 id={provider.id}
                 image={tempImage}
                 name={provider.name}
-                category={provider.type}
+                category={category}
                 phone={provider.phone}
                 email={provider.email}
                 age={provider.age}
