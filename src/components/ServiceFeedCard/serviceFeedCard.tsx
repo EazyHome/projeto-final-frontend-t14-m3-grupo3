@@ -15,7 +15,7 @@ import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
 
 interface iServiceFeed {
   typeOfCard: string;
-  id: number;
+  id: number | undefined;
   image: string;
   name: string;
   date?: string;

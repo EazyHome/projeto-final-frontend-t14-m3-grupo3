@@ -13,10 +13,15 @@ import {
 import TextField from "@mui/material/TextField";
 import { Button } from "../Button/Button";
 import { BackGroundForm } from "../BackgroundModal/style";
+import moment from "moment";
+import { iServices } from "../../contexts/ProfileContext/ProfileContext";
+import api from "../../service/api";
+import { iUserClient } from "../../contexts/UserContext/UserContext";
+import { useEffect, useState } from "react";
 
 interface iModalHireServiceProps {
   setShowHireServiceModal: React.Dispatch<React.SetStateAction<boolean>>;
-  id: number;
+  id: number | undefined;
   image: string;
   name: string;
   category: string;
@@ -37,16 +42,39 @@ export const ModalHireService = ({
   phone,
   email,
 }: iModalHireServiceProps) => {
+  const [userInfos, setUserInfos] = useState<iUserClient | null>(null);
+
+  const getInfos = async () => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const response = await api.get(
+        `users/${localStorage.getItem("@Id:EazyHome")}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
+          },
+        }
+      );
+      setUserInfos(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getInfos();
+  }, []);
+
   const hireFormSchema = yup.object().shape({
     description: yup
       .string()
-      .max(200, "A descrição ter no máximo 255 caracteres."),
+      .max(200, "A descrição deve ter no máximo 255 caracteres."),
   });
   const {
     register,
     handleSubmit,
     formState: { errors, isDirty, isValid },
-  } = useForm<iUserDescription>({
+  } = useForm<iServices>({
     mode: "onChange",
     resolver: yupResolver(hireFormSchema),
   });
@@ -54,16 +82,22 @@ export const ModalHireService = ({
   const idProvider = id;
   const idClient = localStorage.getItem("@Id:EazyHome");
 
-  const onSubmitFuntion: SubmitHandler<iUserDescription> = (data) => {
-    const { description } = data;
-    const hireData = {
-      idClient,
-      idProvider,
-      description,
-    };
-    console.log(data.description);
-    console.log(hireData);
-    setShowHireServiceModal(false);
+  const onSubmitFuntion: SubmitHandler<iServices> = (data) => {
+    if (userInfos !== null) {
+      const hireData = {
+        userId: idClient,
+        providerId: idProvider,
+        data,
+        type: category,
+        serviceCity: userInfos.city,
+        serviceState: userInfos.state,
+        status: "active",
+        createdAt: moment().format("DD/MM/YYYY"),
+      };
+      console.log(data.description);
+      console.log(hireData);
+      setShowHireServiceModal(false);
+    }
   };
 
   const closeHireServiceModal = () => {

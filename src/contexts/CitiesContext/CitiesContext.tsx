@@ -1,7 +1,19 @@
 import React, { useState, createContext } from "react";
-import { StatesAPI } from "../../service/StatesApi";
+import { StatesAPI } from "../../service/statesApi";
 import { iDefaultPropsProvider } from "../types";
 import { SelectChangeEvent } from "@mui/material";
+import eletricista from "../../assets/img/eletricista.png";
+import encanador from "../../assets/img/encanador.png";
+import gas from "../../assets/img/gás.png";
+import janelas from "../../assets/img/janelas.png";
+import jardim from "../../assets/img/jardineiro.png";
+import telhado from "../../assets/img/ManutencaoDeTelhado.png";
+import marceneiro from "../../assets/img/marceneiro.png";
+import pedreiro from "../../assets/img/pedreiro.png";
+import pintor from "../../assets/img/pintor.png";
+import piscina from "../../assets/img/piscina.png";
+import piso from "../../assets/img/piso.png";
+import serralheiro from "../../assets/img/serralheiro.png";
 
 interface iCitiesContext {
   getStates: () => void;
@@ -69,7 +81,7 @@ interface iCitiesList {
 }
 
 interface iCategoriesList {
-  value: string;
+  image: string;
   name: string;
 }
 
@@ -81,18 +93,18 @@ export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
   const [disable, setDisable] = useState<boolean>(true);
 
   const servicesCategories = [
-    { value: "Eletricista", name: "Eletricista" },
-    { value: "Encanador", name: "Encanador" },
-    { value: "Gás", name: "Gás" },
-    { value: "Janelas", name: "Eletricista" },
-    { value: "Jardim", name: "Jardim" },
-    { value: "Marceneiro", name: "Marceneiro" },
-    { value: "Pedreiro", name: "Pedreiro" },
-    { value: "Piso", name: "Piso" },
-    { value: "Piscina", name: "Piscina" },
-    { value: "Pintor", name: "Pintor" },
-    { value: "Serralheiro", name: "Serralheiro" },
-    { value: "Telhado", name: "Telhado" },
+    { image: eletricista, name: "Eletricista" },
+    { image: encanador, name: "Encanador" },
+    { image: gas, name: "Gás" },
+    { image: janelas, name: "Janelas" },
+    { image: jardim, name: "Jardim" },
+    { image: marceneiro, name: "Marceneiro" },
+    { image: pedreiro, name: "Pedreiro" },
+    { image: piso, name: "Piso" },
+    { image: piscina, name: "Piscina" },
+    { image: pintor, name: "Pintor" },
+    { image: serralheiro, name: "Serralheiro" },
+    { image: telhado, name: "Telhado" },
   ];
 
   const getStates = async () => {

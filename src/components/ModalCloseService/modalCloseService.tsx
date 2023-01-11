@@ -20,13 +20,17 @@ import {
 import TextField from "@mui/material/TextField";
 import { Button } from "../Button/Button";
 import { useState } from "react";
+
 import { StarRating } from "../StarRating/StarRating";
+
+import { iServices } from "../../contexts/ProfileContext/ProfileContext";
+
 
 interface iModalHireServiceProps {
   setShowCloseOrCancelServiceModal: React.Dispatch<
     React.SetStateAction<boolean>
   >;
-  id: number;
+  id: number | undefined;
   image: string;
   name: string;
   category: string;
@@ -53,6 +57,23 @@ export const ModalCloseService = ({
   description,
   status,
 }: iModalHireServiceProps) => {
+
+  const closeService = () => {};
+
+  const hireFormSchema = yup.object().shape({
+    description: yup
+      .string()
+      .max(200, "A descrição deve ter no máximo 255 caracteres."),
+  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isDirty, isValid },
+  } = useForm<iServices>({
+    mode: "onChange",
+    resolver: yupResolver(hireFormSchema),
+  });
+
   const [showRatingStars, setShowRatingStars] = useState(false);
   const [rating, setRating] = useState(0);
 
@@ -81,6 +102,7 @@ export const ModalCloseService = ({
   const handleRatingAndCloseHire = () => {
     console.log(rating);
     //closeService(id, rating)
+
   };
 
   const closeModal = () => {
