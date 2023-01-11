@@ -62,6 +62,9 @@ export const ServiceFeedCard = ({
   let serviceCategory = "";
   category && (serviceCategory = category);
 
+  let serviceImage = "";
+  image && (serviceImage = image);
+
   let serviceDate = "";
   date && (serviceDate = date);
 
@@ -130,7 +133,7 @@ export const ServiceFeedCard = ({
         <ModalHireService
           setShowHireServiceModal={setShowHireServiceModal}
           id={id}
-          image={image}
+          image={serviceImage}
           name={name}
           category={serviceCategory}
           phone={phone}
@@ -141,7 +144,7 @@ export const ServiceFeedCard = ({
         <ModalCloseService
           setShowCloseOrCancelServiceModal={setShowCloseOrCancelServiceModal}
           id={id}
-          image={image}
+          image={serviceImage}
           name={name}
           category={serviceCategory}
           phone={phone}
