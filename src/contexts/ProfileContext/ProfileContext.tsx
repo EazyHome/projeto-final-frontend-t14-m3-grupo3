@@ -262,21 +262,10 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
     }
   };
 
-  const filterProviderByCategory = async () => {
-    try {
-      const response = await api.get(`/users?type=prestador&available=true`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
-        },
-      });
-      setFilteredProviders(
-        response.data.filter((e: iUserService) =>
-          e.workOnCategories.includes(category)
-        )
-      );
-    } catch (error) {
-      console.log(error);
-    }
+  const filterProviderByCategory = () => {
+    setFilteredProviders(
+      providersList.filter((e) => e.workOnCategories.includes(category))
+    );
   };
 
   return (
