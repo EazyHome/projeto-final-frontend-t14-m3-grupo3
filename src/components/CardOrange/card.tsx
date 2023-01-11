@@ -6,10 +6,10 @@ interface iProp {
   onClick?: () => void;
 }
 
-export function OrangeCard({ img, type }: iProp) {
+export function OrangeCard({ img, type, onClick }: iProp) {
   return (
     <OrangeItem>
-      <div>
+      <div onClick={onClick}>
         <img src={img} />
       </div>
       <p>{type}</p>

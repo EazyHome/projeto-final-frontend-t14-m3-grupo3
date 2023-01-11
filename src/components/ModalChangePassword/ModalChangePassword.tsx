@@ -1,12 +1,12 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import React, { useState } from "react";
 import { Form } from "../Form/style";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import { BackGroudForm } from "../BackgroundModal/style";
 import { LoginConteiner } from "../../pages/login/style";
 import { BackGroudModalPassword, ModalPassword } from "./style";
+import { BackGroundForm } from "../BackgroundModal/style";
 
 interface IChangePasswordForm {
   senhaAtual: string;
@@ -57,8 +57,6 @@ export const ModalChangePassword = ({
     register,
     handleSubmit,
     formState: { errors },
-    reset,
-    watch,
   } = useForm<IChangePasswordForm>({
     mode: "onChange",
     resolver: yupResolver(formSchema),
@@ -70,9 +68,6 @@ export const ModalChangePassword = ({
 
   return (
     <div>
-      {/* <button onClick={() => setModalPassword(true)}>
-        Abrir modal de senha
-      </button> */}
       {modalPassword ? (
         <BackGroudModalPassword>
           <ModalPassword>

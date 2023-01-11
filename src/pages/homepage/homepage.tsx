@@ -16,6 +16,7 @@ import { OrangeCard } from "../../components/CardOrange/card";
 import { BlueCard } from "../../components/CardBlue/card";
 import { GreenComment } from "../../components/GreenComment/greenComment";
 import { OrangeComment } from "../../components/OrangeComment/orangeComment";
+import { Footer } from "../../components/Footer/Footer";
 import {
   BodyHome,
   Comments,
@@ -31,9 +32,6 @@ import {
   Services,
   ServicesList,
 } from "../homepage/style";
-import { ClientProvidersFeedList } from "../../components/ClientProvidersFeedList/clientProvidersFeedList";
-import { Footer } from "../../components/Footer/Footer";
-
 
 export function HomePage() {
   return (

@@ -2,18 +2,18 @@ import styled from "styled-components";
 
 export const FormConteiner = styled.div`
   width: 90%;
-  max-width: 400px;
+  max-width: 450px;
   background-color: var(--color-white);
   border-radius: 10px;
-  height: 680px;
+  padding: 20px 15px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   gap: 10px;
 
   & > div {
-    width: 80%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -22,6 +22,7 @@ export const FormConteiner = styled.div`
       font-size: 18px;
       font-weight: 700;
       line-height: 24px;
+      color: var(--color-primary);
     }
     & > button {
       background-color: transparent;
@@ -30,42 +31,38 @@ export const FormConteiner = styled.div`
       font-weight: 700;
       line-height: 24px;
     }
+    & > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      & > img {
+        width: 30px;
+      }
+    }
   }
 `;
 
 export const Form = styled.form`
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 18px;
 
-  & > input {
-    width: 90%;
-    min-height: 50px;
-    border-radius: 4px;
-    border: 2px solid var(--color-grey20);
-    background-color: var(--color-grey0);
-
-    &::placeholder {
-      font-size: 12px;
-      color: var(--color-black);
-      font-weight: 600;
-      padding: 6px;
-    }
-  }
   & > button {
-    margin-top: 20px;
-    width: 90%;
-    height: 50px;
+    margin-top: 5px;
+    width: 100%;
+    height: 52px;
+    font-size: 18px;
     border-radius: 4px;
-    background-color: var(--color-grey20);
+    background-color: var(--color-primary);
+    opacity: 0.9;
     border: solid transparent;
+    color: var(--color-white);
 
     &:hover {
-      transition: 0.5s;
-      background-color: var(--color-primary);
-      color: var(--color-white);
+      opacity: 1;
       border: solid transparent;
     }
   }

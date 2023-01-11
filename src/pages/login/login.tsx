@@ -1,6 +1,5 @@
 import { Footer } from "../../components/FooterRegisterAndLogin/footer";
 import { NavLogin } from "../../components/NavLogin/navLogin";
-
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -9,31 +8,57 @@ import {
   UserContext,
   iUserLogin,
 } from "../../contexts/UserContext/UserContext";
-import { useContext } from "react";
-import { Button } from "../../components/Button/Button";
-import { LoginBackGround, LoginConteiner } from "../../pages/login/style";
+import { useContext, useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
-import { FormHelperText } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { SyncLoader } from "react-spinners";
+// import { ErrorMsg, LoginBackGround, LoginConteiner } from "./style";
+import { ErrorMsg, LoginBackGround, LoginConteiner } from "../login/style";
+
+export const CssTextField = styled(TextField)({
+  "& label.Mui-focused": {
+    color: "var(--color-primary)",
+  },
+  "& .MuiFormLabel-root": {
+    color: "var(--color-opposite-1)",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      border: "2px solid var(--color-opposite-1)",
+    },
+    "&:hover fieldset": {
+      border: "2px solid var(--color-primary)",
+    },
+  },
+});
 
 export const Login = () => {
-  const { userLogin } = useContext(UserContext);
+  const [errorLogin, setErrorLogin] = useState(false);
+  const { userLogin, spinner, errorApi, setErrorApi } = useContext(UserContext);
+
+  useEffect(() => {
+    setErrorApi(false);
+    setErrorLogin(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [errorLogin]);
 
   const formSchema = yup.object().shape({
-    email: yup.string().required("Email obrigatorio").email("Email inválido"),
-    password: yup
-      .string()
-      .required("Senha obrigatoria")
-      .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-        "Mínimo de oito caracteres, pelo menos uma letra, um número e um símbolo"
-      ),
+    email: yup.string().required("Email obrigatório").email("Email inválido"),
+    password: yup.string().required("Senha obrigatória"),
+    // .matches(/(?=.*?[0-9])/, "É necessário pelo menos um número.")
+    // .matches(
+    //   /(?=.*?[#?!@$%^&*-])/,
+    //   "É necessário pelo menos um caractere especial"
+    // )
+    // .min(8, "É necessário uma senha de pelos 8 caracteres"),
   });
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty, isValid },
+    formState: { errors },
   } = useForm<iUserLogin>({
     resolver: yupResolver(formSchema),
+    mode: "onTouched",
   });
 
   const onSubmitFunction: SubmitHandler<iUserLogin> = (data) => {
@@ -41,34 +66,51 @@ export const Login = () => {
   };
 
   return (
-    <LoginBackGround>
-      <NavLogin />
-      <LoginConteiner>
-        <div>
-          <p>Login</p>
-        </div>
-        <Form onSubmit={handleSubmit(onSubmitFunction)}>
-          <TextField
-            label="E-mail"
-            variant="outlined"
-            type="email"
-            placeholder="Digite seu email"
-            {...register("email")}
-            helperText={(errors.email as any)?.message}
-          />
-          <TextField
-            label="Senha"
-            variant="outlined"
-            type="password"
-            placeholder="Digite sua senha"
-            {...register("password")}
-            helperText={(errors.password as any)?.message}
-          />
-
-          <Button text="Cadastrar" />
-        </Form>
-      </LoginConteiner>
+    <>
+      <LoginBackGround>
+        <NavLogin />
+        <LoginConteiner>
+          <div>
+            <p>Login</p>
+          </div>
+          <Form onSubmit={handleSubmit(onSubmitFunction)}>
+            <CssTextField
+              label="E-mail"
+              variant="outlined"
+              type="email"
+              placeholder="Digite seu email..."
+              {...register("email")}
+              error={!!errors.email}
+              helperText={(errors.email as any)?.message}
+              onKeyUp={
+                errorApi
+                  ? () => setErrorLogin(true)
+                  : () => setErrorLogin(false)
+              }
+            />
+            <CssTextField
+              label="Senha"
+              variant="outlined"
+              type="password"
+              placeholder="Digite sua senha"
+              {...register("password")}
+              error={!!errors.password}
+              helperText={(errors.password as any)?.message}
+              onKeyUp={
+                errorApi === true
+                  ? () => setErrorLogin(true)
+                  : () => setErrorLogin(false)
+              }
+            />
+            {errorApi ? <ErrorMsg>Senha ou email incorretos</ErrorMsg> : <></>}
+            <button type="submit">
+              {spinner ? <SyncLoader color="#FFFFFF" size={8} /> : "Entrar"}
+            </button>
+          </Form>
+        </LoginConteiner>
+        <Footer id="footer" />
+      </LoginBackGround>
       <Footer id="footer" />
-    </LoginBackGround>
+    </>
   );
 };

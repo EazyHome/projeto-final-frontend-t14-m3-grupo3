@@ -27,6 +27,11 @@ export const GlobalStyle = createGlobalStyle`
     html {
   scroll-behavior: smooth;
 }
+.MuiFormHelperText-root {
+  color: #FF6600 !important;
+}
+
+
     :root {
         --color-primary: #FF6600;
         --color-primary-20: #FF660020;

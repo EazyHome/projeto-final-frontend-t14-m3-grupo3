@@ -5,7 +5,7 @@ interface iStyledFeedProps {
 }
 
 export const FeedItem = styled.li<iStyledFeedProps>`
-  width: 50%;
+  width: 90%;
   max-width: 700px;
   min-width: 300px;
   display: flex;
@@ -13,7 +13,6 @@ export const FeedItem = styled.li<iStyledFeedProps>`
   align-items: flex-start;
   border-radius: var(--radius-1);
   padding: 1rem;
-  padding-bottom: 1rem;
   position: relative;
 
   ${({ colorOfCardFeed }) => {
@@ -48,8 +47,12 @@ export const FeedItem = styled.li<iStyledFeedProps>`
     }
   }}
 
-  @media (min-width: 700px) {
-    min-width: 500px;
+  @media (min-width: 500px) {
+    min-width: 400px;
+  }
+
+  @media (min-width: 800px) {
+    min-width: 700px;
   }
 `;
 
@@ -83,9 +86,8 @@ export const FeedItemBody = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 0 1rem 0 0;
+  padding: 0 1rem 1rem 0;
   gap: 0.5rem;
-  scroll-padding-left: 1rem;
 `;
 
 export const FeedItemHeader = styled.div<iStyledFeedProps>`
@@ -151,5 +153,39 @@ export const FeedItemTitle = styled.div`
   @media (min-width: 700px) {
     flex-direction: row;
     margin-top: 0;
+  }
+`;
+
+export const FeedCardButton = styled.div`
+  /* position: absolute;
+  bottom: 0.5rem;
+  right: 1rem; */
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  right: 1rem;
+  bottom: 0.8rem;
+
+  & > button {
+    background-color: var(--color-primary);
+    border-radius: var(--radius-1);
+    border: var(--color-primary);
+    font-size: var(--font-size-16);
+    width: fit-content;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    line-height: 16px;
+    color: var(--color-grey0);
+
+    :hover {
+      background-color: var(--color-secondary);
+      border: var(--color-secondary);
+    }
+  }
+
+  @media (min-width: 700px) {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 2rem;
   }
 `;

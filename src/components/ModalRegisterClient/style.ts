@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 export const SelectConteiner = styled.div`
-  width: 90%;
+  min-width: 90%;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 20px;
   margin-bottom: 10px;
   & > div {
     display: flex;
     flex-direction: column;
-    width: 85px;
-    height: 40px;
+    min-width: 50%;
     gap: 5px;
     & > span {
       height: 15px;
@@ -25,10 +25,10 @@ export const SelectConteiner = styled.div`
       border-radius: 6px;
     }
     .stateSelect {
-      width: 90px;
+      width: 100%;
     }
     .citySelect {
-      width: 230px;
+      width: 100%;
     }
   }
 `;

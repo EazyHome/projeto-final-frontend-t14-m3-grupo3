@@ -1,18 +1,15 @@
 import React, { useState, createContext } from "react";
 import { StatesAPI } from "../../service/statesApi";
 import { iDefaultPropsProvider } from "../types";
-import axios from "axios";
 import { SelectChangeEvent } from "@mui/material";
 
 interface iCitiesContext {
   getStates: () => void;
   statesList: [] | iStatesList[];
   citiesList: [] | iCitiesList[];
-  selectState: (e: SelectChangeEvent<HTMLSelectElement>) => void;
-  city: string;
-  selectCity: (e: SelectChangeEvent<HTMLSelectElement>) => void;
+  selectState: (e: SelectChangeEvent<string>) => void;
   disable: boolean;
-  servicesCategories: string[];
+  servicesCategories: iCategoriesList[];
 }
 
 interface iStatesList {
@@ -71,34 +68,32 @@ interface iCitiesList {
   };
 }
 
+interface iCategoriesList {
+  value: string;
+  name: string;
+}
+
 export const CitiesContext = createContext({} as iCitiesContext);
 
 export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
   const [statesList, setStatesList] = useState<[] | iStatesList[]>([]);
-  const [stateId, setStateId] = useState<number>(0);
   const [citiesList, setCitiesList] = useState<[] | iCitiesList[]>([]);
-  const [city, setCity] = useState("" as string);
   const [disable, setDisable] = useState<boolean>(true);
 
   const servicesCategories = [
-    "Eletricista",
-    "Encanador",
-    "Gás",
-    "Janelas",
-    "Jardim",
-    "Marceneiro",
-    "Pedreiro",
-    "Piso",
-    "Piscina",
-    "Pintor",
-    "Serralheiro",
-    "Telhado",
+    { value: "Eletricista", name: "Eletricista" },
+    { value: "Encanador", name: "Encanador" },
+    { value: "Gás", name: "Gás" },
+    { value: "Janelas", name: "Eletricista" },
+    { value: "Jardim", name: "Jardim" },
+    { value: "Marceneiro", name: "Marceneiro" },
+    { value: "Pedreiro", name: "Pedreiro" },
+    { value: "Piso", name: "Piso" },
+    { value: "Piscina", name: "Piscina" },
+    { value: "Pintor", name: "Pintor" },
+    { value: "Serralheiro", name: "Serralheiro" },
+    { value: "Telhado", name: "Telhado" },
   ];
-
-  const CitiesAPI = axios.create({
-    baseURL: `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${stateId}/distritos?orderBy=nome`,
-    timeout: 5000,
-  });
 
   const getStates = async () => {
     try {
@@ -109,22 +104,20 @@ export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
     }
   };
 
-  const selectState = async (e: SelectChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value);
-    setStateId(+e.target.value);
-    if (e.target.value !== "0") {
-      setDisable(false);
-      const response = await CitiesAPI.get("");
-      console.log(response.data);
-      setCitiesList(response.data);
-    } else {
-      setDisable(true);
+  const selectState = async (e: SelectChangeEvent<string>) => {
+    try {
+      if (e.target.value !== "0") {
+        setDisable(false);
+        const response = await fetch(
+          `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${e.target.value}/distritos?orderBy=nome`
+        );
+        setCitiesList(await response.json());
+      } else {
+        setDisable(true);
+      }
+    } catch (error) {
+      console.log(error);
     }
-  };
-
-  const selectCity = (e: SelectChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value);
-    setCity(e.target.value as string);
   };
 
   return (
@@ -134,8 +127,6 @@ export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
         statesList,
         citiesList,
         selectState,
-        city,
-        selectCity,
         disable,
         servicesCategories,
       }}

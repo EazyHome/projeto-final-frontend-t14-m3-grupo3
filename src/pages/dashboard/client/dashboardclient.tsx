@@ -42,11 +42,13 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
-import { ContentServices, ServicesList } from "../../homepage/style";
 import { OrangeCard } from "../../../components/CardOrange/card";
 import { BlueCard } from "../../../components/CardBlue/card";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
 import { Footer } from "../../../components/FooterRegisterAndLogin/footer";
+import { ProfileContext } from "../../../contexts/ProfileContext/ProfileContext";
+import { ContentServices, ServicesList } from "../../homepage/style";
+import { CitiesContext } from "../../../contexts/CitiesContext/CitiesContext";
 import { ClientProvidersFeedList } from "../../../components/ClientProvidersFeedList/clientProvidersFeedList";
 import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
@@ -59,18 +61,26 @@ import {
 import { Form } from "../../../components/Form/style";
 import { SelectConteiner } from "../../../components/ModalRegisterClient/style";
 import { FormHelperText, MenuItem, Select } from "@mui/material";
-import { CitiesContext } from "../../../contexts/CitiesContext/CitiesContext";
 import { Button } from "../../../components/Button/Button";
 import { ModalChangePassword } from "../../../components/ModalChangePassword/ModalChangePassword";
+import { ClientHiredProvidersFeedList } from "../../../components/ClientHiredProviders/clientHiredProviders";
 
 export const DashboardClient = () => {
   const [open, setOpen] = React.useState(true);
   const [selectedOption, setSelectedOption] = React.useState("service");
   const stylesItems = { textAlign: "right", fontSize: 10 };
+  const { isLogged, getProviders, setCategory, category } =
+    useContext(ProfileContext);
+
+  useEffect(() => {
+    isLogged();
+    getProviders();
+  });
 
   const handleClickService = () => {
     setOpen(!open);
     setSelectedOption("service");
+    setCategory("");
   };
 
   const {
@@ -136,14 +146,14 @@ export const DashboardClient = () => {
     setWorkCitiesEdit([...workCitiesEdit, cityState]);
   };
 
-  let category = "";
+  let getCategory = "";
   const getCategories = (e: any) => {
     e.preventDefault();
-    category = e.target.value;
+    getCategory = e.target.value;
   };
 
   const setCategorySubmit = () => {
-    setCategoriesEdit([...categoriesEdit, category]);
+    setCategoriesEdit([...categoriesEdit, getCategory]);
   };
 
   return (
@@ -169,7 +179,20 @@ export const DashboardClient = () => {
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>
               <List component="ul" disablePadding>
-                <ListItemButton sx={{ pl: 4 }}>
+                {servicesCategories.map((e, index) => {
+                  console.log(e.value);
+                  return (
+                    <ListItemButton
+                      key={index}
+                      defaultValue={e.value}
+                      sx={{ pl: 4 }}
+                      onClick={() => setCategory(e.value)}
+                    >
+                      <ListItemText primary={e.name} className="NavSubItem" />
+                    </ListItemButton>
+                  );
+                })}
+                {/* <ListItemButton sx={{ pl: 4 }}>
                   <ListItemText primary="ELETRICISTA" className="NavSubItem" />
                 </ListItemButton>
                 <ListItemButton sx={{ pl: 4 }}>
@@ -201,7 +224,7 @@ export const DashboardClient = () => {
                 </ListItemButton>
                 <ListItemButton sx={{ pl: 4 }}>
                   <ListItemText primary="TELHADO" className="NavSubItem" />
-                </ListItemButton>
+                </ListItemButton> */}
               </List>
             </Collapse>
             <ListItemButton onClick={() => setSelectedOption("perfil")}>
@@ -212,12 +235,29 @@ export const DashboardClient = () => {
             </ListItemButton>
           </List>
         </DashNav>
-        {selectedOption === "service" ? (
+        {selectedOption === "service" && category === "" ? (
           <Services id="services">
             <ContentServices>
               <h3>- Serviços -</h3>
               <ServicesList>
-                <OrangeCard img={pintor} type="Pintor" />
+                {servicesCategories.map((service, index) => {
+                  const result = index % 2;
+                  console.log(result);
+                  return !result ? (
+                    <OrangeCard
+                      img={pintor}
+                      type={service.value}
+                      onClick={() => setCategory(service.value)}
+                    />
+                  ) : (
+                    <BlueCard
+                      img={pedreiro}
+                      type={service.value}
+                      onClick={() => setCategory(service.value)}
+                    />
+                  );
+                })}
+                {/* <OrangeCard img={pintor} type="Pintor" onClick={setCategory()}/>
                 <BlueCard img={pedreiro} type="Pedreiro" />
                 <OrangeCard img={marceneiro} type="Marceneiro" />
                 <BlueCard img={telhado} type="Telhados" />
@@ -228,7 +268,7 @@ export const DashboardClient = () => {
                 <OrangeCard img={eletricista} type="Eletricista" />
                 <BlueCard img={piso} type="Pisos" />
                 <OrangeCard img={piscina} type="Piscinas" />
-                <BlueCard img={serralheiro} type="Serralheiro" />
+                <BlueCard img={serralheiro} type="Serralheiro" /> */}
               </ServicesList>
               <div></div>
             </ContentServices>
@@ -348,8 +388,8 @@ export const DashboardClient = () => {
                       >
                         {servicesCategories.map((e, i) => {
                           return (
-                            <MenuItem key={i} value={e}>
-                              {e}
+                            <MenuItem key={i} value={e.value}>
+                              {e.value}
                             </MenuItem>
                           );
                         })}
@@ -394,6 +434,8 @@ export const DashboardClient = () => {
               </AddCity>
             </FormEdit>
           </DivEditProfile>
+        ) : selectedOption === "contratacao" ? (
+          <ClientHiredProvidersFeedList />
         ) : (
           <ClientProvidersFeedList />
         )}
