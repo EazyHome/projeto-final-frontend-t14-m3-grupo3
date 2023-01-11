@@ -31,7 +31,7 @@ import {
   ListComments,
   Services,
   ServicesList,
-} from "../Homepage/style";
+} from "../homepage/style";
 
 export function HomePage() {
   return (
@@ -114,15 +114,15 @@ export function HomePage() {
             <ListComments>
               <GreenComment
                 text="Fui muito bem atendida, o profissional foi muito educado e fez um trabalho de qualidade. Valeu a pena, orçamento grátis e não é careiro."
-                user="Ana Paula Contratou um Pedreiro em São Paulo, SP"
+                user="Serviço de construção,Ana Paula contratou um pedreiro em São Paulo, SP"
               />
               <OrangeComment
                 text="Os profissionais são pessoas dedicadas com seus serviços. Tudo o que é pedido é feito da maneira como foi pedido. Aprovado!"
-                user="Serviço de Pintura, Bruno Freitas Contratou um Pintor em Curitiba, PR"
+                user="Serviço de Pintura, Bruno Freitas contratou um pintor em Curitiba, PR"
               />
               <GreenComment
                 text="Uma excelente profissional, pontual e acima de tudo confiável. Foi bastante educada e atenciosa com o trabalho, recomendo."
-                user="Serviço de Diarista, Renata Figueiredo Contratou uma Diarista em Rio de Janeiro, RJ"
+                user="Serviço de Diarista, Renata Figueiredo contratou uma aaiarista em Rio de Janeiro, RJ"
               />
             </ListComments>
           </Comments>

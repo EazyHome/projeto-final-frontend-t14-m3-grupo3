@@ -21,7 +21,13 @@ interface iCitiesContext {
   citiesList: [] | iCitiesList[];
   selectState: (e: SelectChangeEvent<string>) => void;
   disable: boolean;
+
+ 
+  errorApi: boolean;
+  setErrorApi: (data: boolean) => void;
+
   servicesCategories: iCategoriesList[];
+
 }
 
 interface iStatesList {
@@ -91,6 +97,7 @@ export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
   const [statesList, setStatesList] = useState<[] | iStatesList[]>([]);
   const [citiesList, setCitiesList] = useState<[] | iCitiesList[]>([]);
   const [disable, setDisable] = useState<boolean>(true);
+  const [errorApi, setErrorApi] = useState(false);
 
   const servicesCategories = [
     { image: eletricista, name: "Eletricista" },
@@ -141,6 +148,8 @@ export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
         selectState,
         disable,
         servicesCategories,
+        errorApi,
+        setErrorApi,
       }}
     >
       {children}

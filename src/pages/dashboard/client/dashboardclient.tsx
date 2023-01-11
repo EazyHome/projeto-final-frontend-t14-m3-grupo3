@@ -6,7 +6,7 @@ import {
   SectionDashboardClientTop,
   Services,
   TextSectionTop,
-  DivEditProfile,
+   DivEditProfile,
   DivEditProfileHeader,
   WorkCities,
   AddCity,
@@ -21,7 +21,8 @@ import {
   FormEdit,
   DivCoverCategory,
   CoverAgePhone,
-} from "../client/style";
+} from "../../dashboard/client/style";
+import { ContentServices,ServicesList } from "../../homepage/style";
 import eletricista from "../../../assets/img/eletricista.png";
 import encanador from "../../../assets/img/encanador.png";
 import gas from "../../../assets/img/gás.png";
@@ -47,6 +48,7 @@ import { BlueCard } from "../../../components/CardBlue/card";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
 import { Footer } from "../../../components/FooterRegisterAndLogin/footer";
 import { ProfileContext } from "../../../contexts/ProfileContext/ProfileContext";
+
 import { ContentServices, ServicesList } from "../../Homepage/style";
 import { CitiesContext } from "../../../contexts/CitiesContext/CitiesContext";
 import { ClientProvidersFeedList } from "../../../components/ClientProvidersFeedList/clientProvidersFeedList";
@@ -64,6 +66,7 @@ import { FormHelperText, MenuItem, Select } from "@mui/material";
 import { Button } from "../../../components/Button/Button";
 import { ModalChangePassword } from "../../../components/ModalChangePassword/ModalChangePassword";
 import { ClientHiredProvidersFeedList } from "../../../components/ClientHiredProviders/clientHiredProviders";
+
 
 export const DashboardClient = () => {
   const [open, setOpen] = React.useState(true);

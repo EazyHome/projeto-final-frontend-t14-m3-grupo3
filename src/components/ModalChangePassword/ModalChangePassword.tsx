@@ -7,6 +7,9 @@ import { useForm } from "react-hook-form";
 import { LoginConteiner } from "../../pages/login/style";
 import { BackGroudModalPassword, ModalPassword } from "./style";
 import { BackGroundForm } from "../BackgroundModal/style";
+import { LoginConteiner } from "../../pages/login/style";
+import { ModalPassword } from "./style";
+
 
 interface IChangePasswordForm {
   senhaAtual: string;
