@@ -25,7 +25,6 @@ import { StarRating } from "../StarRating/StarRating";
 
 import { iServices } from "../../contexts/ProfileContext/ProfileContext";
 
-
 interface iModalHireServiceProps {
   setShowCloseOrCancelServiceModal: React.Dispatch<
     React.SetStateAction<boolean>
@@ -57,7 +56,6 @@ export const ModalCloseService = ({
   description,
   status,
 }: iModalHireServiceProps) => {
-
   const closeService = () => {};
 
   const hireFormSchema = yup.object().shape({
@@ -102,7 +100,6 @@ export const ModalCloseService = ({
   const handleRatingAndCloseHire = () => {
     console.log(rating);
     //closeService(id, rating)
-
   };
 
   const closeModal = () => {
@@ -116,9 +113,7 @@ export const ModalCloseService = ({
           <Button type="button" text="X" callback={closeModal} />
         </CloseModalDiv>
         <ModalDiv>
-          <ItemImage>
-            <img src={image} alt="foto" />
-          </ItemImage>
+          <ItemImage>{/* <img src={image} alt="foto" /> */}</ItemImage>
           <ItemBody>
             <span>{category}</span>
             <span>{`Profissional: ${name}`}</span>

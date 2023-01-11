@@ -22,7 +22,7 @@ import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
 
 interface iModalHireServiceProps {
   setShowHireServiceModal: React.Dispatch<React.SetStateAction<boolean>>;
-  id: number | undefined;
+  id: number;
   image: string;
   name: string;
   category: string;

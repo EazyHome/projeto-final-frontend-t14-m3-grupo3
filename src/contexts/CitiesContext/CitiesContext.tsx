@@ -1,5 +1,5 @@
 import React, { useState, createContext } from "react";
-import { StatesAPI } from "../../service/statesApi";
+import { StatesAPI } from "../../service/StatesApi";
 import { iDefaultPropsProvider } from "../types";
 import { SelectChangeEvent } from "@mui/material";
 import eletricista from "../../assets/img/eletricista.png";
@@ -22,12 +22,10 @@ interface iCitiesContext {
   selectState: (e: SelectChangeEvent<string>) => void;
   disable: boolean;
 
- 
   errorApi: boolean;
   setErrorApi: (data: boolean) => void;
 
   servicesCategories: iCategoriesList[];
-
 }
 
 interface iStatesList {

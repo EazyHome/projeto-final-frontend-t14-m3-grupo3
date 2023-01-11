@@ -299,9 +299,8 @@ export function ModalProvidertRegister({
               >
                 {citiesList.map((e) => {
                   return (
-
-                    <MenuItem key={e.name} value={e.name}>
-                      {e.name}
+                    <MenuItem key={e.nome} value={e.nome}>
+                      {e.nome}
                     </MenuItem>
                   );
                 })}
@@ -311,7 +310,6 @@ export function ModalProvidertRegister({
               </FormHelperText>
             </FormControl>
           </DivCity>
-
         </SelectConteiner>
         <FormControl>
           <InputLabel
@@ -351,8 +349,8 @@ export function ModalProvidertRegister({
           >
             {servicesCategories.map((e) => {
               return (
-                <MenuItem key={e} value={e}>
-                  {e}
+                <MenuItem key={e.name} value={e.name}>
+                  {e.name}
                 </MenuItem>
               );
             })}
