@@ -4,9 +4,12 @@ import React, { useState } from "react";
 import { Form } from "../Form/style";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
+import { LoginConteiner } from "../../pages/login/style";
+import { BackGroudModalPassword, ModalPassword } from "./style";
 import { BackGroundForm } from "../BackgroundModal/style";
 import { LoginConteiner } from "../../pages/login/style";
 import { ModalPassword } from "./style";
+
 
 interface IChangePasswordForm {
   senhaAtual: string;
@@ -20,9 +23,15 @@ interface IData {
   confimarNovaSenha: string;
 }
 
-export const ModalChangePassword = () => {
-  const [modalPassword, setModalPassword] = useState(false);
+interface ISTATE {
+  modalPassword: boolean;
+  setModalPassword: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
+export const ModalChangePassword = ({
+  modalPassword,
+  setModalPassword,
+}: ISTATE) => {
   const formSchema = yup.object().shape({
     senhaAtual: yup
       .string()
@@ -62,11 +71,8 @@ export const ModalChangePassword = () => {
 
   return (
     <div>
-      <button onClick={() => setModalPassword(true)}>
-        Abrir modal de senha
-      </button>
       {modalPassword ? (
-        <BackGroundForm>
+        <BackGroudModalPassword>
           <ModalPassword>
             <h3>Alterar senha</h3>
             <button id="closeButton" onClick={() => setModalPassword(false)}>
@@ -100,7 +106,7 @@ export const ModalChangePassword = () => {
               <button id="changePassword">Alterar senha</button>
             </Form>
           </ModalPassword>
-        </BackGroundForm>
+        </BackGroudModalPassword>
       ) : (
         ""
       )}

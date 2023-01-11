@@ -33,7 +33,9 @@ export function NavDashboardClient() {
           <Link to="/register">LOGOUT</Link>
         </DivSideMenu>
         <DivLinksNav>
-          <button onClick={() => userLogout()}>LOGOUT</button>
+          <Link to="/login" onClick={() => userLogout()}>
+            LOGOUT
+          </Link>
         </DivLinksNav>
         <DivAvatar>
           <img src={client} alt="Cliente" />

@@ -5,7 +5,7 @@ interface iStyledFeedProps {
 }
 
 export const FeedItem = styled.li<iStyledFeedProps>`
-  width: 50%;
+  width: 90%;
   max-width: 700px;
   min-width: 300px;
   display: flex;
@@ -47,8 +47,12 @@ export const FeedItem = styled.li<iStyledFeedProps>`
     }
   }}
 
-  @media (min-width: 700px) {
-    min-width: 500px;
+  @media (min-width: 500px) {
+    min-width: 400px;
+  }
+
+  @media (min-width: 800px) {
+    min-width: 700px;
   }
 `;
 

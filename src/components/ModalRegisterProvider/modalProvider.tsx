@@ -72,7 +72,6 @@ export function ModalProvidertRegister({
     citiesList,
   } = useContext(CitiesContext);
   const [errorRegister, setErrorRegister] = useState(false);
-
   useEffect(() => {
     getStates();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -300,8 +299,9 @@ export function ModalProvidertRegister({
               >
                 {citiesList.map((e) => {
                   return (
-                    <MenuItem key={e.id} value={e.nome}>
-                      {e.nome}
+
+                    <MenuItem key={e.name} value={e.name}>
+                      {e.name}
                     </MenuItem>
                   );
                 })}
@@ -311,6 +311,7 @@ export function ModalProvidertRegister({
               </FormHelperText>
             </FormControl>
           </DivCity>
+
         </SelectConteiner>
         <FormControl>
           <InputLabel

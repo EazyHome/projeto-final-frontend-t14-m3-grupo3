@@ -8,13 +8,14 @@ import {
   FeedRating,
 } from "./style";
 import { Button } from "../Button/Button";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ModalHireService } from "../ModalHireService/modalHireService";
 import { ModalCloseService } from "../ModalCloseService/modalCloseService";
+import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
 
 interface iServiceFeed {
   typeOfCard: string;
-  id: number;
+  id: number | undefined;
   image: string;
   name: string;
   date?: string;
@@ -70,6 +71,8 @@ export const ServiceFeedCard = ({
   let serviceStatus = "";
   status && (serviceStatus = status);
 
+  console.log(serviceStatus, typeOfCard);
+
   return (
     <>
       <FeedItem colorOfCardFeed={colorOfCard}>
@@ -81,10 +84,10 @@ export const ServiceFeedCard = ({
             <span>{typeOfCard !== "serviceProvided" ? category : name}</span>
             <FeedRating>
               <span>
-                {status === "EM ANDAMENTO" && status}
-                {status === "CONCLUÍDO" && `AVALIAÇÃO: ${rating}/5`}
-                {status === "CANCELADO" && rating === -1 && "CANCELADO"}
-                {!status && `AVALIAÇÃO: ${rating}/5`}
+                {serviceStatus === "EM ANDAMENTO" && serviceStatus}
+                {serviceStatus === "CONCLUÍDO" && `AVALIAÇÃO: ${rating}/5`}
+                {serviceStatus === "CANCELADO" && rating === -1 && "CANCELADO"}
+                {!serviceStatus && `AVALIAÇÃO: ${rating}/5`}
               </span>
             </FeedRating>
           </FeedItemHeader>
@@ -101,7 +104,7 @@ export const ServiceFeedCard = ({
           <span>
             {typeOfCard === "providersList"
               ? `Idade: ${age}`
-              : status !== "CANCELADO" && `Descrição: ${description}`}
+              : serviceStatus !== "CANCELADO" && `Descrição: ${description}`}
           </span>
           <FeedCardButton>
             {typeOfCard === "providersList" ? (
@@ -110,10 +113,13 @@ export const ServiceFeedCard = ({
                 callback={() => setShowHireServiceModal(true)}
               />
             ) : (
-              <Button
-                text="Concluir"
-                callback={() => setShowCloseOrCancelServiceModal(true)}
-              />
+              typeOfCard === "hiredProvidersList" &&
+              serviceStatus === "EM ANDAMENTO" && (
+                <Button
+                  text="Concluir"
+                  callback={() => setShowCloseOrCancelServiceModal(true)}
+                />
+              )
             )}
           </FeedCardButton>
         </FeedItemBody>
