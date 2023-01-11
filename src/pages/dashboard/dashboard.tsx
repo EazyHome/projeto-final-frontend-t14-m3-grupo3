@@ -13,7 +13,7 @@ export const Dashboard = () => {
 
   return (
     <div>
-      <ModalChangePassword />
+      {/* <ModalChangePassword /> */}
       <StarRating />
     </div>
   );
