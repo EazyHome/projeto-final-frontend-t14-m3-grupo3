@@ -15,7 +15,7 @@ import { ModalCloseService } from "../ModalCloseService/modalCloseService";
 interface iServiceFeed {
   typeOfCard: string;
   id: number;
-  image: string;
+  image?: string;
   name: string;
   date?: string;
   city?: string;
@@ -68,7 +68,15 @@ export const ServiceFeedCard = ({
   description && (serviceDescription = description);
 
   let serviceStatus = "";
-  status && (serviceStatus = status);
+  if (status === "done") {
+    serviceStatus = "CONCLUÍDO";
+  } else if (status === "active") {
+    serviceStatus = "EM ANDAMENTO";
+  } else if (status === "canceled") {
+    serviceStatus = "CANCELADO";
+  } else {
+    status && (serviceStatus = status);
+  }
 
   return (
     <>

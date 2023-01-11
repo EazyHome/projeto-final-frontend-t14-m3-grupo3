@@ -33,6 +33,7 @@ interface iProfileContext {
 
 export interface iServices {
   id?: number;
+  name?: string;
   type: string;
   description: string;
   serviceCity: string;
@@ -42,6 +43,7 @@ export interface iServices {
   providerId: number;
   createdAt: string;
   rating?: number;
+  user: iUserClient;
 }
 
 interface iChangeService {
@@ -170,6 +172,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
             },
           }
         );
+        console.log("Done Cliente", response.data);
         setDoneServices(response.data);
       } else {
         const response = await api.get(
@@ -182,6 +185,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
             },
           }
         );
+        console.log("Done Prestador", response.data);
         setDoneServices(response.data);
       }
     } catch (error) {
@@ -195,7 +199,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         const response = await api.get(
           `/services?userId=${localStorage.getItem(
             "@Id:EazyHome"
-          )}&status=active`,
+          )}&status=active&_expand=user`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem(
@@ -204,12 +208,13 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
             },
           }
         );
+        console.log("Active Cliente", response.data);
         setActiveServices(response.data);
       } else {
         const response = await api.get(
           `/services?providerId=${localStorage.getItem(
             "@Id:EazyHome"
-          )}&status=active`,
+          )}&status=active&_expand=user`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem(
@@ -218,6 +223,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
             },
           }
         );
+        console.log("Active Prestador", response.data);
         setActiveServices(response.data);
       }
     } catch (error) {
@@ -231,7 +237,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         const response = await api.get(
           `/services?userId=${localStorage.getItem(
             "@Id:EazyHome"
-          )}&status=canceled`,
+          )}&status=canceled&_expand=user`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem(
@@ -240,12 +246,13 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
             },
           }
         );
+        console.log("Cancelado Cliente", response.data);
         setCanceledServices(response.data);
       } else {
         const response = await api.get(
-          `/canceledServices?providerId=${localStorage.getItem(
+          `/services?providerId=${localStorage.getItem(
             "@Id:EazyHome"
-          )}&status=canceled`,
+          )}&status=canceled&_expand=user`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem(
@@ -254,6 +261,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
             },
           }
         );
+        console.log("Cancelado Prestador", response.data);
         setCanceledServices(response.data);
       }
     } catch (error) {

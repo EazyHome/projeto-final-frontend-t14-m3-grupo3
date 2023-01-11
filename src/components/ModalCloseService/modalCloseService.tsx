@@ -30,7 +30,7 @@ interface iModalHireServiceProps {
     React.SetStateAction<boolean>
   >;
   id: number | undefined;
-  image: string;
+  image: string | undefined;
   name: string;
   category: string;
   phone: string;
