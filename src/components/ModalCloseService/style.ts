@@ -5,8 +5,9 @@ export const ModalDiv = styled.div`
   max-width: 700px;
   min-width: 300px;
   display: flex;
-  justify-content: flex-end;
-  padding: 1rem 0;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1rem;
   padding-bottom: 1rem;
   position: relative;
   margin-top: 2rem;
@@ -18,14 +19,15 @@ export const ModalDiv = styled.div`
 `;
 
 export const ItemImage = styled.div`
-  width: 4rem;
-  height: 4rem;
+  min-width: 4rem;
+  /* min-height: 4rem; */
+
   border: 1px solid var(--color-grey20);
   margin: 1rem;
   border-radius: var(--radius-1);
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  right: 0;
+  right: 0; */
 
   & > img {
     width: 100%;
@@ -34,11 +36,11 @@ export const ItemImage = styled.div`
   }
 
   @media (min-width: 700px) {
-    width: 5rem;
-    height: 5rem;
-    position: relative;
+    min-width: 5rem;
+    /* min-height: 5rem; */
+    /* position: relative;
     right: 0;
-    top: 0;
+    top: 0; */
   }
 `;
 
@@ -55,8 +57,8 @@ export const ItemBody = styled.div`
 export const CloseButtons = styled.div`
   width: 100%;
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: space-around;
+  align-items: center;
   gap: 2rem;
   padding: 0 1rem;
 
@@ -91,6 +93,10 @@ export const ModalContainer = styled.div`
   justify-content: center;
   gap: 10px;
   position: relative;
+  font-size: var(--font-size-14);
+  @media (min-width: 700px) {
+    font-size: var(--font-size-16);
+  }
 `;
 
 export const CloseModalDiv = styled.div`
@@ -105,44 +111,41 @@ export const CloseModalDiv = styled.div`
   z-index: 99;
 
   & > button {
-    background-color: var(--color-primary);
+    background-color: transparent;
     border-radius: var(--radius-1);
     border: var(--color-primary);
     font-size: var(--font-size-16);
-
     padding: 0.5rem 0.8rem;
     font-weight: 500;
     line-height: 24px;
-    color: var(--color-grey0);
+    color: var(--color-primary);
 
     :hover {
-      background-color: var(--color-tertiary);
+      background-color: var(--color-grey0);
       border: var(--color-tertiary);
     }
   }
 `;
 
 export const StatusDiv = styled.div`
-  width: 75%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   padding: 0;
   padding-bottom: 1rem;
-  margin-left: 1rem;
 
   @media (min-width: 700px) {
     min-width: 500px;
-    padding-left: 4rem;
+    padding-left: 6rem;
   }
 `;
 export const FirstLine = styled.div`
-  width: 80%;
+  min-width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
-  gap: 2rem;
+  gap: 0.8rem;
   margin-bottom: 1rem;
 
   & > div {
@@ -189,8 +192,8 @@ export const RightColumn = styled.div`
     color: var(--color-grey0);
 
     :hover {
-      background-color: var(--color-tertiary);
-      border: var(--color-secondary);
+      background-color: var(--color-opposite-2);
+      border: var(--color-opposite-2);
     }
   }
 `;

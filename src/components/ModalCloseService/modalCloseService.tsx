@@ -56,7 +56,6 @@ export const ModalCloseService = ({
   description,
   status,
 }: iModalHireServiceProps) => {
-
   const [showRatingStars, setShowRatingStars] = useState(false);
   const [rating, setRating] = useState(0);
 
@@ -86,7 +85,9 @@ export const ModalCloseService = ({
           <Button type="button" text="X" callback={closeModal} />
         </CloseModalDiv>
         <ModalDiv>
-          <ItemImage>{/* <img src={image} alt="foto" /> */}</ItemImage>
+          <ItemImage>
+            <img src={image} alt="foto" />
+          </ItemImage>
           <ItemBody>
             <span>{category}</span>
             <span>{`Profissional: ${name}`}</span>
