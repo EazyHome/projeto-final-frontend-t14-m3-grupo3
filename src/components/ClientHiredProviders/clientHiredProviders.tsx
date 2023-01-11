@@ -6,24 +6,10 @@ import {
   ProfileContext,
 } from "../../contexts/ProfileContext/ProfileContext";
 
-interface iClientServiceFeed {
-  id: number;
-  image: string;
-  name: string;
-  category: string;
-  status: string;
-  phone: string;
-  email: string;
-  age: number;
-  rating: number;
-  date: string;
-  description: string;
-}
-
 export const ClientHiredProvidersFeedList = () => {
-  const [filteredHiredServices, setFilteredHiredServices] = useState(
-    [] as iServices[]
-  );
+  // const [filteredHiredServices, setFilteredHiredServices] = useState(
+  //   [] as iServices[]
+  // );
 
   const {
     activeServices,
@@ -35,13 +21,6 @@ export const ClientHiredProvidersFeedList = () => {
     providersList,
     getProviders,
   } = useContext(ProfileContext);
-
-  const clientTotalServices = [
-    ...filteredHiredServices,
-    ...activeServices,
-    ...doneServices,
-    ...canceledServices,
-  ];
 
   useEffect(() => {
     getProviders();
@@ -55,29 +34,15 @@ export const ClientHiredProvidersFeedList = () => {
     console.log(activeServices);
   }, []);
 
-  const getHiredServices = () => {
-    console.log(activeServices);
-    console.log(doneServices);
-    console.log(canceledServices);
-    const clientTotalServices = [
-      ...filteredHiredServices,
-      activeServices,
-      doneServices,
-      canceledServices,
-    ];
-    console.log(clientTotalServices);
-    setFilteredHiredServices(clientTotalServices as iServices[]);
-
-
-  // getHiredServices();
+  const active = [...activeServices];
+  const done = [...doneServices];
+  const canceled = [...canceledServices];
   const clientTotalServices = [
-    ...activeServices.reverse(),
-    ...doneServices,
-    ...canceledServices,
+    ...active.reverse(),
+    ...done.reverse(),
+    ...canceled.reverse(),
   ];
   console.log(clientTotalServices);
-  // setFilteredHiredServices(clientTotalServices as iServices[]);
-  // const isNotEmpty = clientTotalServices.length;
 
   const typeOfCard = "hiredProvidersList";
 
@@ -117,7 +82,6 @@ export const ClientHiredProvidersFeedList = () => {
                     description={provider.description}
                   />
                 )
-
               );
             })}
           </HiredProviderList>

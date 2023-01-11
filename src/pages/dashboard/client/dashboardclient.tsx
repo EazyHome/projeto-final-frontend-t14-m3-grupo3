@@ -21,7 +21,6 @@ import {
   FormEdit,
   DivCoverCategory,
   CoverAgePhone,
-} from "../../../pages/Dashboard/client/style";
 } from "../../dashboard/client/style";
 import { ContentServices, ServicesList } from "../../homepage/style";
 import providerRegisterButtonImg from "../../../assets/img/providerRegisterButtonImg.png";
@@ -36,10 +35,8 @@ import { BlueCard } from "../../../components/CardBlue/card";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
 import { Footer } from "../../../components/Footer/Footer";
 import { ProfileContext } from "../../../contexts/ProfileContext/ProfileContext";
-import { ContentServices, ServicesList } from "../../homepage/style";
 import { CitiesContext } from "../../../contexts/CitiesContext/CitiesContext";
 import { ClientProvidersFeedList } from "../../../components/ClientProvidersFeedList/clientProvidersFeedList";
-import { ClientHiredProvidersFeedList } from "../../../components/ClientHiredProviders/clientHiredProviders";
 import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

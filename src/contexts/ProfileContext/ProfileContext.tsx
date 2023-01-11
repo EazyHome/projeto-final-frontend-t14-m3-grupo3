@@ -33,8 +33,8 @@ interface iProfileContext {
 }
 
 export interface iServices {
-  id?: number;
-  name?: string;
+  id: number;
+  name: string;
   type: string;
   description: string;
   serviceCity: string;
@@ -44,7 +44,7 @@ export interface iServices {
   providerId: number;
   createdAt: string;
   rating?: number;
-  user: iUserClient;
+  // user: iUserClient;
 }
 
 interface iChangeService {
@@ -200,7 +200,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         const response = await api.get(
           `/services?userId=${localStorage.getItem(
             "@Id:EazyHome"
-          )}&status=active&_expand=user`,
+          )}&status=active`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem(
@@ -215,7 +215,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         const response = await api.get(
           `/services?providerId=${localStorage.getItem(
             "@Id:EazyHome"
-          )}&status=active&_expand=user`,
+          )}&status=active`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem(
@@ -238,7 +238,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         const response = await api.get(
           `/services?userId=${localStorage.getItem(
             "@Id:EazyHome"
-          )}&status=canceled&_expand=user`,
+          )}&status=canceled`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem(
@@ -253,7 +253,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         const response = await api.get(
           `/services?providerId=${localStorage.getItem(
             "@Id:EazyHome"
-          )}&status=canceled&_expand=user`,
+          )}&status=canceled`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem(
