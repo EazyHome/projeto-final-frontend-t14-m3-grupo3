@@ -26,6 +26,8 @@ interface iProfileContext {
   hireService: (data: iServices) => void;
   category: string;
   setCategory: React.Dispatch<React.SetStateAction<string>>;
+  filterProviderByCategory: () => void;
+  filteredProviders: [] | iUserService[];
 }
 
 interface iServices {
@@ -52,6 +54,9 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
   const [availability, setAvailability] = useState<boolean>(true);
   const [providersList, setProvidersList] = useState<[] | iUserService[]>([]);
   const [category, setCategory] = useState<string>("");
+  const [filteredProviders, setFilteredProviders] = useState<
+    [] | iUserService[]
+  >([]);
   const navigate = useNavigate();
   const { userService, userClient } = useContext(UserContext);
 
@@ -257,6 +262,12 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
     }
   };
 
+  const filterProviderByCategory = () => {
+    setFilteredProviders(
+      providersList.filter((e) => e.workOnCategories.includes(category))
+    );
+  };
+
   return (
     <ProfileContext.Provider
       value={{
@@ -276,6 +287,8 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         hireService,
         category,
         setCategory,
+        filterProviderByCategory,
+        filteredProviders,
       }}
     >
       {children}
