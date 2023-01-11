@@ -55,13 +55,13 @@ export const ProvidedServicesFeedList = () => {
                   key={index}
                   typeOfCard={typeOfCard}
                   id={provider.id}
-                  image={provider.user.avatar_URL}
-                  name={provider.user.name}
+                  image={"provider.user.avatar_URL"}
+                  name={"provider.user.name"}
                   city={provider.serviceCity}
                   state={provider.serviceState}
                   status={provider.status}
-                  phone={provider.user.phone}
-                  email={provider.user.email}
+                  phone={"provider.user.phone"}
+                  email={"provider.user.email"}
                   rating={5}
                   date={provider.createdAt}
                   description={provider.description}
