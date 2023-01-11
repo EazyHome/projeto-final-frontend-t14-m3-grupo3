@@ -46,7 +46,7 @@ import Collapse from "@mui/material/Collapse";
 import { OrangeCard } from "../../../components/CardOrange/card";
 import { BlueCard } from "../../../components/CardBlue/card";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
-import { Footer } from "../../../components/FooterRegisterAndLogin/footer";
+import { Footer } from "../../../components/Footer/Footer";
 import { ProfileContext } from "../../../contexts/ProfileContext/ProfileContext";
 import { CitiesContext } from "../../../contexts/CitiesContext/CitiesContext";
 import { ClientProvidersFeedList } from "../../../components/ClientProvidersFeedList/clientProvidersFeedList";
@@ -164,7 +164,7 @@ export const DashboardClient = () => {
       />
       <NavDashboardClient />
 
-      <SectionDashboardClientTop>
+      <SectionDashboardClientTop id="top">
         <div>
           <TextSectionTop>
             Precisando de um profissional para manutenção residencial? O lugar é
@@ -194,39 +194,6 @@ export const DashboardClient = () => {
                     </ListItemButton>
                   );
                 })}
-                {/* <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="ELETRICISTA" className="NavSubItem" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="ENCANADOR" className="NavSubItem" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="GÁS" className="NavSubItem" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="JANELAS" className="NavSubItem" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="JARDIM" className="NavSubItem" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="PEDREIRO" className="NavSubItem" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="PISO" className="NavSubItem" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="PISCINA" className="NavSubItem" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="PINTOR" className="NavSubItem" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="SERRALHEIRO" className="NavSubItem" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="TELHADO" className="NavSubItem" />
-                </ListItemButton> */}
               </List>
             </Collapse>
             <ListItemButton onClick={() => setSelectedOption("perfil")}>
@@ -258,18 +225,6 @@ export const DashboardClient = () => {
                     />
                   );
                 })}
-                {/* <OrangeCard img={pintor} type="Pintor" onClick={setCategory()}/>
-                <BlueCard img={pedreiro} type="Pedreiro" />
-                <OrangeCard img={marceneiro} type="Marceneiro" />
-                <BlueCard img={telhado} type="Telhados" />
-                <OrangeCard img={jardim} type="Jardins" />
-                <BlueCard img={janelas} type="Janelas" />
-                <OrangeCard img={gas} type="Gás" />
-                <BlueCard img={encanador} type="Encanador" />
-                <OrangeCard img={eletricista} type="Eletricista" />
-                <BlueCard img={piso} type="Pisos" />
-                <OrangeCard img={piscina} type="Piscinas" />
-                <BlueCard img={serralheiro} type="Serralheiro" /> */}
               </ServicesList>
               <div></div>
             </ContentServices>

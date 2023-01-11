@@ -11,7 +11,8 @@ export const DashboardClientConteiner = styled.main`
 `;
 
 export const SectionDashboardClientTop = styled.div`
-  margin-top: 88px;
+  margin-top: 85px;
+  scroll-margin-top: 88px;
   width: 100%;
   height: 225px;
   background: url(${imgDashClient});
