@@ -97,7 +97,7 @@ export const Login = () => {
               label="Senha"
               variant="outlined"
               type="password"
-              placeholder="Digite sua senha"
+              placeholder="Digite sua senha..."
               {...register("password")}
               error={!!errors.password}
               helperText={(errors.password as any)?.message}
@@ -115,7 +115,6 @@ export const Login = () => {
         </LoginConteiner>
         <Footer id="footer" />
       </LoginBackGround>
-      <Footer id="footer" />
     </>
   );
 };

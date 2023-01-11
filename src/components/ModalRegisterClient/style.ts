@@ -1,34 +1,46 @@
 import styled from "styled-components";
 
 export const SelectConteiner = styled.div`
-  min-width: 90%;
+  min-width: 100%;
+  max-width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
+  justify-content: space-between;
   margin-bottom: 10px;
-  & > div {
-    display: flex;
-    flex-direction: column;
-    min-width: 50%;
-    gap: 5px;
-    & > span {
-      height: 15px;
-      font-size: 12px;
-      font-weight: 600;
-      line-height: 22px;
-    }
-    & > select {
-      border: 2px solid var(--color-grey20);
-      background-color: var(--color-grey0);
-      min-height: 35px;
-      border-radius: 6px;
-    }
-    .stateSelect {
-      width: 100%;
-    }
-    .citySelect {
-      width: 100%;
-    }
+`;
+
+export const DivTitleModal = styled.p`
+  font-size: var(--font-size-20);
+  font-weight: 600;
+  color: var(--color-primary);
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  & > button {
+    background-color: transparent;
+    border: none;
+    opacity: 0.9;
+    font-size: var(--font-size-20);
+    font-weight: 600;
+    color: var(--color-primary);
   }
+  & > button:hover {
+    opacity: 1;
+  }
+`;
+
+export const DivState = styled.div`
+  min-width: 30%;
+  max-width: 30%;
+`;
+
+export const DivCity = styled.div`
+  min-width: 60%;
+  max-width: 60%;
+`;
+
+export const ErrorMsg = styled.p`
+  color: var(--color-primary);
+  font-size: 16px;
 `;

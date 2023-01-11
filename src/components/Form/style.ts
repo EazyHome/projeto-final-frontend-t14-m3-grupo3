@@ -5,12 +5,12 @@ export const FormConteiner = styled.div`
   max-width: 450px;
   background-color: var(--color-white);
   border-radius: 10px;
-  padding: 20px 15px;
+  padding: 25px 20px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
-  gap: 10px;
+  gap: 20px;
 
   & > div {
     width: 100%;
@@ -44,7 +44,7 @@ export const FormConteiner = styled.div`
 `;
 
 export const Form = styled.form`
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
