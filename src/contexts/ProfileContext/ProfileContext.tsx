@@ -4,6 +4,7 @@ import api from "../../service/api";
 import { useNavigate } from "react-router-dom";
 import { iDefaultPropsProvider } from "../types";
 import { iUserClient, iUserService } from "../UserContext/UserContext";
+import { toast } from "react-toastify";
 
 interface iProfileContext {
   isLogged: () => void;
@@ -296,8 +297,10 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         },
       });
       setActiveServices([...activeServices, response.data]);
+      toast.success(`Contratação efetuada com sucesso!`);
     } catch (error) {
       console.log(error);
+      toast.error(`Ops! Algo deu errado`);
     }
   };
 

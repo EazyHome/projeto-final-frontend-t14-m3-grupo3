@@ -56,21 +56,6 @@ export const ModalCloseService = ({
   description,
   status,
 }: iModalHireServiceProps) => {
-  const closeService = () => {};
-
-  const hireFormSchema = yup.object().shape({
-    description: yup
-      .string()
-      .max(200, "A descrição deve ter no máximo 255 caracteres."),
-  });
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isDirty, isValid },
-  } = useForm<iServices>({
-    mode: "onChange",
-    resolver: yupResolver(hireFormSchema),
-  });
 
   const [showRatingStars, setShowRatingStars] = useState(false);
   const [rating, setRating] = useState(0);
@@ -78,26 +63,14 @@ export const ModalCloseService = ({
   const idProvider = id;
   const idClient = localStorage.getItem("@Id:EazyHome");
 
-  function formatedCurrentDate() {
-    const date = new Date(),
-      day = date.getDate().toString().padStart(2, "0"),
-      month = (date.getMonth() + 1).toString().padStart(2, "0"),
-      year = date.getFullYear();
-    return day + "/" + month + "/" + year;
-  }
-  //id do serviço
-  const handleCancelHire = () => {
-    //cancelService(id)
-    var currentDate = formatedCurrentDate();
-    console.log(currentDate);
-  };
-
-  const handleCloseHire = () => {
+  const handleCloseService = () => {
     setShowRatingStars(true);
   };
 
+  const handleCancelService = () => {};
+
   //id do serviço e o rating
-  const handleRatingAndCloseHire = () => {
+  const handleRatingAndCloseService = () => {
     console.log(rating);
     //closeService(id, rating)
   };
@@ -132,8 +105,16 @@ export const ModalCloseService = ({
         </StatusDiv>
         {!showRatingStars ? (
           <CloseButtons>
-            <Button type="button" text="Cancelar" callback={handleCancelHire} />
-            <Button type="button" text="Concluir" callback={handleCloseHire} />
+            <Button
+              type="button"
+              text="Cancelar"
+              callback={handleCancelService}
+            />
+            <Button
+              type="button"
+              text="Concluir"
+              callback={handleCloseService}
+            />
           </CloseButtons>
         ) : (
           <RatingDiv>
@@ -145,7 +126,7 @@ export const ModalCloseService = ({
               <Button
                 type="button"
                 text="Enviar"
-                callback={handleRatingAndCloseHire}
+                callback={handleRatingAndCloseService}
               />
             </RightColumn>
           </RatingDiv>

@@ -2,6 +2,7 @@ import {
   FeedCardButton,
   FeedItem,
   FeedItemBody,
+  FeedItemDetails,
   FeedItemHeader,
   FeedItemImage,
   FeedItemTitle,
@@ -68,15 +69,9 @@ export const ServiceFeedCard = ({
   description && (serviceDescription = description);
 
   let serviceStatus = "";
-  if (status === "done") {
-    serviceStatus = "CONCLUÍDO";
-  } else if (status === "active") {
-    serviceStatus = "EM ANDAMENTO";
-  } else if (status === "canceled") {
-    serviceStatus = "CANCELADO";
-  } else {
-    status && (serviceStatus = status);
-  }
+  status === "canceled" && (serviceStatus = "CANCELADO");
+  status === "active" && (serviceStatus = "EM ANDAMENTO");
+  status === "done" && (serviceStatus = "CONCLUÍDO");
 
   return (
     <>
@@ -104,13 +99,15 @@ export const ServiceFeedCard = ({
             </div>
             <div>{typeOfCard !== "providersList" && `Data: ${date}`}</div>
           </FeedItemTitle>
-          <div>{`Telefone: ${phone}`}</div>
-          <div>{`E-mail: ${email}`}</div>
-          <span>
-            {typeOfCard === "providersList"
-              ? `Idade: ${age}`
-              : serviceStatus !== "CANCELADO" && `Descrição: ${description}`}
-          </span>
+          <FeedItemDetails>
+            <div>{`Telefone: ${phone}`}</div>
+            <div>{`E-mail: ${email}`}</div>
+            <div>
+              {typeOfCard === "providersList"
+                ? `Idade: ${age}`
+                : serviceStatus !== "CANCELADO" && `Descrição: ${description}`}
+            </div>
+          </FeedItemDetails>
           <FeedCardButton>
             {typeOfCard === "providersList" ? (
               <Button

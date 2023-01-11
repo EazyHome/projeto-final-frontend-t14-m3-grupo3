@@ -38,7 +38,7 @@ export interface iUserClient {
   city: string;
   phone: string;
   type?: string;
-  id: number;
+  id?: number;
   avatar_URL: string;
 }
 

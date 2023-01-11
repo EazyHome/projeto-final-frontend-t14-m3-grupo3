@@ -14,11 +14,15 @@ import TextField from "@mui/material/TextField";
 import { Button } from "../Button/Button";
 import { BackGroundForm } from "../BackgroundModal/style";
 import moment from "moment";
-import { iServices } from "../../contexts/ProfileContext/ProfileContext";
+import {
+  iServices,
+  ProfileContext,
+} from "../../contexts/ProfileContext/ProfileContext";
 import api from "../../service/api";
 import { iUserClient } from "../../contexts/UserContext/UserContext";
 import { useContext, useEffect, useState } from "react";
 import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
+
 
 interface iModalHireServiceProps {
   setShowHireServiceModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -45,7 +49,6 @@ export const ModalHireService = ({
 }: iModalHireServiceProps) => {
   const [userInfos, setUserInfos] = useState<iUserClient | null>(null);
   const { hireService } = useContext(ProfileContext);
-
   const getInfos = async () => {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -96,6 +99,7 @@ export const ModalHireService = ({
         status: "active",
         createdAt: moment().format("DD/MM/YYYY"),
       };
+
       hireService(hireData);
       setShowHireServiceModal(false);
     }
