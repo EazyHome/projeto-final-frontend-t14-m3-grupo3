@@ -194,8 +194,8 @@ export function ModalProvidertRegister({
               <Select label="Categoria" {...register("workOnCategories")}>
                 {servicesCategories.map((e) => {
                   return (
-                    <MenuItem key={e} value={e}>
-                      {e}
+                    <MenuItem key={e.name} value={e.name}>
+                      {e.name}
                     </MenuItem>
                   );
                 })}
@@ -228,8 +228,8 @@ export function ModalProvidertRegister({
             <Select label="Categoria" {...register("workOnCategories")}>
               {servicesCategories.map((e) => {
                 return (
-                  <MenuItem key={e} value={e}>
-                    {e}
+                  <MenuItem key={e.name} value={e.name}>
+                    {e.name}
                   </MenuItem>
                 );
               })}
