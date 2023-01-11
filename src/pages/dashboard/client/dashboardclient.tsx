@@ -163,11 +163,14 @@ export const DashboardClient = () => {
         setModalPassword={setModalPassword}
       />
       <NavDashboardClient />
+
       <SectionDashboardClientTop>
-        <TextSectionTop>
-          Precisando de um profissional para manutenção residencial? O lugar é
-          aqui!
-        </TextSectionTop>
+        <div>
+          <TextSectionTop>
+            Precisando de um profissional para manutenção residencial? O lugar é
+            aqui!
+          </TextSectionTop>
+        </div>
       </SectionDashboardClientTop>
 
       <DashContent>

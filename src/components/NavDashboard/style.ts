@@ -52,19 +52,20 @@ export const DivLogo = styled.div`
 `;
 
 export const DivAvatar = styled.div`
-  margin-left: 10px;
   border: 2px solid var(--color-primary);
   border-radius: var(--radius-50);
-  width: 80px;
-  height: 80px;
+  background-color: var(--color-grey20);
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   & > img {
     color: black;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     object-fit: contain;
+    border-radius: var(--radius-50);
   }
 `;
 
