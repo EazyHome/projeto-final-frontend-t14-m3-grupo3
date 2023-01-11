@@ -24,6 +24,8 @@ interface iProfileContext {
   providersList: [] | iUserService[];
   getProviders: () => void;
   hireService: (data: iServices) => void;
+  category: string;
+  setCategory: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface iServices {
@@ -49,6 +51,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
   );
   const [availability, setAvailability] = useState<boolean>(true);
   const [providersList, setProvidersList] = useState<[] | iUserService[]>([]);
+  const [category, setCategory] = useState<string>("");
   const navigate = useNavigate();
   const { userService, userClient } = useContext(UserContext);
 
@@ -224,7 +227,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
 
   const getProviders = async () => {
     try {
-      const response = await api.get(`/users?type=prestador`, {
+      const response = await api.get(`/users?type=prestador&available=true`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
         },
@@ -271,6 +274,8 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         providersList,
         getProviders,
         hireService,
+        category,
+        setCategory,
       }}
     >
       {children}

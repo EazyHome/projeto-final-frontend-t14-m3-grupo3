@@ -31,12 +31,14 @@ import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashb
 import { Footer } from "../../../components/FooterRegisterAndLogin/footer";
 import { ProfileContext } from "../../../contexts/ProfileContext/ProfileContext";
 import { ContentServices, ServicesList } from "../../Homepage/style";
+import { CitiesContext } from "../../../contexts/CitiesContext/CitiesContext";
 
 export const DashboardClient = () => {
   const [open, setOpen] = React.useState(true);
   const [selectedOption, setSelectedOption] = React.useState("service");
   const stylesItems = { textAlign: "right", fontSize: 10 };
-  const { isLogged, getProviders } = useContext(ProfileContext);
+  const { isLogged, getProviders, setCategory } = useContext(ProfileContext);
+  const { servicesCategories } = useContext(CitiesContext);
 
   useEffect(() => {
     isLogged();
@@ -67,7 +69,18 @@ export const DashboardClient = () => {
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>
               <List component="ul" disablePadding>
-                <ListItemButton sx={{ pl: 4 }}>
+                {servicesCategories.map((e) => {
+                  return (
+                    <ListItemButton
+                      defaultValue={e.value}
+                      sx={{ pl: 4 }}
+                      onClick={() => setCategory(e.value)}
+                    >
+                      <ListItemText primary={e.name} className="NavSubItem" />
+                    </ListItemButton>
+                  );
+                })}
+                {/* <ListItemButton sx={{ pl: 4 }}>
                   <ListItemText primary="ELETRICISTA" className="NavSubItem" />
                 </ListItemButton>
                 <ListItemButton sx={{ pl: 4 }}>
@@ -99,7 +112,7 @@ export const DashboardClient = () => {
                 </ListItemButton>
                 <ListItemButton sx={{ pl: 4 }}>
                   <ListItemText primary="TELHADO" className="NavSubItem" />
-                </ListItemButton>
+                </ListItemButton> */}
               </List>
             </Collapse>
             <ListItemButton onClick={() => setSelectedOption("perfil")}>

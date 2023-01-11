@@ -9,7 +9,7 @@ interface iCitiesContext {
   citiesList: [] | iCitiesList[];
   selectState: (e: SelectChangeEvent<string>) => void;
   disable: boolean;
-  servicesCategories: string[];
+  servicesCategories: iCategoriesList[];
 }
 
 interface iStatesList {
@@ -68,6 +68,11 @@ interface iCitiesList {
   };
 }
 
+interface iCategoriesList {
+  value: string;
+  name: string;
+}
+
 export const CitiesContext = createContext({} as iCitiesContext);
 
 export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
@@ -76,18 +81,18 @@ export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
   const [disable, setDisable] = useState<boolean>(true);
 
   const servicesCategories = [
-    "Eletricista",
-    "Encanador",
-    "Gás",
-    "Janelas",
-    "Jardim",
-    "Marceneiro",
-    "Pedreiro",
-    "Piso",
-    "Piscina",
-    "Pintor",
-    "Serralheiro",
-    "Telhado",
+    { value: "Eletricista", name: "Eletricista" },
+    { value: "Encanador", name: "Encanador" },
+    { value: "Gás", name: "Gás" },
+    { value: "Janelas", name: "Eletricista" },
+    { value: "Jardim", name: "Jardim" },
+    { value: "Marceneiro", name: "Marceneiro" },
+    { value: "Pedreiro", name: "Pedreiro" },
+    { value: "Piso", name: "Piso" },
+    { value: "Piscina", name: "Piscina" },
+    { value: "Pintor", name: "Pintor" },
+    { value: "Serralheiro", name: "Serralheiro" },
+    { value: "Telhado", name: "Telhado" },
   ];
 
   const getStates = async () => {
