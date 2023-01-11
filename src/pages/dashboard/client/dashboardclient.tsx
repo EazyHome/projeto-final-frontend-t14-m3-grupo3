@@ -6,7 +6,7 @@ import {
   SectionDashboardClientTop,
   Services,
   TextSectionTop,
-} from "../../../pages/Dashboard/client/style";
+} from "../../../pages/dashboard/client/style";
 import eletricista from "../../../assets/img/eletricista.png";
 import encanador from "../../../assets/img/encanador.png";
 import gas from "../../../assets/img/gás.png";
@@ -30,14 +30,17 @@ import { BlueCard } from "../../../components/CardBlue/card";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
 import { Footer } from "../../../components/FooterRegisterAndLogin/footer";
 import { ProfileContext } from "../../../contexts/ProfileContext/ProfileContext";
-import { ContentServices, ServicesList } from "../../Homepage/style";
+import { ContentServices, ServicesList } from "../../homepage/style";
 import { CitiesContext } from "../../../contexts/CitiesContext/CitiesContext";
+import { ClientProvidersFeedList } from "../../../components/ClientProvidersFeedList/clientProvidersFeedList";
+import { ClientHiredProvidersFeedList } from "../../../components/ClientHiredProviders/clientHiredProviders";
 
 export const DashboardClient = () => {
   const [open, setOpen] = React.useState(true);
   const [selectedOption, setSelectedOption] = React.useState("service");
   const stylesItems = { textAlign: "right", fontSize: 10 };
-  const { isLogged, getProviders, setCategory } = useContext(ProfileContext);
+  const { isLogged, getProviders, setCategory, category } =
+    useContext(ProfileContext);
   const { servicesCategories } = useContext(CitiesContext);
 
   useEffect(() => {
@@ -48,6 +51,7 @@ export const DashboardClient = () => {
   const handleClickService = () => {
     setOpen(!open);
     setSelectedOption("service");
+    setCategory("");
   };
 
   return (
@@ -69,9 +73,11 @@ export const DashboardClient = () => {
             </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>
               <List component="ul" disablePadding>
-                {servicesCategories.map((e) => {
+                {servicesCategories.map((e, index) => {
+                  console.log(e.value);
                   return (
                     <ListItemButton
+                      key={index}
                       defaultValue={e.value}
                       sx={{ pl: 4 }}
                       onClick={() => setCategory(e.value)}
@@ -123,12 +129,29 @@ export const DashboardClient = () => {
             </ListItemButton>
           </List>
         </DashNav>
-        {selectedOption === "service" ? (
+        {selectedOption === "service" && category === "" ? (
           <Services id="services">
             <ContentServices>
               <h3>- Serviços -</h3>
               <ServicesList>
-                <OrangeCard img={pintor} type="Pintor" />
+                {servicesCategories.map((service, index) => {
+                  const result = index % 2;
+                  console.log(result);
+                  return !result ? (
+                    <OrangeCard
+                      img={pintor}
+                      type={service.value}
+                      onClick={() => setCategory(service.value)}
+                    />
+                  ) : (
+                    <BlueCard
+                      img={pedreiro}
+                      type={service.value}
+                      onClick={() => setCategory(service.value)}
+                    />
+                  );
+                })}
+                {/* <OrangeCard img={pintor} type="Pintor" onClick={setCategory()}/>
                 <BlueCard img={pedreiro} type="Pedreiro" />
                 <OrangeCard img={marceneiro} type="Marceneiro" />
                 <BlueCard img={telhado} type="Telhados" />
@@ -139,13 +162,17 @@ export const DashboardClient = () => {
                 <OrangeCard img={eletricista} type="Eletricista" />
                 <BlueCard img={piso} type="Pisos" />
                 <OrangeCard img={piscina} type="Piscinas" />
-                <BlueCard img={serralheiro} type="Serralheiro" />
+                <BlueCard img={serralheiro} type="Serralheiro" /> */}
               </ServicesList>
               <div></div>
             </ContentServices>
           </Services>
-        ) : (
+        ) : selectedOption === "perfil" ? (
           <>Em desenvolvimento</>
+        ) : selectedOption === "contratacao" ? (
+          <ClientHiredProvidersFeedList />
+        ) : (
+          <ClientProvidersFeedList />
         )}
       </DashContent>
       <Footer id="footer" />
