@@ -101,18 +101,17 @@ export const CloseModalDiv = styled.div`
   z-index: 99;
 
   & > button {
-    background-color: var(--color-primary);
+    background-color: transparent;
     border-radius: var(--radius-1);
     border: var(--color-primary);
     font-size: var(--font-size-16);
-
     padding: 0.5rem 0.8rem;
     font-weight: 500;
     line-height: 24px;
-    color: var(--color-grey0);
+    color: var(--color-primary);
 
     :hover {
-      background-color: var(--color-tertiary);
+      background-color: var(--color-grey0);
       border: var(--color-tertiary);
     }
   }
