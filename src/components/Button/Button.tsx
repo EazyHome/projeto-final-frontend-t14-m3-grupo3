@@ -4,12 +4,13 @@ interface IButtonProps {
   type?: "submit" | "button";
   text: string;
   callback?: () => void;
+  id?: string;
 }
 
-export const Button = ({ text, type, callback }: IButtonProps) => {
+export const Button = ({ text, type, id, callback }: IButtonProps) => {
   return (
     <>
-      <button onClick={callback} type={type}>
+      <button id={id} onClick={callback} type={type}>
         {text}
       </button>
     </>

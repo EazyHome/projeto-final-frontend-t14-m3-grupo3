@@ -14,7 +14,7 @@ import { ModalCloseService } from "../ModalCloseService/modalCloseService";
 
 interface iServiceFeed {
   typeOfCard: string;
-  id: number;
+  id: number | undefined;
   image: string;
   name: string;
   date?: string;
