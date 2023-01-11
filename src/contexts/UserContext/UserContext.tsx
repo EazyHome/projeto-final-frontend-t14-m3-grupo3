@@ -38,8 +38,8 @@ export interface iUserClient {
   city: string;
   phone: string;
   type?: string;
-  id?: number;
-  avatar_URL?: string;
+  id: number;
+  avatar_URL: string;
 }
 
 export interface iUserService extends iUserClient {
@@ -69,7 +69,7 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
   const [spinner, setSpinner] = useState(false);
   const [errorApi, setErrorApi] = useState(false);
   const navigate = useNavigate();
-  const { setCategory } = useContext(ProfileContext);
+  const { setCategory, getPhoto } = useContext(ProfileContext);
 
   const userClientRegister = async (data: iUserClientRegister) => {
     setSpinner(true);
@@ -79,11 +79,8 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
       localStorage.setItem("@Id:EazyHome", response.data.user.id);
       localStorage.setItem("@Token:EazyHome", response.data.accessToken);
       localStorage.setItem("@UserType:EazyHome", response.data.user.type);
-
-      setSpinner(false);
-
       localStorage.setItem("@UserCity:EazyHome", response.data.user.city);
-
+      setSpinner(false);
       navigate("/dashboardclient");
     } catch (error) {
       setSpinner(false);
@@ -135,6 +132,7 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
     localStorage.removeItem("@Token:EazyHome");
     localStorage.removeItem("@Id:EazyHome");
     localStorage.removeItem("@UserType:EazyHome");
+    localStorage.removeItem("@UserCity:EazyHome");
     setUserClient(null);
     setUserService(null);
     setCategory("");

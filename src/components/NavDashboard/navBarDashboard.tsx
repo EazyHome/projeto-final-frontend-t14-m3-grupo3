@@ -12,13 +12,14 @@ import client from "../../assets/img/cliente.png";
 import { Link } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
-
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../../contexts/UserContext/UserContext";
+import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
 
 export function NavDashboardClient() {
   const [menu, setMenu] = useState(false);
   const { userLogout } = useContext(UserContext);
+  const { photo } = useContext(ProfileContext);
 
   return (
     <NavBar>
@@ -30,7 +31,7 @@ export function NavDashboardClient() {
       </BtnMenuNav>
       <DivSideMenu display={menu}>
         <DivAvatar>
-          <img src={client} alt="Cliente" />
+          <img src={photo} alt="Imagem de Perfil" />
         </DivAvatar>
         <Link to="/login" onClick={() => userLogout()}>
           LOGOUT

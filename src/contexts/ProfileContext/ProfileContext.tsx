@@ -25,11 +25,14 @@ interface iProfileContext {
   filterProviderByCategory: () => void;
   filteredProviders: [] | iUserService[];
   editPassword: (data: string) => void;
+  cancelService: (id: number) => void;
+  finishService: (data: iChangeService) => void;
+  photo: string;
+  getPhoto: () => void;
 }
 
 export interface iServices {
   id?: number;
-  name: string;
   type: string;
   description: string;
   serviceCity: string;
@@ -39,6 +42,11 @@ export interface iServices {
   providerId: number;
   createdAt: string;
   rating?: number;
+}
+
+interface iChangeService {
+  id: number;
+  rating: number;
 }
 
 export const ProfileContext = createContext({} as iProfileContext);
@@ -52,6 +60,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
   const [availability, setAvailability] = useState<boolean>(true);
   const [providersList, setProvidersList] = useState<[] | iUserService[]>([]);
   const [category, setCategory] = useState<string>("");
+  const [photo, setPhoto] = useState<string>("");
   const [filteredProviders, setFilteredProviders] = useState<
     [] | iUserService[]
   >([]);
@@ -154,7 +163,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         const response = await api.get(
           `/services?userId=${localStorage.getItem(
             "@Id:EazyHome"
-          )}}&status=done`,
+          )}&status=done`,
           {
             headers: {
               Authorization: `Bearer ${"@Token:EazyHome"}`,
@@ -166,7 +175,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         const response = await api.get(
           `/services?userId=${localStorage.getItem(
             "@Id:EazyHome"
-          )}}&status=done`,
+          )}&status=done`,
           {
             headers: {
               Authorization: `Bearer ${"@Token:EazyHome"}`,
@@ -290,6 +299,56 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
     );
   };
 
+  const finishService = async (data: iChangeService) => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const response = await api.patch(
+        `services/${data.id}`,
+        { status: "done", rating: data.rating },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const cancelService = async (id: number) => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const response = await api.patch(
+        `services/${id}`,
+        { status: "canceled" },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getPhoto = async () => {
+    try {
+      const response = await api.get(
+        `users/${localStorage.getItem("@Id:EazyHome")}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
+          },
+        }
+      );
+      setPhoto(response.data.avatar_URL);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <ProfileContext.Provider
       value={{
@@ -312,6 +371,10 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         filterProviderByCategory,
         filteredProviders,
         editPassword,
+        cancelService,
+        finishService,
+        photo,
+        getPhoto,
       }}
     >
       {children}

@@ -11,7 +11,7 @@ import {
   ImgClient,
   RegisterButtonsCoteiner,
   RegisterConteiner,
-} from "../../pages/register/style";
+} from "../../pages/Register/style";
 
 export function Register() {
   const [showClientModal, setShowClientModal] = useState(false);

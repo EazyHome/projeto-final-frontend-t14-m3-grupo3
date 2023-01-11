@@ -41,31 +41,39 @@ export const ClientHiredProvidersFeedList = () => {
     getProviders,
   } = useContext(ProfileContext);
 
+  const clientTotalServices = [
+    ...filteredHiredServices,
+    ...activeServices,
+    ...doneServices,
+    ...canceledServices,
+  ];
+
   useEffect(() => {
-    getActiveServices();
-    getDoneServices();
-    getCanceledServices();
-    getProviders();
+    // getActiveServices();
+    // getDoneServices();
+    // getCanceledServices();
+    setFilteredHiredServices(clientTotalServices as iServices[]);
+    // getProviders();
   }, []);
 
   const getHiredServices = () => {
-    const clientId = Number(localStorage.getItem("@Id:EazyHome"));
-    const clientActiveServices = activeServices.filter(
-      (service) => service.userId === clientId
-    );
-    const clientDoneServices = activeServices.filter(
-      (service) => service.userId === clientId
-    );
-    const clientCanceledServices = activeServices.filter(
-      (service) => service.userId === clientId
-    );
-    const clientTotalServices = [
-      ...filteredHiredServices,
-      clientActiveServices,
-      clientDoneServices,
-      clientCanceledServices,
-    ];
-    setFilteredHiredServices(clientTotalServices as iServices[]);
+    // const clientId = Number(localStorage.getItem("@Id:EazyHome"));
+    // const clientActiveServices = activeServices.filter(
+    //   (service) => service.userId === clientId
+    // );
+    // const clientDoneServices = activeServices.filter(
+    //   (service) => service.userId === clientId
+    // );
+    // const clientCanceledServices = activeServices.filter(
+    //   (service) => service.userId === clientId
+    // );
+    // const clientTotalServices = [
+    //   ...filteredHiredServices,
+    //   activeServices,
+    //   doneServices,
+    //   canceledServices,
+    // ];
+    // setFilteredHiredServices(clientTotalServices as iServices[]);
   };
 
   const isEmpty = filteredHiredServices.length;
@@ -86,10 +94,9 @@ export const ClientHiredProvidersFeedList = () => {
                   typeOfCard={typeOfCard}
                   id={provider.providerId}
                   image={currentProvider[0].avatar_URL}
-                  name={provider.name}
+                  name={currentProvider[0].name}
                   category={provider.type}
-                  // status={provider.status}
-                  status={""}
+                  status={provider.status}
                   phone={currentProvider[0].phone}
                   email={currentProvider[0].email}
                   age={currentProvider[0].age}
