@@ -75,7 +75,7 @@ export const DashboardClient = () => {
   useEffect(() => {
     isLogged();
     getProviders();
-  });
+  }, []);
 
   const handleClickService = () => {
     setOpen(!open);
@@ -87,7 +87,6 @@ export const DashboardClient = () => {
     disable,
     statesList,
     citiesList,
-    selectCity,
     selectState,
     getStates,
     servicesCategories,
@@ -120,7 +119,7 @@ export const DashboardClient = () => {
   const [modalPassword, setModalPassword] = useState(false);
 
   const [workCitiesEdit, setWorkCitiesEdit] = useState<string[]>([]);
-  const [workStateEdit, setStateEdit] = useState<string[]>([]);
+  const [workStateEdit, setStateEdit] = useState("");
   const [categoriesEdit, setCategoriesEdit] = useState<string[]>([]);
 
   const handleSubmitEditForm = (data: iUserClient) => {
@@ -130,19 +129,20 @@ export const DashboardClient = () => {
   let city = "";
   let state = "";
   let cityState = "";
-  const getCityEditForm = (e: any) => {
-    e.preventDefault();
-    city = e.target.value;
-    console.log(city);
-  };
 
   const getStateEditForm = (e: any) => {
     e.preventDefault();
-    state = e.target.value;
+    selectState(e);
+    setStateEdit(e.target.value);
+  };
+
+  const getCityEditForm = (e: any) => {
+    e.preventDefault();
+    city = e.target.value;
   };
 
   const setCitySubmit = () => {
-    cityState = city + "-" + state;
+    cityState = city + "-" + workStateEdit;
     setWorkCitiesEdit([...workCitiesEdit, cityState]);
   };
 
@@ -180,7 +180,6 @@ export const DashboardClient = () => {
             <Collapse in={open} timeout="auto" unmountOnExit>
               <List component="ul" disablePadding>
                 {servicesCategories.map((e, index) => {
-                  console.log(e.value);
                   return (
                     <ListItemButton
                       key={index}
@@ -242,7 +241,6 @@ export const DashboardClient = () => {
               <ServicesList>
                 {servicesCategories.map((service, index) => {
                   const result = index % 2;
-                  console.log(result);
                   return !result ? (
                     <OrangeCard
                       img={pintor}
@@ -326,7 +324,7 @@ export const DashboardClient = () => {
                       >
                         {statesList.map((e) => {
                           return (
-                            <MenuItem key={e.id} value={e.id}>
+                            <MenuItem key={e.id} value={e.sigla}>
                               {e.sigla}
                             </MenuItem>
                           );
@@ -346,7 +344,6 @@ export const DashboardClient = () => {
                         onChange={getCityEditForm}
                       >
                         {citiesList.map((e) => {
-                          console.log(e);
                           return (
                             <MenuItem key={e.id} value={e.nome}>
                               {e.nome}

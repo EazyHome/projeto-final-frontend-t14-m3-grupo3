@@ -16,7 +16,7 @@ import { BackGroundForm } from "../BackgroundModal/style";
 
 interface iModalHireServiceProps {
   setShowHireServiceModal: React.Dispatch<React.SetStateAction<boolean>>;
-  id: number;
+  id: number | undefined;
   image: string;
   name: string;
   category: string;
