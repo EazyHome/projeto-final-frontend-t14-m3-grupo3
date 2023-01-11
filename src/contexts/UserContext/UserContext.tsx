@@ -69,9 +69,10 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
   const [spinner, setSpinner] = useState(false);
   const [errorApi, setErrorApi] = useState(false);
   const navigate = useNavigate();
-  const { setCategory } = useContext(ProfileContext);
+  const { setCategory, getPhoto } = useContext(ProfileContext);
 
   const userClientRegister = async (data: iUserClientRegister) => {
+    setSpinner(true);
     try {
       const response = await api.post("/register", data);
       setUserClient(response.data.user);
@@ -79,13 +80,16 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
       localStorage.setItem("@Token:EazyHome", response.data.accessToken);
       localStorage.setItem("@UserType:EazyHome", response.data.user.type);
       localStorage.setItem("@UserCity:EazyHome", response.data.user.city);
+      setSpinner(false);
       navigate("/dashboardclient");
     } catch (error) {
-      console.log(error);
+      setSpinner(false);
+      setErrorApi(true);
     }
   };
 
   const userServiceRegister = async (data: iUserServiceRegister) => {
+    setSpinner(true);
     try {
       const response = await api.post("/register", data);
       setUserService(response.data.user);
@@ -94,8 +98,10 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
       localStorage.setItem("@UserType:EazyHome", response.data.user.type);
       localStorage.setItem("@UserCity:EazyHome", response.data.user.city);
       navigate("/dashboardservice");
+      setSpinner(false);
     } catch (error) {
-      console.log(error);
+      setSpinner(false);
+      setErrorApi(true);
     }
   };
 
@@ -126,6 +132,7 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
     localStorage.removeItem("@Token:EazyHome");
     localStorage.removeItem("@Id:EazyHome");
     localStorage.removeItem("@UserType:EazyHome");
+    localStorage.removeItem("@UserCity:EazyHome");
     setUserClient(null);
     setUserService(null);
     setCategory("");

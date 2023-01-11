@@ -21,6 +21,8 @@ import {
 import api from "../../service/api";
 import { iUserClient } from "../../contexts/UserContext/UserContext";
 import { useContext, useEffect, useState } from "react";
+import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
+
 
 interface iModalHireServiceProps {
   setShowHireServiceModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -97,7 +99,7 @@ export const ModalHireService = ({
         status: "active",
         createdAt: moment().format("DD/MM/YYYY"),
       };
-      console.log(hireData);
+
       hireService(hireData);
       setShowHireServiceModal(false);
     }

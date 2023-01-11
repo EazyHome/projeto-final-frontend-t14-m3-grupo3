@@ -9,15 +9,14 @@ import {
   FeedRating,
 } from "./style";
 import { Button } from "../Button/Button";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { ModalHireService } from "../ModalHireService/modalHireService";
 import { ModalCloseService } from "../ModalCloseService/modalCloseService";
-import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
 
 interface iServiceFeed {
   typeOfCard: string;
   id: number;
-  image: string;
+  image?: string;
   name: string;
   date?: string;
   city?: string;

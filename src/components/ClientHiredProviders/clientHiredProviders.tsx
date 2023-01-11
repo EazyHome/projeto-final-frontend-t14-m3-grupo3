@@ -36,6 +36,13 @@ export const ClientHiredProvidersFeedList = () => {
     getProviders,
   } = useContext(ProfileContext);
 
+  const clientTotalServices = [
+    ...filteredHiredServices,
+    ...activeServices,
+    ...doneServices,
+    ...canceledServices,
+  ];
+
   useEffect(() => {
     getProviders();
     console.log("Providers", providersList);
@@ -60,7 +67,7 @@ export const ClientHiredProvidersFeedList = () => {
     ];
     console.log(clientTotalServices);
     setFilteredHiredServices(clientTotalServices as iServices[]);
-  };
+
 
   // getHiredServices();
   const clientTotalServices = [
@@ -110,6 +117,7 @@ export const ClientHiredProvidersFeedList = () => {
                     description={provider.description}
                   />
                 )
+
               );
             })}
           </HiredProviderList>

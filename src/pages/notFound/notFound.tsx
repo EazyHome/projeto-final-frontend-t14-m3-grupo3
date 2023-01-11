@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { NavRegister } from "../../components/NavRegister/NavRegister";
-import { NotFoundMain } from "../notFound/style";
+import { NotFoundMain } from "./style";
 import { Footer } from "../../components/Footer/Footer";
 
 export function NotFound() {

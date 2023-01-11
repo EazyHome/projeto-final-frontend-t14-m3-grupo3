@@ -4,6 +4,7 @@ export const HiredProviderList = styled.ul`
   max-width: 100%;
   width: 100%;
   max-height: 70vh;
+
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

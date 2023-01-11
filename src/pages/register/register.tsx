@@ -5,7 +5,13 @@ import { useState } from "react";
 import { Footer } from "../../components/FooterRegisterAndLogin/footer";
 import { ModalClientRegister } from "../../components/ModalRegisterClient/modalClient";
 import { ModalProvidertRegister } from "../../components/ModalRegisterProvider/modalProvider";
-import { RegisterButtonsCoteiner, RegisterConteiner } from "../register/style";
+import {
+  Card,
+  DivTitleCard,
+  ImgClient,
+  RegisterButtonsCoteiner,
+  RegisterConteiner,
+} from "../../pages/register/style";
 
 export function Register() {
   const [showClientModal, setShowClientModal] = useState(false);
@@ -19,24 +25,28 @@ export function Register() {
 
         {showButtonContainer ? (
           <RegisterButtonsCoteiner>
-            <div
+            <Card
               onClick={() => {
                 setShowButtonContainer(false);
                 setShowClientModal(true);
               }}
             >
-              <img src={imgClientRegister} alt="Cadastro do cliente" />
-              <p>Cadastro do cliente</p>
-            </div>
-            <div
+              <ImgClient src={imgClientRegister} alt="Cadastro do cliente" />
+              <DivTitleCard>
+                <p>Cadastro de cliente</p>
+              </DivTitleCard>
+            </Card>
+            <Card
               onClick={() => {
                 setShowButtonContainer(false);
                 setShowProviderModal(true);
               }}
             >
-              <img src={imgProviderRegister} alt="Cadastro do fornecedor" />
-              <p>Cadastro de fornecedor</p>
-            </div>
+              <img src={imgProviderRegister} alt="Cadastro do provedor" />
+              <DivTitleCard>
+                <p>Cadastro de provedor</p>
+              </DivTitleCard>
+            </Card>
           </RegisterButtonsCoteiner>
         ) : null}
 
