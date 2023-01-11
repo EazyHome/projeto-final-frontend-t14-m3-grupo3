@@ -9,9 +9,7 @@ interface iCitiesContext {
   statesList: [] | iStatesList[];
   citiesList: [] | iCitiesList[];
   selectState: (e: SelectChangeEvent<HTMLSelectElement>) => void;
-  // selectState: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   city: string;
-  // selectCity: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   selectCity: (e: SelectChangeEvent<HTMLSelectElement>) => void;
   disable: boolean;
   servicesCategories: string[];
@@ -111,7 +109,6 @@ export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
     }
   };
 
-  // const selectState = async (e: React.ChangeEvent<HTMLSelectElement>) => {
   const selectState = async (e: SelectChangeEvent<HTMLSelectElement>) => {
     console.log(e.target.value);
     setStateId(+e.target.value);
@@ -125,7 +122,6 @@ export const CitiesProvider = ({ children }: iDefaultPropsProvider) => {
     }
   };
 
-  // const selectCity = (e: React.ChangeEvent<HTMLSelectElement>) => {
   const selectCity = (e: SelectChangeEvent<HTMLSelectElement>) => {
     console.log(e.target.value);
     setCity(e.target.value as string);

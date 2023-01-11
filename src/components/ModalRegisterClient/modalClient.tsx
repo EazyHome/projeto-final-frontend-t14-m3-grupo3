@@ -113,31 +113,6 @@ export function ModalClientRegister({
             {...register("phone")}
             helperText={(errors.phone as any)?.message}
           />
-          {/* <input
-            type="text"
-            placeholder="Digite seu email"
-            {...register("email")}
-          />
-          <input
-            type="text"
-            placeholder="Digite sua senha"
-            {...register("password")}
-          />
-          <input
-            type="text"
-            placeholder="Digite seu nome"
-            {...register("name")}
-          />
-          <input
-            type="number"
-            placeholder="Digite sua idade"
-            {...register("age")}
-          />
-          <input
-            type="number"
-            placeholder="Digite seu numero"
-            {...register("phone")}
-          /> */}
 
           <SelectConteiner>
             <div>

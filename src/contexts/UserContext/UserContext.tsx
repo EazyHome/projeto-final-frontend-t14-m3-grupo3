@@ -34,9 +34,9 @@ export interface iUserClient {
   state: string;
   city: string;
   phone: string;
-  type: string;
-  id: number;
-  avatar_URL: string;
+  type?: string;
+  id?: number;
+  avatar_URL?: string;
 }
 
 export interface iUserService extends iUserClient {

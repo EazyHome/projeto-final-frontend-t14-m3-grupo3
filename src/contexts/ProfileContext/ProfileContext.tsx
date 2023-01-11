@@ -23,7 +23,7 @@ interface iProfileContext {
   canceledServices: [] | iServices[];
 }
 
-interface iServices {
+export interface iServices {
   id: number;
   name: string;
   type: string;
