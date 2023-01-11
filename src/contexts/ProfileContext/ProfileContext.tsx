@@ -29,7 +29,6 @@ interface iProfileContext {
 
 export interface iServices {
   id?: number;
-  name: string;
   type: string;
   description: string;
   serviceCity: string;
