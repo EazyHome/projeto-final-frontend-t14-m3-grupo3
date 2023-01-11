@@ -123,7 +123,6 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
     localStorage.removeItem("@UserType:EazyHome");
     setUserClient(null);
     setUserService(null);
-    navigate("/login");
   };
 
   return (

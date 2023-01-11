@@ -6,7 +6,7 @@ import {
   SectionDashboardClientTop,
   Services,
   TextSectionTop,
-} from "../../../pages/dashboard/client/style";
+} from "../../../pages/Dashboard/client/style";
 import eletricista from "../../../assets/img/eletricista.png";
 import encanador from "../../../assets/img/encanador.png";
 import gas from "../../../assets/img/gás.png";
@@ -30,7 +30,7 @@ import { BlueCard } from "../../../components/CardBlue/card";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
 import { Footer } from "../../../components/FooterRegisterAndLogin/footer";
 import { ProfileContext } from "../../../contexts/ProfileContext/ProfileContext";
-import { ContentServices, ServicesList } from "../../homepage/style";
+import { ContentServices, ServicesList } from "../../Homepage/style";
 import { CitiesContext } from "../../../contexts/CitiesContext/CitiesContext";
 import { ClientProvidersFeedList } from "../../../components/ClientProvidersFeedList/clientProvidersFeedList";
 import { ClientHiredProvidersFeedList } from "../../../components/ClientHiredProviders/clientHiredProviders";
@@ -74,13 +74,13 @@ export const DashboardClient = () => {
             <Collapse in={open} timeout="auto" unmountOnExit>
               <List component="ul" disablePadding>
                 {servicesCategories.map((e, index) => {
-                  console.log(e.value);
+                  console.log(e.name);
                   return (
                     <ListItemButton
                       key={index}
-                      defaultValue={e.value}
+                      defaultValue={e.name}
                       sx={{ pl: 4 }}
-                      onClick={() => setCategory(e.value)}
+                      onClick={() => setCategory(e.name)}
                     >
                       <ListItemText primary={e.name} className="NavSubItem" />
                     </ListItemButton>
@@ -140,14 +140,14 @@ export const DashboardClient = () => {
                   return !result ? (
                     <OrangeCard
                       img={pintor}
-                      type={service.value}
-                      onClick={() => setCategory(service.value)}
+                      type={service.name}
+                      onClick={() => setCategory(service.name)}
                     />
                   ) : (
                     <BlueCard
                       img={pedreiro}
-                      type={service.value}
-                      onClick={() => setCategory(service.value)}
+                      type={service.name}
+                      onClick={() => setCategory(service.name)}
                     />
                   );
                 })}

@@ -30,8 +30,8 @@ interface iProfileContext {
   filteredProviders: [] | iUserService[];
 }
 
-interface iServices {
-  id: number;
+export interface iServices {
+  id?: number;
   name: string;
   type: string;
   description: string;
