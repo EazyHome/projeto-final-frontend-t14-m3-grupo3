@@ -6,7 +6,6 @@ export const ModalDiv = styled.div`
   min-width: 300px;
   display: flex;
   justify-content: flex-end;
-  /* align-items: flex-start; */
   padding: 1rem 0;
   padding-bottom: 1rem;
   position: relative;
@@ -81,20 +80,13 @@ export const ModalContainer = styled.div`
   max-width: 400px;
   background-color: var(--color-white);
   border-radius: 10px;
-  padding-bottom: 1rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
   position: relative;
-
-  /* & > div {
-    width: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  } */
 `;
 
 export const CloseModalDiv = styled.div`
@@ -105,7 +97,7 @@ export const CloseModalDiv = styled.div`
   margin: 1rem;
   position: absolute;
   top: 0.5rem;
-  right: 1rem;
+  right: 0rem;
   z-index: 99;
 
   & > button {

@@ -39,7 +39,7 @@ export interface iUserClient {
   phone: string;
   type?: string;
   id?: number;
-  avatar_URL?: string;
+  avatar_URL: string;
 }
 
 export interface iUserService extends iUserClient {

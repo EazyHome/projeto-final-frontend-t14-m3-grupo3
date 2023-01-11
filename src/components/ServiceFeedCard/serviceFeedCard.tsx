@@ -2,6 +2,7 @@ import {
   FeedCardButton,
   FeedItem,
   FeedItemBody,
+  FeedItemDetails,
   FeedItemHeader,
   FeedItemImage,
   FeedItemTitle,
@@ -15,7 +16,7 @@ import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
 
 interface iServiceFeed {
   typeOfCard: string;
-  id: number | undefined;
+  id: number;
   image: string;
   name: string;
   date?: string;
@@ -69,9 +70,9 @@ export const ServiceFeedCard = ({
   description && (serviceDescription = description);
 
   let serviceStatus = "";
-  status && (serviceStatus = status);
-
-  console.log(serviceStatus, typeOfCard);
+  status === "canceled" && (serviceStatus = "CANCELADO");
+  status === "active" && (serviceStatus = "EM ANDAMENTO");
+  status === "done" && (serviceStatus = "CONCLUÍDO");
 
   return (
     <>
@@ -99,13 +100,15 @@ export const ServiceFeedCard = ({
             </div>
             <div>{typeOfCard !== "providersList" && `Data: ${date}`}</div>
           </FeedItemTitle>
-          <div>{`Telefone: ${phone}`}</div>
-          <div>{`E-mail: ${email}`}</div>
-          <span>
-            {typeOfCard === "providersList"
-              ? `Idade: ${age}`
-              : serviceStatus !== "CANCELADO" && `Descrição: ${description}`}
-          </span>
+          <FeedItemDetails>
+            <div>{`Telefone: ${phone}`}</div>
+            <div>{`E-mail: ${email}`}</div>
+            <div>
+              {typeOfCard === "providersList"
+                ? `Idade: ${age}`
+                : serviceStatus !== "CANCELADO" && `Descrição: ${description}`}
+            </div>
+          </FeedItemDetails>
           <FeedCardButton>
             {typeOfCard === "providersList" ? (
               <Button

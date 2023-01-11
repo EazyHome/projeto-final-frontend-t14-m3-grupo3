@@ -21,7 +21,7 @@ import {
   FormEdit,
   DivCoverCategory,
   CoverAgePhone,
-} from "../client/style";
+} from "../../dashboard/client/style";
 import eletricista from "../../../assets/img/eletricista.png";
 import encanador from "../../../assets/img/encanador.png";
 import gas from "../../../assets/img/gás.png";
@@ -47,7 +47,7 @@ import { BlueCard } from "../../../components/CardBlue/card";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
 import { Footer } from "../../../components/FooterRegisterAndLogin/footer";
 import { ProfileContext } from "../../../contexts/ProfileContext/ProfileContext";
-import { ContentServices, ServicesList } from "../../Homepage/style";
+import { ContentServices, ServicesList } from "../../homepage/style";
 import { CitiesContext } from "../../../contexts/CitiesContext/CitiesContext";
 import { ClientProvidersFeedList } from "../../../components/ClientProvidersFeedList/clientProvidersFeedList";
 import TextField from "@mui/material/TextField";
@@ -243,13 +243,13 @@ export const DashboardClient = () => {
                   const result = index % 2;
                   return !result ? (
                     <OrangeCard
-                      img={pintor}
+                      img={service.image}
                       type={service.name}
                       onClick={() => setCategory(service.name)}
                     />
                   ) : (
                     <BlueCard
-                      img={pedreiro}
+                      img={service.image}
                       type={service.name}
                       onClick={() => setCategory(service.name)}
                     />
@@ -385,8 +385,8 @@ export const DashboardClient = () => {
                       >
                         {servicesCategories.map((e, i) => {
                           return (
-                            <MenuItem key={i} value={e.value}>
-                              {e.value}
+                            <MenuItem key={i} value={e.name}>
+                              {e.name}
                             </MenuItem>
                           );
                         })}

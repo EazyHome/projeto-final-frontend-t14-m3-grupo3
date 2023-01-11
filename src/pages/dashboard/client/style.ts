@@ -48,7 +48,7 @@ export const TextSectionTop = styled.h3`
 export const DashContent = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   /* @media (min-width: 280px) {
     & > nav {
       width: 100%;
