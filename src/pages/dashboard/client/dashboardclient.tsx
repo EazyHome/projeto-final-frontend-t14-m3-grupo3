@@ -22,6 +22,8 @@ import {
   DivCoverCategory,
   CoverAgePhone,
 } from "../../../pages/Dashboard/client/style";
+} from "../../dashboard/client/style";
+import { ContentServices, ServicesList } from "../../homepage/style";
 import providerRegisterButtonImg from "../../../assets/img/providerRegisterButtonImg.png";
 import List from "@mui/material/List";
 import ListItemText from "@mui/material/ListItemText";
@@ -34,7 +36,6 @@ import { BlueCard } from "../../../components/CardBlue/card";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
 import { Footer } from "../../../components/FooterRegisterAndLogin/footer";
 import { ProfileContext } from "../../../contexts/ProfileContext/ProfileContext";
-import { ContentServices, ServicesList } from "../../Homepage/style";
 import { CitiesContext } from "../../../contexts/CitiesContext/CitiesContext";
 import { ClientProvidersFeedList } from "../../../components/ClientProvidersFeedList/clientProvidersFeedList";
 import { ClientHiredProvidersFeedList } from "../../../components/ClientHiredProviders/clientHiredProviders";
@@ -46,6 +47,7 @@ import { iUserClient } from "../../../contexts/UserContext/UserContext";
 import { FormHelperText, MenuItem, Select } from "@mui/material";
 import { Button } from "../../../components/Button/Button";
 import { ModalChangePassword } from "../../../components/ModalChangePassword/ModalChangePassword";
+import { ClientHiredProvidersFeedList } from "../../../components/ClientHiredProviders/clientHiredProviders";
 
 export const DashboardClient = () => {
   const [open, setOpen] = React.useState(true);
@@ -155,11 +157,14 @@ export const DashboardClient = () => {
         setModalPassword={setModalPassword}
       />
       <NavDashboardClient />
+
       <SectionDashboardClientTop>
-        <TextSectionTop>
-          Precisando de um profissional para manutenção residencial? O lugar é
-          aqui!
-        </TextSectionTop>
+        <div>
+          <TextSectionTop>
+            Precisando de um profissional para manutenção residencial? O lugar é
+            aqui!
+          </TextSectionTop>
+        </div>
       </SectionDashboardClientTop>
 
       <DashContent>
