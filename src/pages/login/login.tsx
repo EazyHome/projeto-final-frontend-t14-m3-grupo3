@@ -47,13 +47,15 @@ export const Login = () => {
 
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigatório").email("Email inválido"),
-    password: yup.string().required("Senha obrigatória"),
-    // .matches(/(?=.*?[0-9])/, "É necessário pelo menos um número.")
-    // .matches(
-    //   /(?=.*?[#?!@$%^&*-])/,
-    //   "É necessário pelo menos um caractere especial"
-    // )
-    // .min(8, "É necessário uma senha de pelos 8 caracteres"),
+    password: yup
+      .string()
+      .required("Senha obrigatória")
+      .matches(/(?=.*?[0-9])/, "É necessário pelo menos um número.")
+      .matches(
+        /(?=.*?[#?!@$%^&*-])/,
+        "É necessário pelo menos um caractere especial"
+      )
+      .min(8, "É necessário uma senha de pelos 8 caracteres"),
   });
   const {
     register,

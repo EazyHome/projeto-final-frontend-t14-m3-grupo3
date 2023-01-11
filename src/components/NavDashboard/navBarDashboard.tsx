@@ -28,19 +28,22 @@ export function NavDashboardClient() {
       <BtnMenuNav onClick={() => setMenu(!menu)}>
         {menu ? <AiOutlineClose size={30} /> : <AiOutlineMenu size={30} />}
       </BtnMenuNav>
-      <DivNavRight>
-        <DivSideMenu display={menu}>
-          <Link to="/register">LOGOUT</Link>
-        </DivSideMenu>
-        <DivLinksNav>
-          <Link to="/login" onClick={() => userLogout()}>
-            LOGOUT
-          </Link>
-        </DivLinksNav>
+      <DivSideMenu display={menu}>
         <DivAvatar>
           <img src={client} alt="Cliente" />
         </DivAvatar>
-      </DivNavRight>
+        <Link to="/login" onClick={() => userLogout()}>
+          LOGOUT
+        </Link>
+      </DivSideMenu>
+      <DivLinksNav>
+        <Link to="/login" onClick={() => userLogout()}>
+          LOGOUT
+        </Link>
+        <DivAvatar>
+          <img src={client} alt="Cliente" />
+        </DivAvatar>
+      </DivLinksNav>
     </NavBar>
   );
 }
