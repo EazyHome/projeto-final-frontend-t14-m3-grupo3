@@ -47,7 +47,7 @@ import { BlueCard } from "../../../components/CardBlue/card";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
 import { Footer } from "../../../components/FooterRegisterAndLogin/footer";
 import { ProfileContext } from "../../../contexts/ProfileContext/ProfileContext";
-import { ContentServices, ServicesList } from "../../Homepage/style";
+import { ContentServices, ServicesList } from "../../homepage/style";
 import { CitiesContext } from "../../../contexts/CitiesContext/CitiesContext";
 import { ClientProvidersFeedList } from "../../../components/ClientProvidersFeedList/clientProvidersFeedList";
 import TextField from "@mui/material/TextField";
@@ -385,8 +385,8 @@ export const DashboardClient = () => {
                       >
                         {servicesCategories.map((e, i) => {
                           return (
-                            <MenuItem key={i} value={e.value}>
-                              {e.value}
+                            <MenuItem key={i} value={e.name}>
+                              {e.name}
                             </MenuItem>
                           );
                         })}

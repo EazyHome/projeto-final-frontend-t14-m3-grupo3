@@ -86,7 +86,7 @@ export const ClientHiredProvidersFeedList = () => {
                   typeOfCard={typeOfCard}
                   id={provider.providerId}
                   image={currentProvider[0].avatar_URL}
-                  name={provider.name}
+                  name={provider.user.name}
                   category={provider.type}
                   // status={provider.status}
                   status={""}

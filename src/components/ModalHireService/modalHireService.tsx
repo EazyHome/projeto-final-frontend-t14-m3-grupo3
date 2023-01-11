@@ -22,7 +22,7 @@ import { useEffect, useState } from "react";
 interface iModalHireServiceProps {
   setShowHireServiceModal: React.Dispatch<React.SetStateAction<boolean>>;
   id: number | undefined;
-  image: string;
+  image: string | undefined;
   name: string;
   category: string;
   phone: string;
