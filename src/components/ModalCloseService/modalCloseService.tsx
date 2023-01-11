@@ -6,16 +6,25 @@ import { BackGroundForm } from "../BackgroundModal/style";
 import {
   CloseButtons,
   CloseModalDiv,
+  FirstLine,
   ItemBody,
   ItemImage,
+  LeftColumn,
   ModalContainer,
   ModalDiv,
+  RatingDiv,
+  RightColumn,
+  SecondLine,
   StatusDiv,
 } from "./style";
 import TextField from "@mui/material/TextField";
 import { Button } from "../Button/Button";
 import { useState } from "react";
+
+import { StarRating } from "../StarRating/StarRating";
+
 import { iServices } from "../../contexts/ProfileContext/ProfileContext";
+
 
 interface iModalHireServiceProps {
   setShowCloseOrCancelServiceModal: React.Dispatch<
@@ -38,7 +47,7 @@ export interface iUserDescription {
 
 export const ModalCloseService = ({
   setShowCloseOrCancelServiceModal,
-  id,
+  id, //id do serviço
   image,
   name,
   category,
@@ -48,6 +57,7 @@ export const ModalCloseService = ({
   description,
   status,
 }: iModalHireServiceProps) => {
+
   const closeService = () => {};
 
   const hireFormSchema = yup.object().shape({
@@ -65,20 +75,34 @@ export const ModalCloseService = ({
   });
 
   const [showRatingStars, setShowRatingStars] = useState(false);
+  const [rating, setRating] = useState(0);
 
   const idProvider = id;
   const idClient = localStorage.getItem("@Id:EazyHome");
 
-  const onSubmitFuntion: SubmitHandler<iServices> = (data) => {
-    const { description } = data;
-    const hireData = {
-      idClient,
-      idProvider,
-      description,
-    };
-    console.log(data.description);
-    console.log(hireData);
-    setShowCloseOrCancelServiceModal(false);
+  function formatedCurrentDate() {
+    const date = new Date(),
+      day = date.getDate().toString().padStart(2, "0"),
+      month = (date.getMonth() + 1).toString().padStart(2, "0"),
+      year = date.getFullYear();
+    return day + "/" + month + "/" + year;
+  }
+  //id do serviço
+  const handleCancelHire = () => {
+    //cancelService(id)
+    var currentDate = formatedCurrentDate();
+    console.log(currentDate);
+  };
+
+  const handleCloseHire = () => {
+    setShowRatingStars(true);
+  };
+
+  //id do serviço e o rating
+  const handleRatingAndCloseHire = () => {
+    console.log(rating);
+    //closeService(id, rating)
+
   };
 
   const closeModal = () => {
@@ -103,21 +127,33 @@ export const ModalCloseService = ({
           </ItemBody>
         </ModalDiv>
         <StatusDiv>
-          <div>
-            <div>{status}</div>
-            <div>{`Data:${date}`}</div>
-          </div>
-          <div>
+          <FirstLine>
+            <span>{status}</span>
+            <span>{`Data:${date}`}</span>
+          </FirstLine>
+          <SecondLine>
             <span>{description}</span>
-          </div>
+          </SecondLine>
         </StatusDiv>
-        {showRatingStars ? (
+        {!showRatingStars ? (
           <CloseButtons>
-            <Button type="submit" text="Cancelar" />
-            <Button type="submit" text="Concluir" />
+            <Button type="button" text="Cancelar" callback={handleCancelHire} />
+            <Button type="button" text="Concluir" callback={handleCloseHire} />
           </CloseButtons>
         ) : (
-          <div></div>
+          <RatingDiv>
+            <LeftColumn>
+              <span>Avalie o atendimento: </span>
+              <StarRating rating={rating} setRating={setRating} />
+            </LeftColumn>
+            <RightColumn>
+              <Button
+                type="button"
+                text="Enviar"
+                callback={handleRatingAndCloseHire}
+              />
+            </RightColumn>
+          </RatingDiv>
         )}
       </ModalContainer>
     </BackGroundForm>

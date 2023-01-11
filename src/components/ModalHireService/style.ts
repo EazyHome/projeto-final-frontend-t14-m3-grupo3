@@ -89,12 +89,12 @@ export const ModalContainer = styled.div`
   gap: 10px;
   position: relative;
 
-  & > div {
+  /* & > div {
     width: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-  }
+  } */
 `;
 
 export const CloseModalDiv = styled.div`

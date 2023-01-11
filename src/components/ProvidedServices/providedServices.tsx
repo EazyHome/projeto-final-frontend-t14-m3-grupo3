@@ -35,7 +35,7 @@ export const ProvidedServicesFeedList = () => {
       age: 30,
       rating: 2,
       date: "09/01/2023",
-      description: "Armário da cozinha"
+      description: "Armário da cozinha",
     },
     {
       id: 1,
@@ -49,7 +49,7 @@ export const ProvidedServicesFeedList = () => {
       age: 30,
       rating: 4.5,
       date: "09/01/2023",
-      description: "Armário da cozinha"
+      description: "Armário da cozinha",
     },
     {
       id: 2,
@@ -80,20 +80,20 @@ export const ProvidedServicesFeedList = () => {
       description: "Vazamento na suite",
     },
     {
-    id: 3,
-    image: defaultClient,
-    name: "Cliente 3",
-    city: "Rio de Janeiro",
-    state: "RJ",
-    status: "CANCELADO",
-    phone: "(11) 99999.9997",
-    email: "cliente4@mail.com",
-    age: 32,
-    rating: -1,
-    date: "07/01/2023",
-    description: "Vazamento na suite"
-  },
-];
+      id: 3,
+      image: defaultClient,
+      name: "Cliente 3",
+      city: "Rio de Janeiro",
+      state: "RJ",
+      status: "CANCELADO",
+      phone: "(11) 99999.9997",
+      email: "cliente4@mail.com",
+      age: 32,
+      rating: -1,
+      date: "07/01/2023",
+      description: "Vazamento na suite",
+    },
+  ];
 
   useEffect(() => {
     setFilteredProvidedServices(initialProvidedServices);
@@ -128,9 +128,7 @@ export const ProvidedServicesFeedList = () => {
         </>
       ) : (
         <NoItemsFound>
-          <span>
-            Não há serviços prestados..
-          </span>
+          <span>Não há serviços prestados..</span>
         </NoItemsFound>
       )}
     </>

@@ -9,12 +9,16 @@ export const Dashboard = () => {
 
   useEffect(() => {
     isLogged();
-  });
+  }, []);
 
   return (
     <div>
+
+      {/* <StarRating /> */}
+
       {/* <ModalChangePassword /> */}
-      <StarRating />
+
+
     </div>
   );
 };
