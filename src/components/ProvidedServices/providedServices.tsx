@@ -9,6 +9,8 @@ import {
 } from "../../contexts/ProfileContext/ProfileContext";
 import eletricista from "../../../assets/img/eletricista.png";
 import { iUserClient } from "../../contexts/UserContext/UserContext";
+import { IoIosConstruct } from "react-icons/io";
+
 
 export const ProvidedServicesFeedList = () => {
   const {
@@ -78,9 +80,15 @@ export const ProvidedServicesFeedList = () => {
           </ProvidedServiceList>
         </>
       ) : (
-        <NoItemsFound>
-          <span>Não há serviços prestados..</span>
-        </NoItemsFound>
+    
+         <NoItemsFound>
+         <span>
+         Não há serviços prestados...
+         </span>
+         <div>
+           <IoIosConstruct size={130} />
+         </div>
+       </NoItemsFound>
       )}
     </>
   );

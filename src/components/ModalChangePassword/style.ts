@@ -48,11 +48,14 @@ export const ModalPassword = styled.div`
     font-size: var(--font-size-24);
   }
   & #changePassword {
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary);
+    border: 2px solid transparent;
     color: white;
   }
   & #changePassword:hover {
-    background-color: var(--color-primary);
+    background-color: transparent;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
   }
 `;
 
