@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { DivRating } from "./Style";
 
-export const StarRating = () => {
-  const [rating, setRating] = useState(null || Number);
+interface iRating {
+  rating: number;
+  setRating: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export const StarRating = ({ rating, setRating }: iRating) => {
+  // const [rating, setRating] = useState(null || Number);
   const [hover, setHover] = useState(null || Number);
 
   return (

@@ -22,20 +22,9 @@ import {
   DivCoverCategory,
   CoverAgePhone,
 } from "../../dashboard/client/style";
-import eletricista from "../../../assets/img/eletricista.png";
-import encanador from "../../../assets/img/encanador.png";
-import gas from "../../../assets/img/gás.png";
-import janelas from "../../../assets/img/janelas.png";
-import jardim from "../../../assets/img/jardineiro.png";
-import telhado from "../../../assets/img/ManutencaoDeTelhado.png";
-import marceneiro from "../../../assets/img/marceneiro.png";
-import pedreiro from "../../../assets/img/pedreiro.png";
-import pintor from "../../../assets/img/pintor.png";
-import piscina from "../../../assets/img/piscina.png";
-import piso from "../../../assets/img/piso.png";
-import serralheiro from "../../../assets/img/serralheiro.png";
+
+import { ContentServices, ServicesList } from "../../homepage/style";
 import providerRegisterButtonImg from "../../../assets/img/providerRegisterButtonImg.png";
-import workers from "../../../assets/img/workers.jpeg";
 import List from "@mui/material/List";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -47,19 +36,13 @@ import { BlueCard } from "../../../components/CardBlue/card";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
 import { Footer } from "../../../components/FooterRegisterAndLogin/footer";
 import { ProfileContext } from "../../../contexts/ProfileContext/ProfileContext";
-import { ContentServices, ServicesList } from "../../homepage/style";
 import { CitiesContext } from "../../../contexts/CitiesContext/CitiesContext";
 import { ClientProvidersFeedList } from "../../../components/ClientProvidersFeedList/clientProvidersFeedList";
 import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import {
-  iUserClient,
-  iUserClientRegister,
-} from "../../../contexts/UserContext/UserContext";
-import { Form } from "../../../components/Form/style";
-import { SelectConteiner } from "../../../components/ModalRegisterClient/style";
+import { iUserClient } from "../../../contexts/UserContext/UserContext";
 import { FormHelperText, MenuItem, Select } from "@mui/material";
 import { Button } from "../../../components/Button/Button";
 import { ModalChangePassword } from "../../../components/ModalChangePassword/ModalChangePassword";
@@ -69,20 +52,17 @@ export const DashboardClient = () => {
   const [open, setOpen] = React.useState(true);
   const [selectedOption, setSelectedOption] = React.useState("service");
   const stylesItems = { textAlign: "right", fontSize: 10 };
-  const { isLogged, getProviders, setCategory, category, editProfile } =
-    useContext(ProfileContext);
-
-  useEffect(() => {
-    isLogged();
-    getProviders();
-  }, []);
-
-  const handleClickService = () => {
-    setOpen(!open);
-    setSelectedOption("service");
-    setCategory("");
-  };
-
+  const {
+    isLogged,
+    getProviders,
+    setCategory,
+    category,
+    getActiveServices,
+    getCanceledServices,
+    getDoneServices,
+    getPhoto,
+    editProfile,
+  } = useContext(ProfileContext);
   const {
     disable,
     statesList,
@@ -93,8 +73,21 @@ export const DashboardClient = () => {
   } = useContext(CitiesContext);
 
   useEffect(() => {
+    isLogged();
+    getProviders();
     getStates();
+    getActiveServices();
+    getDoneServices();
+    getCanceledServices();
+    getPhoto();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleClickService = () => {
+    setOpen(!open);
+    setSelectedOption("service");
+    setCategory("");
+  };
 
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigatorio").email("Email inválido"),
@@ -109,15 +102,12 @@ export const DashboardClient = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
-    watch,
   } = useForm<iUserClient>({
     mode: "onChange",
     resolver: yupResolver(formSchema),
   });
 
   const [modalPassword, setModalPassword] = useState(false);
-
   const [workCitiesEdit, setWorkCitiesEdit] = useState<string[]>([]);
   const [workStateEdit, setStateEdit] = useState("");
   const [categoriesEdit, setCategoriesEdit] = useState<string[]>([]);
@@ -128,7 +118,6 @@ export const DashboardClient = () => {
   };
 
   let city = "";
-  let state = "";
   let cityState = "";
 
   const getStateEditForm = (e: any) => {
@@ -157,6 +146,11 @@ export const DashboardClient = () => {
     setCategoriesEdit([...categoriesEdit, getCategory]);
   };
 
+  const categoryChange = (e: any) => {
+    setCategory(e);
+    setSelectedOption("service");
+  };
+
   return (
     <DashboardClientConteiner>
       <ModalChangePassword
@@ -164,11 +158,14 @@ export const DashboardClient = () => {
         setModalPassword={setModalPassword}
       />
       <NavDashboardClient />
+
       <SectionDashboardClientTop>
-        <TextSectionTop>
-          Precisando de um profissional para manutenção residencial? O lugar é
-          aqui!
-        </TextSectionTop>
+        <div>
+          <TextSectionTop>
+            Precisando de um profissional para manutenção residencial? O lugar é
+            aqui!
+          </TextSectionTop>
+        </div>
       </SectionDashboardClientTop>
 
       <DashContent>
@@ -186,45 +183,12 @@ export const DashboardClient = () => {
                       key={index}
                       defaultValue={e.name}
                       sx={{ pl: 4 }}
-                      onClick={() => setCategory(e.name)}
+                      onClick={() => categoryChange(e.name)}
                     >
                       <ListItemText primary={e.name} className="NavSubItem" />
                     </ListItemButton>
                   );
                 })}
-                {/* <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="ELETRICISTA" className="NavSubItem" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="ENCANADOR" className="NavSubItem" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="GÁS" className="NavSubItem" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="JANELAS" className="NavSubItem" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="JARDIM" className="NavSubItem" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="PEDREIRO" className="NavSubItem" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="PISO" className="NavSubItem" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="PISCINA" className="NavSubItem" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="PINTOR" className="NavSubItem" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="SERRALHEIRO" className="NavSubItem" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="TELHADO" className="NavSubItem" />
-                </ListItemButton> */}
               </List>
             </Collapse>
             <ListItemButton onClick={() => setSelectedOption("perfil")}>
@@ -244,30 +208,18 @@ export const DashboardClient = () => {
                   const result = index % 2;
                   return !result ? (
                     <OrangeCard
-                      img={pintor}
+                      img={service.image}
                       type={service.name}
                       onClick={() => setCategory(service.name)}
                     />
                   ) : (
                     <BlueCard
-                      img={pedreiro}
+                      img={service.image}
                       type={service.name}
                       onClick={() => setCategory(service.name)}
                     />
                   );
                 })}
-                {/* <OrangeCard img={pintor} type="Pintor" onClick={setCategory()}/>
-                <BlueCard img={pedreiro} type="Pedreiro" />
-                <OrangeCard img={marceneiro} type="Marceneiro" />
-                <BlueCard img={telhado} type="Telhados" />
-                <OrangeCard img={jardim} type="Jardins" />
-                <BlueCard img={janelas} type="Janelas" />
-                <OrangeCard img={gas} type="Gás" />
-                <BlueCard img={encanador} type="Encanador" />
-                <OrangeCard img={eletricista} type="Eletricista" />
-                <BlueCard img={piso} type="Pisos" />
-                <OrangeCard img={piscina} type="Piscinas" />
-                <BlueCard img={serralheiro} type="Serralheiro" /> */}
               </ServicesList>
               <div></div>
             </ContentServices>

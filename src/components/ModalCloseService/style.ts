@@ -5,11 +5,12 @@ export const ModalDiv = styled.div`
   max-width: 700px;
   min-width: 300px;
   display: flex;
-  justify-content: flex-end;
-  /* align-items: flex-start; */
-  padding: 1rem 0;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1rem;
   padding-bottom: 1rem;
   position: relative;
+  margin-top: 2rem;
 
   @media (min-width: 700px) {
     min-width: 500px;
@@ -18,14 +19,15 @@ export const ModalDiv = styled.div`
 `;
 
 export const ItemImage = styled.div`
-  width: 4rem;
-  height: 4rem;
+  min-width: 4rem;
+  /* min-height: 4rem; */
+
   border: 1px solid var(--color-grey20);
   margin: 1rem;
   border-radius: var(--radius-1);
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  right: 0;
+  right: 0; */
 
   & > img {
     width: 100%;
@@ -34,11 +36,11 @@ export const ItemImage = styled.div`
   }
 
   @media (min-width: 700px) {
-    width: 5rem;
-    height: 5rem;
-    position: relative;
+    min-width: 5rem;
+    /* min-height: 5rem; */
+    /* position: relative;
     right: 0;
-    top: 0;
+    top: 0; */
   }
 `;
 
@@ -55,10 +57,10 @@ export const ItemBody = styled.div`
 export const CloseButtons = styled.div`
   width: 100%;
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  margin-left: 2rem;
+  justify-content: space-around;
+  align-items: center;
   gap: 2rem;
+  padding: 0 1rem;
 
   & > button {
     background-color: var(--color-primary);
@@ -83,6 +85,7 @@ export const ModalContainer = styled.div`
   max-width: 400px;
   background-color: var(--color-white);
   border-radius: 10px;
+  padding: 1rem;
   padding-bottom: 1rem;
   display: flex;
   flex-direction: column;
@@ -90,12 +93,9 @@ export const ModalContainer = styled.div`
   justify-content: center;
   gap: 10px;
   position: relative;
-
-  & > div {
-    width: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+  font-size: var(--font-size-14);
+  @media (min-width: 700px) {
+    font-size: var(--font-size-16);
   }
 `;
 
@@ -107,31 +107,28 @@ export const CloseModalDiv = styled.div`
   margin: 1rem;
   position: absolute;
   top: 0.5rem;
-  right: 1rem;
+  right: 0.5rem;
   z-index: 99;
 
   & > button {
-    background-color: var(--color-primary);
+    background-color: transparent;
     border-radius: var(--radius-1);
     border: var(--color-primary);
     font-size: var(--font-size-16);
-
     padding: 0.5rem 0.8rem;
     font-weight: 500;
     line-height: 24px;
-    color: var(--color-grey0);
+    color: var(--color-primary);
 
     :hover {
-      background-color: var(--color-tertiary);
+      background-color: var(--color-grey0);
       border: var(--color-tertiary);
     }
   }
 `;
 
 export const StatusDiv = styled.div`
-  width: 80%;
-  max-width: 700px;
-  min-width: 300px;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -139,15 +136,64 @@ export const StatusDiv = styled.div`
   padding: 0;
   padding-bottom: 1rem;
 
-  div {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 2rem;
+  @media (min-width: 700px) {
+    min-width: 500px;
+    padding-left: 6rem;
   }
+`;
+export const FirstLine = styled.div`
+  min-width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+
+  & > div {
+    width: 50%;
+  }
+`;
+
+export const SecondLine = styled.div`
+  width: 80%;
+`;
+
+export const RatingDiv = styled.div`
+  width: 75%;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0;
+  padding-bottom: 1rem;
+  margin-left: 1rem;
 
   @media (min-width: 700px) {
     min-width: 500px;
     padding-left: 4rem;
+  }
+`;
+
+export const LeftColumn = styled.div``;
+
+export const RightColumn = styled.div`
+  width: 40%;
+  position: absolute;
+  bottom: 0.5rem;
+  right: -1.5rem;
+
+  & > button {
+    background-color: var(--color-opposite-1);
+    border-radius: var(--radius-1);
+    border: var(--color-primary);
+    font-size: var(--font-size-16);
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    line-height: 24px;
+    color: var(--color-grey0);
+
+    :hover {
+      background-color: var(--color-opposite-2);
+      border: var(--color-opposite-2);
+    }
   }
 `;
