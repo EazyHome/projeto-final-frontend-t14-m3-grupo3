@@ -21,10 +21,8 @@ interface iCitiesContext {
   citiesList: [] | iCitiesList[];
   selectState: (e: SelectChangeEvent<string>) => void;
   disable: boolean;
-
   errorApi: boolean;
   setErrorApi: (data: boolean) => void;
-
   servicesCategories: iCategoriesList[];
 }
 
