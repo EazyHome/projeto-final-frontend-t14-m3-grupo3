@@ -207,7 +207,7 @@ export const DivEditProfile = styled.div`
   width: 100%;
   max-width: 420px;
   padding: 16px;
-  margin: 0 auto 18px auto;
+  margin: 10px auto 18px auto;
 
   img {
     border: 1px solid black;
@@ -246,25 +246,41 @@ export const DivEditProfile = styled.div`
 `;
 
 export const DivEditNomeEmail = styled.div`
-  .name {
-    width: 100%;
+  width: 80%;
+  @media (min-width: 700px) {
+    width: 85%;
   }
 `;
 
 export const DivEditProfileHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 0 auto 18px auto;
+  margin: 18px auto 18px auto;
   width: 100%;
+  color: var(--color-primary);
+  font-size: 20px;
+  position: relative;
 
-  @media (min-width: 1020px) {
+  img {
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    width: 100px;
+    height: 120px;
+    object-fit: cover;
+    border: 2px solid var(--color-grey20);
+  }
+  /* 
+  @media (min-width: 400px) {
     img {
-      position: absolute;
-      right: 120px;
-      top: 60px;
+      right: 20px;
+    }
+  } */
+
+  @media (min-width: 700px) {
+    img {
       width: 110px;
-      height: 120px;
-      object-fit: cover;
+      right: 7%;
     }
   }
 `;
@@ -313,14 +329,13 @@ export const AddCity = styled.div`
 `;
 
 export const CoverLabelStateSpan = styled.div`
-  display: flex;
-  flex-direction: column;
+  min-width: 100px;
 `;
 
 export const StateAndButton = styled.div`
   justify-content: space-between;
 
-  #DivLocal {
+  & > div {
     margin: 16px 0;
     width: 100%;
     display: flex;
@@ -331,7 +346,6 @@ export const StateAndButton = styled.div`
     display: flex;
     gap: 16px;
     align-items: center;
-
     max-width: 100%;
   }
 `;
@@ -346,7 +360,7 @@ export const SelectCity = styled.div`
   }
 
   @media (min-width: 1000px) {
-    max-width: 860px;
+    max-width: 450px;
     width: 100%;
   }
 `;

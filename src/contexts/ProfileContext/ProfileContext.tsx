@@ -37,7 +37,6 @@ interface iProfileContext {
   getPhoto: () => void;
   filteredServices: [] | iServices[];
   setFilteredServices: React.Dispatch<React.SetStateAction<[] | iServices[]>>;
-  needChange: boolean;
   setNeedChange: React.Dispatch<React.SetStateAction<boolean>>;
   changePassword: (data: IData) => void;
   clientsList: [] | iUserClient[];
@@ -89,7 +88,6 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
   const [filteredServices, setFilteredServices] = useState<[] | iServices[]>(
     []
   );
-  const [needChange, setNeedChange] = useState<boolean>(false);
 
   const isLogged = async () => {
     try {
@@ -470,7 +468,6 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         changePassword,
         clientsList,
         getClients,
-        needChange,
       }}
     >
       {children}

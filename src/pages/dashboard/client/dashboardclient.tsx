@@ -49,6 +49,9 @@ import { ModalChangePassword } from "../../../components/ModalChangePassword/Mod
 import { ClientHiredProvidersFeedList } from "../../../components/ClientHiredProviders/clientHiredProviders";
 import { StatesAPI } from "../../../service/StatesApi";
 import api from "../../../service/api";
+import { CssTextField } from "../../login/login";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
 
 export const DashboardClient = () => {
   const [open, setOpen] = React.useState(true);
@@ -111,12 +114,19 @@ export const DashboardClient = () => {
   };
 
   const formSchema = yup.object().shape({
-    email: yup.string().required("Email obrigatorio").email("Email inválido"),
-    name: yup.string().required("Nome obrigatorio"),
-    state: yup.string().required("Estado obrigatorio"),
-    city: yup.string().required("Cidade obrigatoria"),
-    age: yup.number().required("Idade obrigatoria"),
-    phone: yup.string().required("Contato obrigatorio"),
+    email: yup.string().required("Email obrigatório").email("Email inválido"),
+    name: yup.string().required("Nome obrigatório"),
+    state: yup.string().required("Estado obrigatório"),
+    city: yup.string().required("Cidade obrigatíria"),
+    age: yup
+      .number()
+      .required("Idade obrigatória")
+      .min(2, "Idade precisa ter mais de 2 caracteres "),
+    phone: yup
+      .string()
+      .required("Contato obrigatório")
+      .min(10, "Telefone precisa ter mais de 10 caracteres ")
+      .max(11, "Telefone precisa ter menos de 12 caracteres "),
   });
 
   const {
@@ -253,69 +263,134 @@ export const DashboardClient = () => {
 
             <FormEdit onSubmit={handleSubmit(handleSubmitEditForm)}>
               <DivEditNomeEmail>
-                <TextField
+                <CssTextField
                   className="name"
                   label="Nome"
                   variant="outlined"
                   type="text"
                   placeholder={`${getClientInfo?.name}`}
                   {...register("name")}
+                  error={!!errors.name}
                   helperText={(errors.name as any)?.message}
                 />
-                <TextField
+                <CssTextField
                   className="email"
                   label="E-mail"
                   variant="outlined"
                   type="email"
                   placeholder={`${getClientInfo?.email}`}
                   {...register("email")}
+                  error={!!errors.email}
                   helperText={(errors.email as any)?.message}
                 />
               </DivEditNomeEmail>
 
               <AddCity>
                 <StateAndButton>
-                  <div id="DivLocal">
+                  <div>
                     <CoverLabelStateSpan>
-                      <span>Estado</span>
-                      <Select
-                        className="stateSelect"
-                        label="Estado"
-                        {...register("state")}
-                        onChange={getStateEditForm}
-                      >
-                        {statesList.map((e) => {
-                          return (
-                            <MenuItem key={e.id} value={e.sigla}>
-                              {e.sigla}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
-                      <FormHelperText>
-                        {(errors.state as any)?.message}
-                      </FormHelperText>
+                      <FormControl>
+                        <InputLabel
+                          id="demo-simple-select-label"
+                          sx={{
+                            color: "var(--color-primary)",
+                          }}
+                        >
+                          Estado
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          label="Estado"
+                          {...register("state")}
+                          onChange={getStateEditForm}
+                          error={!!errors.state}
+                          sx={{
+                            color: "var(--color-primary)",
+                            ".MuiOutlinedInput-notchedOutline": {
+                              border: "2px solid var(--color-opposite-1)",
+                            },
+                            ".MuiSvgIcon-root ": {
+                              fill: "var(--color-opposite-1) !important",
+                            },
+                            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                              border: "2px solid var(--color-primary)",
+                            },
+                            "&:hover .MuiOutlinedInput-notchedOutline": {
+                              border: "2px solid var(--color-primary)",
+                            },
+                            "&:hover ": {
+                              ".MuiSvgIcon-root ": {
+                                fill: "var(--color-primary) !important",
+                              },
+                            },
+                          }}
+                        >
+                          {statesList.map((e) => {
+                            return (
+                              <MenuItem key={e.id} value={e.sigla}>
+                                {e.sigla}
+                              </MenuItem>
+                            );
+                          })}
+                        </Select>
+                        <FormHelperText>
+                          {(errors.state as any)?.message}
+                        </FormHelperText>
+                      </FormControl>
                     </CoverLabelStateSpan>
+
                     <SelectCity>
-                      <span>Cidade</span>
-                      <Select
-                        className="citySelect"
-                        label="Cidade"
-                        disabled={disable}
-                        {...register("city")}
-                        onChange={getCityEditForm}
-                      >
-                        {citiesList.map((e) => {
-                          return (
-                            <MenuItem key={e.id} value={e.nome}>
-                              {e.nome}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
-                      <FormHelperText>
-                        {(errors.city as any)?.message}
-                      </FormHelperText>
+                      <FormControl>
+                        <InputLabel
+                          id="demo-simple-select-label"
+                          sx={{
+                            color: "var(--color-primary)",
+                          }}
+                        >
+                          Cidade
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          label="Cidade"
+                          disabled={disable}
+                          {...register("city")}
+                          onChange={getCityEditForm}
+                          error={!!errors.city}
+                          sx={{
+                            color: "var(--color-primary)",
+                            ".MuiOutlinedInput-notchedOutline": {
+                              border: "2px solid var(--color-opposite-1)",
+                            },
+                            ".MuiSvgIcon-root ": {
+                              fill: "var(--color-opposite-1) !important",
+                            },
+                            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                              border: "2px solid var(--color-primary)",
+                            },
+                            "&:hover .MuiOutlinedInput-notchedOutline": {
+                              border: "2px solid var(--color-primary)",
+                            },
+                            "&:hover ": {
+                              ".MuiSvgIcon-root ": {
+                                fill: "var(--color-primary) !important",
+                              },
+                            },
+                          }}
+                        >
+                          {citiesList.map((e) => {
+                            return (
+                              <MenuItem key={e.id} value={e.nome}>
+                                {e.nome}
+                              </MenuItem>
+                            );
+                          })}
+                        </Select>
+                        <FormHelperText>
+                          {(errors.city as any)?.message}
+                        </FormHelperText>
+                      </FormControl>
                     </SelectCity>
                   </div>
                 </StateAndButton>
