@@ -1,11 +1,11 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { HomePage } from "../pages/homepage/homepage";
+import { HomePage } from "../pages/Homepage/homepage";
 import { Login } from "../pages/login/login";
 import { NotFound } from "../pages/notFound/notFound";
-import { Register } from "../pages/register/register";
-import { DashboardClient } from "../pages/dashboard/client/dashboardclient";
-import { DashboardService } from "../pages/dashboard/service/dashboardservice";
+import { Register } from "../pages/Register/register";
+import { DashboardClient } from "../pages/Dashboard/client/dashboardclient";
+import { DashboardService } from "../pages/Dashboard/service/dashboardservice";
 
 export const RoutesMain = () => {
   return (

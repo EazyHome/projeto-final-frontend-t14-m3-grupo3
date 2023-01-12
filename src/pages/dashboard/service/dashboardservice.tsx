@@ -20,7 +20,7 @@ import {
   CoverAgePhone,
   DashboardServiceConteiner,
   SectionDashboardServiceTop,
-} from "./style";
+} from "../service/style";
 import providerRegisterButtonImg from "../../../assets/img/providerRegisterButtonImg.png";
 import List from "@mui/material/List";
 import ListItemText from "@mui/material/ListItemText";
@@ -42,14 +42,22 @@ import { ProvidedServicesFeedList } from "../../../components/ProvidedServices/p
 export const DashboardService = () => {
   const [selectedOption, setSelectedOption] = React.useState("service");
   const stylesItems = { textAlign: "right", fontSize: 10 };
-  const { isLogged, getActiveServices, getDoneServices, getCanceledServices } =
-    useContext(ProfileContext);
+  const {
+    isLogged,
+    getActiveServices,
+    getDoneServices,
+    getCanceledServices,
+    getPhoto,
+    setLoadingProvider,
+  } = useContext(ProfileContext);
 
   useEffect(() => {
     isLogged();
     getDoneServices();
     getActiveServices();
     getCanceledServices();
+    getStates();
+    getPhoto();
   }, []);
 
   const {
@@ -60,10 +68,6 @@ export const DashboardService = () => {
     getStates,
     servicesCategories,
   } = useContext(CitiesContext);
-
-  useEffect(() => {
-    getStates();
-  }, []);
 
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigatorio").email("Email inválido"),
@@ -78,15 +82,12 @@ export const DashboardService = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
-    watch,
   } = useForm<iUserClient>({
     mode: "onChange",
     resolver: yupResolver(formSchema),
   });
 
   const [modalPassword, setModalPassword] = useState(false);
-
   const [workCitiesEdit, setWorkCitiesEdit] = useState<string[]>([]);
   const [workStateEdit, setStateEdit] = useState("");
   const [categoriesEdit, setCategoriesEdit] = useState<string[]>([]);
@@ -124,6 +125,10 @@ export const DashboardService = () => {
     setCategoriesEdit([...categoriesEdit, getCategory]);
   };
 
+  const setLoadingProviders = () => {
+    setLoadingProvider(true);
+  };
+
   return (
     <DashboardServiceConteiner>
       <ModalChangePassword
@@ -141,7 +146,10 @@ export const DashboardService = () => {
         <DashNav>
           <List component="ul" disablePadding sx={stylesItems}>
             <ListItemButton onClick={() => setSelectedOption("services")}>
-              <ListItemText primary="SERVIÇOS PRESTADOS" />
+              <ListItemText
+                primary="SERVIÇOS PRESTADOS"
+                onClick={() => setLoadingProviders}
+              />
             </ListItemButton>
             <ListItemButton onClick={() => setSelectedOption("perfil")}>
               <ListItemText primary="EDITAR PERFIL" />

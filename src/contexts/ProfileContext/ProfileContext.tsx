@@ -42,8 +42,9 @@ interface iProfileContext {
   changePassword: (data: IData) => void;
   clientsList: [] | iUserClient[];
   getClients: () => void;
-  needChange: boolean;
   autoLogin: () => void;
+  loadingProvider: boolean;
+  setLoadingProvider: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface iServices {
@@ -89,7 +90,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
   const [filteredServices, setFilteredServices] = useState<[] | iServices[]>(
     []
   );
-  const [needChange, setNeedChange] = useState<boolean>(false);
+  const [loadingProvider, setLoadingProvider] = useState<boolean>(false);
 
   const isLogged = async () => {
     try {
@@ -430,7 +431,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         },
       });
       setClientsList(response.data);
-      return [];
+      setLoadingProvider(false);
     } catch (error) {
       navigate("/");
     }
@@ -470,7 +471,8 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         changePassword,
         clientsList,
         getClients,
-        needChange,
+        loadingProvider,
+        setLoadingProvider,
       }}
     >
       {children}

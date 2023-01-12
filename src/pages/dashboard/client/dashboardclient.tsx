@@ -21,9 +21,8 @@ import {
   FormEdit,
   DivCoverCategory,
   CoverAgePhone,
-} from "../../dashboard/client/style";
-
-import { ContentServices, ServicesList } from "../../homepage/style";
+} from "../../Dashboard/client/style";
+import { ContentServices, ServicesList } from "../../Homepage/style";
 import providerRegisterButtonImg from "../../../assets/img/providerRegisterButtonImg.png";
 import List from "@mui/material/List";
 import ListItemText from "@mui/material/ListItemText";
@@ -47,7 +46,6 @@ import { FormHelperText, MenuItem, Select } from "@mui/material";
 import { Button } from "../../../components/Button/Button";
 import { ModalChangePassword } from "../../../components/ModalChangePassword/ModalChangePassword";
 import { ClientHiredProvidersFeedList } from "../../../components/ClientHiredProviders/clientHiredProviders";
-import { StatesAPI } from "../../../service/statesApi";
 import api from "../../../service/api";
 
 export const DashboardClient = () => {
