@@ -16,29 +16,27 @@ export const ClientHiredProvidersFeedList = () => {
     getCanceledServices,
     providersList,
     getProviders,
+    needChange,
+    setNeedChange,
   } = useContext(ProfileContext);
 
   useEffect(() => {
     getProviders();
-    console.log("Providers", providersList);
+    setNeedChange(false);
   }, []);
 
   useEffect(() => {
     getActiveServices();
     getDoneServices();
     getCanceledServices();
-    console.log(activeServices);
-  }, []);
+  }, [needChange]);
 
-  const active = [...activeServices];
-  const done = [...doneServices];
-  const canceled = [...canceledServices];
-  const clientTotalServices = [
-    ...active.reverse(),
-    ...done.reverse(),
-    ...canceled.reverse(),
+  let clientTotalServices = [] as iServices[];
+  clientTotalServices = [
+    ...activeServices.reverse(),
+    ...doneServices.reverse(),
+    ...canceledServices.reverse(),
   ];
-
   const typeOfCard = "hiredProvidersList";
 
   return (
@@ -47,19 +45,15 @@ export const ClientHiredProvidersFeedList = () => {
         <>
           <HiredProviderList>
             {clientTotalServices.map((provider, index) => {
-              console.log(index);
               const currentProvider = providersList.filter((prov) => {
-                console.log(prov.id);
-                console.log(provider.providerId === prov.id);
                 return provider.providerId === prov.id;
               });
-              console.log(currentProvider.length);
               return (
                 currentProvider.length > 0 && (
                   <ServiceFeedCard
                     key={index}
                     typeOfCard={typeOfCard}
-                    id={provider.providerId}
+                    id={provider.id}
                     image={currentProvider[0].avatar_URL}
                     name={currentProvider[0].name}
                     category={provider.type}
@@ -67,12 +61,7 @@ export const ClientHiredProvidersFeedList = () => {
                     phone={currentProvider[0].phone}
                     email={currentProvider[0].email}
                     age={currentProvider[0].age}
-                    rating={
-                      currentProvider[0].ratings.reduce(
-                        (accumulator, value) => accumulator + value,
-                        0
-                      ) / currentProvider[0].ratings.length
-                    }
+                    rating={Number(provider.rating)}
                     date={provider.createdAt}
                     description={provider.description}
                   />
