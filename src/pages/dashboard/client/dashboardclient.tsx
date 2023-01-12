@@ -430,14 +430,10 @@ export const DashboardClient = () => {
                       error={!!errors.phone}
                     />
                   </DivPhone>
-                  <Button
-                    type="button"
-                    callback={() => setModalPassword(true)}
-                    text="Alterar Senha"
-                  />
-                  <button type="submit" id="saveChanges">
-                    Salvar alterações
+                  <button onClick={() => setModalPassword(true)}>
+                    Alterar Senha
                   </button>
+                  <button type="submit">Salvar alterações</button>
                 </CoverAgePhone>
               </AddCity>
             </FormEdit>
