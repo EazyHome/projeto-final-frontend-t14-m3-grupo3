@@ -1,10 +1,7 @@
 import { HiredProviderList, NoItemsFound } from "./style";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { ServiceFeedCard } from "../ServiceFeedCard/serviceFeedCard";
-import {
-  iServices,
-  ProfileContext,
-} from "../../contexts/ProfileContext/ProfileContext";
+import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
 import { IoIosConstruct } from "react-icons/io";
 
 export const ClientHiredProvidersFeedList = () => {
@@ -19,33 +16,40 @@ export const ClientHiredProvidersFeedList = () => {
     getProviders,
     needChange,
     setNeedChange,
+    filteredServices,
+    setFilteredServices,
   } = useContext(ProfileContext);
 
   useEffect(() => {
     getProviders();
     setNeedChange(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     getActiveServices();
     getDoneServices();
     getCanceledServices();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [needChange]);
 
-  let clientTotalServices = [] as iServices[];
-  clientTotalServices = [
-    ...activeServices.reverse(),
-    ...doneServices.reverse(),
-    ...canceledServices.reverse(),
-  ];
+  useEffect(() => {
+    setFilteredServices([
+      ...activeServices.reverse(),
+      ...doneServices.reverse(),
+      ...canceledServices.reverse(),
+    ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeServices, doneServices, canceledServices]);
+
   const typeOfCard = "hiredProvidersList";
 
   return (
     <>
-      {clientTotalServices.length > 0 ? (
+      {filteredServices.length > 0 ? (
         <>
           <HiredProviderList>
-            {clientTotalServices.map((provider, index) => {
+            {filteredServices.map((provider, index) => {
               const currentProvider = providersList.filter((prov) => {
                 return provider.providerId === prov.id;
               });
@@ -73,9 +77,7 @@ export const ClientHiredProvidersFeedList = () => {
         </>
       ) : (
         <NoItemsFound>
-          <span>
-          Nenhum serviço contratado
-          </span>
+          <span>Nenhum serviço contratado</span>
           <div>
             <IoIosConstruct size={130} />
           </div>

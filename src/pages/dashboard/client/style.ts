@@ -9,15 +9,6 @@ export const DashboardClientConteiner = styled.main`
   min-width: 100%;
   max-width: 100%;
   min-height: 100%;
-  /* @media (max-width: 630px) {
-    & {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: flex-start;
-      justify-content: space-between;
-    }
-  } */
 `;
 
 export const SectionDashboardClientTop = styled.div`
@@ -96,11 +87,7 @@ export const DashNav = styled.nav`
   justify-content: space-between;
   width: 20%;
   padding: 2rem;
-  /* min-height: 100%;
-  border: 2px solid red;
-  min-height: 100%;
-  max-height: 100%;
-  overflow: scroll; */
+
   @media (min-width: 280px) {
     padding: 1rem;
     justify-content: space-between;

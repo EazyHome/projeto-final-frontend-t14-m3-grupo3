@@ -8,23 +8,18 @@ import {
   TextSectionTop,
   DivEditProfile,
   DivEditProfileHeader,
-  WorkCities,
   AddCity,
   StateAndButton,
   CoverLabelStateSpan,
   SelectCity,
-  Categories,
-  SelectCategory,
   Age,
   DivPhone,
   DivEditNomeEmail,
   FormEdit,
-  DivCoverCategory,
   CoverAgePhone,
   ContentServices,
   ListService,
 } from "../../Dashboard/client/style";
-import providerRegisterButtonImg from "../../../assets/img/providerRegisterButtonImg.png";
 import List from "@mui/material/List";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -38,16 +33,13 @@ import { Footer } from "../../../components/Footer/Footer";
 import { ProfileContext } from "../../../contexts/ProfileContext/ProfileContext";
 import { CitiesContext } from "../../../contexts/CitiesContext/CitiesContext";
 import { ClientProvidersFeedList } from "../../../components/ClientProvidersFeedList/clientProvidersFeedList";
-import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { iUserClient } from "../../../contexts/UserContext/UserContext";
 import { FormHelperText, MenuItem, Select } from "@mui/material";
-import { Button } from "../../../components/Button/Button";
 import { ModalChangePassword } from "../../../components/ModalChangePassword/ModalChangePassword";
 import { ClientHiredProvidersFeedList } from "../../../components/ClientHiredProviders/clientHiredProviders";
-import { StatesAPI } from "../../../service/StatesApi";
 import api from "../../../service/api";
 import { CssTextField } from "../../login/login";
 import FormControl from "@mui/material/FormControl";
@@ -140,17 +132,16 @@ export const DashboardClient = () => {
   });
 
   const [modalPassword, setModalPassword] = useState(false);
-  const [workCitiesEdit, setWorkCitiesEdit] = useState<string[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [workStateEdit, setStateEdit] = useState("");
-  const [categoriesEdit, setCategoriesEdit] = useState<string[]>([]);
 
   const handleSubmitEditForm = (data: iUserClient) => {
     editProfile(data);
     localStorage.setItem("@UserCity:EazyHome", data.city);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let city = "";
-  let cityState = "";
 
   const getStateEditForm = (e: any) => {
     e.preventDefault();
@@ -161,21 +152,6 @@ export const DashboardClient = () => {
   const getCityEditForm = (e: any) => {
     e.preventDefault();
     city = e.target.value;
-  };
-
-  const setCitySubmit = () => {
-    cityState = city + "-" + workStateEdit;
-    setWorkCitiesEdit([...workCitiesEdit, cityState]);
-  };
-
-  let getCategory = "";
-  const getCategories = (e: any) => {
-    e.preventDefault();
-    getCategory = e.target.value;
-  };
-
-  const setCategorySubmit = () => {
-    setCategoriesEdit([...categoriesEdit, getCategory]);
   };
 
   const categoryChange = (e: any) => {

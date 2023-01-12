@@ -10,7 +10,7 @@ export function OrangeCard({ img, type, onClick }: iProp) {
   return (
     <OrangeItem>
       <div onClick={onClick}>
-        <img src={img} />
+        <img src={img} alt="" />
       </div>
       <p>{type}</p>
     </OrangeItem>

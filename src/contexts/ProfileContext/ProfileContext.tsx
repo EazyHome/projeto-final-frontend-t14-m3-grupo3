@@ -30,7 +30,6 @@ interface iProfileContext {
   setCategory: React.Dispatch<React.SetStateAction<string>>;
   filterProviderByCategory: () => void;
   filteredProviders: [] | iUserService[];
-  editPassword: (data: string) => void;
   cancelService: (id: number) => void;
   finishService: (data: iChangeService) => void;
   photo: string;
@@ -104,28 +103,30 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         }
       );
     } catch (error) {
-      navigate("/");
+      navigate("");
     }
   };
 
   const autoLogin = async () => {
     const token = localStorage.getItem("@Token:EazyHome");
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const response = api.get(`/users`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      if (localStorage.getItem("@UserType:EazyHome") === "cliente") {
-        navigate("/dashboardcliente");
-      } else {
-        navigate("/dashboardservice");
+    if (token) {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const response = api.get(`/users`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (localStorage.getItem("@UserType:EazyHome") === "cliente") {
+          navigate("/dashboardclient");
+        } else {
+          navigate("/dashboardservice");
+        }
+      } catch (error) {
+        userLogout();
+        toast.error("Seu login expirou! Faça login novamente.");
+        navigate("/login");
       }
-    } catch (error) {
-      toast.error("Seu login expirou! Faça login novamente.");
-      userLogout();
-      navigate("/login");
     }
   };
 
@@ -168,23 +169,6 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
       } else {
         toast.error("Opps! Algo deu errado");
       }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const editPassword = async (data: string) => {
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const response = await api.patch(
-        `/users/${localStorage.getItem("@Id:EazyHome")}`,
-        data,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
-          },
-        }
-      );
     } catch (error) {
       console.log(error);
     }
@@ -239,7 +223,9 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
           )}&status=done`,
           {
             headers: {
-              Authorization: `Bearer ${"@Token:EazyHome"}`,
+              Authorization: `Bearer ${localStorage.getItem(
+                "@Token:EazyHome"
+              )}`,
             },
           }
         );
@@ -251,7 +237,9 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
           )}&status=done`,
           {
             headers: {
-              Authorization: `Bearer ${"@Token:EazyHome"}`,
+              Authorization: `Bearer ${localStorage.getItem(
+                "@Token:EazyHome"
+              )}`,
             },
           }
         );
@@ -469,7 +457,6 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         setCategory,
         filterProviderByCategory,
         filteredProviders,
-        editPassword,
         cancelService,
         finishService,
         photo,

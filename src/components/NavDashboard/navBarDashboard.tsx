@@ -3,16 +3,14 @@ import {
   DivAvatar,
   DivLinksNav,
   DivLogo,
-  DivNavRight,
   DivSideMenu,
   NavBar,
 } from "./style";
 import logo from "../../assets/img/logoEazyHomeVersao4.png";
-import client from "../../assets/img/cliente.png";
 import { Link } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { UserContext } from "../../contexts/UserContext/UserContext";
 import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
 

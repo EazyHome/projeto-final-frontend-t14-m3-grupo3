@@ -8,7 +8,6 @@ interface iRating {
 }
 
 export const StarRating = ({ rating, setRating }: iRating) => {
-  // const [rating, setRating] = useState(null || Number);
   const [hover, setHover] = useState(null || Number);
 
   return (

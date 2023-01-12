@@ -98,7 +98,6 @@ export const FeedItemHeader = styled.div<iStyledFeedProps>`
   font-weight: 500;
   display: flex;
   justify-content: space-between;
-  /* align-items: flex-start; */
   border-bottom: 1px solid var(--color-grey20);
   background-color: transparent;
 
@@ -145,7 +144,6 @@ export const FeedRating = styled.div`
 export const FeedItemTitle = styled.div`
   font-weight: 700;
   display: flex;
-  /* max-width: 60%; */
   justify-content: space-between;
   flex-direction: column;
   align-items: flex-start;
@@ -178,9 +176,6 @@ export const FeedItemDetails = styled.div`
 `;
 
 export const FeedCardButton = styled.div`
-  /* position: absolute;
-  bottom: 0.5rem;
-  right: 1rem; */
   display: flex;
   justify-content: flex-end;
   position: absolute;

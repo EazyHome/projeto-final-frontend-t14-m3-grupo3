@@ -11,9 +11,6 @@ export const DivFooter = styled.div`
   gap: 10px;
   padding-left: 8%;
   padding-right: 8%;
-  /* position: absolute;
-  bottom: -85px; */
-
   @media (min-width: 700px) {
     bottom: -100px;
   }

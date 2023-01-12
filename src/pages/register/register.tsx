@@ -1,7 +1,7 @@
 import { NavRegister } from "../../components/NavRegister/NavRegister";
 import imgClientRegister from "./../../assets/img/clientRegisterButtonImg.png";
 import imgProviderRegister from "./../../assets/img/providerRegisterButtonImg.png";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Footer } from "../../components/FooterRegisterAndLogin/footer";
 import { ModalClientRegister } from "../../components/ModalRegisterClient/modalClient";
 import { ModalProvidertRegister } from "../../components/ModalRegisterProvider/modalProvider";
@@ -12,11 +12,18 @@ import {
   RegisterButtonsCoteiner,
   RegisterConteiner,
 } from "../../pages/Register/style";
+import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
 
 export function Register() {
   const [showClientModal, setShowClientModal] = useState(false);
   const [showProviderModal, setShowProviderModal] = useState(false);
   const [showButtonContainer, setShowButtonContainer] = useState(true);
+  const { autoLogin } = useContext(ProfileContext);
+
+  useEffect(() => {
+    autoLogin();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>

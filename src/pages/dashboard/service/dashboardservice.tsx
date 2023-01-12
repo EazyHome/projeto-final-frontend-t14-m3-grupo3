@@ -21,14 +21,12 @@ import {
   DashboardServiceConteiner,
   SectionDashboardServiceTop,
 } from "../service/style";
-import providerRegisterButtonImg from "../../../assets/img/providerRegisterButtonImg.png";
 import List from "@mui/material/List";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemButton from "@mui/material/ListItemButton";
 import { Footer } from "../../../components/FooterRegisterAndLogin/footer";
 import { ProfileContext } from "../../../contexts/ProfileContext/ProfileContext";
 import { CitiesContext } from "../../../contexts/CitiesContext/CitiesContext";
-import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -36,13 +34,7 @@ import {
   iUserClient,
   iUserService,
 } from "../../../contexts/UserContext/UserContext";
-import {
-  FormControl,
-  FormHelperText,
-  InputLabel,
-  MenuItem,
-  Select,
-} from "@mui/material";
+import { FormHelperText, MenuItem, Select } from "@mui/material";
 import { Button } from "../../../components/Button/Button";
 import { ModalChangePassword } from "../../../components/ModalChangePassword/ModalChangePassword";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
