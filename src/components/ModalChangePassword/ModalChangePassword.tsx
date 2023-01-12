@@ -5,18 +5,16 @@ import { Form } from "../Form/style";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { BackGroudModalPassword, ModalPassword } from "./style";
-
+import api from "../../service/api";
 
 interface IChangePasswordForm {
-  senhaAtual: string;
   novaSenha: string;
-  confimarNovaSenha: string;
+  confimarNovaSenha?: string;
 }
 
 interface IData {
-  senhaAtual: string;
   novaSenha: string;
-  confimarNovaSenha: string;
+  confimarNovaSenha?: string;
 }
 
 interface ISTATE {
@@ -24,18 +22,28 @@ interface ISTATE {
   setModalPassword: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+const changePassword = async (data: IData) => {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const response = await api.patch(
+      `users/${localStorage.getItem("@Id:EazyHome")}`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
+        },
+      }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const ModalChangePassword = ({
   modalPassword,
   setModalPassword,
 }: ISTATE) => {
   const formSchema = yup.object().shape({
-    senhaAtual: yup
-      .string()
-      .required("Senha obrigatoria")
-      .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-        "Mínimo de oito caracteres, pelo menos uma letra, um número e um símbolo"
-      ),
     novaSenha: yup
       .string()
       .required("Senha obrigatoria")
@@ -46,10 +54,7 @@ export const ModalChangePassword = ({
     confimarNovaSenha: yup
       .string()
       .required("Senha obrigatoria")
-      .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-        "Mínimo de oito caracteres, pelo menos uma letra, um número e um símbolo"
-      ),
+      .oneOf([yup.ref("novaSenha")], "Senhas não conferem"),
   });
 
   const {
@@ -62,7 +67,8 @@ export const ModalChangePassword = ({
   });
 
   function ChangePasswordData(data: IData) {
-    console.log(data);
+    delete data.confimarNovaSenha;
+    changePassword(data);
   }
 
   return (
@@ -75,14 +81,6 @@ export const ModalChangePassword = ({
               X
             </button>
             <Form onSubmit={handleSubmit(ChangePasswordData)}>
-              <TextField
-                label="Senha atual"
-                variant="outlined"
-                type="text"
-                placeholder="Senha Atual"
-                {...register("senhaAtual")}
-                helperText={(errors.senhaAtual as any)?.message}
-              />
               <TextField
                 label="Nova senha"
                 variant="outlined"
