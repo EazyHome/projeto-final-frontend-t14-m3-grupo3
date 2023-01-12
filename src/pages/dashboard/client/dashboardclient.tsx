@@ -146,7 +146,7 @@ export const DashboardClient = () => {
 
   const handleSubmitEditForm = (data: iUserClient) => {
     editProfile(data);
-    console.log(data);
+    localStorage.setItem("@UserCity:EazyHome", data.city);
   };
 
   let city = "";
