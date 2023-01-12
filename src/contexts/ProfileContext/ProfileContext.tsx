@@ -30,6 +30,8 @@ interface iProfileContext {
   finishService: (data: iChangeService) => void;
   photo: string;
   getPhoto: () => void;
+  clientsList: [] | iUserClient[];
+  getClients: () => void;
 }
 
 export interface iServices {
@@ -67,6 +69,9 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
   const [filteredProviders, setFilteredProviders] = useState<
     [] | iUserService[]
   >([]);
+
+  const [clientsList, setClientsList] = useState([]);
+
   const navigate = useNavigate();
   const userCity = localStorage.getItem("@UserCity:EazyHome");
 
@@ -360,6 +365,22 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
     }
   };
 
+  const getClients = async () => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const response = await api.get(`/users`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
+        },
+      });
+      console.log(response);
+      setClientsList(response.data);
+      return [];
+    } catch (error) {
+      navigate("/");
+    }
+  };
+
   return (
     <ProfileContext.Provider
       value={{
@@ -386,6 +407,8 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         finishService,
         photo,
         getPhoto,
+        clientsList,
+        getClients,
       }}
     >
       {children}
