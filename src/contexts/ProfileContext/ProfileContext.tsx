@@ -239,7 +239,9 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
           )}&status=done`,
           {
             headers: {
-              Authorization: `Bearer ${"@Token:EazyHome"}`,
+              Authorization: `Bearer ${localStorage.getItem(
+                "@Token:EazyHome"
+              )}`,
             },
           }
         );
@@ -251,7 +253,9 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
           )}&status=done`,
           {
             headers: {
-              Authorization: `Bearer ${"@Token:EazyHome"}`,
+              Authorization: `Bearer ${localStorage.getItem(
+                "@Token:EazyHome"
+              )}`,
             },
           }
         );
