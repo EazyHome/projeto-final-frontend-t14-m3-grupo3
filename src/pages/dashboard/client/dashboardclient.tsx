@@ -22,6 +22,7 @@ import {
   DivCoverCategory,
   CoverAgePhone,
 } from "../../dashboard/client/style";
+
 import { ContentServices, ServicesList } from "../../homepage/style";
 import providerRegisterButtonImg from "../../../assets/img/providerRegisterButtonImg.png";
 import List from "@mui/material/List";
@@ -46,6 +47,8 @@ import { FormHelperText, MenuItem, Select } from "@mui/material";
 import { Button } from "../../../components/Button/Button";
 import { ModalChangePassword } from "../../../components/ModalChangePassword/ModalChangePassword";
 import { ClientHiredProvidersFeedList } from "../../../components/ClientHiredProviders/clientHiredProviders";
+import { StatesAPI } from "../../../service/statesApi";
+import api from "../../../service/api";
 
 export const DashboardClient = () => {
   const [open, setOpen] = React.useState(true);
@@ -60,6 +63,7 @@ export const DashboardClient = () => {
     getCanceledServices,
     getDoneServices,
     getPhoto,
+    editProfile,
   } = useContext(ProfileContext);
   const {
     disable,
@@ -79,6 +83,25 @@ export const DashboardClient = () => {
     getCanceledServices();
     getPhoto();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const [getClientInfo, setClientInfo] = useState<iUserClient>();
+
+  const getClientInfos = async () => {
+    const id = localStorage.getItem("@Id:EazyHome");
+    try {
+      const response = await api.get(`/users/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
+        },
+      });
+      setClientInfo(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getClientInfos();
   }, []);
 
   const handleClickService = () => {
@@ -111,7 +134,7 @@ export const DashboardClient = () => {
   const [categoriesEdit, setCategoriesEdit] = useState<string[]>([]);
 
   const handleSubmitEditForm = (data: iUserClient) => {
-    console.log(data);
+    editProfile(data);
   };
 
   let city = "";
@@ -235,7 +258,7 @@ export const DashboardClient = () => {
                   label="Nome"
                   variant="outlined"
                   type="text"
-                  placeholder="Eduardo"
+                  placeholder={`${getClientInfo?.name}`}
                   {...register("name")}
                   helperText={(errors.name as any)?.message}
                 />
@@ -244,22 +267,11 @@ export const DashboardClient = () => {
                   label="E-mail"
                   variant="outlined"
                   type="email"
-                  placeholder="Digite seu email"
+                  placeholder={`${getClientInfo?.email}`}
                   {...register("email")}
                   helperText={(errors.email as any)?.message}
                 />
               </DivEditNomeEmail>
-
-              <WorkCities>
-                <h4>Cidades onde atende:</h4>
-                {workCitiesEdit.map((e, i) => {
-                  return (
-                    <ul>
-                      <li key={i}>{e}</li>
-                    </ul>
-                  );
-                })}
-              </WorkCities>
 
               <AddCity>
                 <StateAndButton>
@@ -306,47 +318,7 @@ export const DashboardClient = () => {
                       </FormHelperText>
                     </SelectCity>
                   </div>
-                  <Button
-                    type="button"
-                    id={"addCityButton"}
-                    callback={() => setCitySubmit()}
-                    text="Adicionar cidade"
-                  />
                 </StateAndButton>
-
-                <Categories>
-                  <h4>Categorias:</h4>
-
-                  {categoriesEdit.map((e, i) => {
-                    return (
-                      <ul>
-                        <li key={i}>{e}</li>
-                      </ul>
-                    );
-                  })}
-
-                  <DivCoverCategory>
-                    <SelectCategory>
-                      <span>Categoria</span>
-                      <Select
-                        className="Category"
-                        label="Categoria"
-                        onChange={getCategories}
-                      >
-                        {servicesCategories.map((e, i) => {
-                          return (
-                            <MenuItem key={i} value={e.name}>
-                              {e.name}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
-                    </SelectCategory>
-                    <button type="button" onClick={() => setCategorySubmit()}>
-                      Adicionar Categoria
-                    </button>
-                  </DivCoverCategory>
-                </Categories>
 
                 <CoverAgePhone>
                   <Age>
@@ -355,7 +327,7 @@ export const DashboardClient = () => {
                       label="Idade"
                       variant="outlined"
                       type="number"
-                      placeholder="Digite sua idade"
+                      placeholder={`${getClientInfo?.age}`}
                       {...register("age")}
                     />
                   </Age>
@@ -364,7 +336,7 @@ export const DashboardClient = () => {
                       label="Telefone"
                       variant="outlined"
                       type="text"
-                      placeholder="Digite seu número"
+                      placeholder={`${getClientInfo?.phone}`}
                       {...register("phone")}
                       helperText={(errors.phone as any)?.message}
                     />

@@ -1,22 +1,20 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { TextField } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { Form } from "../Form/style";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { BackGroudModalPassword, ModalPassword } from "./style";
-
+import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
 
 interface IChangePasswordForm {
-  senhaAtual: string;
-  novaSenha: string;
-  confimarNovaSenha: string;
+  password: string;
+  confimarNovaSenha?: string;
 }
 
-interface IData {
-  senhaAtual: string;
-  novaSenha: string;
-  confimarNovaSenha: string;
+export interface IData {
+  password: string;
+  confimarNovaSenha?: string;
 }
 
 interface ISTATE {
@@ -28,15 +26,10 @@ export const ModalChangePassword = ({
   modalPassword,
   setModalPassword,
 }: ISTATE) => {
+  const { changePassword } = useContext(ProfileContext);
+
   const formSchema = yup.object().shape({
-    senhaAtual: yup
-      .string()
-      .required("Senha obrigatoria")
-      .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-        "Mínimo de oito caracteres, pelo menos uma letra, um número e um símbolo"
-      ),
-    novaSenha: yup
+    password: yup
       .string()
       .required("Senha obrigatoria")
       .matches(
@@ -46,10 +39,7 @@ export const ModalChangePassword = ({
     confimarNovaSenha: yup
       .string()
       .required("Senha obrigatoria")
-      .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-        "Mínimo de oito caracteres, pelo menos uma letra, um número e um símbolo"
-      ),
+      .oneOf([yup.ref("password")], "Senhas não conferem"),
   });
 
   const {
@@ -61,8 +51,11 @@ export const ModalChangePassword = ({
     resolver: yupResolver(formSchema),
   });
 
+  const { editPassword } = useContext(ProfileContext);
+
   function ChangePasswordData(data: IData) {
-    console.log(data);
+    delete data.confimarNovaSenha;
+    changePassword(data);
   }
 
   return (
@@ -76,20 +69,12 @@ export const ModalChangePassword = ({
             </button>
             <Form onSubmit={handleSubmit(ChangePasswordData)}>
               <TextField
-                label="Senha atual"
-                variant="outlined"
-                type="text"
-                placeholder="Senha Atual"
-                {...register("senhaAtual")}
-                helperText={(errors.senhaAtual as any)?.message}
-              />
-              <TextField
                 label="Nova senha"
                 variant="outlined"
                 type="password"
                 placeholder="Digite a nova senha"
-                {...register("novaSenha")}
-                helperText={(errors.novaSenha as any)?.message}
+                {...register("password")}
+                helperText={(errors.password as any)?.message}
               />
               <TextField
                 label="Confirme a nova senha"

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { iDefaultPropsProvider } from "../types";
 import { iUserClient, iUserService } from "../UserContext/UserContext";
 import { toast } from "react-toastify";
+import { IData } from "../../components/ModalChangePassword/ModalChangePassword";
 
 interface iProfileContext {
   isLogged: () => void;
@@ -34,6 +35,10 @@ interface iProfileContext {
   setFilteredServices: React.Dispatch<React.SetStateAction<[] | iServices[]>>;
   needChange: boolean;
   setNeedChange: React.Dispatch<React.SetStateAction<boolean>>;
+  changePassword: (data: IData) => void;
+  clientsList: [] | iUserClient[];
+  getClients: () => void;
+
 }
 
 export interface iServices {
@@ -71,6 +76,9 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
   const [filteredProviders, setFilteredProviders] = useState<
     [] | iUserService[]
   >([]);
+
+  const [clientsList, setClientsList] = useState([]);
+
   const navigate = useNavigate();
   const userCity = localStorage.getItem("@UserCity:EazyHome");
   const [filteredServices, setFilteredServices] = useState<[] | iServices[]>(
@@ -91,6 +99,23 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
       );
     } catch (error) {
       navigate("/");
+    }
+  };
+
+  const changePassword = async (data: IData) => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const response = await api.patch(
+        `users/${localStorage.getItem("@Id:EazyHome")}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -369,6 +394,22 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
     }
   };
 
+  const getClients = async () => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const response = await api.get(`/users`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
+        },
+      });
+      console.log(response);
+      setClientsList(response.data);
+      return [];
+    } catch (error) {
+      navigate("/");
+    }
+  };
+
   return (
     <ProfileContext.Provider
       value={{
@@ -399,6 +440,9 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         setFilteredServices,
         needChange,
         setNeedChange,
+        changePassword,
+        clientsList,
+        getClients,
       }}
     >
       {children}

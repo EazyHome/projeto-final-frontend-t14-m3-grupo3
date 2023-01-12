@@ -69,7 +69,7 @@ export const UserProvider = ({ children }: iDefaultPropsProvider) => {
   const [spinner, setSpinner] = useState(false);
   const [errorApi, setErrorApi] = useState(false);
   const navigate = useNavigate();
-  const { setCategory, getPhoto } = useContext(ProfileContext);
+  const { setCategory } = useContext(ProfileContext);
 
   const userClientRegister = async (data: iUserClientRegister) => {
     setSpinner(true);

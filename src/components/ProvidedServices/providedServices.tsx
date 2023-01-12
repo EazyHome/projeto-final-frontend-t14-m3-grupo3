@@ -8,6 +8,7 @@ import {
   iServices,
 } from "../../contexts/ProfileContext/ProfileContext";
 import eletricista from "../../../assets/img/eletricista.png";
+import { iUserClient } from "../../contexts/UserContext/UserContext";
 
 export const ProvidedServicesFeedList = () => {
   const {
@@ -17,6 +18,8 @@ export const ProvidedServicesFeedList = () => {
     getDoneServices,
     canceledServices,
     getCanceledServices,
+    clientsList,
+    getClients,
   } = useContext(ProfileContext);
 
   const [filteredProvidedServices, setFilteredProvidedServices] = useState(
@@ -27,6 +30,8 @@ export const ProvidedServicesFeedList = () => {
     getActiveServices();
     getDoneServices();
     getCanceledServices();
+    getClients();
+
     setFilteredProvidedServices([
       ...activeServices,
       ...doneServices,
@@ -50,19 +55,21 @@ export const ProvidedServicesFeedList = () => {
             {filteredProvidedServices.map((provider, index) => {
               console.log(provider);
 
+              const client = clientsList.find((e) => e.id === provider.id);
+
               return (
                 <ServiceFeedCard
                   key={index}
                   typeOfCard={typeOfCard}
                   id={provider.id}
-                  image={"provider.user.avatar_URL"}
-                  name={"provider.user.name"}
+                  image={client ? client.avatar_URL : ""}
+                  name={client ? client.name : ""}
                   city={provider.serviceCity}
                   state={provider.serviceState}
                   status={provider.status}
-                  phone={"provider.user.phone"}
-                  email={"provider.user.email"}
-                  rating={5}
+                  phone={client ? client.phone : ""}
+                  email={client ? client.email : ""}
+                  rating={provider.rating ? provider.rating : 0}
                   date={provider.createdAt}
                   description={provider.description}
                 />
