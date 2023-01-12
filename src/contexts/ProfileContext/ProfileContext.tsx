@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { createContext, useState } from "react";
 import api from "../../service/api";
 import { useNavigate } from "react-router-dom";
 import { iDefaultPropsProvider } from "../types";
-import { iUserClient, iUserService } from "../UserContext/UserContext";
+import {
+  iUserClient,
+  iUserService,
+  UserContext,
+} from "../UserContext/UserContext";
 import { toast } from "react-toastify";
 import { IData } from "../../components/ModalChangePassword/ModalChangePassword";
 
@@ -38,7 +42,8 @@ interface iProfileContext {
   changePassword: (data: IData) => void;
   clientsList: [] | iUserClient[];
   getClients: () => void;
-
+  needChange: boolean;
+  autoLogin: () => void;
 }
 
 export interface iServices {
@@ -76,11 +81,11 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
   const [filteredProviders, setFilteredProviders] = useState<
     [] | iUserService[]
   >([]);
-
+  const [needChange, setNeedChange] = useState<boolean>(false);
   const [clientsList, setClientsList] = useState([]);
-
   const navigate = useNavigate();
   const userCity = localStorage.getItem("@UserCity:EazyHome");
+  const { userLogout } = useContext(UserContext);
   const [filteredServices, setFilteredServices] = useState<[] | iServices[]>(
     []
   );
@@ -99,6 +104,27 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
       );
     } catch (error) {
       navigate("/");
+    }
+  };
+
+  const autoLogin = async () => {
+    const token = localStorage.getItem("@Token:EazyHome");
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const response = api.get(`/users`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (localStorage.getItem("@UserType:EazyHome") === "cliente") {
+        navigate("/dashboardcliente");
+      } else {
+        navigate("/dashboardservice");
+      }
+    } catch (error) {
+      toast.error("Seu login expirou! Faça login novamente.");
+      userLogout();
+      navigate("/login");
     }
   };
 
@@ -325,6 +351,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
       });
       setNeedChange(true);
       setActiveServices([...activeServices, response.data]);
+      setNeedChange(true);
       toast.success(`Contratação efetuada com sucesso!`);
     } catch (error) {
       console.log(error);
@@ -397,12 +424,11 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
   const getClients = async () => {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const response = await api.get(`/users`, {
+      const response = await api.get(`/users?type=cliente`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
         },
       });
-      console.log(response);
       setClientsList(response.data);
       return [];
     } catch (error) {
@@ -414,6 +440,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
     <ProfileContext.Provider
       value={{
         isLogged,
+        autoLogin,
         editProfile,
         changeAvailability,
         getAvailability,
@@ -443,6 +470,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         changePassword,
         clientsList,
         getClients,
+        needChange,
       }}
     >
       {children}
