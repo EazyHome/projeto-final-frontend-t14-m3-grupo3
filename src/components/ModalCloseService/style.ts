@@ -7,10 +7,10 @@ export const ModalDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   padding-bottom: 1rem;
   position: relative;
-  margin-top: 2rem;
 
   @media (min-width: 700px) {
     min-width: 500px;
@@ -59,13 +59,13 @@ export const CloseButtons = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  gap: 2rem;
+  gap: 0.5rem;
   padding: 0 1rem;
 
   & > button {
     background-color: var(--color-primary);
     border-radius: var(--radius-1);
-    border: var(--color-primary);
+    border: 2px solid var(--color-primary);
     font-size: var(--font-size-16);
 
     padding: 0.5rem 1.5rem;
@@ -74,8 +74,8 @@ export const CloseButtons = styled.div`
     color: var(--color-grey0);
 
     :hover {
-      background-color: var(--color-tertiary);
-      border: var(--color-secondary);
+      background-color: transparent;
+      color: var(--color-primary);
     }
   }
 `;
@@ -195,5 +195,33 @@ export const RightColumn = styled.div`
       background-color: var(--color-opposite-2);
       border: var(--color-opposite-2);
     }
+  }
+`;
+
+export const DivTitleModal = styled.div`
+  font-size: var(--font-size-20);
+  font-weight: 600;
+  color: var(--color-primary);
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  & > button {
+    background-color: transparent;
+    border: none;
+    opacity: 0.9;
+    font-size: var(--font-size-20);
+    font-weight: 600;
+    color: var(--color-primary);
+    border: 30px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+  }
+  & > button:hover {
+    opacity: 1;
+    background-color: var(--color-grey20);
   }
 `;

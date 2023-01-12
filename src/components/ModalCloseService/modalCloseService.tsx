@@ -12,11 +12,13 @@ import {
   RightColumn,
   SecondLine,
   StatusDiv,
+  DivTitleModal,
 } from "./style";
 import { Button } from "../Button/Button";
 import { useContext, useState } from "react";
 import { StarRating } from "../StarRating/StarRating";
 import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
+import { RiCloseLine } from "react-icons/ri";
 
 interface iModalHireServiceProps {
   setShowCloseOrCancelServiceModal: React.Dispatch<
@@ -67,16 +69,19 @@ export const ModalCloseService = ({
     setShowCloseOrCancelServiceModal(false);
   };
 
-  const closeModal = () => {
-    setShowCloseOrCancelServiceModal(false);
-  };
-
   return (
     <BackGroundForm>
       <ModalContainer>
-        <CloseModalDiv>
-          <Button type="button" text="X" callback={closeModal} />
-        </CloseModalDiv>
+        <DivTitleModal>
+          <p>Finalizar contratação</p>
+          <button
+            onClick={() => {
+              setShowCloseOrCancelServiceModal(false);
+            }}
+          >
+            <RiCloseLine />
+          </button>
+        </DivTitleModal>
         <ModalDiv>
           <ItemImage>
             <img src={image} alt="foto" />
