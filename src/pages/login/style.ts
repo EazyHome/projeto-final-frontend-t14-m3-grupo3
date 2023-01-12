@@ -20,7 +20,6 @@ export const LoginConteiner = styled.div`
   max-width: 400px;
   background-color: var(--color-white);
   border-radius: 5px;
-  /* margin: auto; */
   display: flex;
   flex-direction: column;
   align-items: center;

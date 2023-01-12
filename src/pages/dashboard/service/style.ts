@@ -11,19 +11,6 @@ export const DashboardServiceConteiner = styled.main`
 `;
 
 export const SectionDashboardServiceTop = styled.div`
-  /* margin-top: 88px;
-  width: 100%;
-  height: 225px;
-  background: url(${imgDashProvider});
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-  justify-content: top;
-  @media (min-width: 630px) {
-    height: 570px;
-  } */
   margin-top: 85px;
   scroll-margin-top: 88px;
   width: 100%;
@@ -86,21 +73,10 @@ export const DashContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* @media (min-width: 280px) {
-    & > nav {
-      width: 100%;
-      background-color: var(--color-grey20);
-    }
-  } */
+
   @media (min-width: 630px) {
     flex-direction: row;
     justify-content: space-between;
-    /* & > nav {
-      display: flex;
-      flex-direction: column;
-      justify-content: start;
-      width: 30%;
-    } */
   }
 `;
 
@@ -108,7 +84,7 @@ export const DashNav = styled.nav`
   display: flex;
   justify-content: space-between;
   width: 20%;
-  min-height: 600px;
+  min-height: fit-content;
   padding: 2rem;
   @media (min-width: 280px) {
     padding: 1rem;
@@ -122,6 +98,9 @@ export const DashNav = styled.nav`
     }
     & .NavSubItem {
       text-align: right;
+    }
+    @media (min-width: 700px) {
+      min-height: 600px;
     }
   }
   @media (min-width: 500px) {

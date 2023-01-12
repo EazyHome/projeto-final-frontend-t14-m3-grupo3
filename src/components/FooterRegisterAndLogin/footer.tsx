@@ -13,16 +13,16 @@ export const Footer = ({ id }: iDiv) => {
   return (
     <DivFooter id={id}>
       <DivContactsIcons>
-        <a href="#">
+        <a href="https://www.facebook.com/">
           <SiFacebook size={24} />
         </a>
-        <a href="#">
+        <a href="https://twitter.com/home?lang=pt">
           <AiFillTwitterCircle size={26} />
         </a>
         <a href="#">
           <IoLogoWhatsapp size={26} />
         </a>
-        <a href="#">
+        <a href="https://www.instagram.com/">
           <AiFillInstagram size={26} />
         </a>
       </DivContactsIcons>

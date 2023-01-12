@@ -14,7 +14,6 @@ export const ProvidedServiceList = styled.ul`
   overflow-y: scroll;
 `;
 
-
 export const NoItemsFound = styled.div`
   width: 100%;
   height: 100%;

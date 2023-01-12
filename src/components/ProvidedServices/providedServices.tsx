@@ -5,8 +5,6 @@ import {
   ProfileContext,
   iServices,
 } from "../../contexts/ProfileContext/ProfileContext";
-import eletricista from "../../../assets/img/eletricista.png";
-import { iUserClient } from "../../contexts/UserContext/UserContext";
 import { IoIosConstruct } from "react-icons/io";
 
 export const ProvidedServicesFeedList = () => {
@@ -81,10 +79,14 @@ export const ProvidedServicesFeedList = () => {
           {loadingProvider ? (
             <span>Aguarde, carregando contratações ...</span>
           ) : (
-            <span>Não há serviços a exibir.</span>
-          <div>
-            <IoIosConstruct size={130} />
-          </div>
+            <>
+              <span>
+                Não há prestadores de serviço cadastrados para a sua região ...
+              </span>
+              <div>
+                <IoIosConstruct size={130} />
+              </div>
+            </>
           )}
         </NoItemsFound>
       )}

@@ -1,7 +1,6 @@
 import { BackGroundForm } from "../BackgroundModal/style";
 import {
   CloseButtons,
-  CloseModalDiv,
   FirstLine,
   ItemBody,
   ItemImage,

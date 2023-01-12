@@ -32,8 +32,17 @@ import {
   Services,
   ServicesList,
 } from "../Homepage/style";
+import { useContext, useEffect } from "react";
+import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
 
 export function HomePage() {
+  const { autoLogin } = useContext(ProfileContext);
+
+  useEffect(() => {
+    autoLogin();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <NavHome />
@@ -114,7 +123,7 @@ export function HomePage() {
             <ListComments>
               <GreenComment
                 text="Fui muito bem atendida, o profissional foi muito educado e fez um trabalho de qualidade. Valeu a pena, orçamento grátis e não é careiro."
-                user="Serviço de construção,Ana Paula contratou um pedreiro em São Paulo, SP"
+                user="Serviço de Construção, Ana Paula contratou um pedreiro em São Paulo, SP"
               />
               <OrangeComment
                 text="Os profissionais são pessoas dedicadas com seus serviços. Tudo o que é pedido é feito da maneira como foi pedido. Aprovado!"
@@ -122,7 +131,7 @@ export function HomePage() {
               />
               <GreenComment
                 text="Uma excelente profissional, pontual e acima de tudo confiável. Foi bastante educada e atenciosa com o trabalho, recomendo."
-                user="Serviço de Diarista, Renata Figueiredo contratou uma aaiarista em Rio de Janeiro, RJ"
+                user="Serviço de Diarista, Renata Figueiredo contratou uma diarista em Rio de Janeiro, RJ"
               />
             </ListComments>
           </Comments>

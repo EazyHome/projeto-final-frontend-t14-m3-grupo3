@@ -17,6 +17,7 @@ import { useContext, useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import { SyncLoader } from "react-spinners";
+import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
 
 export const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -38,6 +39,12 @@ export const CssTextField = styled(TextField)({
 export const Login = () => {
   const [errorLogin, setErrorLogin] = useState(false);
   const { userLogin, spinner, errorApi, setErrorApi } = useContext(UserContext);
+  const { autoLogin } = useContext(ProfileContext);
+
+  useEffect(() => {
+    autoLogin();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     setErrorApi(false);
@@ -47,13 +54,15 @@ export const Login = () => {
 
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigatório").email("Email inválido"),
-    password: yup.string().required("Senha obrigatória"),
-    // .matches(/(?=.*?[0-9])/, "É necessário pelo menos um número.")
-    // .matches(
-    //   /(?=.*?[#?!@$%^&*-])/,
-    //   "É necessário pelo menos um caractere especial"
-    // )
-    // .min(8, "É necessário uma senha de pelos 8 caracteres"),
+    password: yup
+      .string()
+      .required("Senha obrigatória")
+      .matches(/(?=.*?[0-9])/, "É necessário pelo menos um número.")
+      .matches(
+        /(?=.*?[#?!@$%^&*-])/,
+        "É necessário pelo menos um caractere especial"
+      )
+      .min(8, "É necessário uma senha de pelos 8 caracteres"),
   });
   const {
     register,

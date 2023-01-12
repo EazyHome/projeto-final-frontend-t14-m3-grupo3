@@ -3,7 +3,6 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form } from "../Form/style";
 import {
-  CloseModalDiv,
   HireButton,
   ItemBody,
   ItemImage,
@@ -23,7 +22,6 @@ import api from "../../service/api";
 import { iUserClient } from "../../contexts/UserContext/UserContext";
 import { useContext, useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
-import { SyncLoader } from "react-spinners";
 import { RiCloseLine } from "react-icons/ri";
 
 interface iModalHireServiceProps {
@@ -142,17 +140,15 @@ export const ModalHireService = ({
         </DivTitleModal>
 
         <ModalDiv>
-         
-            <ItemImage>
-              <img src={image} alt="foto" />
-            </ItemImage>
-            <ItemBody>
-              <span>{category}</span>
-              <span>{`Profissional: ${name}`}</span>
-              <span>{`Telefone: ${phone}`}</span>
-              <span>{`E-mail: ${email}`}</span>
-            </ItemBody>
-        
+          <ItemImage>
+            <img src={image} alt="foto" />
+          </ItemImage>
+          <ItemBody>
+            <span>{category}</span>
+            <span>{`Profissional: ${name}`}</span>
+            <span>{`Telefone: ${phone}`}</span>
+            <span>{`E-mail: ${email}`}</span>
+          </ItemBody>
         </ModalDiv>
         <Form onSubmit={handleSubmit(onSubmitFuntion)}>
           <CssTextField
