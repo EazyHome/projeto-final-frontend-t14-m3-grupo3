@@ -135,6 +135,7 @@ export const DashboardClient = () => {
 
   const handleSubmitEditForm = (data: iUserClient) => {
     editProfile(data);
+    console.log(data);
   };
 
   let city = "";
@@ -248,7 +249,7 @@ export const DashboardClient = () => {
           <DivEditProfile>
             <DivEditProfileHeader>
               <h3>Editar perfil</h3>
-              <img src={providerRegisterButtonImg} alt="" />
+              <img src={getClientInfo?.avatar_URL} alt="" />
             </DivEditProfileHeader>
 
             <FormEdit onSubmit={handleSubmit(handleSubmitEditForm)}>
@@ -270,6 +271,15 @@ export const DashboardClient = () => {
                   placeholder={`${getClientInfo?.email}`}
                   {...register("email")}
                   helperText={(errors.email as any)?.message}
+                />
+                <TextField
+                  className="avatar"
+                  label="Link do Avatar"
+                  variant="outlined"
+                  type="text"
+                  placeholder={`${getClientInfo?.avatar_URL}`}
+                  {...register("avatar_URL")}
+                  helperText={(errors.avatar_URL as any)?.message}
                 />
               </DivEditNomeEmail>
 

@@ -356,13 +356,20 @@ export const DivEditNomeEmail = styled.div`
   .name {
     width: 100%;
   }
+  .avatar {
+    width: 70%;
+  }
 `;
 
 export const DivEditProfileHeader = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 auto 18px auto;
-  width: 100%;
+
+  img {
+    width: 110px;
+    height: 120px;
+  }
 
   @media (min-width: 1020px) {
     img {
