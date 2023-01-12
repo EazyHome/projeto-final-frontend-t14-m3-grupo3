@@ -1,19 +1,19 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { TextField } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { Form } from "../Form/style";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { BackGroudModalPassword, ModalPassword } from "./style";
-import api from "../../service/api";
+import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
 
 interface IChangePasswordForm {
-  novaSenha: string;
+  password: string;
   confimarNovaSenha?: string;
 }
 
-interface IData {
-  novaSenha: string;
+export interface IData {
+  password: string;
   confimarNovaSenha?: string;
 }
 
@@ -22,29 +22,14 @@ interface ISTATE {
   setModalPassword: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const changePassword = async (data: IData) => {
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const response = await api.patch(
-      `users/${localStorage.getItem("@Id:EazyHome")}`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
-        },
-      }
-    );
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export const ModalChangePassword = ({
   modalPassword,
   setModalPassword,
 }: ISTATE) => {
+  const { changePassword } = useContext(ProfileContext);
+
   const formSchema = yup.object().shape({
-    novaSenha: yup
+    password: yup
       .string()
       .required("Senha obrigatoria")
       .matches(
@@ -54,7 +39,7 @@ export const ModalChangePassword = ({
     confimarNovaSenha: yup
       .string()
       .required("Senha obrigatoria")
-      .oneOf([yup.ref("novaSenha")], "Senhas não conferem"),
+      .oneOf([yup.ref("password")], "Senhas não conferem"),
   });
 
   const {
@@ -86,8 +71,8 @@ export const ModalChangePassword = ({
                 variant="outlined"
                 type="password"
                 placeholder="Digite a nova senha"
-                {...register("novaSenha")}
-                helperText={(errors.novaSenha as any)?.message}
+                {...register("password")}
+                helperText={(errors.password as any)?.message}
               />
               <TextField
                 label="Confirme a nova senha"
