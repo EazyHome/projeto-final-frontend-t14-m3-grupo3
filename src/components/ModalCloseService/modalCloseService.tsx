@@ -1,7 +1,3 @@
-import * as yup from "yup";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Form, FormConteiner } from "../Form/style";
 import { BackGroundForm } from "../BackgroundModal/style";
 import {
   CloseButtons,
@@ -17,13 +13,10 @@ import {
   SecondLine,
   StatusDiv,
 } from "./style";
-import TextField from "@mui/material/TextField";
 import { Button } from "../Button/Button";
-import { useState } from "react";
-
+import { useContext, useState } from "react";
 import { StarRating } from "../StarRating/StarRating";
-
-import { iServices } from "../../contexts/ProfileContext/ProfileContext";
+import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
 
 interface iModalHireServiceProps {
   setShowCloseOrCancelServiceModal: React.Dispatch<
@@ -40,13 +33,9 @@ interface iModalHireServiceProps {
   status: string;
 }
 
-export interface iUserDescription {
-  description: string;
-}
-
 export const ModalCloseService = ({
   setShowCloseOrCancelServiceModal,
-  id, //id do serviço
+  id,
   image,
   name,
   category,
@@ -58,20 +47,24 @@ export const ModalCloseService = ({
 }: iModalHireServiceProps) => {
   const [showRatingStars, setShowRatingStars] = useState(false);
   const [rating, setRating] = useState(0);
+  const { cancelService, finishService, getCanceledServices, getDoneServices } =
+    useContext(ProfileContext);
 
-  const idProvider = id;
-  const idClient = localStorage.getItem("@Id:EazyHome");
+  const handleCancelService = () => {
+    id && cancelService(id);
+    getCanceledServices();
+    setShowCloseOrCancelServiceModal(false);
+  };
 
   const handleCloseService = () => {
     setShowRatingStars(true);
   };
 
-  const handleCancelService = () => {};
-
-  //id do serviço e o rating
   const handleRatingAndCloseService = () => {
-    console.log(rating);
-    //closeService(id, rating)
+    const data = { id: Number(id), rating: rating };
+    finishService(data);
+    getDoneServices();
+    setShowCloseOrCancelServiceModal(false);
   };
 
   const closeModal = () => {
