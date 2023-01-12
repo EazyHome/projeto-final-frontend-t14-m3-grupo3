@@ -21,8 +21,10 @@ import {
   FormEdit,
   DivCoverCategory,
   CoverAgePhone,
+  ContentServices,
+  ListService,
 } from "../../dashboard/client/style";
-import { ContentServices, ServicesList } from "../../homepage/style";
+// import { ContentServices, ServicesList } from "../../homepage/style";
 import providerRegisterButtonImg from "../../../assets/img/providerRegisterButtonImg.png";
 import List from "@mui/material/List";
 import ListItemText from "@mui/material/ListItemText";
@@ -200,7 +202,7 @@ export const DashboardClient = () => {
           <Services id="services">
             <ContentServices>
               <h3>- Serviços -</h3>
-              <ServicesList>
+              <ListService>
                 {servicesCategories.map((service, index) => {
                   const result = index % 2;
                   return !result ? (
@@ -217,7 +219,7 @@ export const DashboardClient = () => {
                     />
                   );
                 })}
-              </ServicesList>
+              </ListService>
               <div></div>
             </ContentServices>
           </Services>

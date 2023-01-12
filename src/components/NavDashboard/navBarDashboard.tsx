@@ -42,7 +42,7 @@ export function NavDashboardClient() {
           LOGOUT
         </Link>
         <DivAvatar>
-          <img src={client} alt="Cliente" />
+          <img src={photo} alt="Cliente" />
         </DivAvatar>
       </DivLinksNav>
     </NavBar>
