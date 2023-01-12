@@ -31,9 +31,14 @@ interface iProfileContext {
   finishService: (data: iChangeService) => void;
   photo: string;
   getPhoto: () => void;
+  filteredServices: [] | iServices[];
+  setFilteredServices: React.Dispatch<React.SetStateAction<[] | iServices[]>>;
+  needChange: boolean;
+  setNeedChange: React.Dispatch<React.SetStateAction<boolean>>;
   changePassword: (data: IData) => void;
   clientsList: [] | iUserClient[];
   getClients: () => void;
+
 }
 
 export interface iServices {
@@ -76,6 +81,10 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
 
   const navigate = useNavigate();
   const userCity = localStorage.getItem("@UserCity:EazyHome");
+  const [filteredServices, setFilteredServices] = useState<[] | iServices[]>(
+    []
+  );
+  const [needChange, setNeedChange] = useState<boolean>(false);
 
   const isLogged = async () => {
     try {
@@ -197,11 +206,10 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
             },
           }
         );
-        console.log("Done Cliente", response.data);
         setDoneServices(response.data);
       } else {
         const response = await api.get(
-          `/services?userId=${localStorage.getItem(
+          `/services?providerId=${localStorage.getItem(
             "@Id:EazyHome"
           )}&status=done`,
           {
@@ -210,7 +218,6 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
             },
           }
         );
-        console.log("Done Prestador", response.data);
         setDoneServices(response.data);
       }
     } catch (error) {
@@ -233,7 +240,6 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
             },
           }
         );
-        console.log("Active Cliente", response.data);
         setActiveServices(response.data);
       } else {
         const response = await api.get(
@@ -248,7 +254,6 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
             },
           }
         );
-        console.log("Active Prestador", response.data);
         setActiveServices(response.data);
       }
     } catch (error) {
@@ -271,7 +276,6 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
             },
           }
         );
-        console.log("Cancelado Cliente", response.data);
         setCanceledServices(response.data);
       } else {
         const response = await api.get(
@@ -286,7 +290,6 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
             },
           }
         );
-        console.log("Cancelado Prestador", response.data);
         setCanceledServices(response.data);
       }
     } catch (error) {
@@ -320,6 +323,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
           Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
         },
       });
+      setNeedChange(true);
       setActiveServices([...activeServices, response.data]);
       toast.success(`Contratação efetuada com sucesso!`);
     } catch (error) {
@@ -346,8 +350,11 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
           },
         }
       );
+      setNeedChange(true);
+      toast.success(`Serviço concluído com sucesso!`);
     } catch (error) {
       console.log(error);
+      toast.error(`Ops! Algo deu errado`);
     }
   };
 
@@ -356,15 +363,18 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const response = await api.patch(
         `services/${id}`,
-        { status: "canceled" },
+        { status: "canceled", rating: -1 },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
           },
         }
       );
+      setNeedChange(true);
+      toast.success(`Serviço cancelado com sucesso!`);
     } catch (error) {
       console.log(error);
+      toast.error(`Ops! Algo deu errado`);
     }
   };
 
@@ -426,6 +436,10 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         finishService,
         photo,
         getPhoto,
+        filteredServices,
+        setFilteredServices,
+        needChange,
+        setNeedChange,
         changePassword,
         clientsList,
         getClients,

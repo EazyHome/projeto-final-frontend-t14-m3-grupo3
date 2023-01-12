@@ -46,7 +46,7 @@ export const ModalHireService = ({
   email,
 }: iModalHireServiceProps) => {
   const [userInfos, setUserInfos] = useState<iUserClient | null>(null);
-  const { hireService } = useContext(ProfileContext);
+  const { hireService, getActiveServices } = useContext(ProfileContext);
   const getInfos = async () => {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -96,9 +96,11 @@ export const ModalHireService = ({
         serviceState: userInfos.state,
         status: "active",
         createdAt: moment().format("DD/MM/YYYY"),
+        rating: 99,
       } as iServices;
 
       hireService(hireData);
+      getActiveServices();
       setShowHireServiceModal(false);
     }
   };
