@@ -9,6 +9,7 @@ import {
   ItemImage,
   ModalContainer,
   ModalDiv,
+  DivTitleModal,
 } from "./style";
 import TextField from "@mui/material/TextField";
 import { Button } from "../Button/Button";
@@ -21,6 +22,9 @@ import {
 import api from "../../service/api";
 import { iUserClient } from "../../contexts/UserContext/UserContext";
 import { useContext, useEffect, useState } from "react";
+import { styled } from "@mui/material/styles";
+import { SyncLoader } from "react-spinners";
+import { RiCloseLine } from "react-icons/ri";
 
 interface iModalHireServiceProps {
   setShowHireServiceModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -35,6 +39,23 @@ interface iModalHireServiceProps {
 export interface iUserDescription {
   description: string;
 }
+
+export const CssTextField = styled(TextField)({
+  "& label.Mui-focused": {
+    color: "var(--color-primary)",
+  },
+  "& .MuiFormLabel-root": {
+    color: "var(--color-opposite-1)",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      border: "2px solid var(--color-opposite-1)",
+    },
+    "&:hover fieldset": {
+      border: "2px solid var(--color-primary)",
+    },
+  },
+});
 
 export const ModalHireService = ({
   setShowHireServiceModal,
@@ -71,14 +92,15 @@ export const ModalHireService = ({
   const hireFormSchema = yup.object().shape({
     description: yup
       .string()
-      .max(200, "A descrição deve ter no máximo 255 caracteres."),
+      .min(5, "A descrição deve ter no mínimo 5 caracteres")
+      .max(200, "A descrição deve ter no máximo 255 caracteres"),
   });
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty, isValid },
+    formState: { errors },
   } = useForm<iServices>({
-    mode: "onChange",
+    mode: "onTouched",
     resolver: yupResolver(hireFormSchema),
   });
 
@@ -103,34 +125,41 @@ export const ModalHireService = ({
     }
   };
 
-  const closeHireServiceModal = () => {
-    setShowHireServiceModal(false);
-  };
-
   return (
     <BackGroundForm>
       <ModalContainer>
-        <CloseModalDiv>
-          <Button type="button" text="X" callback={closeHireServiceModal} />
-        </CloseModalDiv>
+        <DivTitleModal>
+          <p>Contratar servidor</p>
+          <button
+            onClick={() => {
+              setShowHireServiceModal(false);
+            }}
+          >
+            <RiCloseLine />
+          </button>
+        </DivTitleModal>
+
         <ModalDiv>
-          <ItemImage>
-            <img src={image} alt="foto" />
-          </ItemImage>
-          <ItemBody>
-            <span>{category}</span>
-            <span>{`Profissional: ${name}`}</span>
-            <span>{`Telefone: ${phone}`}</span>
-            <span>{`E-mail: ${email}`}</span>
-          </ItemBody>
+         
+            <ItemImage>
+              <img src={image} alt="foto" />
+            </ItemImage>
+            <ItemBody>
+              <span>{category}</span>
+              <span>{`Profissional: ${name}`}</span>
+              <span>{`Telefone: ${phone}`}</span>
+              <span>{`E-mail: ${email}`}</span>
+            </ItemBody>
+        
         </ModalDiv>
         <Form onSubmit={handleSubmit(onSubmitFuntion)}>
-          <TextField
-            label="Descrição do Serviço"
+          <CssTextField
+            label="Descrição do serviço"
             variant="outlined"
             type="text"
-            placeholder="Digite a descrição do serviço"
+            placeholder="Digite a descrição do serviço..."
             {...register("description")}
+            error={!!errors.description}
             helperText={(errors.description as any)?.message}
           />
           <HireButton>

@@ -54,7 +54,7 @@ export const FeedItem = styled.li<iStyledFeedProps>`
   }
 
   @media (min-width: 800px) {
-    min-width: 700px;
+    max-width: 80%;
   }
 `;
 

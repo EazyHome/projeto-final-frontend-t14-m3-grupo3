@@ -51,6 +51,8 @@ export const ModalChangePassword = ({
     resolver: yupResolver(formSchema),
   });
 
+  const { editPassword } = useContext(ProfileContext);
+
   function ChangePasswordData(data: IData) {
     delete data.confimarNovaSenha;
     changePassword(data);
