@@ -35,6 +35,10 @@ interface iProfileContext {
   finishService: (data: iChangeService) => void;
   photo: string;
   getPhoto: () => void;
+  filteredServices: [] | iServices[];
+  setFilteredServices: React.Dispatch<React.SetStateAction<[] | iServices[]>>;
+  needChange: boolean;
+  setNeedChange: React.Dispatch<React.SetStateAction<boolean>>;
   changePassword: (data: IData) => void;
   clientsList: [] | iUserClient[];
   getClients: () => void;
@@ -78,12 +82,14 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
     [] | iUserService[]
   >([]);
   const [needChange, setNeedChange] = useState<boolean>(false);
-
   const [clientsList, setClientsList] = useState([]);
-
   const navigate = useNavigate();
   const userCity = localStorage.getItem("@UserCity:EazyHome");
   const { userLogout } = useContext(UserContext);
+  const [filteredServices, setFilteredServices] = useState<[] | iServices[]>(
+    []
+  );
+  const [needChange, setNeedChange] = useState<boolean>(false);
 
   const isLogged = async () => {
     try {
@@ -343,6 +349,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
           Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
         },
       });
+      setNeedChange(true);
       setActiveServices([...activeServices, response.data]);
       setNeedChange(true);
       toast.success(`Contratação efetuada com sucesso!`);
@@ -371,8 +378,10 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         }
       );
       setNeedChange(true);
+      toast.success(`Serviço concluído com sucesso!`);
     } catch (error) {
       console.log(error);
+      toast.error(`Ops! Algo deu errado`);
     }
   };
 
@@ -389,8 +398,10 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         }
       );
       setNeedChange(true);
+      toast.success(`Serviço cancelado com sucesso!`);
     } catch (error) {
       console.log(error);
+      toast.error(`Ops! Algo deu errado`);
     }
   };
 
@@ -452,6 +463,10 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         finishService,
         photo,
         getPhoto,
+        filteredServices,
+        setFilteredServices,
+        needChange,
+        setNeedChange,
         changePassword,
         clientsList,
         getClients,
