@@ -145,7 +145,7 @@ export const FeedRating = styled.div`
 export const FeedItemTitle = styled.div`
   font-weight: 700;
   display: flex;
-  max-width: 60%;
+  /* max-width: 60%; */
   justify-content: space-between;
   flex-direction: column;
   align-items: flex-start;

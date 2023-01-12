@@ -7,10 +7,6 @@ import {
 } from "../../contexts/ProfileContext/ProfileContext";
 
 export const ClientHiredProvidersFeedList = () => {
-  // const [filteredHiredServices, setFilteredHiredServices] = useState(
-  //   [] as iServices[]
-  // );
-
   const {
     activeServices,
     getActiveServices,
@@ -42,7 +38,6 @@ export const ClientHiredProvidersFeedList = () => {
     ...done.reverse(),
     ...canceled.reverse(),
   ];
-  console.log(clientTotalServices);
 
   const typeOfCard = "hiredProvidersList";
 

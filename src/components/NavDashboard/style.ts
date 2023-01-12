@@ -29,7 +29,7 @@ export const NavBar = styled.nav`
   top: 0px;
   left: 0px;
   right: 0px;
-  z-index: 100;
+  z-index: 98;
 
   background-color: var(--color-white);
 
