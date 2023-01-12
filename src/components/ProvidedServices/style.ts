@@ -13,10 +13,23 @@ export const ProvidedServiceList = styled.ul`
   overflow-y: scroll;
 `;
 
+
 export const NoItemsFound = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 280px;
+  padding-left: 15px;
+  padding-right: 15px;
+  position: relative;
+  color: var(--color-primary);
+  font-size: var(--font-size-20);
+  text-align: center;
+
+  & > div {
+    color: rgba(255, 102, 0, 0.2);
+    position: absolute;
+  }
 `;

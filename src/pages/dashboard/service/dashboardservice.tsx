@@ -131,10 +131,13 @@ export const DashboardService = () => {
         setModalPassword={setModalPassword}
       />
       <NavDashboardClient />
-      <SectionDashboardServiceTop>
-        <TextSectionTop>
-          Complete seu cadastro e conecte-se a mais clientes na sua região
-        </TextSectionTop>
+
+      <SectionDashboardServiceTop id="top">
+        <div>
+          <TextSectionTop>
+            Complete seu cadastro e conecte-se a mais clientes na sua região!
+          </TextSectionTop>
+        </div>
       </SectionDashboardServiceTop>
 
       <DashContent>

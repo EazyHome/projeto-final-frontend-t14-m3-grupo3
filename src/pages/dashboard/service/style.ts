@@ -11,7 +11,7 @@ export const DashboardServiceConteiner = styled.main`
 `;
 
 export const SectionDashboardServiceTop = styled.div`
-  margin-top: 88px;
+  /* margin-top: 88px;
   width: 100%;
   height: 225px;
   background: url(${imgDashProvider});
@@ -23,25 +23,62 @@ export const SectionDashboardServiceTop = styled.div`
   justify-content: top;
   @media (min-width: 630px) {
     height: 570px;
+  } */
+  margin-top: 85px;
+  scroll-margin-top: 88px;
+  width: 100%;
+  height: 225px;
+  background: url(${imgDashProvider});
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+
+  & > div {
+    background-color: var(--color-overlay-black);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (min-width: 700px) {
+    height: 450px;
+
+    & > div {
+      width: 45%;
+      min-height: 100%;
+      max-height: 100%;
+    }
   }
 `;
 
 export const TextSectionTop = styled.h3`
-  margin-right: 1rem;
-  margin-top: 1rem;
-  width: 50%;
-  font-size: 16px;
+  margin: 1.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 100%;
+  font-size: 18px;
   line-height: 25px;
-
-  text-align: right;
+  text-align: center;
   font-weight: 700;
-  color: var(--color-grey100);
-  @media (min-width: 630px) {
-    width: 40%;
-    margin-right: 3rem;
-    margin-top: 3rem;
+  border: 2px solid black;
+  color: var(--color-white);
+  @media (min-width: 700px) {
+    width: 100%;
     font-size: 45px;
     line-height: 55px;
+    text-align: right;
+    margin: none;
+    padding-top: none;
+    padding-bottom: none;
+    padding-left: none;
+    padding-right: none;
+    border: none;
   }
 `;
 
