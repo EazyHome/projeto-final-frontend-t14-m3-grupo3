@@ -4,17 +4,19 @@ import React, { useContext } from "react";
 import { Form } from "../Form/style";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import { BackGroudModalPassword, ModalPassword } from "./style";
+import { BackGroudModalPassword, ModalPassword, DivTitleModal } from "./style";
 import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
+import { CssTextField } from "../../pages/login/login";
+import { RiCloseLine } from "react-icons/ri";
 
 interface IChangePasswordForm {
   password: string;
-  confimarNovaSenha?: string;
+  confirmarNovaSenha?: string;
 }
 
 export interface IData {
   password: string;
-  confimarNovaSenha?: string;
+  confirmarNovaSenha?: string;
 }
 
 interface ISTATE {
@@ -32,13 +34,15 @@ export const ModalChangePassword = ({
     password: yup
       .string()
       .required("Senha obrigatoria")
+      .matches(/(?=.*?[0-9])/, "É necessário pelo menos um número.")
       .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-        "Mínimo de oito caracteres, pelo menos uma letra, um número e um símbolo"
-      ),
-    confimarNovaSenha: yup
+        /(?=.*?[#?!@$%^&*-])/,
+        "É necessário pelo menos um caractere especial"
+      )
+      .min(8, "Senha precisa ter mais de 8 caracteres"),
+    confirmarNovaSenha: yup
       .string()
-      .required("Senha obrigatoria")
+      .required("Senha obrigatória")
       .oneOf([yup.ref("password")], "Senhas não conferem"),
   });
 
@@ -47,14 +51,14 @@ export const ModalChangePassword = ({
     handleSubmit,
     formState: { errors },
   } = useForm<IChangePasswordForm>({
-    mode: "onChange",
+    mode: "onTouched",
     resolver: yupResolver(formSchema),
   });
 
   const { editPassword } = useContext(ProfileContext);
 
   function ChangePasswordData(data: IData) {
-    delete data.confimarNovaSenha;
+    delete data.confirmarNovaSenha;
     changePassword(data);
     setModalPassword(false);
   }
@@ -64,26 +68,31 @@ export const ModalChangePassword = ({
       {modalPassword ? (
         <BackGroudModalPassword>
           <ModalPassword>
-            <h3>Alterar senha</h3>
-            <button id="closeButton" onClick={() => setModalPassword(false)}>
-              X
-            </button>
+            <DivTitleModal>
+              <p>Alterar senha</p>
+              <button id="closeButton" onClick={() => setModalPassword(false)}>
+                <RiCloseLine />
+              </button>
+            </DivTitleModal>
+
             <Form onSubmit={handleSubmit(ChangePasswordData)}>
-              <TextField
+              <CssTextField
                 label="Nova senha"
                 variant="outlined"
                 type="password"
-                placeholder="Digite a nova senha"
+                placeholder="Digite a nova senha..."
                 {...register("password")}
+                error={!!errors.password}
                 helperText={(errors.password as any)?.message}
               />
               <TextField
                 label="Confirme a nova senha"
                 variant="outlined"
                 type="password"
-                placeholder="confirme a senha"
-                {...register("confimarNovaSenha")}
-                helperText={(errors.confimarNovaSenha as any)?.message}
+                placeholder="confirme a senha..."
+                {...register("confirmarNovaSenha")}
+                error={!!errors.confirmarNovaSenha}
+                helperText={(errors.confirmarNovaSenha as any)?.message}
               />
               <button id="changePassword">Alterar senha</button>
             </Form>

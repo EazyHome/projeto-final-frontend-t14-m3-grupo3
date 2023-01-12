@@ -233,7 +233,7 @@ export const DivEditProfile = styled.div`
     #saveChanges {
       width: 145px;
       height: 50px;
-      margin-right: 80px;
+      /* margin-right: 80px; */
     }
 
     #form {
@@ -442,5 +442,16 @@ export const CoverAgePhone = styled.div`
     align-items: center;
 
     justify-content: space-between;
+    & > button {
+      background-color: var(--color-primary);
+      border: 2px solid transparent;
+      font-size: 16px;
+    }
+
+    & > button:hover {
+      border: 2px solid var(--color-primary);
+      color: var(--color-primary);
+      background-color: transparent;
+    }
   }
 `;
