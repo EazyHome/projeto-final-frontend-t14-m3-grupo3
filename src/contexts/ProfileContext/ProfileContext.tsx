@@ -37,7 +37,6 @@ interface iProfileContext {
   getPhoto: () => void;
   filteredServices: [] | iServices[];
   setFilteredServices: React.Dispatch<React.SetStateAction<[] | iServices[]>>;
-  needChange: boolean;
   setNeedChange: React.Dispatch<React.SetStateAction<boolean>>;
   changePassword: (data: IData) => void;
   clientsList: [] | iUserClient[];
@@ -89,7 +88,6 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
   const [filteredServices, setFilteredServices] = useState<[] | iServices[]>(
     []
   );
-  const [needChange, setNeedChange] = useState<boolean>(false);
 
   const isLogged = async () => {
     try {
@@ -140,6 +138,11 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
           },
         }
       );
+      if (response.status == 200) {
+        toast.success("Senha alterada com sucesso!");
+      } else {
+        toast.error("Opps!  Algo deu errado!");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -157,6 +160,11 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
           },
         }
       );
+      if (response.status == 200) {
+        toast.success("Alteração concluida com sucesso!");
+      } else {
+        toast.error("Opps! Algo deu errado");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -470,7 +478,6 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         changePassword,
         clientsList,
         getClients,
-        needChange,
       }}
     >
       {children}
