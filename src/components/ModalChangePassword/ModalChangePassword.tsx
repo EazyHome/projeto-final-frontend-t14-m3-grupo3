@@ -1,12 +1,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { TextField } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Form } from "../Form/style";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { LoginConteiner } from "../../pages/login/style";
 import { BackGroudModalPassword, ModalPassword } from "./style";
 import { BackGroundForm } from "../BackgroundModal/style";
+import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
 
 interface IChangePasswordForm {
   senhaAtual: string;
@@ -61,6 +62,8 @@ export const ModalChangePassword = ({
     mode: "onChange",
     resolver: yupResolver(formSchema),
   });
+
+  const { editPassword } = useContext(ProfileContext);
 
   function ChangePasswordData(data: IData) {
     console.log(data);

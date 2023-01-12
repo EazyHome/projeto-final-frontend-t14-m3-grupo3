@@ -21,7 +21,7 @@ import {
   FormEdit,
   DivCoverCategory,
   CoverAgePhone,
-} from "../client/style";
+} from "../../dashboard/client/style";
 import eletricista from "../../../assets/img/eletricista.png";
 import encanador from "../../../assets/img/encanador.png";
 import gas from "../../../assets/img/gás.png";
@@ -47,7 +47,7 @@ import { BlueCard } from "../../../components/CardBlue/card";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
 import { Footer } from "../../../components/FooterRegisterAndLogin/footer";
 import { ProfileContext } from "../../../contexts/ProfileContext/ProfileContext";
-import { ContentServices, ServicesList } from "../../Homepage/style";
+import { ContentServices, ServicesList } from "../../homepage/style";
 import { CitiesContext } from "../../../contexts/CitiesContext/CitiesContext";
 import { ClientProvidersFeedList } from "../../../components/ClientProvidersFeedList/clientProvidersFeedList";
 import TextField from "@mui/material/TextField";
@@ -69,7 +69,7 @@ export const DashboardClient = () => {
   const [open, setOpen] = React.useState(true);
   const [selectedOption, setSelectedOption] = React.useState("service");
   const stylesItems = { textAlign: "right", fontSize: 10 };
-  const { isLogged, getProviders, setCategory, category } =
+  const { isLogged, getProviders, setCategory, category, editProfile } =
     useContext(ProfileContext);
 
   useEffect(() => {
@@ -123,6 +123,7 @@ export const DashboardClient = () => {
   const [categoriesEdit, setCategoriesEdit] = useState<string[]>([]);
 
   const handleSubmitEditForm = (data: iUserClient) => {
+    editProfile(data);
     console.log(data);
   };
 
@@ -300,7 +301,7 @@ export const DashboardClient = () => {
                 />
               </DivEditNomeEmail>
 
-              <WorkCities>
+              {/* <WorkCities>
                 <h4>Cidades onde atende:</h4>
                 {workCitiesEdit.map((e, i) => {
                   return (
@@ -309,7 +310,7 @@ export const DashboardClient = () => {
                     </ul>
                   );
                 })}
-              </WorkCities>
+              </WorkCities> */}
 
               <AddCity>
                 <StateAndButton>
@@ -356,15 +357,15 @@ export const DashboardClient = () => {
                       </FormHelperText>
                     </SelectCity>
                   </div>
-                  <Button
+                  {/* <Button
                     type="button"
                     id={"addCityButton"}
                     callback={() => setCitySubmit()}
                     text="Adicionar cidade"
-                  />
+                  /> */}
                 </StateAndButton>
 
-                <Categories>
+                {/* <Categories>
                   <h4>Categorias:</h4>
 
                   {categoriesEdit.map((e, i) => {
@@ -385,8 +386,8 @@ export const DashboardClient = () => {
                       >
                         {servicesCategories.map((e, i) => {
                           return (
-                            <MenuItem key={i} value={e.value}>
-                              {e.value}
+                            <MenuItem key={i} value={e.name}>
+                              {e.name}
                             </MenuItem>
                           );
                         })}
@@ -396,7 +397,7 @@ export const DashboardClient = () => {
                       Adicionar Categoria
                     </button>
                   </DivCoverCategory>
-                </Categories>
+                </Categories> */}
 
                 <CoverAgePhone>
                   <Age>
