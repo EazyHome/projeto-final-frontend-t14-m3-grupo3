@@ -43,18 +43,22 @@ export const ClientProvidersFeedList = () => {
                 key={index}
                 typeOfCard={typeOfCard}
                 id={Number(provider.id)}
-                image={tempImage}
+                image={provider.avatar_URL}
                 name={provider.name}
                 category={category}
                 phone={provider.phone}
                 email={provider.email}
                 age={provider.age}
-                rating={roundRating(
-                  provider.ratings.reduce(
-                    (accumulator, value) => accumulator + value,
-                    0
-                  ) / provider.ratings.length
-                )}
+                rating={
+                  provider.ratings.length > 0
+                    ? roundRating(
+                        provider.ratings.reduce(
+                          (accumulator, value) => accumulator + value,
+                          0
+                        ) / provider.ratings.length
+                      )
+                    : 0
+                }
               />
             ))}
           </ProviderList>
