@@ -23,7 +23,7 @@ import {
   CoverAgePhone,
   ContentServices,
   ListService,
-} from "../../dashboard/client/style";
+} from "../../Dashboard/client/style";
 import providerRegisterButtonImg from "../../../assets/img/providerRegisterButtonImg.png";
 import List from "@mui/material/List";
 import ListItemText from "@mui/material/ListItemText";
@@ -146,7 +146,7 @@ export const DashboardClient = () => {
 
   const handleSubmitEditForm = (data: iUserClient) => {
     editProfile(data);
-    console.log(data);
+    localStorage.setItem("@UserCity:EazyHome", data.city);
   };
 
   let city = "";

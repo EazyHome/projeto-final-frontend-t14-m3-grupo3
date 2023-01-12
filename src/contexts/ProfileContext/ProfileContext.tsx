@@ -41,8 +41,10 @@ interface iProfileContext {
   changePassword: (data: IData) => void;
   clientsList: [] | iUserClient[];
   getClients: () => void;
-  needChange: boolean;
   autoLogin: () => void;
+  needChange: boolean;
+  loadingProvider: boolean;
+  setLoadingProvider: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface iServices {
@@ -88,6 +90,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
   const [filteredServices, setFilteredServices] = useState<[] | iServices[]>(
     []
   );
+  const [loadingProvider, setLoadingProvider] = useState<boolean>(false);
 
   const isLogged = async () => {
     try {
@@ -138,7 +141,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
           },
         }
       );
-      if (response.status == 200) {
+      if (response.status === 200) {
         toast.success("Senha alterada com sucesso!");
       } else {
         toast.error("Opps!  Algo deu errado!");
@@ -160,7 +163,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
           },
         }
       );
-      if (response.status == 200) {
+      if (response.status === 200) {
         toast.success("Alteração concluida com sucesso!");
       } else {
         toast.error("Opps! Algo deu errado");
@@ -438,7 +441,7 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         },
       });
       setClientsList(response.data);
-      return [];
+      setLoadingProvider(false);
     } catch (error) {
       navigate("/");
     }
@@ -478,6 +481,8 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
         changePassword,
         clientsList,
         getClients,
+        loadingProvider,
+        setLoadingProvider,
       }}
     >
       {children}

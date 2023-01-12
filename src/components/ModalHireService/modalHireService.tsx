@@ -117,8 +117,8 @@ export const ModalHireService = ({
         serviceCity: userInfos.city,
         serviceState: userInfos.state,
         status: "active",
-        createdAt: moment().format("DD/MM/YYYY"),
         rating: 99,
+        createdAt: moment().format("DD/MM/YYYY"),
       } as iServices;
 
       hireService(hireData);

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   DashContent,
   DashNav,
@@ -20,7 +20,7 @@ import {
   CoverAgePhone,
   DashboardServiceConteiner,
   SectionDashboardServiceTop,
-} from "./style";
+} from "../service/style";
 import providerRegisterButtonImg from "../../../assets/img/providerRegisterButtonImg.png";
 import List from "@mui/material/List";
 import ListItemText from "@mui/material/ListItemText";
@@ -32,25 +32,36 @@ import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { iUserClient } from "../../../contexts/UserContext/UserContext";
-import { FormHelperText, MenuItem, Select } from "@mui/material";
+import {
+  iUserClient,
+  iUserService,
+} from "../../../contexts/UserContext/UserContext";
+import {
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
 import { Button } from "../../../components/Button/Button";
 import { ModalChangePassword } from "../../../components/ModalChangePassword/ModalChangePassword";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
 import { ProvidedServicesFeedList } from "../../../components/ProvidedServices/providedServices";
+import { CssTextField } from "../../login/login";
+import api from "../../../service/api";
 
 export const DashboardService = () => {
   const [selectedOption, setSelectedOption] = React.useState("service");
   const stylesItems = { textAlign: "right", fontSize: 10 };
-  const { isLogged, getActiveServices, getDoneServices, getCanceledServices } =
-    useContext(ProfileContext);
-
-  useEffect(() => {
-    isLogged();
-    getDoneServices();
-    getActiveServices();
-    getCanceledServices();
-  }, []);
+  const {
+    isLogged,
+    getActiveServices,
+    getDoneServices,
+    getCanceledServices,
+    getPhoto,
+    setLoadingProvider,
+    editProfile,
+  } = useContext(ProfileContext);
 
   const {
     disable,
@@ -61,9 +72,20 @@ export const DashboardService = () => {
     servicesCategories,
   } = useContext(CitiesContext);
 
+  const [getProviderInfo, setProviderInfo] = useState<iUserService>();
+
   useEffect(() => {
+    isLogged();
+    getDoneServices();
+    getActiveServices();
+    getCanceledServices();
     getStates();
+    getPhoto();
+    getClientInfos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const editForm = useRef(null);
 
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigatorio").email("Email inválido"),
@@ -74,25 +96,47 @@ export const DashboardService = () => {
     phone: yup.string().required("Contato obrigatorio"),
   });
 
+  const getClientInfos = async () => {
+    const id = localStorage.getItem("@Id:EazyHome");
+    try {
+      const response = await api.get(`/users/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("@Token:EazyHome")}`,
+        },
+      });
+      setProviderInfo(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
-    watch,
   } = useForm<iUserClient>({
     mode: "onChange",
     resolver: yupResolver(formSchema),
+    defaultValues: {
+      age: undefined,
+      avatar_URL: "",
+      city: "",
+      email: "",
+      name: "",
+      phone: "",
+      state: "",
+    },
   });
 
-  const [modalPassword, setModalPassword] = useState(false);
-
+  const [modalPassword, setModalPassword] = useState<boolean>(false);
   const [workCitiesEdit, setWorkCitiesEdit] = useState<string[]>([]);
   const [workStateEdit, setStateEdit] = useState("");
   const [categoriesEdit, setCategoriesEdit] = useState<string[]>([]);
 
   const handleSubmitEditForm = (data: iUserClient) => {
-    console.log(data);
+    editProfile(data);
+    setSelectedOption("services");
+    getPhoto();
   };
 
   let city = "";
@@ -124,6 +168,10 @@ export const DashboardService = () => {
     setCategoriesEdit([...categoriesEdit, getCategory]);
   };
 
+  const setLoadingProviders = () => {
+    setLoadingProvider(true);
+  };
+
   return (
     <DashboardServiceConteiner>
       <ModalChangePassword
@@ -144,7 +192,10 @@ export const DashboardService = () => {
         <DashNav>
           <List component="ul" disablePadding sx={stylesItems}>
             <ListItemButton onClick={() => setSelectedOption("services")}>
-              <ListItemText primary="SERVIÇOS PRESTADOS" />
+              <ListItemText
+                primary="SERVIÇOS PRESTADOS"
+                onClick={() => setLoadingProviders}
+              />
             </ListItemButton>
             <ListItemButton onClick={() => setSelectedOption("perfil")}>
               <ListItemText primary="EDITAR PERFIL" />
@@ -155,28 +206,43 @@ export const DashboardService = () => {
           <DivEditProfile>
             <DivEditProfileHeader>
               <h3>Editar perfil</h3>
-              <img src={providerRegisterButtonImg} alt="" />
+              <img src={getProviderInfo?.avatar_URL} alt="" />
             </DivEditProfileHeader>
 
-            <FormEdit onSubmit={handleSubmit(handleSubmitEditForm)}>
+            <FormEdit
+              onSubmit={handleSubmit(handleSubmitEditForm)}
+              ref={editForm}
+            >
               <DivEditNomeEmail>
-                <TextField
+                <CssTextField
                   className="name"
                   label="Nome"
                   variant="outlined"
                   type="text"
-                  placeholder="Eduardo"
+                  placeholder={`${getProviderInfo?.name}`}
                   {...register("name")}
+                  error={!!errors.name}
                   helperText={(errors.name as any)?.message}
                 />
-                <TextField
+                <CssTextField
                   className="email"
                   label="E-mail"
                   variant="outlined"
                   type="email"
-                  placeholder="Digite seu email"
+                  placeholder={`${getProviderInfo?.email}`}
                   {...register("email")}
+                  error={!!errors.email}
                   helperText={(errors.email as any)?.message}
+                />
+                <CssTextField
+                  className="avatar"
+                  label="Link do Avatar"
+                  variant="outlined"
+                  type="text"
+                  placeholder={`${getProviderInfo?.avatar_URL}`}
+                  {...register("avatar_URL")}
+                  error={!!errors.avatar_URL}
+                  helperText={(errors.avatar_URL as any)?.message}
                 />
               </DivEditNomeEmail>
 
@@ -277,26 +343,27 @@ export const DashboardService = () => {
                     </button>
                   </DivCoverCategory>
                 </Categories>
-
                 <CoverAgePhone>
                   <Age>
-                    <TextField
+                    <CssTextField
                       className="age"
                       label="Idade"
                       variant="outlined"
                       type="number"
-                      placeholder="Digite sua idade"
+                      placeholder={`${getProviderInfo?.age}`}
                       {...register("age")}
+                      error={!!errors.age}
                     />
                   </Age>
                   <DivPhone>
-                    <TextField
+                    <CssTextField
                       label="Telefone"
                       variant="outlined"
                       type="text"
-                      placeholder="Digite seu número"
+                      placeholder={`${getProviderInfo?.phone}`}
                       {...register("phone")}
                       helperText={(errors.phone as any)?.message}
+                      error={!!errors.phone}
                     />
                   </DivPhone>
                   <Button

@@ -1,16 +1,13 @@
 import { ProvidedServiceList, NoItemsFound } from "./style";
 import { useContext, useEffect, useState } from "react";
 import { ServiceFeedCard } from "../ServiceFeedCard/serviceFeedCard";
-import defaultClient from "../../assets/img/cliente.png";
 import {
   ProfileContext,
-  ProfileProvider,
   iServices,
 } from "../../contexts/ProfileContext/ProfileContext";
 import eletricista from "../../../assets/img/eletricista.png";
 import { iUserClient } from "../../contexts/UserContext/UserContext";
 import { IoIosConstruct } from "react-icons/io";
-
 
 export const ProvidedServicesFeedList = () => {
   const {
@@ -22,6 +19,8 @@ export const ProvidedServicesFeedList = () => {
     getCanceledServices,
     clientsList,
     getClients,
+    loadingProvider,
+    setLoadingProvider,
   } = useContext(ProfileContext);
 
   const [filteredProvidedServices, setFilteredProvidedServices] = useState(
@@ -29,66 +28,65 @@ export const ProvidedServicesFeedList = () => {
   );
 
   useEffect(() => {
+    setLoadingProvider(true);
+    getClients();
     getActiveServices();
     getDoneServices();
     getCanceledServices();
-    getClients();
-
-    setFilteredProvidedServices([
-      ...activeServices,
-      ...doneServices,
-      ...canceledServices,
-    ]);
-    console.log("chegou aqui");
-    console.log("activeService", activeServices);
-    console.log("doneService", doneServices);
-    console.log("canceledService", canceledServices);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    setFilteredProvidedServices([
+      ...activeServices.reverse(),
+      ...doneServices.reverse(),
+      ...canceledServices.reverse(),
+    ]);
+  }, [activeServices, doneServices, canceledServices]);
 
   const isEmpty = filteredProvidedServices.length;
   const typeOfCard = "serviceProvided";
-  const tempImage = defaultClient;
 
   return (
     <>
-      {isEmpty ? (
+      {isEmpty > 0 && loadingProvider === false ? (
         <>
           <ProvidedServiceList>
-            {filteredProvidedServices.map((provider, index) => {
-              console.log(provider);
-
-              const client = clientsList.find((e) => e.id === provider.id);
-
+            {filteredProvidedServices.map((service, index) => {
+              const client = clientsList.filter((e) => {
+                return service.userId === e.id;
+              });
               return (
                 <ServiceFeedCard
                   key={index}
                   typeOfCard={typeOfCard}
-                  id={provider.id}
-                  image={client ? client.avatar_URL : ""}
-                  name={client ? client.name : ""}
-                  city={provider.serviceCity}
-                  state={provider.serviceState}
-                  status={provider.status}
-                  phone={client ? client.phone : ""}
-                  email={client ? client.email : ""}
-                  rating={provider.rating ? provider.rating : 0}
-                  date={provider.createdAt}
-                  description={provider.description}
+                  id={service.id}
+                  image={client[0].avatar_URL}
+                  name={client[0].name}
+                  city={service.serviceCity}
+                  state={service.serviceState}
+                  status={service.status}
+                  phone={client[0].phone}
+                  email={client[0].email}
+                  rating={Number(service.rating)}
+                  date={service.createdAt}
+                  description={service.description}
                 />
               );
             })}
           </ProvidedServiceList>
         </>
       ) : (
-    
-         <NoItemsFound>
-         <span>
-         Não há serviços prestados...
-         </span>
-         <div>
-           <IoIosConstruct size={130} />
-         </div>
-       </NoItemsFound>
+        <NoItemsFound>
+          {loadingProvider ? (
+            <span>Aguarde, carregando contratações ...</span>
+          ) : (
+            <span>Não há serviços a exibir.</span>
+          <div>
+            <IoIosConstruct size={130} />
+          </div>
+          )}
+        </NoItemsFound>
       )}
     </>
   );
