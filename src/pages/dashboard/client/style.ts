@@ -250,6 +250,9 @@ export const DivEditNomeEmail = styled.div`
   @media (min-width: 700px) {
     width: 85%;
   }
+  .avatar {
+    width: 70%;
+  }
 `;
 
 export const DivEditProfileHeader = styled.div`
@@ -281,6 +284,11 @@ export const DivEditProfileHeader = styled.div`
     img {
       width: 110px;
       right: 7%;
+    }
+  }
+  @media (min-width: 900px) {
+    img {
+      right: 12%;
     }
   }
 `;
@@ -355,12 +363,8 @@ export const SelectCity = styled.div`
   flex-direction: column;
   width: 100%;
 
-  .citySelect {
-    width: 100%;
-  }
-
-  @media (min-width: 1000px) {
-    max-width: 450px;
+  @media (min-width: 900px) {
+    max-width: 300px;
     width: 100%;
   }
 `;
@@ -406,6 +410,7 @@ export const Age = styled.div`
 
 export const DivPhone = styled.div`
   margin-top: 16px;
+  max-width: 200px;
 `;
 
 export const FormEdit = styled.form`
@@ -435,6 +440,7 @@ export const CoverAgePhone = styled.div`
   @media (min-width: 1000px) {
     display: flex;
     align-items: center;
+
     justify-content: space-between;
   }
 `;

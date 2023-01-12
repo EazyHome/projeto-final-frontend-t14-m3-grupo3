@@ -138,6 +138,11 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
           },
         }
       );
+      if (response.status == 200) {
+        toast.success("Senha alterada com sucesso!");
+      } else {
+        toast.error("Opps!  Algo deu errado!");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -155,6 +160,11 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
           },
         }
       );
+      if (response.status == 200) {
+        toast.success("Alteração concluida com sucesso!");
+      } else {
+        toast.error("Opps! Algo deu errado");
+      }
     } catch (error) {
       console.log(error);
     }

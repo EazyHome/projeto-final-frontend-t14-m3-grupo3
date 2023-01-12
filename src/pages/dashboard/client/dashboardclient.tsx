@@ -117,7 +117,7 @@ export const DashboardClient = () => {
     email: yup.string().required("Email obrigatório").email("Email inválido"),
     name: yup.string().required("Nome obrigatório"),
     state: yup.string().required("Estado obrigatório"),
-    city: yup.string().required("Cidade obrigatíria"),
+    city: yup.string().required("Cidade obrigatória"),
     age: yup
       .number()
       .required("Idade obrigatória")
@@ -127,6 +127,7 @@ export const DashboardClient = () => {
       .required("Contato obrigatório")
       .min(10, "Telefone precisa ter mais de 10 caracteres ")
       .max(11, "Telefone precisa ter menos de 12 caracteres "),
+    avatar_URL: yup.string().required("Campo obrigatório"),
   });
 
   const {
@@ -145,6 +146,7 @@ export const DashboardClient = () => {
 
   const handleSubmitEditForm = (data: iUserClient) => {
     editProfile(data);
+    console.log(data);
   };
 
   let city = "";
@@ -258,7 +260,7 @@ export const DashboardClient = () => {
           <DivEditProfile>
             <DivEditProfileHeader>
               <h3>Editar perfil</h3>
-              <img src={providerRegisterButtonImg} alt="" />
+              <img src={getClientInfo?.avatar_URL} alt="" />
             </DivEditProfileHeader>
 
             <FormEdit onSubmit={handleSubmit(handleSubmitEditForm)}>
@@ -282,6 +284,16 @@ export const DashboardClient = () => {
                   {...register("email")}
                   error={!!errors.email}
                   helperText={(errors.email as any)?.message}
+                />
+                <CssTextField
+                  className="avatar"
+                  label="Link do Avatar"
+                  variant="outlined"
+                  type="text"
+                  placeholder={`${getClientInfo?.avatar_URL}`}
+                  {...register("avatar_URL")}
+                  error={!!errors.avatar_URL}
+                  helperText={(errors.avatar_URL as any)?.message}
                 />
               </DivEditNomeEmail>
 
@@ -397,23 +409,25 @@ export const DashboardClient = () => {
 
                 <CoverAgePhone>
                   <Age>
-                    <TextField
+                    <CssTextField
                       className="age"
                       label="Idade"
                       variant="outlined"
                       type="number"
                       placeholder={`${getClientInfo?.age}`}
                       {...register("age")}
+                      error={!!errors.age}
                     />
                   </Age>
                   <DivPhone>
-                    <TextField
+                    <CssTextField
                       label="Telefone"
                       variant="outlined"
                       type="text"
                       placeholder={`${getClientInfo?.phone}`}
                       {...register("phone")}
                       helperText={(errors.phone as any)?.message}
+                      error={!!errors.phone}
                     />
                   </DivPhone>
                   <Button
