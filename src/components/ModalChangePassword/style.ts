@@ -14,8 +14,9 @@ export const BackGroudModalPassword = styled.div`
 `;
 
 export const ModalPassword = styled.div`
-  width: 100%;
+  width: 90%;
   max-width: 400px;
+  border-radius: 10px;
   height: max-content;
   padding: 24px;
   background-color: white;
@@ -25,8 +26,8 @@ export const ModalPassword = styled.div`
   align-items: center;
   position: relative;
 
-  & h3 {
-    margin-bottom: 32px;
+  & > form {
+    margin-top: 15px;
   }
 
   & label {
@@ -52,5 +53,33 @@ export const ModalPassword = styled.div`
   }
   & #changePassword:hover {
     background-color: var(--color-primary);
+  }
+`;
+
+export const DivTitleModal = styled.div`
+  font-size: var(--font-size-20);
+  font-weight: 600;
+  color: var(--color-primary);
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  & > button {
+    background-color: transparent;
+    border: none;
+    opacity: 0.9;
+    font-size: var(--font-size-20);
+    font-weight: 600;
+    color: var(--color-primary);
+    border: 30px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+  }
+  & > button:hover {
+    opacity: 1;
+    background-color: var(--color-grey20);
   }
 `;
