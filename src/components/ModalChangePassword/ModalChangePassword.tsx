@@ -56,6 +56,7 @@ export const ModalChangePassword = ({
   function ChangePasswordData(data: IData) {
     delete data.confimarNovaSenha;
     changePassword(data);
+    setModalPassword(false);
   }
 
   return (

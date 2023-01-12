@@ -6,12 +6,23 @@ export const BodyDashborardClient = styled.body`
 `;
 
 export const DashboardClientConteiner = styled.main`
-  width: 100%;
-  height: 100vh;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  /* @media (max-width: 630px) {
+    & {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+  } */
 `;
 
 export const SectionDashboardClientTop = styled.div`
-  margin-top: 88px;
+  margin-top: 85px;
+  scroll-margin-top: 88px;
   width: 100%;
   height: 225px;
   background: url(${imgDashClient});
@@ -71,22 +82,12 @@ export const TextSectionTop = styled.h3`
 export const DashContent = styled.div`
   display: flex;
   flex-direction: column;
+
   align-items: flex-start;
-  /* @media (min-width: 280px) {
-    & > nav {
-      width: 100%;
-      background-color: var(--color-grey20);
-    }
-  } */
+
   @media (min-width: 630px) {
     flex-direction: row;
     justify-content: space-between;
-    /* & > nav {
-      display: flex;
-      flex-direction: column;
-      justify-content: start;
-      width: 30%;
-    } */
   }
 `;
 
@@ -95,6 +96,11 @@ export const DashNav = styled.nav`
   justify-content: space-between;
   width: 20%;
   padding: 2rem;
+  /* min-height: 100%;
+  border: 2px solid red;
+  min-height: 100%;
+  max-height: 100%;
+  overflow: scroll; */
   @media (min-width: 280px) {
     padding: 1rem;
     justify-content: space-between;
@@ -122,6 +128,7 @@ export const DashNav = styled.nav`
     flex-direction: column;
     justify-content: start;
     width: 30%;
+
     & > nav {
       display: flex;
       flex-direction: row;
@@ -139,182 +146,68 @@ export const DashMenuItem = styled.li`
 `;
 
 export const Services = styled.div`
-  margin: 25px 25px 0 0;
-  background-color: var(--color-grey0);
   padding: 12px;
   width: 80%;
-
-  /* .servicesCards {
-    display: grid;
-    grid-template-columns: 100px 100px 100px;
-    grid-row-gap: 32px;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
-
-  .orangeCard {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: var(--color-primary);
-    min-width: 80px;
-    max-width: 80px;
-    height: 135px;
-    border-radius: 40px;
-    margin-top: 16px;
-    margin-bottom: 15px;
-  }
-
-  .greenCard {
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: space-between;
-    background-color: var(--color-opposite-2);
-    min-width: 80px;
-    max-width: 80px;
-    height: 135px;
-    border-radius: 40px;
-    margin-top: 16px;
-  }
-
-  .orangeCircle {
+  background-color: var(--color-grey0);
+  min-height: 100%;
+  @media (max-width: 630px) {
     width: 100%;
-    height: 60%;
-    background-color: var(--color-grey20);
-    border-radius: 50%;
-    border: 3px solid var(--color-grey20);
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
+`;
 
-  .orangeCircle img {
-    width: 75%;
-    height: 75%;
-    border-radius: 50%;
-  }
+export const ContentServices = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-  .greenCircle {
-    width: 100%;
-    height: 60%;
-    background-color: var(--color-grey20);
-    border-radius: 50%;
-    border: 3px solid var(--color-grey20);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  & > h3 {
+    color: var(--color-primary);
+    font-size: var(--font-size-28);
   }
+`;
 
-  .greenCircle img {
-    width: 75%;
-    height: 75%;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-
-  .orangeCard p {
-    margin-bottom: 22px;
-    font-size: 12px;
-    text-align: center;
-    color: var(--color-white);
-  }
-
-  .greenCard p {
-    margin-top: 18px;
-    margin-bottom: 22px;
-    font-size: 12px;
-    text-align: center;
-    color: var(--color-white);
-  }
-
-  @media (min-width: 280px) {
-    width: 100%;
-    .servicesCards {
-      grid-template-columns: 100px 100px;
-      justify-content: space-between;
-    }
-  }
+export const ListService = styled.ul`
+  display: grid;
+  grid-template-columns: 100px 100px;
+  grid-row-gap: 24px;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 10px;
 
   @media (min-width: 400px) {
-    .servicesCards {
+    & {
       grid-template-columns: 100px 100px 100px;
-      justify-content: space-between;
+      grid-row-gap: 12px;
+      gap: 12px;
     }
   }
-
-  @media (min-width: 630px) {
-    .servicesCards {
-      grid-template-columns: 100px 100px 100px;
-      justify-content: space-between;
+  @media (min-width: 500px) {
+    & {
+      grid-template-columns: 100px 100px 100px 100px;
     }
   }
   @media (min-width: 760px) {
-    width: 70%;
-    .servicesCards {
-      grid-template-columns: 100px 100px 100px 100px;
-      justify-content: space-between;
-    }
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .orangeCard {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background-color: var(--color-primary);
-      min-width: 100px;
-      max-width: 100px;
-      height: 160px;
-      border-radius: 55px;
-      margin-top: 16px;
-      margin-bottom: 15px;
-    }
-
-    .greenCard {
-      display: flex;
-      flex-direction: column-reverse;
-      justify-content: space-between;
-      background-color: var(--color-opposite-2);
-      min-width: 100px;
-      max-width: 100px;
-      height: 160px;
-      border-radius: 50px;
-      margin-top: 16px;
-    }
-
-    .orangeCard p {
-      margin-bottom: 22px;
-      font-size: 14px;
-      text-align: center;
-      color: var(--color-white);
-    }
-
-    .greenCard p {
-      margin-top: 18px;
-      margin-bottom: 22px;
-      font-size: 14px;
-      text-align: center;
-      color: var(--color-white);
+    & {
+      grid-row-gap: 24px;
+      gap: 24px;
     }
   }
-  @media (min-width: 980px) {
-    width: 80%;
-    .servicesCards {
+
+  @media (min-width: 900px) {
+    & {
       grid-template-columns: 100px 100px 100px 100px 100px 100px;
-      justify-content: space-between;
+      gap: 28px;
+      grid-row-gap: 28px;
     }
-  } */
+  }
 `;
 
-//Editar perfil Style
 export const DivEditProfile = styled.div`
   width: 100%;
   max-width: 420px;
   padding: 16px;
-  margin: 0 auto 18px auto;
+  margin: 10px auto 18px auto;
 
   img {
     border: 1px solid black;
@@ -353,25 +246,49 @@ export const DivEditProfile = styled.div`
 `;
 
 export const DivEditNomeEmail = styled.div`
-  .name {
-    width: 100%;
+  width: 80%;
+  @media (min-width: 700px) {
+    width: 85%;
+  }
+  .avatar {
+    width: 70%;
   }
 `;
 
 export const DivEditProfileHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 0 auto 18px auto;
+  margin: 18px auto 18px auto;
   width: 100%;
+  color: var(--color-primary);
+  font-size: 20px;
+  position: relative;
 
-  @media (min-width: 1020px) {
+  img {
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    width: 100px;
+    height: 120px;
+    object-fit: cover;
+    border: 2px solid var(--color-grey20);
+  }
+  /* 
+  @media (min-width: 400px) {
     img {
-      position: absolute;
-      right: 120px;
-      top: 60px;
+      right: 20px;
+    }
+  } */
+
+  @media (min-width: 700px) {
+    img {
       width: 110px;
-      height: 120px;
-      object-fit: cover;
+      right: 7%;
+    }
+  }
+  @media (min-width: 900px) {
+    img {
+      right: 12%;
     }
   }
 `;
@@ -420,14 +337,13 @@ export const AddCity = styled.div`
 `;
 
 export const CoverLabelStateSpan = styled.div`
-  display: flex;
-  flex-direction: column;
+  min-width: 100px;
 `;
 
 export const StateAndButton = styled.div`
   justify-content: space-between;
 
-  #DivLocal {
+  & > div {
     margin: 16px 0;
     width: 100%;
     display: flex;
@@ -438,7 +354,6 @@ export const StateAndButton = styled.div`
     display: flex;
     gap: 16px;
     align-items: center;
-
     max-width: 100%;
   }
 `;
@@ -448,12 +363,8 @@ export const SelectCity = styled.div`
   flex-direction: column;
   width: 100%;
 
-  .citySelect {
-    width: 100%;
-  }
-
-  @media (min-width: 1000px) {
-    max-width: 860px;
+  @media (min-width: 900px) {
+    max-width: 300px;
     width: 100%;
   }
 `;
@@ -499,6 +410,7 @@ export const Age = styled.div`
 
 export const DivPhone = styled.div`
   margin-top: 16px;
+  max-width: 200px;
 `;
 
 export const FormEdit = styled.form`
@@ -528,6 +440,7 @@ export const CoverAgePhone = styled.div`
   @media (min-width: 1000px) {
     display: flex;
     align-items: center;
+
     justify-content: space-between;
   }
 `;

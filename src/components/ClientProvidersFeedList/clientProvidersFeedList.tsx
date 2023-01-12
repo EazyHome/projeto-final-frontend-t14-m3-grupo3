@@ -4,6 +4,7 @@ import { ServiceFeedCard } from "../ServiceFeedCard/serviceFeedCard";
 import defaultProvider from "../../assets/img/fornecedor.png";
 import { UserContext } from "../../contexts/UserContext/UserContext";
 import { ProfileContext } from "../../contexts/ProfileContext/ProfileContext";
+import { IoIosConstruct } from "react-icons/io";
 
 interface iClientServiceFeed {
   id: number;
@@ -68,6 +69,9 @@ export const ClientProvidersFeedList = () => {
           <span>
             Não há prestadores de serviço cadastrados para a sua região...
           </span>
+          <div>
+            <IoIosConstruct size={130} />
+          </div>
         </NoItemsFound>
       )}
     </>

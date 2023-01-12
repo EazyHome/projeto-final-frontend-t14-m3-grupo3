@@ -21,5 +21,16 @@ export const NoItemsFound = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 4rem;
+  min-height: 280px;
+  padding-left: 15px;
+  padding-right: 15px;
+  position: relative;
+  color: var(--color-primary);
+  font-size: var(--font-size-20);
+  text-align: center;
+
+  & > div {
+    color: rgba(255, 102, 0, 0.2);
+    position: absolute;
+  }
 `;

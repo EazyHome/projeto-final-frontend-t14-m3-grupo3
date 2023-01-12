@@ -37,12 +37,12 @@ interface iProfileContext {
   getPhoto: () => void;
   filteredServices: [] | iServices[];
   setFilteredServices: React.Dispatch<React.SetStateAction<[] | iServices[]>>;
-  needChange: boolean;
   setNeedChange: React.Dispatch<React.SetStateAction<boolean>>;
   changePassword: (data: IData) => void;
   clientsList: [] | iUserClient[];
   getClients: () => void;
   autoLogin: () => void;
+  needChange: boolean;
   loadingProvider: boolean;
   setLoadingProvider: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -141,6 +141,11 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
           },
         }
       );
+      if (response.status === 200) {
+        toast.success("Senha alterada com sucesso!");
+      } else {
+        toast.error("Opps!  Algo deu errado!");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -158,6 +163,11 @@ export const ProfileProvider = ({ children }: iDefaultPropsProvider) => {
           },
         }
       );
+      if (response.status === 200) {
+        toast.success("Alteração concluida com sucesso!");
+      } else {
+        toast.error("Opps! Algo deu errado");
+      }
     } catch (error) {
       console.log(error);
     }

@@ -21,8 +21,9 @@ import {
   FormEdit,
   DivCoverCategory,
   CoverAgePhone,
+  ContentServices,
+  ListService,
 } from "../../Dashboard/client/style";
-import { ContentServices, ServicesList } from "../../Homepage/style";
 import providerRegisterButtonImg from "../../../assets/img/providerRegisterButtonImg.png";
 import List from "@mui/material/List";
 import ListItemText from "@mui/material/ListItemText";
@@ -33,7 +34,7 @@ import Collapse from "@mui/material/Collapse";
 import { OrangeCard } from "../../../components/CardOrange/card";
 import { BlueCard } from "../../../components/CardBlue/card";
 import { NavDashboardClient } from "../../../components/NavDashboard/navBarDashboard";
-import { Footer } from "../../../components/FooterRegisterAndLogin/footer";
+import { Footer } from "../../../components/Footer/Footer";
 import { ProfileContext } from "../../../contexts/ProfileContext/ProfileContext";
 import { CitiesContext } from "../../../contexts/CitiesContext/CitiesContext";
 import { ClientProvidersFeedList } from "../../../components/ClientProvidersFeedList/clientProvidersFeedList";
@@ -46,7 +47,11 @@ import { FormHelperText, MenuItem, Select } from "@mui/material";
 import { Button } from "../../../components/Button/Button";
 import { ModalChangePassword } from "../../../components/ModalChangePassword/ModalChangePassword";
 import { ClientHiredProvidersFeedList } from "../../../components/ClientHiredProviders/clientHiredProviders";
+import { StatesAPI } from "../../../service/StatesApi";
 import api from "../../../service/api";
+import { CssTextField } from "../../login/login";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
 
 export const DashboardClient = () => {
   const [open, setOpen] = React.useState(true);
@@ -109,12 +114,20 @@ export const DashboardClient = () => {
   };
 
   const formSchema = yup.object().shape({
-    email: yup.string().required("Email obrigatorio").email("Email inválido"),
-    name: yup.string().required("Nome obrigatorio"),
-    state: yup.string().required("Estado obrigatorio"),
-    city: yup.string().required("Cidade obrigatoria"),
-    age: yup.number().required("Idade obrigatoria"),
-    phone: yup.string().required("Contato obrigatorio"),
+    email: yup.string().required("Email obrigatório").email("Email inválido"),
+    name: yup.string().required("Nome obrigatório"),
+    state: yup.string().required("Estado obrigatório"),
+    city: yup.string().required("Cidade obrigatória"),
+    age: yup
+      .number()
+      .required("Idade obrigatória")
+      .min(2, "Idade precisa ter mais de 2 caracteres "),
+    phone: yup
+      .string()
+      .required("Contato obrigatório")
+      .min(10, "Telefone precisa ter mais de 10 caracteres ")
+      .max(11, "Telefone precisa ter menos de 12 caracteres "),
+    avatar_URL: yup.string().required("Campo obrigatório"),
   });
 
   const {
@@ -133,6 +146,7 @@ export const DashboardClient = () => {
 
   const handleSubmitEditForm = (data: iUserClient) => {
     editProfile(data);
+    console.log(data);
   };
 
   let city = "";
@@ -177,7 +191,7 @@ export const DashboardClient = () => {
       />
       <NavDashboardClient />
 
-      <SectionDashboardClientTop>
+      <SectionDashboardClientTop id="top">
         <div>
           <TextSectionTop>
             Precisando de um profissional para manutenção residencial? O lugar é
@@ -221,7 +235,7 @@ export const DashboardClient = () => {
           <Services id="services">
             <ContentServices>
               <h3>- Serviços -</h3>
-              <ServicesList>
+              <ListService>
                 {servicesCategories.map((service, index) => {
                   const result = index % 2;
                   return !result ? (
@@ -238,7 +252,7 @@ export const DashboardClient = () => {
                     />
                   );
                 })}
-              </ServicesList>
+              </ListService>
               <div></div>
             </ContentServices>
           </Services>
@@ -246,97 +260,174 @@ export const DashboardClient = () => {
           <DivEditProfile>
             <DivEditProfileHeader>
               <h3>Editar perfil</h3>
-              <img src={providerRegisterButtonImg} alt="" />
+              <img src={getClientInfo?.avatar_URL} alt="" />
             </DivEditProfileHeader>
 
             <FormEdit onSubmit={handleSubmit(handleSubmitEditForm)}>
               <DivEditNomeEmail>
-                <TextField
+                <CssTextField
                   className="name"
                   label="Nome"
                   variant="outlined"
                   type="text"
                   placeholder={`${getClientInfo?.name}`}
                   {...register("name")}
+                  error={!!errors.name}
                   helperText={(errors.name as any)?.message}
                 />
-                <TextField
+                <CssTextField
                   className="email"
                   label="E-mail"
                   variant="outlined"
                   type="email"
                   placeholder={`${getClientInfo?.email}`}
                   {...register("email")}
+                  error={!!errors.email}
                   helperText={(errors.email as any)?.message}
+                />
+                <CssTextField
+                  className="avatar"
+                  label="Link do Avatar"
+                  variant="outlined"
+                  type="text"
+                  placeholder={`${getClientInfo?.avatar_URL}`}
+                  {...register("avatar_URL")}
+                  error={!!errors.avatar_URL}
+                  helperText={(errors.avatar_URL as any)?.message}
                 />
               </DivEditNomeEmail>
 
               <AddCity>
                 <StateAndButton>
-                  <div id="DivLocal">
+                  <div>
                     <CoverLabelStateSpan>
-                      <span>Estado</span>
-                      <Select
-                        className="stateSelect"
-                        label="Estado"
-                        {...register("state")}
-                        onChange={getStateEditForm}
-                      >
-                        {statesList.map((e) => {
-                          return (
-                            <MenuItem key={e.id} value={e.sigla}>
-                              {e.sigla}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
-                      <FormHelperText>
-                        {(errors.state as any)?.message}
-                      </FormHelperText>
+                      <FormControl>
+                        <InputLabel
+                          id="demo-simple-select-label"
+                          sx={{
+                            color: "var(--color-primary)",
+                          }}
+                        >
+                          Estado
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          label="Estado"
+                          {...register("state")}
+                          onChange={getStateEditForm}
+                          error={!!errors.state}
+                          sx={{
+                            color: "var(--color-primary)",
+                            ".MuiOutlinedInput-notchedOutline": {
+                              border: "2px solid var(--color-opposite-1)",
+                            },
+                            ".MuiSvgIcon-root ": {
+                              fill: "var(--color-opposite-1) !important",
+                            },
+                            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                              border: "2px solid var(--color-primary)",
+                            },
+                            "&:hover .MuiOutlinedInput-notchedOutline": {
+                              border: "2px solid var(--color-primary)",
+                            },
+                            "&:hover ": {
+                              ".MuiSvgIcon-root ": {
+                                fill: "var(--color-primary) !important",
+                              },
+                            },
+                          }}
+                        >
+                          {statesList.map((e) => {
+                            return (
+                              <MenuItem key={e.id} value={e.sigla}>
+                                {e.sigla}
+                              </MenuItem>
+                            );
+                          })}
+                        </Select>
+                        <FormHelperText>
+                          {(errors.state as any)?.message}
+                        </FormHelperText>
+                      </FormControl>
                     </CoverLabelStateSpan>
+
                     <SelectCity>
-                      <span>Cidade</span>
-                      <Select
-                        className="citySelect"
-                        label="Cidade"
-                        disabled={disable}
-                        {...register("city")}
-                        onChange={getCityEditForm}
-                      >
-                        {citiesList.map((e) => {
-                          return (
-                            <MenuItem key={e.id} value={e.nome}>
-                              {e.nome}
-                            </MenuItem>
-                          );
-                        })}
-                      </Select>
-                      <FormHelperText>
-                        {(errors.city as any)?.message}
-                      </FormHelperText>
+                      <FormControl>
+                        <InputLabel
+                          id="demo-simple-select-label"
+                          sx={{
+                            color: "var(--color-primary)",
+                          }}
+                        >
+                          Cidade
+                        </InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          label="Cidade"
+                          disabled={disable}
+                          {...register("city")}
+                          onChange={getCityEditForm}
+                          error={!!errors.city}
+                          sx={{
+                            color: "var(--color-primary)",
+                            ".MuiOutlinedInput-notchedOutline": {
+                              border: "2px solid var(--color-opposite-1)",
+                            },
+                            ".MuiSvgIcon-root ": {
+                              fill: "var(--color-opposite-1) !important",
+                            },
+                            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                              border: "2px solid var(--color-primary)",
+                            },
+                            "&:hover .MuiOutlinedInput-notchedOutline": {
+                              border: "2px solid var(--color-primary)",
+                            },
+                            "&:hover ": {
+                              ".MuiSvgIcon-root ": {
+                                fill: "var(--color-primary) !important",
+                              },
+                            },
+                          }}
+                        >
+                          {citiesList.map((e) => {
+                            return (
+                              <MenuItem key={e.id} value={e.nome}>
+                                {e.nome}
+                              </MenuItem>
+                            );
+                          })}
+                        </Select>
+                        <FormHelperText>
+                          {(errors.city as any)?.message}
+                        </FormHelperText>
+                      </FormControl>
                     </SelectCity>
                   </div>
                 </StateAndButton>
 
                 <CoverAgePhone>
                   <Age>
-                    <TextField
+                    <CssTextField
                       className="age"
                       label="Idade"
                       variant="outlined"
                       type="number"
                       placeholder={`${getClientInfo?.age}`}
                       {...register("age")}
+                      error={!!errors.age}
                     />
                   </Age>
                   <DivPhone>
-                    <TextField
+                    <CssTextField
                       label="Telefone"
                       variant="outlined"
                       type="text"
                       placeholder={`${getClientInfo?.phone}`}
                       {...register("phone")}
                       helperText={(errors.phone as any)?.message}
+                      error={!!errors.phone}
                     />
                   </DivPhone>
                   <Button
