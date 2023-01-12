@@ -6,14 +6,13 @@ interface iProp {
   onClick?: () => void;
 }
 
-export function BlueCard({ img, type }: iProp) {
+export function BlueCard({ img, type, onClick }: iProp) {
   return (
     <BlueItem>
       <div>
-        <img src={img} />
+        <img src={img} onClick={onClick} />
       </div>
       <p>{type}</p>
     </BlueItem>
   );
 }
-

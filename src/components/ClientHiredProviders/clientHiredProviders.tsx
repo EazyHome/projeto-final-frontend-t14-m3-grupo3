@@ -5,6 +5,7 @@ import {
   iServices,
   ProfileContext,
 } from "../../contexts/ProfileContext/ProfileContext";
+import { IoIosConstruct } from "react-icons/io";
 
 export const ClientHiredProvidersFeedList = () => {
   const {
@@ -72,7 +73,12 @@ export const ClientHiredProvidersFeedList = () => {
         </>
       ) : (
         <NoItemsFound>
-          <span>Nenhum serviço contratado.</span>
+          <span>
+          Nenhum serviço contratado
+          </span>
+          <div>
+            <IoIosConstruct size={130} />
+          </div>
         </NoItemsFound>
       )}
     </>
